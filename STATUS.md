@@ -26,3 +26,7 @@ obsolete metadata conventions. See docs/nf-core-conformance.md for applicability
 work in progress, exact selected scientific source and publication boundaries.
 Do not describe this engineering work as formal nf-core admission. Public image
 registry publication remains pending separate destination-specific approval.
+
+### Combined conformance source qualification
+
+Canonical module/process names use explicit stable workflow aliases; current strict Nextflow source is integrated at `4592055`. Production/oracle snapshots match the child exactly (production `2a8b4a88…`, qualification `b6b20014…`,103 tracked oracle/setup files). Frozen minimum strict full HDF5 CRT/checkpoint/resume, launcher and42-case native suites are running. The documentation generator now resolves the grouped CLI schema; actual rebuild passes25 HTML pages/1848 local references. Website-only edits do not alter frozen production/oracle identities. Current hosted/full SIF and registry distribution remain separate pending gates.
