@@ -1,0 +1,41 @@
+{
+  "host_uid": 1001,
+  "host_gid": 1001,
+  "platform": "linux",
+  "native_linux_gid_asserted": true,
+  "gid_mapping_limit": null,
+  "trees": {
+    "raw": {
+      "entries": 8,
+      "all_caller_uid": true,
+      "observed_gids": [
+        1001
+      ],
+      "caller_create_edit_delete": true
+    },
+    "run/prepared": {
+      "entries": 14,
+      "all_caller_uid": true,
+      "observed_gids": [
+        1001
+      ],
+      "caller_create_edit_delete": true
+    },
+    "run/work": {
+      "entries": 264,
+      "all_caller_uid": true,
+      "observed_gids": [
+        1001
+      ],
+      "caller_create_edit_delete": true
+    },
+    "run/results": {
+      "entries": 72,
+      "all_caller_uid": true,
+      "observed_gids": [
+        1001
+      ],
+      "caller_create_edit_delete": true
+    }
+  }
+}

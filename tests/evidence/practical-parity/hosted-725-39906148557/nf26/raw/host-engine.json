@@ -1,0 +1,14 @@
+{
+  "kind": "sceptre-pipeline-host-engine",
+  "schema": 1,
+  "java_home": "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.10-7/x64",
+  "java_executable_sha256": "d350a50c34c209469b800d5d09502f38203db5a99e7382ae654d124ceafab8b7",
+  "java": {
+    "java.runtime.version": "17.0.10+7",
+    "java.vendor": "Eclipse Adoptium",
+    "java.version": "17.0.10"
+  },
+  "nextflow_version": "26.10.3",
+  "parser_override": null,
+  "policy": "Exact final Temurin patch/vendor and Nextflow release verified after composite setup; supported parser defaults retained."
+}
