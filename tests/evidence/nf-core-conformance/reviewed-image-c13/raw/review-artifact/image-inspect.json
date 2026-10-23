@@ -1,0 +1,91 @@
+[
+    {
+        "Id": "sha256:02809df79df55e61c05cbf5e7cfd60065c3311719102976983a3c12d7bb6edcc",
+        "RepoTags": [
+            "sceptre-publication-review:local"
+        ],
+        "RepoDigests": [],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-23T05:29:25.160326884Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "R_VERSION=4.5.1",
+                "R_HOME=/usr/local/lib/R",
+                "TZ=Etc/UTC",
+                "CRAN=https://p3m.dev/cran/__linux__/noble/2025-10-30",
+                "LANG=en_US.UTF-8",
+                "OMP_NUM_THREADS=1",
+                "OPENBLAS_NUM_THREADS=1",
+                "MAKEFLAGS=-j2",
+                "SCEPTRE_CRAN_SNAPSHOT=https://packagemanager.posit.co/cran/2025-11-15",
+                "SCEPTRE_BIOCONDUCTOR_VERSION=3.22"
+            ],
+            "Cmd": [
+                "Rscript",
+                "--version"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "/work",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.authors": "Carl Boettiger <cboettig@ropensci.org>",
+                "org.opencontainers.image.base.name": "docker.io/library/ubuntu:noble",
+                "org.opencontainers.image.description": "Frozen SCEPTRE archive; identity in /opt/sceptre/source.json",
+                "org.opencontainers.image.licenses": "GPL-2.0-or-later",
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.revision": "c13e94da0b8e9a54a2dd2460ad8514d04bd0fee0",
+                "org.opencontainers.image.source": "https://github.com/Katsevich-Lab/sceptre-pipeline",
+                "org.opencontainers.image.title": "SCEPTRE schema-7 pipeline runtime",
+                "org.opencontainers.image.vendor": "Rocker Project",
+                "org.opencontainers.image.version": "R-4.5.1"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 1603162351,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/vpkmx7qmugge1wuqlqxgerf63/diff:/var/lib/docker/overlay2/c5a2jxlutlcrrbp6jt9ubg5p5/diff:/var/lib/docker/overlay2/zv36y2kvppik9alo7nb8emusu/diff:/var/lib/docker/overlay2/be8d62dc18ea4058fded90c5b13be758b159d46732c57c4d5eea229449b1d224/diff:/var/lib/docker/overlay2/3f4f724c0a13cc4a1606788d72c31c7b560158fba557adaf2d20840d0ae03fcc/diff:/var/lib/docker/overlay2/cd9fe5772eb226b9a3c243969ee33518e3164b57be01902d354e0ebe0302fab9/diff:/var/lib/docker/overlay2/93bb77fbd0462385498d71081aaa97f4fdbfd859120ba1ee908d2cc56dd0cb7e/diff:/var/lib/docker/overlay2/a25e83669a02435b48826ffcd52c35e34fd84e09d075dcfe4939433a9922c498/diff:/var/lib/docker/overlay2/280995fcc27e9abff7de8ffc20f055fb482da1d676234d583d7418f269ccf68c/diff:/var/lib/docker/overlay2/9cccf5e48adfc9a3b4acd5f09309942837fb191a6d511ae99ad83fe1d6ea6170/diff",
+                "MergedDir": "/var/lib/docker/overlay2/w69zqftn34gxczzkotx3m3wvf/merged",
+                "UpperDir": "/var/lib/docker/overlay2/w69zqftn34gxczzkotx3m3wvf/diff",
+                "WorkDir": "/var/lib/docker/overlay2/w69zqftn34gxczzkotx3m3wvf/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:073ec47a8c22dcaa4d6e5758799ccefe2f9bde943685830b1bf6fd2395f5eabc",
+                "sha256:0671c314d3e106ab4d9b9ac6719b42cf21f293269820edaf93533c45de38ba2e",
+                "sha256:9d68daa98beba6c6bc51c056811abab9fabf0ad4bb6df564a38ebc93d63c8380",
+                "sha256:cdbc6bed014291cee5757f2a2e356fdfb1fce15549691343b30a7320449b87bc",
+                "sha256:4fa50a8b2c64541d35d0358382397a83290657f732c5477fa580939f635c4207",
+                "sha256:53c4f357e24768f07a3aa64bceae56c97fe1279eecbd7a4048adca25c30d196c",
+                "sha256:4adc488ed9e4d896f610e152b3c25c2fa2e3a3d3a3ae9d645668e92ffda9318f",
+                "sha256:47320ac97b673da98f42d3d1ab7fda34e70c5b376ba5f50aa48293e9e5883369",
+                "sha256:97c451a006d9d72bbaf1ff3f1a25ec4bc88e70dc8742b4f2f8ab63dc5848c2d4",
+                "sha256:af1dc786bd0f0df7cbde61cbf3054ae4b78528509ef686a0c3c176d188b8cf94",
+                "sha256:43a52b5adac80398d0525bf21b0b4caa2ce0d88a3f93bb0ffb9432fd6ea9a7a1"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-23T05:29:29.256060929Z"
+        }
+    }
+]

@@ -1,0 +1,22 @@
+{
+  "kind": "approved-image-origin",
+  "expected": {
+    "run_id": 39904756647,
+    "artifact_id": 12480892891,
+    "source_sha": "c13e94da0b8e9a54a2dd2460ad8514d04bd0fee0",
+    "image_id": "sha256:02809df79df55e61c05cbf5e7cfd60065c3311719102976983a3c12d7bb6edcc",
+    "archive_sha256": "1dcbe3a5d8b290c8ca28ffb67a065872e23e8d79877587199bffa230d346b688"
+  },
+  "repository": "Katsevich-Lab/sceptre-pipeline",
+  "workflow_id": 393667856,
+  "run_attempt": 1,
+  "run_event": "push",
+  "artifact_name": "reviewed-exact-source-image-39904756647-1",
+  "artifact_digest": "sha256:ea73fb7e8065560a8351e025ee0efb41ea4a9ae66f75cf117432f2a4641ae341",
+  "run_url": "https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39904756647",
+  "status": "VERIFIED",
+  "review_helpers_sha256": {
+    "review_image.py": "2d642b58066a52a0b62ecc2b078d39249f7748b1dcbe598ec9a4fce5fa463475",
+    "test_review_image.py": "e15571cdf0c62a3fb21e40a0c68f64464f6b1db9adf91a2f2f7ead1ad50bb22a"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "status": "VERIFIED",
+  "expected": {
+    "run_id": 39904756647,
+    "artifact_id": 12480892891,
+    "source_sha": "c13e94da0b8e9a54a2dd2460ad8514d04bd0fee0",
+    "image_id": "sha256:02809df79df55e61c05cbf5e7cfd60065c3311719102976983a3c12d7bb6edcc",
+    "archive_sha256": "1dcbe3a5d8b290c8ca28ffb67a065872e23e8d79877587199bffa230d346b688"
+  },
+  "loaded_image_checked": true
+}
