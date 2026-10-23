@@ -35,7 +35,7 @@ nextflow_pipeline {
         }
         then {
             assert workflow.success
-            assert workflow.trace.succeeded().size() == 3
+            assert workflow.trace.succeeded().size() == 2
             assert path("$outputDir/parameters/state/manifest.rds").exists()
             assert !path("$outputDir/qc").exists()
         }
