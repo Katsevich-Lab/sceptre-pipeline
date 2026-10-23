@@ -1,0 +1,17 @@
+{
+  "kind": "focused-prepared-launch-identity-qualification",
+  "source_commit": "62abebe",
+  "package_archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "container_image": "sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9",
+  "engine": "Docker Linux ARM64; Nextflow25.10.4",
+  "result": "PASS directR/nativeHDF5CRT and unchanged scientific cache; changed generated seed, analyses and input_bundle reject before Nextflow",
+  "scope": "Focused guard qualification before combined nf-core/current-parser integration; not hosted or SIF evidence",
+  "evidence": {
+    "project.log": "489707198a2dad63a145fcc2214b70316d556d5a02bf5afbeaf4d5bd36790c78",
+    "launcher.log": "b9678f84be3c3e16c616c09ddd4e1377118b58405066ae99a6a07bd0e1beb832",
+    "resume-trace.tsv": "ff20203b881f38787aeb218d01423fa16e61416a3bf8558b81b8aeb7736026fa",
+    "rejected-params-seed.log": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+    "rejected-params-analyses.log": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+    "rejected-params-input_bundle.log": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d"
+  }
+}

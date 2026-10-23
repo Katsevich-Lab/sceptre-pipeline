@@ -13,3 +13,5 @@ Acceptance readback refreshed: the old core source freeze is TERMINAL PASS and v
 ### Prepared launch-request identity guard
 
 Review identified that generated `params.json` was not in preparation identity. Preparation now binds its exact bytes; unchanged reuse rejects a changed seed, family request or input path before Nextflow submission. Real mutation rejection is covered by `test_project.R` and the Docker/SIF launcher driver. This guard will be included in final post-nf-core qualification.
+
+Focused guard qualification terminal PASS: `tests/evidence/practical-parity/params-guard/receipt.json` binds actual floor-Docker project and one-command launch/resume logs, all three request mutation diagnostics and the unchanged-resume trace at `62abebe`. Combined nf-core/current-parser qualification remains pending.
