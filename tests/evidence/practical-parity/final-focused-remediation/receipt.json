@@ -1,0 +1,370 @@
+{
+  "kind": "final-demo-ownership-and-complete-source-fixture-focused-remediation",
+  "schema": 1,
+  "production_sha256": "985222799734e4a8a61473ade0753af9e06c450587f67623440ee447a723c61c",
+  "commits": {
+    "full_identity_and_bounded_preview_checker": "736eda3",
+    "public_demo_caller_helpers_and_ownership_receipt": "7dea21a",
+    "complete_bound_source_fixture": "211a12d"
+  },
+  "runtime": "DockerLinuxARM64 qualifiedb51; R4.5.1/Bioc3.22; realNextflow25.10.4/default1+26.10.3/default2 demos; current26 reference/distributed integration",
+  "demo_results": {
+    "25.10.4": {
+      "exit": 0,
+      "caller_ownership": {
+        "uid": 503,
+        "gid": 20,
+        "platform": "darwin",
+        "native_gid_verified": false,
+        "paths": {
+          "fixture": {
+            "uid": 503,
+            "gid": 0
+          },
+          "work": {
+            "uid": 503,
+            "gid": 0
+          },
+          "results": {
+            "uid": 503,
+            "gid": 0
+          },
+          "fixture/config.rds": {
+            "uid": 503,
+            "gid": 0
+          },
+          "fixture/lock.rds": {
+            "uid": 503,
+            "gid": 0
+          },
+          "fixture/input/sceptre_object.rds": {
+            "uid": 503,
+            "gid": 0
+          },
+          "results/exports/scientific-report/report-data.rds": {
+            "uid": 503,
+            "gid": 0
+          }
+        },
+        "create_read_edit_delete": "PASS"
+      }
+    },
+    "26.10.3": {
+      "exit": 0,
+      "caller_ownership": {
+        "uid": 503,
+        "gid": 20,
+        "platform": "darwin",
+        "native_gid_verified": false,
+        "paths": {
+          "fixture": {
+            "uid": 503,
+            "gid": 0
+          },
+          "work": {
+            "uid": 503,
+            "gid": 0
+          },
+          "results": {
+            "uid": 503,
+            "gid": 0
+          },
+          "fixture/config.rds": {
+            "uid": 503,
+            "gid": 0
+          },
+          "fixture/lock.rds": {
+            "uid": 503,
+            "gid": 0
+          },
+          "fixture/input/sceptre_object.rds": {
+            "uid": 503,
+            "gid": 0
+          },
+          "results/exports/scientific-report/report-data.rds": {
+            "uid": 503,
+            "gid": 0
+          }
+        },
+        "create_read_edit_delete": "PASS"
+      }
+    }
+  },
+  "native_linux_named_volume": {
+    "uid": 1001,
+    "gid": 1002,
+    "actual_qualified_generator": "demo/make-input.R",
+    "all_config_lock_object_uid_gid_asserted": true,
+    "create_edit_read_delete": "PASS",
+    "first_harness_attempt": "Failed to provide source through initial host-path bind; corrected explicit read-only /source mount succeeded. Not a product failure.",
+    "scope": "Linux container named-volume identity; not Darwin bind GID or hostedAMD64 proof"
+  },
+  "six_negative_probes": [
+    {
+      "version": "25.10.4",
+      "case": "original-stale-preview-equals-full-lock",
+      "exit": 1,
+      "expected_rejection": true
+    },
+    {
+      "version": "25.10.4",
+      "case": "full-identity-beyond-preview",
+      "exit": 1,
+      "expected_rejection": true
+    },
+    {
+      "version": "25.10.4",
+      "case": "bounded-preview-identity",
+      "exit": 1,
+      "expected_rejection": true
+    },
+    {
+      "version": "26.10.3",
+      "case": "original-stale-preview-equals-full-lock",
+      "exit": 1,
+      "expected_rejection": true
+    },
+    {
+      "version": "26.10.3",
+      "case": "full-identity-beyond-preview",
+      "exit": 1,
+      "expected_rejection": true
+    },
+    {
+      "version": "26.10.3",
+      "case": "bounded-preview-identity",
+      "exit": 1,
+      "expected_rejection": true
+    }
+  ],
+  "integration": {
+    "initial_commands_exit": {
+      "reference": 1,
+      "distributed": 1
+    },
+    "passed_before_initial_failure": [
+      "exactpublicR scientificcomparison",
+      "unchangedscientific/exportcache",
+      "nestedconfig/sourceclosure/dynamic/missing/cyclicguards",
+      "unknownlegacyparameters",
+      "occupiedoutput/seed/arraychanges"
+    ],
+    "initial_failure": "Altered-source testfixture lacked now-bounddemo/make-input.R; sourcevalidator correctlyrejected missingfile before intendedsignaturediagnostic. No sourceguard weakening.",
+    "focused_tail_exit": {
+      "reference": 0,
+      "distributed": 0
+    },
+    "focused_tail_pass": [
+      "complete-source fixture rejects changedNF implementation onresume",
+      "actualfailedworker preventscollector/completedfamilypublication",
+      "missing expecteddiscoveryfamily rejects evenwithmatchingobjectchecksum; originalartifactsunchanged"
+    ]
+  },
+  "limits": "Focused repairedboundary evidence only. Initialfullintegrationcommands didnotexit0. FinalwholehostedPR scientificjobs mandatory; no newimage/package/matrix rerun was used for these test/demo-shell fixes.",
+  "artifacts": {
+    "raw/negative/26.10.3-original-oracle.log.gz": {
+      "sha256": "e0d772e523a843f90d7ad8fcb9ef16f6c52b7bef81aa8083e4e39fb7c180c3b0",
+      "bytes": 101,
+      "original_sha256": "745d6dc70823fa8f41ea7ca7a829de7e02a7538067d1a4f4cf9aad37be5a70ca",
+      "original_bytes": 88
+    },
+    "raw/negative/original-check.R.gz": {
+      "sha256": "d0fc1d59459294312924f5f1dcd40dab3582bfc14aeddc8224306feedf61eb71",
+      "bytes": 916,
+      "original_sha256": "fcfb2ecbf138253991b4a57995383b5a6d2bb32f34ac6125e588464f595d7cac",
+      "original_bytes": 1965
+    },
+    "raw/negative/probe.log.gz": {
+      "sha256": "ccdb5d87328c22e1dea3843c4ed2f03e1d59fb330d15c03eeb961293c0b84eba",
+      "bytes": 107,
+      "original_sha256": "f56d010106a67cff0a306719d8c2519f919c68c08c02c2368a0012ebc9dc3996",
+      "original_bytes": 96
+    },
+    "raw/negative/negative-results.json": {
+      "sha256": "ee8b358958c4b82a8fd1b7a6fd6c22104382e3fe8498967e8c4900437640ea59",
+      "bytes": 767,
+      "original_sha256": "ee8b358958c4b82a8fd1b7a6fd6c22104382e3fe8498967e8c4900437640ea59",
+      "original_bytes": 767
+    },
+    "raw/negative/25.10.4-bounded-preview-identity.log.gz": {
+      "sha256": "e71313634314862280884d076154c09120c3d56cdb7642ee6a71180a8ce81ef2",
+      "bytes": 106,
+      "original_sha256": "0e8537674060d2270187877f141b94270f03d993f9967b8bd464d03eabe6a76e",
+      "original_bytes": 100
+    },
+    "raw/negative/25.10.4-original-oracle.log.gz": {
+      "sha256": "e0d772e523a843f90d7ad8fcb9ef16f6c52b7bef81aa8083e4e39fb7c180c3b0",
+      "bytes": 101,
+      "original_sha256": "745d6dc70823fa8f41ea7ca7a829de7e02a7538067d1a4f4cf9aad37be5a70ca",
+      "original_bytes": 88
+    },
+    "raw/negative/26.10.3-bounded-preview-identity.log.gz": {
+      "sha256": "e71313634314862280884d076154c09120c3d56cdb7642ee6a71180a8ce81ef2",
+      "bytes": 106,
+      "original_sha256": "0e8537674060d2270187877f141b94270f03d993f9967b8bd464d03eabe6a76e",
+      "original_bytes": 100
+    },
+    "raw/negative/25.10.4-full-identity-beyond-preview.log.gz": {
+      "sha256": "705888698cb14914cc0bc0ca2181d46f8ea033e542419ab854a8405251c63e92",
+      "bytes": 90,
+      "original_sha256": "98ec0644f82ed21ac80d457b0d475d1208f359f4cec7a7cde065e184bbbc45a2",
+      "original_bytes": 70
+    },
+    "raw/negative/probe.py.gz": {
+      "sha256": "c65089fba9be7e5b96de749fe738677241ac637b3ac16bc510c390ea423c4e74",
+      "bytes": 1117,
+      "original_sha256": "4ffdf285ee209ce89118c6161b9d3a42264a876dc840fdad6f93a74ef7df4bf0",
+      "original_bytes": 2525
+    },
+    "raw/negative/26.10.3-full-identity-beyond-preview.log.gz": {
+      "sha256": "705888698cb14914cc0bc0ca2181d46f8ea033e542419ab854a8405251c63e92",
+      "bytes": 90,
+      "original_sha256": "98ec0644f82ed21ac80d457b0d475d1208f359f4cec7a7cde065e184bbbc45a2",
+      "original_bytes": 70
+    },
+    "raw/25.10.4/demo.log.gz": {
+      "sha256": "32b2afeb288e10cb757095f3d6356b6d95250524ebcd5f435034f04ded7df5f8",
+      "bytes": 811,
+      "original_sha256": "21bfd5b0dba781c7d5643b7b1848cd4d908be460eb1139eeb4d334aaea3f7cb3",
+      "original_bytes": 1597
+    },
+    "raw/25.10.4/demo-receipt.json": {
+      "sha256": "799e5896119b05515c0ecfff653655fc5018ee5ed3f2d56e7be010b7c2f49e0d",
+      "bytes": 1829,
+      "original_sha256": "799e5896119b05515c0ecfff653655fc5018ee5ed3f2d56e7be010b7c2f49e0d",
+      "original_bytes": 1829
+    },
+    "raw/26.10.3/demo.log.gz": {
+      "sha256": "87ce66882cb41fa76ce937957bfeb58121fcdad83bf7e3ed42edd493732f5578",
+      "bytes": 768,
+      "original_sha256": "cd0ad8f1b8ec969209c1a872f2669e902a9bfa69fbc5ff0cee29e0d1a3decece",
+      "original_bytes": 1518
+    },
+    "raw/26.10.3/demo-receipt.json": {
+      "sha256": "799e5896119b05515c0ecfff653655fc5018ee5ed3f2d56e7be010b7c2f49e0d",
+      "bytes": 1829,
+      "original_sha256": "799e5896119b05515c0ecfff653655fc5018ee5ed3f2d56e7be010b7c2f49e0d",
+      "original_bytes": 1829
+    },
+    "raw/proof/sceptre-demo-caller-native-linux.log.gz": {
+      "sha256": "05c99170d11927984ed2b6b059a18dd083b2c067e1a23f96aecaaee7d82e7fd6",
+      "bytes": 124,
+      "original_sha256": "fec8a9de45de9540f2b7a085022c3928ba3d0be2a38e06ca6842925bf05dc1e5",
+      "original_bytes": 152
+    },
+    "raw/proof/sceptre-demo-caller-native-linux-fixed.log.gz": {
+      "sha256": "e56ff93a06a6021fccd15cc71f458581f041ef183ebb4bbc2d3422ed9ac72df5",
+      "bytes": 96,
+      "original_sha256": "26bed41ebea06c7714553184b441df773136ba84ab5da7d005499dd46f935ff7",
+      "original_bytes": 80
+    },
+    "raw/proof/sceptre-integration-tail.sh.gz": {
+      "sha256": "541aff3de3fa4e633412323317bddf6b9f289bf145a0272bacd7a35337d7ac1a",
+      "bytes": 1495,
+      "original_sha256": "903160c4da8da721aac87a8da5ece6077d9c3101c13d5e0b97f60fc446a392da",
+      "original_bytes": 3619
+    },
+    "raw/reference/initial-driver.log.gz": {
+      "sha256": "9332d22b068c99740789797fa9869aa3cd899dc596be3afe3216cb892c26dc0a",
+      "bytes": 1175,
+      "original_sha256": "ddb02017134a7acf3dd606049d9b91ff2b4217dd25cad94417cee3f0e7794f71",
+      "original_bytes": 3436
+    },
+    "raw/reference/focused-tail.log.gz": {
+      "sha256": "afa285f0405f4c40cec76412d4975e6677c2c5b978bd85dbac1bf0f5b12ead1e",
+      "bytes": 288,
+      "original_sha256": "6ff6ada0d02c0c8afa3c8ea486a5901c66cdd1c2516d668e0b8c633926bb5b76",
+      "original_bytes": 647
+    },
+    "raw/reference/altered-source-missing-demo.log.gz": {
+      "sha256": "5ca3c7aedf2cc41aaf3cf5a639355df60e8873030a046a8a681d8be602df699d",
+      "bytes": 1186,
+      "original_sha256": "49a1c198553d661bba1777ac00cc24f92550c0bff1ddc6d1e5d9f76545fb0ee6",
+      "original_bytes": 2175
+    },
+    "raw/reference/altered-source.log.gz": {
+      "sha256": "0bcc0ff2508228347e2e5bddf81239ce8ad36176ba5799f986b9d2c117ece5b6",
+      "bytes": 1248,
+      "original_sha256": "aad214f780f6b77602a197fe8eebffbd05962361fa0af3381ac458fa368898e3",
+      "original_bytes": 2271
+    },
+    "raw/reference/resume-trace.tsv.gz": {
+      "sha256": "79dcd0236e058882ee45dab8890d0bea59895450ada3404f64fa5c2e8e8d0846",
+      "bytes": 599,
+      "original_sha256": "94c90610cbcf68103471d63cf3d96b3b085d8639d6b3a5f8878a486586682478",
+      "original_bytes": 1215
+    },
+    "raw/reference/cycle-a-config.log.gz": {
+      "sha256": "83189c6ebffe1775902c579f0c8562c0587c96af24859c67e24ecf5479fde940",
+      "bytes": 132,
+      "original_sha256": "c763586a8f220f76d118f685bd93bbab2a64901d8ada78818ea4f3d1addd33ee",
+      "original_bytes": 126
+    },
+    "raw/reference/dynamic-config.log.gz": {
+      "sha256": "1b54ba5cf8ff0c5af08ad7cd43cd5a85a680eb22c776b782487b9b559a05be58",
+      "bytes": 447,
+      "original_sha256": "a9ad5a9e43256068d7f337ce53a994eda30be19db2f00b18bdc02e8a81589797",
+      "original_bytes": 684
+    },
+    "raw/reference/missing-config.log.gz": {
+      "sha256": "a7e21c424d12e56f0ff6e89a5c4fbff8a66850fb997f084337e775012e89173e",
+      "bytes": 235,
+      "original_sha256": "9814364008b6314aa728bbebcc14123d6b8d339ea5048f5cc7e7b2e18a3b10d7",
+      "original_bytes": 310
+    },
+    "raw/distributed/initial-driver.log.gz": {
+      "sha256": "6f93efb1661d3c8933f4597e247120e11970ce8fcdd0177631ab7f3d6b68930a",
+      "bytes": 1409,
+      "original_sha256": "70f4fbc8a028ebf1450985ffa4b480585b6669994f324628b56799c58df4ae25",
+      "original_bytes": 5356
+    },
+    "raw/distributed/focused-tail.log.gz": {
+      "sha256": "3b9dbfefb919542ebb35bdc7ec456391a9085a516214983c1521245b80863ba0",
+      "bytes": 326,
+      "original_sha256": "b05dcfe72d53aafb487f9e7664c7d75de17697594acac23756c61ff066c32f56",
+      "original_bytes": 726
+    },
+    "raw/distributed/altered-source-missing-demo.log.gz": {
+      "sha256": "4e36c11dd76c0191a19c73f603c5b77fe30348a0ac5ce597e97215e84b957543",
+      "bytes": 1181,
+      "original_sha256": "0c0e181072fe3bbc02b09e198076ba6c552f776fc635630ea5e96fc3ffbda02f",
+      "original_bytes": 2175
+    },
+    "raw/distributed/altered-source.log.gz": {
+      "sha256": "27b6805f261f138e3410fbf566a077dbdcb3038bc9919089b1add089f5c97b7f",
+      "bytes": 1246,
+      "original_sha256": "d3051d28dd6d12047e12d7968b56cebaf424054fd07e329ef90f775c75ec9759",
+      "original_bytes": 2280
+    },
+    "raw/distributed/worker-failure.log.gz": {
+      "sha256": "2895d73e384e19b44c316fd13a344c071a32aec978414af4b1e716fec6ce922a",
+      "bytes": 1079,
+      "original_sha256": "72413a34259c53496dde37f467367d31867c86e71b15adb2de098cd0edb1a461",
+      "original_bytes": 2141
+    },
+    "raw/distributed/resume-trace.tsv.gz": {
+      "sha256": "79058dab054531d0f7a25f73f9e2e86771bb0ced6c29ba28a1a4849c0548c940",
+      "bytes": 993,
+      "original_sha256": "4b1363035f10cd5098a92bc9e98b854cf46d6e102424fb09804322e7e5f3bda3",
+      "original_bytes": 2863
+    },
+    "raw/distributed/cycle-a-config.log.gz": {
+      "sha256": "83189c6ebffe1775902c579f0c8562c0587c96af24859c67e24ecf5479fde940",
+      "bytes": 132,
+      "original_sha256": "c763586a8f220f76d118f685bd93bbab2a64901d8ada78818ea4f3d1addd33ee",
+      "original_bytes": 126
+    },
+    "raw/distributed/dynamic-config.log.gz": {
+      "sha256": "d8eb24e3e6c45bc25a120682f005cf72b52aded30be867f024fcbc4c03c0ad87",
+      "bytes": 443,
+      "original_sha256": "de90e0be280426700d4759314cf74225864f8510c5eb098b7e860b2610999d3e",
+      "original_bytes": 684
+    },
+    "raw/distributed/missing-config.log.gz": {
+      "sha256": "ef0065a880bd048e36c570377f51f8308024d281a6fec92817b45ab3ec961a0f",
+      "bytes": 238,
+      "original_sha256": "f5a3994d9eab77008549b29a25fb4804973ff087d1b7008fc662569017d531d3",
+      "original_bytes": 312
+    }
+  }
+}
