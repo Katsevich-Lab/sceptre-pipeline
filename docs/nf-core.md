@@ -74,14 +74,16 @@ scientific or implementation identities require fresh publication paths.
 
 ## External site configuration identity
 
-`workflow.configFiles` omits nested includes. The adapter recursively hashes the
-closure of standalone literal local `includeConfig` paths in external site files,
-relative to each including file. Unchanged nested configuration must resume with
-cached science; modifying a child file rejects publication reuse. Dynamic,
-interpolated, remote and conditional include expressions reject explicitly before
-scientific tasks. Select separate literal site files/profiles instead. Production
-configs remain covered by the full source manifest and retain their normal profile
-syntax. No raw external configuration is staged in workers. Missing includes and
+`workflow.configFiles` omits nested includes. The pipeline traverses literal local
+`includeConfig` paths from all resolved roots, including tracked production files
+and inline profiles. It filters already-bound production files only after traversing
+them. Every encountered literal branch is bound conservatively, including inactive
+profiles. Unchanged configuration resumes with cached science; changing a nested
+external file rejects publication reuse, including tracked → external and external
+→ tracked → external paths. Dynamic/interpolated paths and expression continuations
+(including after comments) reject before scientific tasks. Select literal site
+files/profiles instead; ordinary trailing comments and inline profile braces work.
+No raw external configuration is staged in workers. Missing includes and
 cycles fail in Nextflow's configuration parser before workflow startup; its 25.10.4
 cycle diagnostic is `StackOverflowError`. Tests cover these failures as well as
 unsupported ambiguity. This constrained site-config interface is not general HPC,
