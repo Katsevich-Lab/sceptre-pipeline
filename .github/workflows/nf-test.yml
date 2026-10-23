@@ -114,6 +114,8 @@ jobs:
           docker run --rm "$(cat "$RUNNER_TEMP/image-id")" \
             sh -c 'cat /opt/sceptre/source.json /opt/sceptre/session-info.txt /opt/sceptre/packages.tsv' \
             > "$RUNNER_TEMP/runtime-provenance.txt"
+      - name: Tracked and external configuration closure must bind every include
+        run: python3 tests/ci/check-config-closure.py "$RUNNER_TEMP/config-closure"
       - name: Selected stage overrides must fail explicitly
         run: bash tests/ci/check-selected-stage-gate.sh "$RUNNER_TEMP/selected-stage-gate"
       - name: Same-archive installed-package platform suite
@@ -229,6 +231,9 @@ jobs:
             ${{ runner.temp }}/image-inspect.json
             ${{ runner.temp }}/runtime-provenance.txt
             ${{ runner.temp }}/host-engine*
+            ${{ runner.temp }}/config-closure/**/*.log
+            ${{ runner.temp }}/config-closure/**/*signature.json
+            ${{ runner.temp }}/config-closure/receipt.json
             ${{ runner.temp }}/installed-package/runtime.json
             ${{ runner.temp }}/installed-package/session.txt
             ${{ runner.temp }}/installed-package/tests.json
