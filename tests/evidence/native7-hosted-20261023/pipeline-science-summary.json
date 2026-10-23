@@ -1,0 +1,14 @@
+{
+  "direct_cases": 9,
+  "direct_case_names": ["low_nt_permutation", "low_complement_permutation", "low_nt_crt", "low_complement_crt", "high_crt", "high_mixture_crt", "high_permutation", "low_nt_empirical_permutation", "high_empirical_crt"],
+  "direct_failure_checks": "incomplete, unknown config, changed config/runtime, checksum/schema corruption, real family failure without publication",
+  "distributed_cases": 11,
+  "distributed_case_names": ["low_nt_permutation", "low_complement_permutation", "low_nt_crt", "low_complement_crt", "high_crt", "high_mixture_crt", "high_permutation", "low_nt_empirical_permutation", "high_empirical_crt", "low_nt_permutation_hdf5", "low_nt_crt_hdf5"],
+  "distributed_native_hdf5": {
+    "passed": true,
+    "skipped": false
+  },
+  "partition_cases": 2,
+  "partition_configurations": 8,
+  "uneven_observed": true
+}

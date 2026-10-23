@@ -56,8 +56,9 @@ are `tests/direct-comparison.R`, `tests/distributed-comparison.R`,
 output directory for each invocation; the receipt records the local dependencies.
 
 The initial host pass did not cover container execution; the subsequent Docker
-qualification is recorded below. Hosted CI, Apptainer/HPC, full-screen scalability
-and new performance benchmarks remain unrun. No push, merge or release was made.
+qualification is recorded below. At that local checkpoint, hosted CI,
+Apptainer/HPC, full-screen scalability and new performance benchmarks were unrun.
+Subsequent hosted evidence is recorded separately below; no merge or release was made.
 
 
 ## Exact-image Docker checks completed 2026-10-22
@@ -88,4 +89,30 @@ stack-imbalance message.
 
 These results qualify the bounded local ARM64 pipeline cases. They do not qualify
 AMD64, hosted CI, Apptainer/HPC, full-screen scale or performance. The image is local
-and was not pushed. Pipeline changes remain uncommitted and unpushed.
+and was not pushed. At that local checkpoint, pipeline changes were uncommitted
+and unpushed.
+
+## Bounded hosted Linux AMD64 qualification (2026-10-23)
+
+The public lab-fork pipeline scientific job passed all 38 mandatory nf-tests
+without skips, nine direct cases, eleven distributed cases including native
+HDF5 permutations/CRT, eight partition configurations, reports/demo, actual
+Nextflow cached resume and source/configuration/failure guards. The exact
+pipeline revision was `3c6d2c55c83f40bc02c4e262faf261273d3a8096`; the package
+archive/source remain the identities at the top of this page.
+
+A separate supported R 4.6.1/Bioconductor 3.23 package campaign at
+`fb373a0c6f46ac960164a7740a2328c296f7da89` passed all 394 cases/8,109 assertions
+with zero errors, warnings, failures or skips. The minimum-runtime package
+suite has 15 explicit DropletUtils-version skips, which the supplemental suite
+covers with DropletUtils 1.32.1. This does not claim pipeline qualification in
+the newer dependency environment or cross-R-version identity.
+
+See [CI evidence and actual Java/runtime identity](ci.md#completed-hosted-checks-2026-10-23)
+and the [machine-readable hosted receipt](../tests/evidence/native7-hosted-20261023/validation.json)
+for exact job links, both source revisions, artifact digests and raw output
+hashes. The original workflow's overall failure is retained: its supplemental
+image lacked system libuv headers. The corrected supplemental-only retry passed;
+no duplicate floor campaign or misleading single-head all-green claim is made.
+The branch is published to the approved lab fork; it is not merged or released.
+Apptainer/HPC, full-screen scalability and new performance benchmarks remain unrun.

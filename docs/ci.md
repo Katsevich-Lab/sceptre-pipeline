@@ -38,8 +38,8 @@ a fork of `timothy-barry/sceptre-pipeline`. Its default branch is
 dispatch; the upstream `main` branch has not been merged or rewritten.
 Actions are enabled. The schema and scientific jobs use `ubuntu-24.04` AMD64
 runners and build the exact bundled archive locally on the runner without
-publishing a container image. Hosted execution is pending; the preserved ARM64
-receipts do not establish AMD64 or hosted-CI success.
+publishing a container image. Bounded hosted AMD64 qualification is recorded below;
+the preserved ARM64 receipts retain their separate scope.
 
 The `scientific` job retains the minimum runtime above. A separate
 `current-package` job builds R 4.6.1, Bioconductor 3.23 and CRAN snapshot
@@ -56,3 +56,39 @@ and its [DropletUtils release](https://bioconductor.org/packages/3.23/bioc/html/
 supplies the required maintained writer. Generate the distinct build context with
 `--runtime-profile current`; each artifact preserves its own runtime metadata,
 image identity, dependency versions, tests and skips.
+
+## Completed hosted checks (2026-10-23)
+
+The [pipeline scientific job](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39894180240/job/120220918478)
+passed at `3c6d2c55c83f40bc02c4e262faf261273d3a8096`: all 38 real nf-tests
+passed with zero failures or skips (TAP and JUnit independently checked), nine
+direct cases, eleven distributed cases including mandatory native HDF5
+permutations/CRT, and eight partition configurations passed. The synthetic demo,
+report isolation, real reference/distributed resume, source/configuration/seed
+rejection, failed-worker and missing-family guards passed. Resume reused seven
+reference and seventeen distributed scientific/export tasks, while validation
+reran once. The runtime was R 4.5.1/Bioconductor 3.22 on Linux AMD64.
+
+The [supplemental package run](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39895507893)
+passed at `fb373a0c6f46ac960164a7740a2328c296f7da89`: 394 installed-package
+cases and 8,109 assertions passed with zero failures, errors, warnings or skips
+under R 4.6.1/Bioconductor 3.23/DropletUtils 1.32.1. Both runs used the exact
+archive checksum above. This retry only added the current-profile system libuv
+headers and supplemental dispatch controls; it did not change the minimum
+runtime or pipeline science. Its scientific pipeline job was intentionally
+omitted to preserve the existing full pipeline campaign.
+
+These are two scoped job qualifications, not one all-green workflow at one SHA.
+The first workflow remains red because its additional package image initially
+lacked libuv headers; the separate retry resolved that build failure. The
+minimum-runtime package suite retains 15 explicit version-gated skips. All those
+package paths ran without skips in the newer supported environment.
+
+Actual engine provenance was Nextflow **25.10.4 build 11173**, nf-test **0.9.5**,
+and **Zulu OpenJDK 17.0.20+8-LTS (Zulu17.68+19-CRaC-CA)**. The setup-nextflow
+action selected this Java engine after the earlier Temurin setup; the earlier
+Java declaration is not the tested engine identity. Source/archive, image and
+native-library identities, artifact ZIP digests and raw output hashes are in the
+[hosted receipt](../tests/evidence/native7-hosted-20261023/validation.json).
+No full-screen benchmark, Apptainer/HPC qualification, image publication, merge
+or release is established by these bounded checks.
