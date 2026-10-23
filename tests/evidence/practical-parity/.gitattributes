@@ -8,3 +8,6 @@ documentation/*.log -text -whitespace
 integrated/*.log -text -whitespace
 
 integrated-config/*.log -text -whitespace
+
+# Preserve emitted hosted runtime diagnostics without normalizing hash-bound bytes.
+hosted-bfd-39902600871/**/*.txt -text -whitespace

@@ -29,6 +29,8 @@
     "runtime.json": "017003eecee1f4c1b0640e855500186749b55e302979faa58709674380c7cd9e",
     "session.txt": "d0c8d7441e9e35f1c5b2e6175016bd2e390bb2a23d19628ac614d0c534dc6a99",
     "source.json": "e90404b591a952777f82e4ca93936e4c3033389374c6c14c636c883caf21d4ae",
-    "tests.json": "301c7723ce703247d025b53e4cad250644eadc6374d910919b26c165b31f7e45"
-  }
+    "tests.json": "301c7723ce703247d025b53e4cad250644eadc6374d910919b26c165b31f7e45",
+    "tests.rds": "ebfb8e8cda612b9e5d317aaff7406f09698fe0e6a0533f1d9ae0e9ec23517d33"
+  },
+  "independent_readback": "Root downloaded raw artifactZIP12479908624, verified actual ZIP SHA256 matches API digest, independently reduced tests.rds via testthat/as.data.frame to394cases/8109passes/0failure/error/warning/skip and checked source/native/image identities."
 }
