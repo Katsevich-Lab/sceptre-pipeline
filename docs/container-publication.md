@@ -13,7 +13,7 @@ convenience only; scientific runs require the immutable image identity.
 
 `publish-container.yml` separates image review from registry promotion. Its
 read-only build runs only on pushes to `codex/container-review-*` that change
-that workflow or its two artifact-admission helpers. There is no PR, tag, release
+that workflow, its two artifact-admission helpers or the central Dockerfile. There is no PR, tag, release
 or scheduled trigger. Documentation/evidence-only pushes do not rebuild the
 reviewed image. The ordinary scientific CI workflow and its required tests are
 unchanged by this isolated route.
@@ -39,14 +39,36 @@ Only this explicit manual job requests `packages: write`; build permissions are
 `contents: read`. The `container-publication` reviewer environment is a proposed
 project safeguard; destination-specific authorization is still pending.
 
-The dedicated branch atc13e94da0b8e9a54a2dd2460ad8514d04bd0fee0 was pushed by the
-lead under the existing source/CI authorization. Its actual push run
-[39904756647](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39904756647)
-started; the preserved snapshot is **in progress**, with publication skipped.
-The13offline unit methods and static/independent source reviews passed; they do
-not qualify the rebuilt image. See
-`tests/evidence/nf-core-conformance/image-review-proposal` for exact bytes and
-boundaries. Production475e4199 and selected archivef41a8fb7 are unchanged.
+The metadata-corrected dedicated review branch is
+`codex/container-review-license-20261023` at
+`f59434dccc8bfe2eed2b087d49fb72f21944607a`. Its actual read-only push build
+[39908971415](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39908971415)
+is **in progress**, with publication skipped. Production98522279 and selected
+archivef41a8fb7 are unchanged; recipe/setup3106d65d has its own identity. Fifteen
+offline admission methods and complete current engineering/static checks passed;
+these do not substitute for the rebuilt-image execution and saved-byte admission.
+
+The recipe explicitly records the SCEPTRE project's `GPL-3.0-only` label, matching
+the selected package's `License: GPL-3`, and names the project vendor/contributor
+source. Scoped Rocker base attribution and the exact immediate pinned base
+name/digest remain separate. Dependencies retain their respective licenses; this
+metadata correction does not relicense them. Both floor and current generated
+profiles bind their actual immediate base. Programmatic comparison verified that
+nonmetadata Docker instructions, package source/archive and dependency-install
+bytes were unchanged by this correction. The build and archive/load admission
+checks now reject inherited base license/vendor labels as project metadata.
+
+The earlier sourcec13 image run39904756647 and actual no-rebuild Ubuntu admission
+39908251912 both **passed**. That image is historical because it retained the
+base's `GPL-2.0-or-later` application label. Its saved archive/config identity is
+not transferred to the metadata-corrected image. [Preserved receipts](../tests/evidence/nf-core-conformance/reviewed-image-c13/receipt.json)
+include the original producer-schema helper failure, the correction, and real
+API/download/checksum/source/loaded checks. On macOS Docker Desktop's containerd
+store, the same archive loads by OCI manifest identity while the Linux classic
+Docker image ID is its config digest; the strict Mac loaded-ID check rejected.
+The recorded manifest-to-config link is additional evidence, not a waiver or a
+cross-engine loaded PASS. Actual hosted Ubuntu strict loading passed for that
+historical archive; the corrected archive needs its own admission receipt.
 
 The repository default is `main` at unchanged `5cc91e51`; its workflow-directory
 read returned404. The [GitHub manual-run documentation](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)
