@@ -66,6 +66,8 @@ with tempfile.TemporaryDirectory() as directory:
         assert metadata["base"].startswith("rocker/r-ver:" + r_version + "@sha256:")
         assert metadata["bioconductor_version"] == bioc
         assert "FROM " + metadata["base"] in dockerfile
+        assert 'org.opencontainers.image.base.name="' + metadata["base"] + '"' in dockerfile
+        assert 'org.opencontainers.image.base.digest="' + metadata["base"].split("@", 1)[1] + '"' in dockerfile
         assert "ARG BIOCONDUCTOR_VERSION=" + bioc in dockerfile
         assert "ARG CRAN_SNAPSHOT=" + metadata["cran_snapshot"] in dockerfile
         assert ("libuv1-dev" in dockerfile) == (profile == "current")

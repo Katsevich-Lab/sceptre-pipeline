@@ -80,6 +80,8 @@ def verify_local(directory, origin, loaded=False):
     require(labels['org.opencontainers.image.revision'] == expected['source_sha'] and labels['org.opencontainers.image.source'] == 'https://github.com/' + REPOSITORY, 'OCI source/revision mismatch')
     require(labels.get('org.opencontainers.image.licenses') == 'GPL-3.0-only', 'OCI project license mismatch')
     require(labels.get('org.opencontainers.image.vendor') == 'Katsevich Lab', 'OCI project vendor mismatch')
+    base = load('context/source.json')['base']
+    require(labels.get('org.opencontainers.image.base.name') == base and labels.get('org.opencontainers.image.base.digest') == base.split('@', 1)[1], 'OCI immediate base mismatch')
     return {'status': 'VERIFIED', 'expected': expected, 'loaded_image_checked': loaded}
 
 def api(path):
