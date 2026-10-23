@@ -1,0 +1,26 @@
+# Corrected image metadata, scientific qualification and saved-byte admission
+
+**PASS:** producer [39908971415](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39908971415), exact `f59434dccc8bfe2eed2b087d49fb72f21944607a`; read-only Ubuntu admission [39911817811](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39911817811), exact `0dcb2ea32d13a0c316d6bfd169d11ba01223deda`. Both are separate from the main 42-case scientific campaign. No registry publication occurred.
+
+The inherited image label identified the Rocker base license rather than the selected SCEPTRE project/package. The actual frozen package DESCRIPTION declares `License: GPL-3`; the repository LICENSE contains GNU GPL version 3. The corrected project label uses `GPL-3.0-only`, following the [R licensing specification](https://stat.ethz.ch/R-manual/R-devel/doc/manual/R-exts.html#Licensing) and [SPDX identifier](https://spdx.org/licenses/GPL-3.0-only.html). This is metadata for the project/package; base and dependency components retain their own licenses. The project vendor and contributor pointer replace inherited Rocker application-level identity; Rocker attribution is retained in explicitly scoped base labels. Immediate base name and digest match the exact pinned FROM in both floor/current generated recipes.
+
+The two metadata commits are `f0e11f5` and `f59434d`. Both generated runtime profiles retain identical nonmetadata Docker instructions, dependency installer, selected archive, source JSON and checksum bytes compared with `46caa9d`. No scientific implementation, package source, dependency selection or installation command changed. The production identity remains `985222799734e4a8a61473ade0753af9e06c450587f67623440ee447a723c61c`; the new recipe/qualification identity is `3106d65d0e688be31e0b7764fad690ae5fb128ac42ef2b5f5312bf7413a63780`. The new image binary and source commit are distinct identities; no binary reproducibility claim follows from equal installation source.
+
+The producer built Linux AMD64 and checked actual license/vendor/source/revision/base labels. Its installed-package floor suite passed 394 cases with 7,951 passing assertions, 15 explicit version-gated skips, zero failures/errors/warnings. Those skips remain skips. Actual native HDF5 CRT calibration/power/discovery and power-checkpoint continuation matched public R for results, assignments, QC, design, fits, realized plans and RNG. Unchanged cache, reopening and invalid-request guards passed. All 42 execution/oracle/archive hashes remained identical. The image was saved only after these gates; publication was skipped.
+
+| Exact saved asset | Identity |
+|---|---|
+| Source archive | `f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4` |
+| Immutable image ID | `sha256:36979a6a70b182e27e2e6918f54cfd8482821291fe5b007aed7b481855c771ae` |
+| Image archive SHA256 | `9ebecf49d5576d52077035ad72d7e7128a62d1fd72bdb821eceba599f5e3e403` |
+| GitHub artifact ID | `12483325753`, 611,265,493 bytes |
+| GitHub artifact ZIP SHA256 | `a3aba8d1238caf3c06c97e0370e335ed67b4f296644f443acaf19d9efccfa8ad` |
+| Artifact expiry | `2026-11-06T06:27:47Z` |
+
+The separate admission run verified the actual successful originating workflow/run/latest attempt/artifact/source and the downloaded GitHub ZIP digest. It checked the saved archive SHA256, package/runtime/scientific source and helper hashes before loading. Docker loaded precisely those existing bytes; strict loaded-image checks confirmed the same image ID, AMD64/Linux, project GPL3/vendor/source/revision and pinned immediate base. No rebuild, retag, registry login/push or visibility change occurred. The full image payload remains in the immutable GitHub artifact; the Mac did not download or load another copy.
+
+[receipt.json](receipt.json) binds the machine-readable result, exact identities, runtime, package suite and limits. [evidence-manifest.json](evidence-manifest.json) hashes 173 compressed original logs/JSON/maps/fixtures and their uncompressed bytes. Raw producer diagnostics, printed review receipt, originating API metadata, source maps, installed-package skips, JVM identity and strict local/loaded admission receipts remain available. The original c13 image and its earlier successful admission are historical evidence and are not this corrected publication target.
+
+Local prepublication checks passed: 15 offline admission test methods including inherited license/vendor/base and corrupt/missing/changed-source guards; actionlint 1.7.12 (ShellCheck unavailable/disabled); embedded Python and nine publisher/three admission shell blocks; both runtime-profile source guards; full nf-core/tools 4.2 pipeline lint with 154 JSON/196 aggregate passes, 38 visible mappings, one in-memory RO-Crate normalization, two warnings and zero failures. Independent read-only source/fixture review passed before both dedicated pushes. No exemption was added.
+
+This lane does not establish full42-case matrix success, ARM64 or multiarchitecture distribution, arbitrary screen scale, HPC scheduling or performance. Destination-specific GHCR approval, promotion of this exact saved archive, public visibility and an unauthenticated digest pull remain separate pending actions. No PR, default-branch source admission, merge, tag, release or DOI was created by this lane.
