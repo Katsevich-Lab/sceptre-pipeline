@@ -7,7 +7,7 @@ there is no fallback to a moving package branch or old schema runtime.
 The runtime targets R 4.5.1, CRAN snapshot 2025-11-15 and Bioconductor 3.22.
 The installer reads dependency declarations and enforces minimum versions from
 the exact archive DESCRIPTION. Native SingleCellExperiment/HDF5 dependencies
-replace ondisc. Base-image and GitHub action digests, Nextflow 25.10.4,
+replace ondisc. Base-image and GitHub action digests, Nextflow 25.10.4/26.10.3,
 nf-schema 2.6.1 and nf-test 0.9.5 remain explicit in source.
 
 Scientific checks run inside the built image: installed-package checks, native
@@ -19,8 +19,8 @@ counts, badges and ARM64/Slurm receipts do not qualify this migration.
 Artifacts preserve image ID/inspection, installed package versions, session info,
 source receipt, scientific outputs and task logs. The source receipt binds commit `1e4d5459ab229255694f9217d7cd4ed51a4bf1b8`
 and archive SHA256 `f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4`;
-the bundled archive-identity and package-admission receipts retain their own scope. No workflow publishes an image
-or submits cluster work. System and Bioconductor release repositories may update;
+the bundled archive-identity and package-admission receipts retain their own scope. Automatic checks publish no image
+and submit no cluster work. The separate manual [registry proposal](container-publication.md) remains unexecuted and destination-gated. System and Bioconductor release repositories may update;
 preserve the actual built runtime for each qualification.
 
 Verify identity locally without downloads:
@@ -28,6 +28,23 @@ Verify identity locally without downloads:
 ```bash
 python3 container/prepare-context.py --verify-only --source-manifest tests/runtime/source.json
 ```
+
+## Expanded practical-parity qualification
+
+Draft [PR1](https://github.com/Katsevich-Lab/sceptre-pipeline/pull/1) qualifies
+minimum Nextflow25.10.4/defaultv1 and current26.10.3/defaultv2 separately, with
+actual final Temurin17.0.10+7 identity assertions after composite setup. It adds
+current nf-core/tools4.2 engineering checks, the42-case native nf-test matrix,
+public raw-preparation/configuration/report suites, actual configuration-closure
+guards, nativeHDF5/checkpoint/launcher comparisons and positive Apptainer execution.
+The package-only newer-R job remains separate from pipeline runtime qualification.
+
+The [full exact-head campaign](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39902600871)
+is running at `bfdfe70736445ed07cdee9e18c8cddc8d3796cfe`; no full hosted/SIF
+success is claimed yet. Its [engineering campaign](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39902600959)
+passed. Production identity is475e4199 and qualification/setup9aef27aa.
+[The acceptance ledger](parity-acceptance.md) distinguishes those source boundaries
+from earlier local and baseline checks.
 
 ## Hosted schema-7 qualification
 
@@ -41,7 +58,8 @@ runners and build the exact bundled archive locally on the runner without
 publishing a container image. Bounded hosted AMD64 qualification is recorded below;
 the preserved ARM64 receipts retain their separate scope.
 
-The `scientific` job retains the minimum runtime above. A separate
+The original baseline `scientific` job retains the minimum runtime above; the
+expanded matrix uses `nf-test` jobs at that same floor. A separate
 `current-package` job builds R 4.6.1, Bioconductor 3.23 and CRAN snapshot
 2026-10-01 from its own pinned Rocker image. It tests the same frozen package
 archive with DropletUtils >= 1.32 and requires zero failed, errored, warned or

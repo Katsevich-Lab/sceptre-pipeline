@@ -116,3 +116,23 @@ image lacked system libuv headers. The corrected supplemental-only retry passed;
 no duplicate floor campaign or misleading single-head all-green claim is made.
 The branch is published to the approved lab fork; it is not merged or released.
 Apptainer/HPC, full-screen scalability and new performance benchmarks remain unrun.
+
+
+## Expanded corrected-source practical parity
+
+The expanded source preserves the selected package archive while adding public raw
+preparation, predictable configuration, checkpoint continuation and rich scientific
+delivery. Corrected production475e4199 passed the fresh local Docker ARM64 native
+HDF5 CRT/public-R comparisons and raw launcher: exact result families, fits, design,
+QC, assignments, realized plans and RNG; checkpoint continuation and cached resume;
+invalid stage/family and request/source/settings guards. The separate
+[corrected-source receipt](../tests/evidence/practical-parity/integrated-config/receipt.json)
+records unchanged42execution/oracle files and the distinct CI-helper integration.
+Both Nextflow versions additionally passed13actual config-closure invocations each,
+with exact pipeline versus native-parser rejection boundaries in
+[their preserved receipts](../tests/evidence/nf-core-conformance/config-closure/README.md).
+
+The original hosted38-case baseline above does not qualify the expanded42-case
+PR head. Its current full hosted/positiveSIF campaign remains pending; see
+[the expanded CI record](ci.md#expanded-practical-parity-qualification). No registry,
+full-screen, scheduler or new performance qualification is inferred.
