@@ -1,0 +1,48 @@
+{
+  "kind": "sceptre-pipeline-documentation-render",
+  "schema": 1,
+  "git_head": "5dc4c20783234f3bcbcb9af9ebcb1cf96e339b10",
+  "result": "PASS",
+  "html_pages": 26,
+  "local_references": 1920,
+  "commands": [
+    "python3 website/build.py",
+    "python3 website/build.py --check"
+  ],
+  "generator_sha256": "3b920b89f355b452389b0b8d7ef28fd42eeb4800a5633e77a48e30eb1675e341",
+  "cli_schema_sha256": "fd20563e2a9cb6c42bc7fcb52db9472c8018738d5bacd0fad9c4e2d7feb6030b",
+  "rendered_html_sha256": {
+    "architecture.html": "59deeff6b70b730a40243b59a75a4e3d6fd2f695290e0993805c1103cfae68eb",
+    "array-validation.html": "52d02fc332f07e715bbb2e99b22572b72511f193aeb0977abf14ba3f7d21accf",
+    "benchmark.html": "6b3b60982029fca63ea693af00407cb978bfa73bdfc36f7a0991f2f78a42f9a0",
+    "ci.html": "ce10d86887fb974c4a6b65da7cd447bc92e5c5ede03c293e67cf33ad0791936f",
+    "container-publication.html": "cfb75112b990f2bfd7f1df3e6788f55904ecf57dcbd2b02745c2dfd9749cadae",
+    "containers.html": "ec08a7872e55ac41e35edec6757da03b6bd30a7efad5b3812e13d91be60b0fb1",
+    "coverage.html": "a16a8f880ee80822970ff15c7242e126a1c2a07ca905f7465b86e1d020b9390e",
+    "demo.html": "d95699c04f1d84725a6f778d07caf54b22944aa3a830b1d46b9ea630e942641c",
+    "distributed-interface.html": "d428efd94a943a97c85cc47fcec5b0e21267fa77e143e755a3b3dbcbc7a69613",
+    "hpc.html": "fab541273ed04200c4a05331b457958d830e2e575ff3c7ddcc148b8e8525f3e6",
+    "index.html": "02c39ad66ae665dc2ecb775776d48bbde4cce844dc876b6f14223475b42c0a50",
+    "nf-core-conformance.html": "8a91be34222bdb3bfbd538cdb6c49f8c5525f44718dfc12fdb393c4ee14ff9d6",
+    "nf-core.html": "7620a9f29dca792fd8d22c8234a7a3509c910f6558e35ffed785ee4b7777c2a5",
+    "outputs.html": "2d605ea025d7b0e533fb0f365820459d378c5e91df28a670d3fcc8e1ccf32d49",
+    "parameters.html": "13b537105e91238295324db445890989334d43fc4e14a722670f55cca45d8e6a",
+    "parity-acceptance.html": "a0e7dbea3071ac4623cbc294ba63cd559a862925eee9c94b784ba15ceb22e3e7",
+    "practical-parity.html": "e3b1594bfeca3a0685343afd0f0f11acc6dd9834f6414c43d8ec0625d3dc0507",
+    "recovery.html": "724f06cdc50a5f7ee64b8449382355dcbce4a11a9a3534ee87e346a3b89c062a",
+    "report.html": "d85fb20cd9c86d6150ff039d28abf3158f84f3d8f2e5859bfdae9af08824959e",
+    "scale-boundaries.html": "3e065c98800625e9de6aae30059b13362b2c55e768b19000b64e8ee477df8dbf",
+    "scientific-delivery.html": "3748fb8a120f24bf696cabba8025920954a007ea4703dce79dc78e5c702a9695",
+    "sources/benchmark/scale/readme-source.html": "4b238c646b2c06debd9e52ff00562999e7521d4e7105ea9db654f877e4c9885a",
+    "sources/tests/array-smoke/readme-source.html": "9afdb10833a405c9e270a9059c95a08bf63c4cddc2ab78082b1446b9853b60c1",
+    "sources/tests/evidence/nf-core-conformance/readme-source.html": "1e4ba850957612cab10989d60193769fb7b8df32f1e231658d3ef33127cab4b5",
+    "usage.html": "5956c71030e0f4934f0b3544f5f33f543d0fc082948719f78d76718eb2ee62dd",
+    "validation.html": "ffd94efc59471a24aec9422a4ec9f903780c449d9df4816d3c0f9f72fae06e5b"
+  },
+  "evidence_sha256": {
+    "build-manifest.json": "6b703989fbf1a2c97986265dfdd0430f71040d0ee8f4046c793d47d0e4825b17",
+    "build.log": "5892fc5fe66b9a5efa62a6c98eefe1da6f1996f39b2ad2989e361f43e6f71d44",
+    "check.log": "e89f922beb7f15eda886296619caf221efbf28e9f42970fa345fada8aa07ec8b"
+  },
+  "scope": "Current queued documentation and canonical references only. Earlier documentation receipt remains historical and linked; this receipt is deliberately separate to avoid a self-referential build manifest. No new scientific or hosted-runtime claim."
+}
