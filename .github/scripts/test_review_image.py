@@ -64,7 +64,8 @@ class LocalTests(unittest.TestCase):
                           gates=['installed-package','native-HDF5-public-R-all-families','power-checkpoint','unchanged-resume','source-unchanged'])
         self.source=dict(git_head='a'*40,production_sha256='f'*64,qualification_sha256='0'*64,scientific_archive_sha256=module.ARCHIVE)
         self.image=dict(Id=self.expected['image_id'],Architecture='amd64',Os='linux',Config=dict(Labels={
-            'org.opencontainers.image.source':'https://github.com/'+module.REPOSITORY,'org.opencontainers.image.revision':'a'*40}))
+            'org.opencontainers.image.source':'https://github.com/'+module.REPOSITORY,'org.opencontainers.image.revision':'a'*40,
+            'org.opencontainers.image.licenses':'GPL-3.0-only','org.opencontainers.image.vendor':'Katsevich Lab'}))
         self.write('review-receipt.json',self.receipt);self.write('source-before.json',self.source);self.write('source-after.json',self.source)
         self.write('context/source.json',dict(schema=1, source_resolution='frozen_archive_receipt',
                    archive_kind='R_CMD_build', sceptre_commit='1e4d5459ab229255694f9217d7cd4ed51a4bf1b8',
@@ -112,6 +113,18 @@ class LocalTests(unittest.TestCase):
             with self.subTest(field=field):
                 altered=copy.deepcopy(self.image);altered[field]=bad;self.write('loaded-inspect.json',[altered])
                 with self.assertRaises((ValueError,KeyError)):module.verify_local(self.root,self.origin,True)
+    def test_inherited_base_metadata_is_not_project_metadata(self):
+        for key,bad in [('org.opencontainers.image.licenses','GPL-2.0-or-later'),
+                        ('org.opencontainers.image.licenses',None),
+                        ('org.opencontainers.image.vendor','Rocker Project')]:
+            for loaded in (False, True):
+                with self.subTest(key=key,bad=bad,loaded=loaded):
+                    image=copy.deepcopy(self.image)
+                    image['Config']['Labels'][key]=bad
+                    self.write('loaded-inspect.json' if loaded else 'image-inspect.json',[image])
+                    with self.assertRaisesRegex(ValueError,'OCI project'):
+                        module.verify_local(self.root,self.origin,loaded)
+                    self.write('loaded-inspect.json' if loaded else 'image-inspect.json',[self.image])
     def test_wrong_runtime_or_scientific_source(self):
         self.write('host-engine.json',dict(nextflow_version='26.10.3',parser_override=None,java={}))
         with self.assertRaises(ValueError):module.verify_local(self.root,self.origin)
