@@ -86,6 +86,14 @@ is rejected by the API, preserve the precise error before proposing any source
 registration change. No registry or visibility operation has occurred.
 
 **Publication and public pull validation are pending approval and execution.**
+The present gate is an actual automatic-review rejection: the prior trusted
+human approval was judged insufficiently specific for this container payload,
+GHCR destination and public visibility. Earlier destination-gating language
+started as our scope interpretation; it was not an explicit human prohibition.
+The concrete tested payload and operations are being prepared for a specific
+review decision after source/CI qualification. No indirect executor retry is
+authorized by this document.
+
 GHCR package visibility is a separate owner-controlled action; this workflow does
 not change it. After approved publication, the owner must explicitly set the
 approved public visibility if intended and verify an unauthenticated digest pull
