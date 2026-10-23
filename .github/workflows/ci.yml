@@ -4,10 +4,15 @@ on:
     branches: [main, dev]
   pull_request:
   workflow_dispatch:
+    inputs:
+      current_package_only:
+        description: 'Run only the supplemental dependency package suite; no pipeline qualification'
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
-  group: pipeline-checks-${{ github.workflow }}-${{ github.ref }}
+  group: pipeline-checks-${{ github.workflow }}-${{ github.ref }}-${{ inputs.current_package_only || false }}
   cancel-in-progress: true
 defaults:
   run:
@@ -41,6 +46,7 @@ jobs:
       - name: Verify bundled scientific source identity and rejection guards
         run: python3 tests/ci/check-runtime-source.py
   scientific:
+    if: ${{ inputs.current_package_only != true }}
     # Automatic PR/push checks need neither an unpublished package ref nor secrets.
     needs: schema
     runs-on: ubuntu-24.04

@@ -68,4 +68,5 @@ with tempfile.TemporaryDirectory() as directory:
         assert "FROM " + metadata["base"] in dockerfile
         assert "ARG BIOCONDUCTOR_VERSION=" + bioc in dockerfile
         assert "ARG CRAN_SNAPSHOT=" + metadata["cran_snapshot"] in dockerfile
+        assert ("libuv1-dev" in dockerfile) == (profile == "current")
 print("PASS distinct floor/current dependency identities; both retain unchanged frozen archive bytes")
