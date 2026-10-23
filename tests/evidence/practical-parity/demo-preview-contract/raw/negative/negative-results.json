@@ -1,0 +1,38 @@
+[
+  {
+    "version": "25.10.4",
+    "case": "original-stale-preview-equals-full-lock",
+    "exit": 1,
+    "expected_rejection": true
+  },
+  {
+    "version": "25.10.4",
+    "case": "full-identity-beyond-preview",
+    "exit": 1,
+    "expected_rejection": true
+  },
+  {
+    "version": "25.10.4",
+    "case": "bounded-preview-identity",
+    "exit": 1,
+    "expected_rejection": true
+  },
+  {
+    "version": "26.10.3",
+    "case": "original-stale-preview-equals-full-lock",
+    "exit": 1,
+    "expected_rejection": true
+  },
+  {
+    "version": "26.10.3",
+    "case": "full-identity-beyond-preview",
+    "exit": 1,
+    "expected_rejection": true
+  },
+  {
+    "version": "26.10.3",
+    "case": "bounded-preview-identity",
+    "exit": 1,
+    "expected_rejection": true
+  }
+]
