@@ -50,9 +50,12 @@ from earlier local and baseline checks.
 
 The public hosted-CI destination is
 [Katsevich-Lab/sceptre-pipeline](https://github.com/Katsevich-Lab/sceptre-pipeline),
-a fork of `timothy-barry/sceptre-pipeline`. Its default branch is
-`codex/native-schema7-hosted-ci` so the native workflow is available for manual
-dispatch; the upstream `main` branch has not been merged or rewritten.
+a fork of `timothy-barry/sceptre-pipeline`. Its default metadata was temporarily
+set to `codex/native-schema7-hosted-ci` for the original manual campaign and has
+now been restored to `main` at unchanged5cc91e51. PR1 retains its explicit base
+`codex/native-schema7-hosted-ci` atfb373a0 and tested headbfdfe70. No source refs
+or upstream branch were changed by that metadata cleanup; the prospective manual
+registry workflow still requires its own authorized admission on `main`.
 Actions are enabled. The schema and scientific jobs use `ubuntu-24.04` AMD64
 runners and build the exact bundled archive locally on the runner without
 publishing a container image. Bounded hosted AMD64 qualification is recorded below;
