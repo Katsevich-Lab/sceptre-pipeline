@@ -15,8 +15,11 @@ The manual `publish-container.yml` workflow is a reviewable proposal. It has no
 push, PR, tag, release or scheduled trigger. Its default dispatch builds and runs
 the installed-package checks without upload. The optional publication job requires
 an explicit boolean approval and the `container-publication` GitHub environment.
-Before enabling it, an owner must configure a required human reviewer and confirm
-that `ghcr.io/katsevich-lab/sceptre-pipeline` is the approved destination. Only this
+The required-reviewer environment is a proposed project safeguard, not an
+externally imposed approval rule. Destination-specific authorization for
+`ghcr.io/katsevich-lab/sceptre-pipeline` is still pending; after that authorization,
+we can configure and read back the environment within the approved scope without
+asking for the same destination permission twice. Only this
 job requests `packages: write`; all other jobs retain read-only permissions.
 
 The proposed job uploads the tested AMD64 image under a run-unique source/architecture
