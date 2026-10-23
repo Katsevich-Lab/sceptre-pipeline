@@ -1,0 +1,10 @@
+#!/usr/bin/env Rscript
+source('bin/pipeline.R');source('tests/fixture.R')
+a<-commandArgs(TRUE);stopifnot(length(a)==1L);dir.create(a[1],recursive=TRUE)
+f<-pipeline_fixture(moi='high',control='complement',mechanism='crt')
+meta<-as.data.frame(SummarizedExperiment::rowData(SingleCellExperiment::altExp(sceptre::get_screen_experiment(f$object),'gRNA')));meta$grna_id<-rownames(sceptre::get_grna_matrix(f$object))
+values<-list(response=sceptre::get_response_matrix(f$object),guide=sceptre::get_grna_matrix(f$object),metadata=meta,covariates=sceptre::get_cell_covariates(f$object)[,c('batch','z'),drop=FALSE],config=f$config)
+for (name in names(values)) saveRDS(values[[name]],file.path(a[1],paste0(name,'.rds')))
+ref<-function(name) list('$rds'=paste0(name,'.rds'))
+jsonlite::write_json(list(method='matrix',arguments=list(response_matrix=ref('response'),grna_matrix=ref('guide'),grna_target_data_frame=ref('metadata'),extra_covariates=ref('covariates'),moi='high',use_hdf5=TRUE),analyses='discovery',seed=271828),file.path(a[1],'input.json'),auto_unbox=TRUE)
+jsonlite::write_json(ref('config'),file.path(a[1],'analysis.json'),auto_unbox=TRUE)

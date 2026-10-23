@@ -74,3 +74,9 @@ interactions<-f$config;interactions$analysis$formula_object<-~batch*z
 resolved_interactions<-project_preflight(f$object,interactions)
 direct_interactions<-do.call(sceptre::set_analysis_parameters,c(list(sceptre_object=f$object),interactions$analysis))
 stopifnot(identical(resolved_interactions$resolved$design,hash_value(direct_interactions@preparation@design_matrix)))
+
+# Source byte caps stop malformed/oversized count references before readRDS.
+writeLines('not an RDS',file.path(root,'oversized.rds'))
+cap<-new.env(parent=emptyenv());cap$paths<-character();cap$hashes<-list();cap$max_source_bytes<-1
+assert_error(project_decode(list('$rds'='oversized.rds'),root,cap),'max_source_bytes while resolving file references')
+cat('PASS source byte cap precedes count reference decoding\n')

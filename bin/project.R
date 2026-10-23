@@ -3,6 +3,9 @@
 # {"$formula":"~ batch + z"}; all other values remain ordinary arguments.
 project_read_json <- function(path) jsonlite::fromJSON(path, simplifyVector = FALSE)
 project_bind_source <- function(path, sources) {
+    paths <- unique(c(sources$paths, path))
+    if (!is.null(sources$max_source_bytes) && sum(file.info(paths)$size) > sources$max_source_bytes)
+        fail('Source bytes exceed resources$max_source_bytes while resolving file references; counts have not been read.')
     digest <- hash_file(path)
     if (!is.null(sources$hashes[[path]]) && !identical(unname(sources$hashes[[path]]), digest)) fail('Source changed while decoding references: ', path)
     sources$paths <- unique(c(sources$paths, path))
@@ -195,7 +198,7 @@ project_prepare <- function(input_spec, config, output, root = getwd(), source_p
     saveRDS(settings, file.path(tmp,'settings.rds'))
     jsonlite::write_json(settings, file.path(tmp,'settings.json'), auto_unbox = TRUE, pretty = TRUE, null = 'null', force = TRUE)
     saveRDS(list(kind = 'sceptre-pipeline-preparation', schema = 1L, method = method,
-        source_files = hashes, input_spec_sha256 = hash_value(input_spec), config_sha256 = hash_value(config),
+        source_files = hashes, source_directories = stats::setNames(inventory,sources$directories), input_spec_sha256 = hash_value(input_spec), config_sha256 = hash_value(config),
         object_import_identity = pipeline_import_identity(object), package = lock,
         analyses = analyses, pairs = input_spec$pairs), file.path(tmp,'preparation.rds'))
     final <- file.path(normalizePath(dirname(output), mustWork = TRUE), basename(output))
@@ -231,4 +234,24 @@ project_resources <- function(object, limits = NULL) {
     list(observed = observed, limits = limits,
         qualification = 'Necessary payload bounds only; not peak memory or arbitrary-scale admission.',
         policy = 'No automatic changes to method, resampling budget, backend, family, or concurrency. Measure per-stage trace peak RSS and wall time.')
+}
+
+project_verify <- function(directory) {
+    receipt <- readRDS(file.path(directory,'preparation.rds'))
+    if (!identical(receipt$kind,'sceptre-pipeline-preparation') || !identical(receipt$schema,1L)) fail('Unsupported preparation receipt.')
+    files <- receipt$source_files
+    if (!is.character(files) || (length(files) && is.null(names(files))) ||
+        !all(file.exists(names(files))) || !identical(files,vapply(names(files),hash_file,character(1))))
+        fail('Prepared project source changed or is missing; create a fresh run directory.')
+    inventory <- receipt$source_directories
+    if (length(inventory) && (!is.list(inventory) || is.null(names(inventory)) ||
+        !identical(inventory,lapply(stats::setNames(names(inventory),names(inventory)),project_directory_inventory))))
+        fail('Prepared raw directory inventory changed; create a fresh run directory.')
+    config <- readRDS(file.path(directory,'analysis_config.rds'))
+    if (!identical(receipt$config_sha256,hash_value(config))) fail('Prepared config identity changed.')
+    lock <- readRDS(file.path(directory,'environment_lock.rds'));validate_identity(lock)
+    if (!identical(receipt$package,lock)) fail('Prepared project runtime changed.')
+    state <- read_bundle(file.path(directory,'input'),config,lock,file.path(directory,'backing'))
+    if (!identical(receipt$object_import_identity,pipeline_import_identity(state$object))) fail('Prepared project imported identity changed.')
+    invisible(receipt)
 }

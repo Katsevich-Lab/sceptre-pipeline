@@ -4,10 +4,28 @@ The pipeline uses the exact schema-7 source recorded in `tests/runtime/source.js
 
 ## Prepare raw data and scientific configuration reproducibly
 
+The single-command launcher prepares the declared raw inputs inside the selected immutable container and launches Nextflow with that same installed runtime and lock. It needs Python, Java/Nextflow and Docker (or a local Apptainer SIF), **not host R**:
+
+```bash
+bin/sceptre-pipeline --data-root /absolute/screen-data \
+  --input-json /absolute/screen-data/input.json \
+  --analysis-json /absolute/screen-data/analysis.json \
+  --run-dir /absolute/new-run --container-image sha256:QUALIFIED_IMAGE_DIGEST \
+  -- --execution_mode distributed --n_work_units 4
+```
+
+The launcher defaults to Nextflow25.10.4, or respects an exact `NXF_VER` selected by the caller/CI matrix; that engine identity is bound to resume. Moving `latest` selectors are rejected. All JSON/referenced raw inputs must be inside the explicit read-only data root; the new run directory must be outside it. The launcher mounts only the code, declared data root and run root. It checks the image's exact source/archive/schema receipt before import. `run/prepared` retains source hashes/config/lock/backing and `run/results/exports/scientific-report/report.html` is the scientific report. `run/results/pipeline_info/report.html` is the distinct execution report.
+
+Use the **same command plus `--resume` before the final `--` separator** for an unchanged retry. The launcher verifies its own code/JSON/argument/image identity and every original referenced source plus raw-directory inventory before allowing Nextflow resume. Changed source/config needs a new run directory. A failed scientific task keeps its native logs and previously certified stage artifacts; no successful family is fabricated.
+
+For a checksum-qualified SIF use `--engine apptainer --container-image /absolute/runtime.sif --container-image-sha256 SHA256`. Additional site profiles use `--profiles slurm,apptainer` or the appropriate engine/site combination. Preparation runs on the invocation host, not a scheduler worker: invoke inside a suitably resourced allocation for large imports. Scientific tasks then follow the selected site profiles. Actual local Docker and hosted SIF qualification remain separately named; supporting an engine flag does not establish HPC execution.
+
+The two-step preparation interface remains useful for reviewing settings before spending on the scientific workflow:
+
 Run the shipped helper **inside the same immutable package runtime** that will execute Nextflow:
 
 ```bash
-Rscript bin/prepare_project.R input.json analysis.json prepared-screen
+Rscript --vanilla bin/prepare_project.R input.json analysis.json prepared-screen
 nextflow run . -params-file prepared-screen/params.json --outdir results
 ```
 
@@ -114,7 +132,7 @@ Allowed checkpoint stages are parameters, assignment, QC and completed analysis 
 
 See [scientific delivery](scientific-delivery.md) for public plots, working-pair QC reasons, distributed warnings, presentation isolation and portable native HDF5 outputs. Export now requests the medium resource label by default; sites can override allocations explicitly.
 
-Optional `resources` limits cap `max_cells`, `max_requested_pairs`, `max_design_bytes`, `max_backing_bytes`, and preparation `max_source_bytes`. Exceeding one rejects with the measured component and declared allowance; no method/budget/backend/family changes automatically. Bounds are necessary components, **not peak RSS predictions or arbitrary-scale admission**. Read per-stage Nextflow trace wall time/peak RSS, and [scale boundaries](scale-boundaries.md) before choosing concurrency. Import may allocate before its dimensions are known; `max_source_bytes` checks prior to import, other bounds run once R resolves data/design. Source-file bytes do not predict matrix memory. Existing `resource_admission.py` supplies conservative scalar pilot checks when full dimensions/budgets are known.
+Optional `resources` limits cap `max_cells`, `max_requested_pairs`, `max_design_bytes`, `max_backing_bytes`, and preparation `max_source_bytes`. Exceeding one rejects with the measured component and declared allowance; no method/budget/backend/family changes automatically. Bounds are necessary components, **not peak RSS predictions or arbitrary-scale admission**. Read per-stage Nextflow trace wall time/peak RSS, and [scale boundaries](scale-boundaries.md) before choosing concurrency. Import may allocate before its dimensions are known; `max_source_bytes` checks decoded configuration and subsequent count-file references before loading them and checks raw files before public import; configuration decoding itself and already supplied in-memory objects are not peak-memory bounded. Other caps run once R resolves data/design. Source-file bytes do not predict matrix memory. Public pair constructors may materialize the requested family before its post-construction row cap can be checked; a cap is not pre-allocation memory assurance. Use the scalar pilot admission tool before very large family construction. Existing `resource_admission.py` supplies conservative scalar pilot checks when full dimensions/budgets are known.
 
 The branch's acceptance ledger and receipts distinguish direct-R/import/error/relocation/checkpoint tests, actual bounded workflow execution and hosted CI. Full Gasperini/Replogle, arbitrary scale, cluster scheduler/Apptainer and performance qualification are separate unrun claims. Safe-targeting annotations, Wilcoxon and experimental CPU/GPU lanes are not this baseline: expose them only after public R adoption and executor/QC/result/correction qualification. The pipeline must never switch association method to meet a resource limit.
 
