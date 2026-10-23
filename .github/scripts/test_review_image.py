@@ -65,11 +65,13 @@ class LocalTests(unittest.TestCase):
         self.source=dict(git_head='a'*40,production_sha256='f'*64,qualification_sha256='0'*64,scientific_archive_sha256=module.ARCHIVE)
         self.image=dict(Id=self.expected['image_id'],Architecture='amd64',Os='linux',Config=dict(Labels={
             'org.opencontainers.image.source':'https://github.com/'+module.REPOSITORY,'org.opencontainers.image.revision':'a'*40,
-            'org.opencontainers.image.licenses':'GPL-3.0-only','org.opencontainers.image.vendor':'Katsevich Lab'}))
+            'org.opencontainers.image.licenses':'GPL-3.0-only','org.opencontainers.image.vendor':'Katsevich Lab',
+            'org.opencontainers.image.base.name':'rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa',
+            'org.opencontainers.image.base.digest':'sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa'}))
         self.write('review-receipt.json',self.receipt);self.write('source-before.json',self.source);self.write('source-after.json',self.source)
         self.write('context/source.json',dict(schema=1, source_resolution='frozen_archive_receipt',
                    archive_kind='R_CMD_build', sceptre_commit='1e4d5459ab229255694f9217d7cd4ed51a4bf1b8',
-                   sceptre_archive_sha256=module.ARCHIVE, object_schema=7))
+                   sceptre_archive_sha256=module.ARCHIVE, object_schema=7, base='rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa'))
         self.write('scientific-parity/source-before.json',dict(source='same'));self.write('scientific-parity/source-after.json',dict(source='same'))
         self.write('host-engine.json',dict(nextflow_version='25.10.4',parser_override=None,java={'java.vendor':'Eclipse Adoptium','java.runtime.version':'17.0.10+7'}))
         self.write('image-inspect.json',[self.image]);self.write('loaded-inspect.json',[self.image])
@@ -116,13 +118,15 @@ class LocalTests(unittest.TestCase):
     def test_inherited_base_metadata_is_not_project_metadata(self):
         for key,bad in [('org.opencontainers.image.licenses','GPL-2.0-or-later'),
                         ('org.opencontainers.image.licenses',None),
-                        ('org.opencontainers.image.vendor','Rocker Project')]:
+                        ('org.opencontainers.image.vendor','Rocker Project'),
+                        ('org.opencontainers.image.base.name','docker.io/library/ubuntu:noble'),
+                        ('org.opencontainers.image.base.digest','sha256:'+'0'*64)]:
             for loaded in (False, True):
                 with self.subTest(key=key,bad=bad,loaded=loaded):
                     image=copy.deepcopy(self.image)
                     image['Config']['Labels'][key]=bad
                     self.write('loaded-inspect.json' if loaded else 'image-inspect.json',[image])
-                    with self.assertRaisesRegex(ValueError,'OCI project'):
+                    with self.assertRaisesRegex(ValueError,'OCI (project|immediate base)'):
                         module.verify_local(self.root,self.origin,loaded)
                     self.write('loaded-inspect.json' if loaded else 'image-inspect.json',[self.image])
     def test_wrong_runtime_or_scientific_source(self):

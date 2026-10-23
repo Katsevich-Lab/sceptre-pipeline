@@ -93,6 +93,9 @@ jobs:
           assert image['Config']['Labels']['org.opencontainers.image.source'] == 'https://github.com/Katsevich-Lab/sceptre-pipeline'
           assert image['Config']['Labels']['org.opencontainers.image.licenses'] == 'GPL-3.0-only'
           assert image['Config']['Labels']['org.opencontainers.image.vendor'] == 'Katsevich Lab'
+          base = json.loads((root / 'context/source.json').read_text())['base']
+          assert image['Config']['Labels']['org.opencontainers.image.base.name'] == base
+          assert image['Config']['Labels']['org.opencontainers.image.base.digest'] == base.split('@', 1)[1]
           PY_IMAGE
           echo "SCEPTRE_CONTAINER_IMAGE=$image_id" >> "$GITHUB_ENV"
           docker run --rm "$image_id" sh -c 'cat /opt/sceptre/source.json /opt/sceptre/session-info.txt /opt/sceptre/packages.tsv' > "$RUNNER_TEMP/runtime-provenance.txt"
