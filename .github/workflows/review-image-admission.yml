@@ -1,12 +1,13 @@
-name: Reviewed image admission only
+name: Reviewed floor image capability probe
 
 on:
   push:
-    branches: [codex/image-admission-license-20261023]
+    branches: [codex/image-admission-floor-probe-20261023]
     paths:
       - .github/workflows/review-image-admission.yml
       - .github/scripts/review_image.py
       - .github/scripts/test_review_image.py
+      - tests/ci/floor-native-capability.R
 
 permissions:
   contents: read
@@ -15,7 +16,7 @@ permissions:
 jobs:
   verify-saved-image:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       REVIEW_RUN_ID: '39908971415'
       REVIEW_ARTIFACT_ID: '12483325753'
@@ -64,6 +65,21 @@ jobs:
           docker load --input image/image.tar.gz > docker-load.log 2>&1
           docker image inspect "$REVIEW_IMAGE_ID" > image/loaded-inspect.json
           python3 ../.github/scripts/review_image.py loaded loaded.json > loaded.log 2>&1
+      - name: Verify public floor importer and imported-backed discovery capabilities
+        run: |
+          mkdir -p admission/floor-capability
+          printf '%s  tests/ci/floor-native-capability.R\n' c2f94afcc2f2cb39960a0b651b4609631b787a9bafb95e0a476de678db8bf528 | sha256sum --check
+          printf '%s  tests/fixture.R\n' 78e3ca87fe084b13a054690d44674660d15b178fb80dd679f3dd383673870c4d | sha256sum --check
+          printf '%s  bin/pipeline.R\n' ba6eef0127bb4fc15174e1aabf8e802ef05c104cd3f053bc2e9c451e35393905 | sha256sum --check
+          sha256sum tests/ci/floor-native-capability.R tests/fixture.R bin/pipeline.R > admission/floor-capability/source.sha256
+          docker run --rm --platform linux/amd64 --user "$(id -u):$(id -g)" \
+            --env HOME=/tmp --env TMPDIR=/tmp \
+            --env R_LIBS_USER=/nonexistent \
+            --mount "type=bind,source=$PWD,target=/source,readonly" \
+            --mount "type=bind,source=$PWD/admission/floor-capability,target=/output" \
+            --workdir /source "$REVIEW_IMAGE_ID" \
+            Rscript --vanilla /source/tests/ci/floor-native-capability.R /output /source \
+            > admission/floor-capability/probe.log 2>&1
       - name: Preserve bounded admission receipts without image upload
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -71,6 +87,10 @@ jobs:
           name: reviewed-image-admission-${{ github.run_id }}-${{ github.run_attempt }}
           retention-days: 14
           path: |
+            admission/floor-capability/receipt.json
+            admission/floor-capability/probe.log
+            admission/floor-capability/source.sha256
+            admission/floor-capability/session.txt
             admission/*.json
             admission/*.log
             admission/*.txt
