@@ -39,12 +39,13 @@ public raw-preparation/configuration/report suites, actual configuration-closure
 guards, nativeHDF5/checkpoint/launcher comparisons and positive Apptainer execution.
 The package-only newer-R job remains separate from pipeline runtime qualification.
 
-The [full exact-head campaign](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39902600871)
-is running at `bfdfe70736445ed07cdee9e18c8cddc8d3796cfe`; no full hosted/SIF
-success is claimed yet. Its [engineering campaign](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39902600959)
-passed. Production identity is475e4199 and qualification/setup9aef27aa.
-[The acceptance ledger](parity-acceptance.md) distinguishes those source boundaries
-from earlier local and baseline checks.
+The [fresh full exact-head campaign](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39906148557)
+is running at `725078e3ea6c47154306b0e5d1a609a5d031783a`, production98522279.
+The earlier bfd campaign passed package/SIF checks but failed both Docker launcher
+jobs on caller ownership before reaching42cases. Those scoped results remain
+preserved. [Corrected engineering39906655219](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39906655219)
+passed at9aa9dfd with identical scientific production bytes. [The acceptance ledger](parity-acceptance.md)
+separates those boundaries from earlier local and original baseline checks.
 
 ## Hosted schema-7 qualification
 
@@ -53,9 +54,11 @@ The public hosted-CI destination is
 a fork of `timothy-barry/sceptre-pipeline`. Its default metadata was temporarily
 set to `codex/native-schema7-hosted-ci` for the original manual campaign and has
 now been restored to `main` at unchanged5cc91e51. PR1 retains its explicit base
-`codex/native-schema7-hosted-ci` atfb373a0 and tested headbfdfe70. No source refs
-or upstream branch were changed by that metadata cleanup; the prospective manual
-registry workflow still requires its own authorized admission on `main`.
+`codex/native-schema7-hosted-ci` atfb373a0 and scientific candidate725078e. No source refs
+or upstream branch were changed by that metadata cleanup; registered engineering API dispatch39906655219 subsequently passed on an exact
+feature ref without default-source admission. The intended publisher API route
+is described in [the container proposal](container-publication.md); it remains
+untested and no default-source admission is currently proposed.
 Actions are enabled. The schema and scientific jobs use `ubuntu-24.04` AMD64
 runners and build the exact bundled archive locally on the runner without
 publishing a container image. Bounded hosted AMD64 qualification is recorded below;
