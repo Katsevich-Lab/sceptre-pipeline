@@ -1,8 +1,11 @@
 # Current nf-core engineering acceptance
 
-Status: active implementation and qualification on `codex/nfcore-conformance-20261022`,
-base `e72ae2f248c91eb83232ae71ec747a5b64f8ed67`, in a separate worktree.
-The parent practical-parity goal remains active. This work does not change the
+Status: integrated in [draft PR1](https://github.com/Katsevich-Lab/sceptre-pipeline/pull/1),
+scientific candidate725078e/production98522279. Complete engineering at9aa9dfd
+passed; metadata-corrected imagef594 and actual saved-byte Ubuntu admission0dcb
+passed separately. Final integrated PR qualification remains the completion gate.
+The dedicated original conformance worktree is historical.
+This work does not change the
 selected schema-7 scientific package archive `f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4`,
 source `1e4d5459ab229255694f9217d7cd4ed51a4bf1b8`, or implement a second statistical engine.
 
@@ -123,16 +126,18 @@ launcher smoke completed nativeHDF5 CRT distributed discovery, exact public-R
 comparison, unchanged scientific cache reuse and source/settings mutation guards.
 The final source snapshot and complete suite results are recorded separately.
 
-## Frozen integration campaign
+## Historical frozen integration milestone
 
-The final canonical source snapshot records production identity
+The earlier source snapshot recorded production
 `2a8b4a88ce8b2f653c7f9dee1ba246bd6a56c7bf69aa5b0433e3ad47cf90b40e`
-and independent qualification/oracle/setup identity
+and qualification/oracle/setup
 `c067146080f7ebf66f50546d80dd5072a7058af561e769113e9256cfa1584b6b`.
-The lead integration checkout and conformance checkout matched both before the
-campaign. The final42-case minimum25.10.4 supported-default suite runs separately from
-lead full nativeHDF5 CRT/checkpoint/resume and raw-project launcher runs. Terminal
-receipts, rather than this in-progress note, determine which checks passed.
+Lead and conformance checkouts matched before that campaign. Its actual full42
+suite and corrected focused-case results are preserved below; they do not qualify
+later configuration-closure or caller-ownership changes. Current production is
+98522279, while metadata/recipe qualification3106d65d remains separately bound.
+The [acceptance ledger](parity-acceptance.md) and [review](../REVIEW.md) distinguish
+current terminal jobs from historical local and hosted campaigns.
 
 ## Supported parser defaults and experimental diagnostics
 
