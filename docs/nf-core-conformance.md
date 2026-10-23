@@ -204,3 +204,34 @@ runtime receipts are retained under
 scientific run39900277427 was canceled, not passed. This engineering success does
 not qualify the later corrected full scientific matrix or imply container/HPC/
 registry execution.
+
+## Complete configuration include identity
+
+Configuration traversal starts at every Nextflow-reported root, including tracked
+`nextflow.config` and tracked profile/resource files. A tracked file remains part
+of the traversal even though its own bytes are already in production identity;
+only the final external digest list filters already-bound production files.
+This closes tracked→external and external→tracked→external include chains.
+The traversal conservatively binds every literal profile/conditional branch,
+not only branches selected for execution. External config bytes are hashed on
+the host; they are not copied into the scientific container.
+
+Only local literal include paths are supported for identity. Inline profile
+blocks, parenthesized literals, ordinary next statements, and comments are
+handled; interpolation, variable paths and expression continuations are rejected.
+Comments are whitespace rather than statement terminators, so comment-separated
+concatenation, method calls and string repetition cannot bind a literal prefix.
+Quoted/comment text is not an include call; a hidden include in an interpolated
+string fails closed (current Nextflow may reject it during native parsing first).
+This is a conservative supported-config contract, not a general Groovy evaluator.
+The mandatory `tests/ci/check-config-closure.py` runs on both Nextflow CI versions:
+exact external-leaf digest admission, unchanged resume, leaf-mutation rejection
+without changed certified publications, plus seven expression-rejection cases.
+
+The corrected closure is qualified locally on25.10.4 and26.10.3:13actual
+Nextflow invocations each, with exact positive digest/cache/publication checks
+and seven explicit negative expression cases. Raw receipts and final source
+identities are retained at `tests/evidence/nf-core-conformance/config-closure`.
+Production identity is now475e4199, superseding2a8b4a88 for subsequent science
+qualification. The mandatory CI helper runs both matrix versions and preserves
+its receipts; the lead reruns full nativeHDF5 science separately.

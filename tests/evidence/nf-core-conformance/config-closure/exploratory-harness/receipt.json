@@ -1,0 +1,16 @@
+{
+  "initial_schema_helper_failures": [
+    "minimum.log",
+    "current.log"
+  ],
+  "native_parser_diagnostic_helper_failures": [
+    "current-fixed.log",
+    "current-frozen.log"
+  ],
+  "intentionally_terminated_exit143": [
+    "minimum-final.log",
+    "minimum-final-seven.log",
+    "current-final-seven.log"
+  ],
+  "reason_for_interruptions": "Required comment-separated repetition and keyword continuation coverage were added before final freeze. These exploratory runs are not qualification."
+}

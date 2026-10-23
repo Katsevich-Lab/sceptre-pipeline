@@ -1,0 +1,7 @@
+
+      N E X T F L O W
+      version 26.10.3 build 14229
+      created 20-10-2026 16:46 UTC (12:46 EDT)
+      cite doi:10.1038/nbt.3820
+      http://nextflow.io
+
