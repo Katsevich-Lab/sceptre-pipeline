@@ -11,22 +11,49 @@ Use the emitted `sha256:…` image identity with the launcher and `-profile dock
 base image, R/Bioconductor and snapshot identities. Moving local tags are build
 convenience only; scientific runs require the immutable image identity.
 
-The manual `publish-container.yml` workflow is a reviewable proposal. It has no
-push, PR, tag, release or scheduled trigger. Its default dispatch builds and runs
-the installed-package checks without upload. The optional publication job requires
-an explicit boolean approval and the `container-publication` GitHub environment.
-The required-reviewer environment is a proposed project safeguard, not an
-externally imposed approval rule. Destination-specific authorization for
-`ghcr.io/katsevich-lab/sceptre-pipeline` is still pending; after that authorization,
-we can configure and read back the environment within the approved scope without
-asking for the same destination permission twice. Only this
-job requests `packages: write`; all other jobs retain read-only permissions.
+`publish-container.yml` separates image review from registry promotion. Its
+read-only build runs only on pushes to `codex/container-review-*` that change
+that workflow or its two artifact-admission helpers. There is no PR, tag, release
+or scheduled trigger. Documentation/evidence-only pushes do not rebuild the
+reviewed image. The ordinary scientific CI workflow and its required tests are
+unchanged by this isolated route.
 
-The proposed job uploads the tested AMD64 image under a run-unique source/architecture
-tag, records its content digest, and pulls that digest back. It preserves source,
-image and package-test receipts. It does not claim ARM64 or multiarchitecture
-support from an AMD64 build. Additional architecture images require their own
-execution qualification before an OCI index can be published.
+The review job checks out and labels the actual source commit, builds LinuxAMD64,
+then uses that immutable image ID for installed-package checks and real bounded
+nativeHDF5 CRT/public-R all-family, checkpoint, unchanged-resume and source guards.
+Only after success does it save the image archive, record its SHA256 and upload
+an immutable run/attempt-named Actions artifact with14-day retention. This is
+artifact storage, not GHCR publication. Source, JVM, image, package-test and
+scientific receipts travel with it. The helpers have separate SHA256 identities
+because the existing source-snapshot qualification map excludes `.github/scripts`.
+No ARM64 or multiarchitecture qualification follows from this AMD64 route.
+
+On a later approved manual promotion, `approve_publication=true` skips the build
+job entirely. It must name the originating successful review run and artifact ID,
+exact source commit, immutable image ID and saved archive SHA256. The promotion
+verifies GitHub workflow/run/latest-attempt/artifact membership and server digest,
+downloads that single artifact, checks its source/runtime/scientific/helper and
+archive identities, then checks the loaded image ID, LinuxAMD64 and OCI labels
+before login and push. It never rebuilds or resaves the image after approval.
+Only this explicit manual job requests `packages: write`; build permissions are
+`contents: read`. The `container-publication` reviewer environment is a proposed
+project safeguard; destination-specific authorization is still pending.
+
+The dedicated branch atc13e94da0b8e9a54a2dd2460ad8514d04bd0fee0 was pushed by the
+lead under the existing source/CI authorization. Its actual push run
+[39904756647](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39904756647)
+started; the preserved snapshot is **in progress**, with publication skipped.
+The13offline unit methods and static/independent source reviews passed; they do
+not qualify the rebuilt image. See
+`tests/evidence/nf-core-conformance/image-review-proposal` for exact bytes and
+boundaries. Production475e4199 and selected archivef41a8fb7 are unchanged.
+
+The repository default is now `main`; its workflow-directory read returned404.
+Manual dispatch requires a workflow on the default branch, so a later narrowly
+authorized source admission or authorized local promotion route remains necessary.
+A dedicated push event does not require that manual registration. No source was
+merged into the default branch and no registry operation was performed by these
+proposal checks. See the [official manual-dispatch prerequisite](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow).
 
 **Publication and public pull validation are pending approval and execution.**
 GHCR package visibility is a separate owner-controlled action; this workflow does

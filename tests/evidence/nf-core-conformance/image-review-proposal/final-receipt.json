@@ -1,0 +1,22 @@
+{
+  "status": "STATIC_AND_OFFLINE_GUARDS_PASS_ACTUAL_IMAGE_BUILD_PENDING",
+  "commit": "c13e94da0b8e9a54a2dd2460ad8514d04bd0fee0",
+  "base": "bfdfe70736445ed07cdee9e18c8cddc8d3796cfe",
+  "production_sha256": "475e419938a86aa9aa19060730299c2276ab3500483e3bdd9e493c7a9c2f5913",
+  "qualification_sha256": "e9757ab92b37ada7cbe6c80c7cc6f40a525d521d1e42c180ee9e22dd801237d5",
+  "helper_identity_limit": "source-snapshot does not include .github/scripts; helpers separately bound below and in runtime review receipt to exact source commit",
+  "files_sha256": {
+    ".github/workflows/publish-container.yml": "9c504e1825d8bee74ce5254ec11709bcf3737eb68dd331033a4fbd59e699050b",
+    ".github/scripts/review_image.py": "2d642b58066a52a0b62ecc2b078d39249f7748b1dcbe598ec9a4fce5fa463475",
+    ".github/scripts/test_review_image.py": "e15571cdf0c62a3fb21e40a0c68f64464f6b1db9adf91a2f2f7ead1ad50bb22a"
+  },
+  "offline_test_methods": 13,
+  "actionlint_version": "1.7.12",
+  "actionlint_exit": 0,
+  "shellcheck": "not installed; disabled integration, bash-n verified9embeddedrun scripts",
+  "independent_review": "PASS /root/hosted_ci_preflight (read-only source+offlinefixture review)",
+  "push_route": "codex/container-review-* only; exact3publisher/helperpaths; no PRtrigger; no nf-test change",
+  "manual_promotion": "stricttrue workflow_dispatch only; referenced priorartifact, no rebuild",
+  "actual_build_executed": false,
+  "registry_operation_performed": false
+}
