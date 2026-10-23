@@ -1,11 +1,18 @@
 # Exact public schema-7 result export oracle.
 check_report_reference <- function(report_dir, key, expected) {
+    # data.table can retain a process-local pointer after as.data.frame().
+    # Compare every value and portable attribute, excluding only that pointer.
+    portable <- function(table) {
+        table <- as.data.frame(table)
+        attr(table, ".internal.selfref") <- NULL
+        table
+    }
     report <- readRDS(file.path(report_dir, "report-data.rds"))
     actual <- report$analyses[[key]]
     stopifnot(actual$status == "completed", actual$total_rows == nrow(expected),
-        identical(actual$table, utils::head(as.data.frame(expected), 100L)))
+        identical(portable(actual$table), utils::head(portable(expected), 100L)))
     saved <- readRDS(file.path(report_dir, "tables", paste0(key, ".rds")))
-    stopifnot(identical(as.data.frame(saved), as.data.frame(expected)))
+    stopifnot(identical(portable(saved), portable(expected)))
     temporary <- tempfile(fileext = ".csv")
     on.exit(unlink(temporary), add = TRUE)
     utils::write.csv(report_scalar_table(expected), temporary, row.names = FALSE)

@@ -32,7 +32,7 @@ nextflow_workflow {
                 input[3] = Channel.value(file('$baseDir/resources/empty_backing'))
                 input[4] = Channel.value(file('$baseDir/bin'))
                 input[5] = Channel.value(file('$baseDir/resources/no_previous_run.rds'))
-                input[6] = '{}'
+                input[6] = '{"execution_mode":"reference"}'
                 input[7] = Channel.value([file('$baseDir/main.nf'), file('$baseDir/nextflow.config')])
                 input[8] = []
                 input[9] = 'parameters'
@@ -67,7 +67,7 @@ nextflow_workflow {
                 input[3] = Channel.value(file('$baseDir/resources/empty_backing'))
                 input[4] = Channel.value(file('$baseDir/bin'))
                 input[5] = Channel.value(file('$baseDir/resources/no_previous_run.rds'))
-                input[6] = '{}'
+                input[6] = '{"execution_mode":"reference"}'
                 input[7] = Channel.value([file('$baseDir/main.nf'), file('$baseDir/nextflow.config')])
                 input[8] = []
                 input[9] = 'analysis'
@@ -102,7 +102,7 @@ nextflow_workflow {
                 input[3] = Channel.value(file('$baseDir/resources/empty_backing'))
                 input[4] = Channel.value(file('$baseDir/bin'))
                 input[5] = Channel.value(file('$baseDir/resources/no_previous_run.rds'))
-                input[6] = '{}'
+                input[6] = '{"execution_mode":"reference"}'
                 input[7] = Channel.value([file('$baseDir/main.nf'), file('$baseDir/nextflow.config')])
                 input[8] = ['discovery','power']
                 input[9] = 'analysis'
