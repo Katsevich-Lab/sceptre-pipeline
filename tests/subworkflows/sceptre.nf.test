@@ -4,7 +4,8 @@ def compareSavedWorkflow = { output, stop, analyses ->
     def image = System.getenv('SCEPTRE_CONTAINER_IMAGE')
     assert root && runRoot && image
     def command = ['docker', 'run', '--rm', '-v', "${root}:${root}".toString(),
-        '-v', "${runRoot}:${runRoot}".toString(), '-w', root, image,
+        '-v', "${runRoot}:${runRoot}".toString(),
+        '-v', "${output}:${output}".toString(), '-w', root, image,
         'Rscript', '--vanilla', 'tests/ci/compare-workflow.R', System.getenv('SCEPTRE_TEST_FIXTURE'),
         output.toString(), '271828', stop.toString(), analyses.toString(), 'none']
     def process = new ProcessBuilder(command).inheritIO().start()
@@ -32,13 +33,14 @@ nextflow_workflow {
                 input[3] = Channel.value(file('$baseDir/resources/empty_backing'))
                 input[4] = Channel.value(file('$baseDir/bin'))
                 input[5] = Channel.value(file('$baseDir/resources/no_previous_run.rds'))
-                input[6] = '{"execution_mode":"reference"}'
+                input[6] = '{"execution_mode":"reference","checkpoint_stage":"input","stop_after":"parameters","analyses":[],"seed":271828}'
                 input[7] = Channel.value([file('$baseDir/main.nf'), file('$baseDir/nextflow.config')])
                 input[8] = []
                 input[9] = 'parameters'
-                input[10] = 271828
-                input[11] = 'reference'
-                input[12] = 3
+                input[10] = 'input'
+                input[11] = 271828
+                input[12] = 'reference'
+                input[13] = 3
                 """
             }
         }
@@ -67,13 +69,14 @@ nextflow_workflow {
                 input[3] = Channel.value(file('$baseDir/resources/empty_backing'))
                 input[4] = Channel.value(file('$baseDir/bin'))
                 input[5] = Channel.value(file('$baseDir/resources/no_previous_run.rds'))
-                input[6] = '{"execution_mode":"reference"}'
+                input[6] = '{"execution_mode":"reference","checkpoint_stage":"input","stop_after":"analysis","analyses":[],"seed":271828}'
                 input[7] = Channel.value([file('$baseDir/main.nf'), file('$baseDir/nextflow.config')])
                 input[8] = []
                 input[9] = 'analysis'
-                input[10] = 271828
-                input[11] = 'reference'
-                input[12] = 3
+                input[10] = 'input'
+                input[11] = 271828
+                input[12] = 'reference'
+                input[13] = 3
                 """
             }
         }
@@ -102,13 +105,14 @@ nextflow_workflow {
                 input[3] = Channel.value(file('$baseDir/resources/empty_backing'))
                 input[4] = Channel.value(file('$baseDir/bin'))
                 input[5] = Channel.value(file('$baseDir/resources/no_previous_run.rds'))
-                input[6] = '{"execution_mode":"reference"}'
+                input[6] = '{"execution_mode":"reference","checkpoint_stage":"input","stop_after":"analysis","analyses":["discovery","power"],"seed":271828}'
                 input[7] = Channel.value([file('$baseDir/main.nf'), file('$baseDir/nextflow.config')])
                 input[8] = ['discovery','power']
                 input[9] = 'analysis'
-                input[10] = 271828
-                input[11] = 'reference'
-                input[12] = 3
+                input[10] = 'input'
+                input[11] = 271828
+                input[12] = 'reference'
+                input[13] = 3
                 """
             }
         }
