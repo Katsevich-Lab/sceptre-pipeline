@@ -19,7 +19,7 @@ source_snapshot "$run_dir/source-before.json"
 engine=${SCEPTRE_CONTAINER_ENGINE:-docker}
 run_r() {
  if [[ -n "${SCEPTRE_CONTAINER_IMAGE:-}" && "$engine" == apptainer ]]; then
-  apptainer exec --cleanenv --bind "$repo:$repo" --bind "$run_dir:$run_dir" --pwd "$repo" "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla "$@"
+  apptainer exec --containall --cleanenv --bind "$repo:$repo" --bind "$run_dir:$run_dir" --pwd "$repo" "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla "$@"
  elif [[ -n "${SCEPTRE_CONTAINER_IMAGE:-}" ]]; then
   docker run --rm -v "$repo:$repo" -v "$run_dir:$run_dir" -w "$repo" "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla "$@"
  else Rscript --vanilla "$@"; fi

@@ -85,7 +85,7 @@ def main():
         for path,mode in mounts: base += ['-v',f'{path}:{path}:{mode}']
         base += ['-w',str(repo),image]
     else:
-        base = ['apptainer','exec','--cleanenv']
+        base = ['apptainer','exec','--containall','--cleanenv']
         for path,mode in mounts: base += ['--bind',f'{path}:{path}:{mode}']
         base += ['--pwd',str(repo),image]
     run(base+['Rscript','--vanilla',str(repo/'bin/verify_runtime.R'),str(repo/'tests/runtime/source.json')])

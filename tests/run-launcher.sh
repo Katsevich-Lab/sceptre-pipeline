@@ -8,7 +8,7 @@ mkdir -p "$root"
 root=$(cd "$root" && pwd)
 run_r() {
  if [[ "$engine" == docker ]]; then docker run --rm -v "$repo:$repo" -v "$root:$root" -w "$repo" "$image" Rscript --vanilla "$@"
- else apptainer exec --cleanenv --bind "$repo:$repo" --bind "$root:$root" --pwd "$repo" "$image" Rscript --vanilla "$@"; fi
+ else apptainer exec --containall --cleanenv --bind "$repo:$repo" --bind "$root:$root" --pwd "$repo" "$image" Rscript --vanilla "$@"; fi
 }
 run_r tests/make-launcher-input.R "$root/raw"
 args=(--data-root "$root/raw" --input-json "$root/raw/input.json" --analysis-json "$root/raw/analysis.json" --run-dir "$root/run" --engine "$engine" --container-image "$image" --profiles "test,$engine")
