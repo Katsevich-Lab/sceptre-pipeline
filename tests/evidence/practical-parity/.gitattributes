@@ -1,0 +1,4 @@
+# Preserve hash-bound raw receipts/generated HTML exactly, including emitted spaces.
+# This is limited to derived evidence; source and hand-written docs keep Git checks.
+qualification/*.log -text whitespace=-blank-at-eol
+report-example/*/report.html -text whitespace=-blank-at-eol
