@@ -13,6 +13,7 @@ state <- read_bundle(file.path(root, 'results', 'discovery', 'state'), config, l
 report_dir <- file.path(root, 'results', 'exports', 'scientific-report')
 stopifnot(jsonlite::fromJSON(file.path(report_dir, 'report-status.json'))$status == 'completed')
 report <- readRDS(file.path(report_dir, 'report-data.rds'))
+manifest <- readRDS(file.path(report_dir, 'manifest.rds'))
 plain <- function(x) {
     if (is.data.frame(x)) return(list(names = names(x), columns = lapply(as.list(x), plain)))
     if (is.list(x)) return(lapply(x, plain))
@@ -27,7 +28,8 @@ for (stage in c('calibration', 'power', 'discovery')) {
 stopifnot(report$qc$imported_cells == 320L, report$qc$retained_cells == 315L,
     report$qc$excluded_cells == 5L, sum(!report$analyses$discovery$table$pass_qc) == 1L,
     report$provenance$manifest$seed == 271828L,
-    identical(report$provenance$manifest$package, lock),
+    identical(manifest$package, lock),
+    identical(report$provenance$manifest, report_preview(manifest)),
     file.exists(file.path(root, 'demo-receipt.json')),
     file.exists(file.path(report_dir, 'report.qmd')),
     file.exists(file.path(root, 'results', 'pipeline_info', 'report.html')))
