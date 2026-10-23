@@ -99,7 +99,7 @@ echo 'PASS changed array batching cannot reuse prior publication paths'
 python3 - "$root" "$run_dir/altered-source" <<'PY_SOURCE'
 import pathlib,shutil,sys,hashlib,json
 src,dst=map(pathlib.Path,sys.argv[1:]); dst.mkdir()
-for folder in ('bin','conf','modules','subworkflows','resources'):
+for folder in ('bin','conf','modules','subworkflows','resources','demo'):
     shutil.copytree(src/folder,dst/folder)
 for name in ('main.nf','nextflow.config','nextflow_schema.json'):
     shutil.copyfile(src/name,dst/name)
