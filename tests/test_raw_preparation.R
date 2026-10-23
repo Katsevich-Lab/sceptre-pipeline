@@ -15,6 +15,7 @@ for (method in c('tenx','cellranger')) {
   if (method=='cellranger') a$use_hdf5<-backed
   name <- paste0(method,'-',backed); dest<-file.path(root,name)
   project_prepare(list(method=method,arguments=a,analyses=character()),config,dest)
+  project_verify(dest)
   directa<-a;directa$directory_to_write<-file.path(root,paste0(name,'-direct'))
   direct <- do.call(if(method=='tenx') sceptre::import_data_from_10x else sceptre::import_data_from_cellranger,directa)
   object <- read_bundle(file.path(dest,'input'),config,readRDS(file.path(dest,'environment_lock.rds')),file.path(dest,'backing'))$object
@@ -41,3 +42,7 @@ cfg<-project_pairs(object,config,cis)
 stopifnot(identical(cfg$analysis$discovery_pairs,sceptre::construct_cis_pairs(object,distance_threshold=50L,response_position_data_frame=pos)))
 assert_error(project_preflight(object,modifyList(config,list(resources=list(max_cells=1))),character()),'max_cells exceeded')
 cat('PASS multi-sample 10x HDF5, CellRanger RAM/HDF5, Parse direct-public-R counts/covariates; frozen cis pairs; unsupported Parse backing and resource rejection\n')
+
+# New files can change a raw directory reader's format choice; unchanged resume rejects.
+assert_error(project_verify(file.path(root,'tenx-TRUE')),'raw directory inventory changed')
+cat('PASS raw preparation source/runtime readback and added-directory-member resume rejection\n')

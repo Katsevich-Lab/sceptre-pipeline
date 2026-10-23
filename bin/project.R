@@ -238,7 +238,7 @@ project_resources <- function(object, limits = NULL) {
 
 project_verify <- function(directory) {
     receipt <- readRDS(file.path(directory,'preparation.rds'))
-    if (!identical(receipt$kind,'sceptre-pipeline-preparation') || !identical(receipt$schema,1L)) fail('Unsupported preparation receipt.')
+    if (!identical(receipt$kind,'sceptre-pipeline-preparation') || !identical(receipt$schema,1L) || !'source_directories' %in% names(receipt)) fail('Unsupported preparation receipt.')
     files <- receipt$source_files
     if (!is.character(files) || (length(files) && is.null(names(files))) ||
         !all(file.exists(names(files))) || !identical(files,vapply(names(files),hash_file,character(1))))

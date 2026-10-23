@@ -1,0 +1,29 @@
+Warning message:
+In dir.create(root, recursive = TRUE) :
+  '/tmp/sceptre-parity-raw-inventory-final' already exists
+Reading 10x sample 1 of 2.
+Reading 10x sample 2 of 2.
+Reading 10x sample 1 of 2.
+Reading 10x sample 2 of 2.
+Processing directory 1.
+ ✓
+Processing directory 2.
+ ✓
+Combining matrices across directories.
+ ✓
+Creating the sceptre object.
+ ✓
+Processing directory 1.
+ ✓
+Processing directory 2.
+ ✓
+Combining matrices across directories.
+ ✓
+Creating the sceptre object.
+ ✓
+Reading 10x sample 1 of 2.
+Reading 10x sample 2 of 2.
+Reading 10x sample 1 of 2.
+Reading 10x sample 2 of 2.
+PASS multi-sample 10x HDF5, CellRanger RAM/HDF5, Parse direct-public-R counts/covariates; frozen cis pairs; unsupported Parse backing and resource rejection
+PASS raw preparation source/runtime readback and added-directory-member resume rejection
