@@ -1,0 +1,8 @@
+---
+title: "SCEPTRE scientific results"
+format: html
+---
+```{r}
+source("render.R")
+cat(scientific_report_html(readRDS("report-data.rds"), NULL, fragment = TRUE))
+```

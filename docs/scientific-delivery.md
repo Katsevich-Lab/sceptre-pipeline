@@ -76,3 +76,46 @@ missing/corrupt backing rejection and package validation after transport hashes
 are rewritten. These are small bounded fixtures, not a memory, full-screen,
 HPC or arbitrary-scale qualification. The source archive/runtime identity is
 retained in the existing pipeline manifest.
+
+## Scientific report presentation
+
+The HTML organizes the saved scientific evidence into a navigable overview,
+cell/guide/QC diagnostics, optional calibration and positive-control families,
+discovery effects/significance, scientific settings, warnings and portable
+provenance/downloads. Public R figures appear directly inside their scientific
+sections. Additional assignment/covariate/guide-count diagnostics are available
+in expandable sections. Mobile figures and wide tables scroll inside their own
+regions; their original full-size assets remain linked.
+
+Overview and family summaries use complete saved tables, before deterministic
+preview truncation: returned rows, finite/missing p-values, actual package
+significance, and descriptive p-value summaries. Discovery significance is
+copied from the package. Positive-control tables intentionally lack
+across-pair significance: the report adds neither a hit rate nor a corrected
+significance field. Calibration raw-p summaries and package-corrected
+rejections are distinctly labeled. Saved B1/B2/B3 values are stage budgets,
+not evidence that every pair reached every resampling stage. Assignment
+membership counts describe saved assignments before cell QC, not disjoint
+retained-cell groups.
+
+The frozen report view contains at most 100 scalar rows per result/QC family,
+12 strongest finite-p discovery rows, 100 warning conditions and bounded
+requested/resolved/provenance metadata. Full native tables, complete original
+configuration/manifest and all captured warnings remain separate downloads.
+Filtering changes only displayed preview rows and never scientific correction.
+
+On a renderer failure, `report.html` becomes an explicit presentation-failure
+page linking only evidence files already present. `report-status.json` still
+says `failed`, and the export task still fails visibly. This fallback cannot
+convert a failed analysis into a completed scientific claim.
+
+`tests/test_report_presentation.R OUTPUT` creates real synthetic
+complete/partial/failure fixtures, checks all public table/CSV/RDS values,
+summary counts and p-values, correction semantics, public figures, QC failure
+visibility and object/RNG immutability. Preserved examples are in
+`tests/evidence/practical-parity/report-example/`; local desktop/mobile manual
+Chrome screenshots and exact renderer/HTML/screenshot hashes are in
+`tests/evidence/practical-parity/visual/visual-review.json`. The tested actual
+CSS viewports were 1440×1000 and 390×844. These screenshots are local manual
+visual evidence, not a claim that hosted CI ran a browser or that arbitrary
+screens/scale were qualified.

@@ -1,0 +1,175 @@
+{
+  "kind": "sceptre-pipeline-local-manual-visual-review",
+  "schema": 1,
+  "data": "Synthetic demo/make-input.R fixture; no real experimental or participant data",
+  "renderer_sha256": "8065257d9414ed1b6980172aff566fadcf900b41ef91d103e7e957a7465e4b62",
+  "browser": "Chrome via CUA browser extension on local Mac",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "preview_server": "loopback-only http://127.0.0.1:8179",
+  "reviewed_states": [
+    "complete calibration/power/discovery",
+    "partial preparation with all analysis families omitted",
+    "deliberate renderer failure with existing native evidence links"
+  ],
+  "checks": {
+    "body_horizontal_overflow": false,
+    "in_section_public_qc_calibration_power_discovery_figures": true,
+    "discovery_filter_RNA_1_returns_one_preview_row": true,
+    "desktop_mobile_readable_navigation_and_wrapping": true,
+    "mobile_public_figures_scroll_within_the_figure": true,
+    "omitted_families_have_no_invented_results": true,
+    "failure_page_preserves_existing_evidence_links": true,
+    "viewport_override_reset": true
+  },
+  "screenshots": [
+    {
+      "file": "complete-desktop-overview.jpg",
+      "sha256": "1af9951654724b82e83ec865b213f466157355dbd5060c90aab2a73c10e870dc",
+      "screenshot_pixels": {
+        "width": 1440,
+        "height": 1000
+      },
+      "css_viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "encoding": "JPEG"
+    },
+    {
+      "file": "complete-desktop-calibration.jpg",
+      "sha256": "0b28598e3c274481e25f07943b9ea822eb533eda527a6ef46cdd9b2dc5ee400b",
+      "screenshot_pixels": {
+        "width": 1440,
+        "height": 1000
+      },
+      "css_viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "encoding": "JPEG"
+    },
+    {
+      "file": "complete-desktop-discovery.jpg",
+      "sha256": "3ced791c948617f7c3fda0c0a1545472c19d54dc65abc4997ad3ba9b643d4132",
+      "screenshot_pixels": {
+        "width": 1440,
+        "height": 1000
+      },
+      "css_viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "encoding": "JPEG"
+    },
+    {
+      "file": "complete-mobile-overview.jpg",
+      "sha256": "28c4f984a4e8bc03b38c1c7e5660b01ec6642cc75c1619243c000db0b26f1ceb",
+      "screenshot_pixels": {
+        "width": 390,
+        "height": 843
+      },
+      "css_viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "encoding": "JPEG"
+    },
+    {
+      "file": "complete-mobile-discovery.jpg",
+      "sha256": "45c22ebc4d6c12f9aa514f964eca056eeeb01f6befc352b0a74b2b500cf7557e",
+      "screenshot_pixels": {
+        "width": 390,
+        "height": 843
+      },
+      "css_viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "encoding": "JPEG"
+    },
+    {
+      "file": "complete-mobile-public-figure.jpg",
+      "sha256": "28f107019679da97268a70b229c4a393f9f01937fc2d409cf15343d0e5b63ace",
+      "screenshot_pixels": {
+        "width": 390,
+        "height": 843
+      },
+      "css_viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "encoding": "JPEG"
+    },
+    {
+      "file": "partial-desktop-omitted.jpg",
+      "sha256": "3d9b7554bc0793b90a834e74455592e6b7c66b0710a944969315bb90cf0e9454",
+      "screenshot_pixels": {
+        "width": 1440,
+        "height": 1000
+      },
+      "css_viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "encoding": "JPEG"
+    },
+    {
+      "file": "partial-mobile-omitted.jpg",
+      "sha256": "70590241fc2dc933759f19f86d977d3aa298c9349c13e54e6f657874c5fc4c8a",
+      "screenshot_pixels": {
+        "width": 390,
+        "height": 843
+      },
+      "css_viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "encoding": "JPEG"
+    },
+    {
+      "file": "failure-desktop.jpg",
+      "sha256": "574b94941b33d95a0932f8cb306328193bd2e930e35fb59e69409ca6de46eb0b",
+      "screenshot_pixels": {
+        "width": 1440,
+        "height": 1000
+      },
+      "css_viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "encoding": "JPEG"
+    },
+    {
+      "file": "failure-mobile.jpg",
+      "sha256": "d6ddb8174c382beef0a908594b7e3e4a5ce726ef2846e43be52fae8a89d385cf",
+      "screenshot_pixels": {
+        "width": 390,
+        "height": 843
+      },
+      "css_viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "encoding": "JPEG"
+    }
+  ],
+  "html_sha256": {
+    "complete": "8ab3995d92baaaa4d86902a742637c53d89f81e4b00973861b793c66b7c2c658",
+    "partial": "2786f185b7a01b652c7ffad6836d5ffcebea747b7322ad324bc339c0c382d714",
+    "failure": "fccf8d6b40573cc671639c0702dd40296788d99ab1384415c8a5242742e9da48"
+  },
+  "limits": "Manual local Chrome inspection only. Not a hosted visual browser test, cross-browser guarantee, scale benchmark or release qualification.",
+  "r_package_source_commit": "1e4d5459ab229255694f9217d7cd4ed51a4bf1b8",
+  "r_package_archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "public_value_receipt_sha256": "eaac07b570dbb3d5081fa459ba6f98a20cc43b3dd4070ee390548afe9b00061d",
+  "metadata_correction": "Screenshot bytes were already JPEG. Filenames and dimension metadata corrected without changing any image bytes."
+}

@@ -1,0 +1,5 @@
+{
+  "status": "failed",
+  "reason": "Synthetic visual fixture: renderer deliberately failed.",
+  "artifact": "report.html"
+}
