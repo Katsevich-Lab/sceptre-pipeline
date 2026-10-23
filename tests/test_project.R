@@ -18,6 +18,19 @@ for (backed in c(FALSE,TRUE)) {
  settings <- readRDS(file.path(output,'settings.rds'))
  stopifnot(settings$resolved$control_group=='nt_cells',settings$resolved$assignment=='maximum')
 }
+# Launch request bytes (including generated paths) are part of preparation identity.
+params_path <- file.path(root,'ram','params.json')
+original_params <- readBin(params_path,'raw',n=file.info(params_path)$size)
+project_verify(file.path(root,'ram'))
+for (key in c('seed','analyses','input_bundle')) {
+ params <- jsonlite::read_json(params_path,simplifyVector=TRUE)
+ params[[key]] <- switch(key,seed=999L,analyses='discovery',input_bundle='/different/screen')
+ jsonlite::write_json(params,params_path,auto_unbox=TRUE)
+ assert_error(project_verify(file.path(root,'ram')),'Prepared launch parameters changed')
+ writeBin(original_params,params_path)
+}
+project_verify(file.path(root,'ram'))
+cat('PASS prepared seed, analysis request and path mutation guards bind exact launch parameters\n')
 assert_error(project_prepare(list(method='matrix',arguments=import),list(analysis=list(multiple_testing_alpha=.2)),file.path(root,'partial')), 'requires positive_control_pairs')
 p <- project_preflight(f$object,list(analysis=list(multiple_testing_alpha=.2)),character())
 stopifnot(p$resolved$discovery_pairs==0L,length(p$notes)>0)

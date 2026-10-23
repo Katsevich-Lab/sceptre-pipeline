@@ -35,6 +35,20 @@ assert sum(r['status']=='COMPLETED' for r in rows)==1,rows
 assert sum(r['status']=='CACHED' for r in rows)==len(rows)-1,rows
 print('PASS one-command rawJSON nativeHDF5 CRT launcher/directR comparison and unchanged resume; no host R dependency')
 PY
+# Generated launch parameters cannot change the request during unchanged resume.
+cp "$root/run/prepared/params.json" "$root/params-original.json"
+for field in seed analyses input_bundle; do
+ python3 - "$root/run/prepared/params.json" "$field" <<'PY_PARAMS'
+import json,sys
+path,field=sys.argv[1:]
+params=json.load(open(path))
+params[field]={'seed':999,'analyses':'calibration','input_bundle':'/different/screen'}[field]
+with open(path,'w') as handle:json.dump(params,handle)
+PY_PARAMS
+ if python3 bin/sceptre-pipeline "${args[@]}" --resume -- --execution_mode distributed --n_work_units 3 > "$root/rejected-params-$field.log" 2>&1; then echo 'Changed prepared parameters resumed' >&2;exit 1;fi
+ grep -q 'Prepared launch parameters changed' "$root/rejected-params-$field.log"
+ cp "$root/params-original.json" "$root/run/prepared/params.json"
+done
 # A nested source change must reject before Nextflow, preserving original results.
 cp "$root/raw/guide.rds" "$root/guide-original.rds"
 printf 'changed source' > "$root/raw/guide.rds"

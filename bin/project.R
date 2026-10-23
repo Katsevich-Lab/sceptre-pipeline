@@ -197,10 +197,6 @@ project_prepare <- function(input_spec, config, output, root = getwd(), source_p
     saveRDS(config, file.path(tmp,'analysis_config.rds')); saveRDS(lock, file.path(tmp,'environment_lock.rds'))
     saveRDS(settings, file.path(tmp,'settings.rds'))
     jsonlite::write_json(settings, file.path(tmp,'settings.json'), auto_unbox = TRUE, pretty = TRUE, null = 'null', force = TRUE)
-    saveRDS(list(kind = 'sceptre-pipeline-preparation', schema = 1L, method = method,
-        source_files = hashes, source_directories = stats::setNames(inventory,sources$directories), input_spec_sha256 = hash_value(input_spec), config_sha256 = hash_value(config),
-        object_import_identity = pipeline_import_identity(object), package = lock,
-        analyses = analyses, pairs = input_spec$pairs), file.path(tmp,'preparation.rds'))
     final <- file.path(normalizePath(dirname(output), mustWork = TRUE), basename(output))
     params <- list(input_bundle = file.path(final,'input'), analysis_config = file.path(final,'analysis_config.rds'),
         environment_lock = file.path(final,'environment_lock.rds'), backing_directory = file.path(final,'backing'),
@@ -211,6 +207,10 @@ project_prepare <- function(input_spec, config, output, root = getwd(), source_p
         params$seed <- seed
     }
     jsonlite::write_json(params, file.path(tmp,'params.json'), pretty = TRUE, auto_unbox = TRUE)
+    saveRDS(list(kind = 'sceptre-pipeline-preparation', schema = 1L, method = method,
+        source_files = hashes, source_directories = stats::setNames(inventory,sources$directories), input_spec_sha256 = hash_value(input_spec), config_sha256 = hash_value(config),
+        object_import_identity = pipeline_import_identity(object), package = lock,
+        analyses = analyses, params_sha256 = hash_file(file.path(tmp,'params.json')), pairs = input_spec$pairs), file.path(tmp,'preparation.rds'))
     # RDS seed paths refer to staging paths; the manifest binds those source paths
     # and content hashes, enabling read_bundle to substitute stable backing paths.
     unlink(file.path(tmp,'import-backing'), recursive = TRUE)
@@ -239,6 +239,10 @@ project_resources <- function(object, limits = NULL) {
 project_verify <- function(directory) {
     receipt <- readRDS(file.path(directory,'preparation.rds'))
     if (!identical(receipt$kind,'sceptre-pipeline-preparation') || !identical(receipt$schema,1L) || !'source_directories' %in% names(receipt)) fail('Unsupported preparation receipt.')
+    params_path <- file.path(directory,'params.json')
+    if (!is.character(receipt$params_sha256) || length(receipt$params_sha256) != 1L ||
+        !file.exists(params_path) || !identical(receipt$params_sha256,hash_file(params_path)))
+        fail('Prepared launch parameters changed or are missing; create a fresh run directory.')
     files <- receipt$source_files
     if (!is.character(files) || (length(files) && is.null(names(files))) ||
         !all(file.exists(names(files))) || !identical(files,vapply(names(files),hash_file,character(1))))
