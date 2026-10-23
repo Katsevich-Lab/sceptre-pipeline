@@ -1,0 +1,90 @@
+{
+  "kind": "caller-owned-source-current-package-qualification",
+  "schema": 1,
+  "head": "725078e3ea6c47154306b0e5d1a609a5d031783a",
+  "run_id": 39906148557,
+  "job": "current-package",
+  "job_result": "success",
+  "workflow_result": "in_progress_at_capture",
+  "archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "artifact_id": 12481861060,
+  "artifact_zip_sha256": "82a555f7fd8f2d6488437f1e0760dd2fe354fd18902f07529e6227f9385e70db",
+  "image_id": "sha256:65b7df65f9f0f6031bfdaad52d804dde4ab01d30aae488564f531f3efdc35915",
+  "cases": 394,
+  "assertions": 8109,
+  "passed": 8109,
+  "failed": 0,
+  "errors": 0,
+  "warnings": 0,
+  "skipped": 0,
+  "scope": "Same frozen schema7 package on pinned R4.6.1/Bioc3.23/HDF5Array1.40 LinuxAMD64. Does not establish pipeline runtime or cross-R numerical identity.",
+  "independent_readback": "Root independently downloaded artifactZIP and verified actualSHA againstAPI, reduced rawtestthatRDS to394cases/8109passes/0failure/error/warning/skip and checked source/native/image identities.",
+  "artifacts": {
+    "raw/current-installed-package/session.txt.gz": {
+      "sha256": "d61224fccbdafd76864cdd99959a6113b952acc682c4748172174301e2610d85",
+      "bytes": 786,
+      "original_sha256": "d0c8d7441e9e35f1c5b2e6175016bd2e390bb2a23d19628ac614d0c534dc6a99",
+      "original_bytes": 1649
+    },
+    "raw/current-installed-package/runtime.json": {
+      "sha256": "017003eecee1f4c1b0640e855500186749b55e302979faa58709674380c7cd9e",
+      "bytes": 994,
+      "original_sha256": "017003eecee1f4c1b0640e855500186749b55e302979faa58709674380c7cd9e",
+      "original_bytes": 994
+    },
+    "raw/current-installed-package/tests.json": {
+      "sha256": "301c7723ce703247d025b53e4cad250644eadc6374d910919b26c165b31f7e45",
+      "bytes": 137,
+      "original_sha256": "301c7723ce703247d025b53e4cad250644eadc6374d910919b26c165b31f7e45",
+      "original_bytes": 137
+    },
+    "raw/current-installed-package/tests.rds": {
+      "sha256": "cc974292df26e2c931fd4d526cb19b1dcc15270d7ce7053b7922c5928b4bdc75",
+      "bytes": 1850706,
+      "original_sha256": "cc974292df26e2c931fd4d526cb19b1dcc15270d7ce7053b7922c5928b4bdc75",
+      "original_bytes": 1850706
+    },
+    "raw/current-context/source.json": {
+      "sha256": "e90404b591a952777f82e4ca93936e4c3033389374c6c14c636c883caf21d4ae",
+      "bytes": 539,
+      "original_sha256": "e90404b591a952777f82e4ca93936e4c3033389374c6c14c636c883caf21d4ae",
+      "original_bytes": 539
+    },
+    "raw/current-context/source.sha256": {
+      "sha256": "70248b899186c87f5c341ba2658b9df673a644d6c6f6886cb16d6b47b886c46a",
+      "bytes": 81,
+      "original_sha256": "70248b899186c87f5c341ba2658b9df673a644d6c6f6886cb16d6b47b886c46a",
+      "original_bytes": 81
+    },
+    "raw/current-image-inspect.json": {
+      "sha256": "4844b2378fd9f38816daab17b34afb24d7d2592be8d669c7c5a72bfc44557c3e",
+      "bytes": 4819,
+      "original_sha256": "4844b2378fd9f38816daab17b34afb24d7d2592be8d669c7c5a72bfc44557c3e",
+      "original_bytes": 4819
+    },
+    "raw/current-context-receipt.json": {
+      "sha256": "20b55b967b16990224c8528a1130407add8183fb2f833f944d96b6c4cfa51de2",
+      "bytes": 595,
+      "original_sha256": "20b55b967b16990224c8528a1130407add8183fb2f833f944d96b6c4cfa51de2",
+      "original_bytes": 595
+    },
+    "raw/current-runtime-provenance.txt.gz": {
+      "sha256": "d75df567fe59881422a15ace70065c8fb4e5391f70930bd8e4e23206e2fd3ccd",
+      "bytes": 3062,
+      "original_sha256": "259a51a6ac1a5022b49664f715ce345095963528d1cbb3aa8bc107c494e435af",
+      "original_bytes": 12384
+    },
+    "raw/current-image-id": {
+      "sha256": "77b267db99ce8e3b40ac65954a97fa3d912ede30cdf3ff8ea8fdfaacf710fee1",
+      "bytes": 71,
+      "original_sha256": "77b267db99ce8e3b40ac65954a97fa3d912ede30cdf3ff8ea8fdfaacf710fee1",
+      "original_bytes": 71
+    },
+    "raw/current-installed-package.log.gz": {
+      "sha256": "6c2448ca9fe30d8b01d0fa93ca30dbe4b2232d35c1c19f209381bbed6877b8e7",
+      "bytes": 1692,
+      "original_sha256": "889487649184905ecdd61c4e6cdfa83a516ad3d6a1508c77a464d369c8a215ec",
+      "original_bytes": 16240
+    }
+  }
+}
