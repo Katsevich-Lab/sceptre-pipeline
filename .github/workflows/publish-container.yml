@@ -108,7 +108,8 @@ jobs:
           assert json.loads((root / 'source-before.json').read_text()) == json.loads((root / 'source-after.json').read_text()), 'Source or qualification harness changed during image review'
           assert json.loads((root / 'scientific-parity/source-before.json').read_text()) == json.loads((root / 'scientific-parity/source-after.json').read_text()), 'Scientific source changed'
           PY_SOURCE
-          test "$(docker image inspect --format '{{.Id}}' sceptre-publication-review:local)" = "$SCEPTRE_CONTAINER_IMAGE"
+          docker image inspect sceptre-publication-review:local > "$RUNNER_TEMP/pre-save-inspect.json"
+          python3 -c 'import json,os; assert json.load(open(os.environ["RUNNER_TEMP"] + "/pre-save-inspect.json"))[0]["Id"] == os.environ["SCEPTRE_CONTAINER_IMAGE"]'
           docker save sceptre-publication-review:local | gzip > "$RUNNER_TEMP/image.tar.gz"
           (cd "$RUNNER_TEMP" && sha256sum image.tar.gz > image.sha256)
           python3 - <<'PY_REVIEW'
