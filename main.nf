@@ -6,29 +6,41 @@ include { SCEPTREDEMOINPUT as SCEPTRE_DEMO_INPUT } from './modules/local/sceptre
 // Nextflow configFiles omits nested includeConfig files. Resolve a conservative,
 // local literal include closure ourselves; reject dynamic includes rather than
 // allowing an execution-config change to evade the publication identity.
-def configVisit(path, seen, productionSources) {
+def configVisit(path, seen) {
     path = path.toAbsolutePath().normalize()
     if (!seen.add(path)) return
-    if (path in productionSources) return
     if (!java.nio.file.Files.isRegularFile(path))
         error 'Configuration identity requires readable local configuration files.'
     def source = path.text
-    def mentions = (source =~ /\bincludeConfig\b/).count
-    def includes = (source =~ /(?m)^\s*includeConfig\s*(?:\(\s*)?(['"])([^'"\r\n$]+)\1\s*\)?\s*(?:;\s*)?(?:\/\/[^\r\n]*)?$/)
-    def matched = 0
-    includes.each { match ->
-        matched += 1
-        def child = java.nio.file.Paths.get(match[2])
-        if (!child.isAbsolute()) child = path.parent.resolve(child)
-        configVisit(child, seen, productionSources)
+    // Inspect keywords outside comments and quoted strings. Literal includes can
+    // occur inside an inline profile block; line anchoring would reject those.
+    def tokens = (source =~ /(?s)\/\*.*?\*\/|\/\/[^\r\n]*|'(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*"|\bincludeConfig\b/)
+    tokens.results().toList().each { token ->
+        if (token.group().startsWith('"')) {
+            if (token.group().contains('$') && token.group().contains('includeConfig'))
+                error 'Configuration identity cannot inspect includeConfig inside string interpolation.'
+        }
+        if (token.group() == 'includeConfig') {
+            def argument = (source.substring(token.end()) =~ /^\s*(?:\(\s*(['"])([^'"\\\r\n$]+)\1\s*\)|(['"])([^'"\\\r\n$]+)\3)(?!\s*\+)(?=\s*(?:[;}]|\r?\n|$|\/\/|\/\*))/)
+            if (!argument.find())
+                error 'Configuration identity supports only literal local includeConfig paths (without interpolation or expressions). Rewrite dynamic includes as literal configuration files before running.'
+            // Comments are whitespace, not a statement boundary: never accept
+            // a literal prefix when a concatenation follows a comment/newline.
+            def remainder = source.substring(token.end() + argument.end())
+                .replaceFirst(/(?s)^(?:\s|\/\*.*?\*\/|\/\/[^\r\n]*)*/, '')
+            if (['.', '+', '-', '*', '/', '%', '?', '[', '<', '>', '=', '!', '&', '|', '^', ':'].any { marker -> remainder.startsWith(marker) } ||
+                (remainder =~ /^(?:as|in|instanceof)\b/).find())
+                error 'Configuration identity supports only literal local includeConfig paths (without interpolation or expressions). Rewrite dynamic includes as literal configuration files before running.'
+            def child = java.nio.file.Paths.get(argument.group(2) ?: argument.group(4))
+            if (!child.isAbsolute()) child = path.parent.resolve(child)
+            configVisit(child, seen)
+        }
     }
-    if (mentions != matched)
-        error 'Configuration identity supports only standalone literal local includeConfig paths (without interpolation). Rewrite dynamic/conditional includes as literal configuration files before running.'
 }
 
-def configClosure(List roots, List productionSources) {
+def configClosure(List roots) {
     def seen = new LinkedHashSet()
-    roots.each { root -> configVisit(root, seen, productionSources) }
+    roots.each { root -> configVisit(root, seen) }
     seen.toList().sort { entry -> entry.toString() }
 }
 
@@ -90,7 +102,7 @@ workflow {
             files("${projectDir}/bin/*.R") + files("${projectDir}/conf/*.config") +
             files("${projectDir}/modules/**/*.nf") + files("${projectDir}/subworkflows/**/*.nf"))
             .flatten().unique().sort { source -> source.toString() }
-        def externalConfigs = configClosure(workflow.configFiles.findAll { source -> !(source in projectSources) }, projectSources).findAll { source -> !(source in projectSources) }
+        def externalConfigs = configClosure(workflow.configFiles).findAll { source -> !(source in projectSources) }
         // External site configuration may contain credentials: bind its bytes
         // without mounting or copying it into an R worker/container.
         def externalConfigDigests = externalConfigs.collect { source ->
