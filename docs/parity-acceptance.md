@@ -1,0 +1,31 @@
+# Practical parity acceptance ledger
+
+Selected baseline: native schema-7 R product `1e4d5459ab229255694f9217d7cd4ed51a4bf1b8`; exact archive and checksum are in `tests/runtime/source.json`. This ledger concerns the practical public scientific workflow, not every R accessor or interactive convenience. The baseline hosted run and this expanded branch's qualification must be reported separately.
+
+| Capability | Final implementation boundary | Evidence / remaining gate |
+|---|---|---|
+| Existing scientific controls | Public analysis/assignment/QC/calibration options retained as typed config; complete-family R-owned execution/correction | Existing direct/distributed/nf-test matrix; new preflight tests. No renamed option semantics or independent worker correction. |
+| Predictable config/defaults | JSON references compile to the same typed config, strict keys/method arguments, omitted/partial analysis semantics, requested/resolved scientific settings and design hash | `test_project.R`, `test_checkpoint.R`; partial-analysis reset, high-MOI NT resolution, factors/interactions, invalid assignment/unknown IDs and reference mutation guards. |
+| Reproducible raw intake | Public matrix/SCE/10x/CellRanger/Parse/object imports; explicit MOI/covariates/metadata; package alignment; native RAM/HDF5; immutable source/backing receipt | `test_project.R`, `test_raw_preparation.R`; direct public-R matrices/covariates, multiple samples, alignment errors and native relocation. Parse HDF5 is explicitly unsupported by that public API, never silently substituted. |
+| Pair construction | Explicit tables and public positive/cis/trans constructors; frozen annotation/assembly/distance/exclusions | `test_project.R`, `test_raw_preparation.R`; exact tables/order and invalid/empty/ambiguous requests. No private negative-family override: package-generated calibration is the baseline public contract. |
+| Full scientific diagnostics | Public plots, assignment/cell QC, complete working-pair QC/reasons, selected-family summaries, structured distributed conditions, full downloads | `test_delivery.R`, `report/check.R`, actual NF exports and visual QA. Failed/omitted stages explicit; positive-control p-values/effects are not fabricated FDR hit rates. |
+| Report failure isolation | Plot failures individually labeled, presentation failure page/status, certified scientific artifacts retained; base-R rerender from frozen bounded report data | `test_delivery.R`, `report/check.R`; public values/native result identity and saved RNG unchanged. |
+| Portable final native state | RDS + content-addressed backing + manifest + public-reader reopen helper; transport checksum and package anchors both validate | `test_delivery.R`; RAM, HDF5 moved with original paths absent, corrupt/missing/tampered content rejection. Copying just RDS is insufficient for backing. |
+| Current checkpoint continuation | Same-config package/runtime/scientific/RNG-certified stage bundles skip already-completed stages; public package getters verify currentness; canonical family order | `test_checkpoint.R`, real `run-parity-nextflow.sh`: continuation from power checkpoint, exact direct-R result/fits/RNG, omitted tasks, identical resume and rejected stale/wrong-stage/completed-family inputs. |
+| Resource behavior | Explicit optional source/cell/family/design/backing component caps; medium export allocation; no scientific fallback; per-task trace measurements | Focused admission guards and bounded Docker workflow `resource-observations.json`. Not a peak-memory model, full-screen admission or automatic OOM recovery. |
+| Current storage docs/site | Native HDF5 CRT supported; stale ODM/backed-CRT rejection statements corrected without erasing historical scale limits | Documentation/site build + link check; actual bounded CRT transport/execution evidence remains separately named. |
+| Cross-surface consistency | Shared scientific meanings/names, explicit R/NF versus audited Broad Python control/design/effect/alpha/correction/budget/RNG mappings | `practical-parity.md`; Python is unchanged and unsupported equivalences remain explicit. |
+
+## Intentional exclusions / package contract boundaries
+
+No second inference engine, Python edits, interactive S4 manipulation, arbitrary cache surgery, arbitrary resampling budgets, private negative-pair override or manual correction of worker fragments. Existing certified pipeline checkpoints carry RNG handoff; arbitrary RDS objects lacking that history are imported through the public reader and run under the pipeline's declared initial seed rather than misrepresented as an identical continuation. Runtime/config changes require a new compatible project/run.
+
+The public R Parse importer is RAM-only. Generic matrices use native R matrix RDS; raw 10x/CellRanger/Parse use public file readers. No custom normalization or generic matrix parser is introduced. Cis assembly labels record the user's declaration and bind coordinate bytes; the pipeline cannot independently prove assembly correctness.
+
+## Future adoption gates, not missing baseline implementations
+
+Safe-targeting annotations and fast Wilcoxon live in separate unadopted R branches. Adopt them only after the selected R archive/public executor supports their control semantics, QC, result/effect definitions and complete-family correction with new source/runtime qualification. `association_method` must flow through public R and must never be substituted for resource convenience. Experimental guide initialization/response-QR/score-cache CPU lanes and Broad Python GPU work do not become R/NF baseline features by this change.
+
+## Qualification limits
+
+Every test named above must have a terminal receipt before its exact final source is called qualified. Bounded synthetic tests and hosted AMD64 jobs do not qualify full Gasperini/Replogle, arbitrary scale, HPC/Apptainer/site schedulers or performance. Installed-package version-gated skips remain skips even when separate small raw-file tests exercise specific imports. No merge, release or cluster campaign is included.

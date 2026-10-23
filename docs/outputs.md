@@ -23,3 +23,5 @@ full-family correction once.
 without a container, Nextflow does not report task runtime metrics; a successful
 trace is not a memory benchmark. These artifacts describe actual executed tasks;
 configuration alone does not establish hosted CI or scheduler qualification.
+
+See [practical R parity and reproducible preparation](practical-parity.md) for raw import/config authoring, resolved settings, pair construction, checkpoint reuse, resource limits and portable scientific delivery.

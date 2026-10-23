@@ -44,7 +44,7 @@ jobs:
     # Automatic PR/push checks need neither an unpublished package ref nor secrets.
     needs: schema
     runs-on: ubuntu-24.04
-    timeout-minutes: 90
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -127,6 +127,15 @@ jobs:
           python3 tests/check-failure-oracle.py 2>&1 | tee "$RUNNER_TEMP/failure-oracle.log"
           python3 -m unittest discover -s tests -p test_resource_admission.py \
             2>&1 | tee "$RUNNER_TEMP/resource-admission.log"
+      - name: Practical public-R preparation, checkpoint and delivery contracts
+        run: |
+          for suite in test_project test_raw_preparation test_checkpoint test_delivery test_report_presentation; do
+            docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+              "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla "tests/$suite.R" "$RUNNER_TEMP/$suite" \
+              2>&1 | tee "$RUNNER_TEMP/$suite.log"
+          done
+      - name: Real native-HDF5 CRT preparation, checkpoint continuation and resume
+        run: bash tests/run-parity-nextflow.sh "$RUNNER_TEMP/practical-parity" 2>&1 | tee "$RUNNER_TEMP/practical-parity.log"
       - name: Execute all real nf-test branches, including distributed workers
         run: bash tests/ci/run-nf-test.sh "$RUNNER_TEMP/nf-test/nf-test.jar" "$RUNNER_TEMP/nf-test"
       - name: Complete-family comparisons with mandatory backed execution
@@ -213,6 +222,26 @@ jobs:
             ${{ runner.temp }}/nf-test/work/tests/**/work/**/.command.log
             ${{ runner.temp }}/nf-test/work/tests/**/work/**/.command.err
             ${{ runner.temp }}/nf-test/work/tests/**/work/**/.command.out
+            ${{ runner.temp }}/test_report_presentation/report-*/report-status.json
+            ${{ runner.temp }}/test_report_presentation/report-*/report.html
+            ${{ runner.temp }}/test_report_presentation/report-*/tables/*.csv
+            ${{ runner.temp }}/test_report_presentation/report-*/plots/*.png
+            ${{ runner.temp }}/test_report_presentation/report-*/plot-status.json
+            ${{ runner.temp }}/test_report_presentation/report-value-checks.rds
+            ${{ runner.temp }}/test_delivery/*report/report-status.json
+            ${{ runner.temp }}/test_delivery/*report/report.html
+            ${{ runner.temp }}/test_delivery/*report/tables/*.csv
+            ${{ runner.temp }}/test_delivery/*report/plots/*.png
+            ${{ runner.temp }}/test_delivery/*report/plot-status.json
+            ${{ runner.temp }}/test_delivery/*report/warnings.json
+            ${{ runner.temp }}/practical-parity/resource-observations.json
+            ${{ runner.temp }}/practical-parity/*/pipeline_info
+            ${{ runner.temp }}/practical-parity/*.log
+            ${{ runner.temp }}/practical-parity/prepared/settings.json
+            ${{ runner.temp }}/practical-parity/*/resolved_settings.json
+            ${{ runner.temp }}/practical-parity/*/exports/scientific-report/report-status.json
+            ${{ runner.temp }}/practical-parity/*/exports/scientific-report/plot-status.json
+            ${{ runner.temp }}/practical-parity/*work/**/.command.log
             ${{ runner.temp }}/integration*/results/pipeline_info
             ${{ runner.temp }}/integration*/*.log
             ${{ runner.temp }}/integration*/resume-trace.tsv

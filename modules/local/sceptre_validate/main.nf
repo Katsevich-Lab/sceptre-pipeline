@@ -17,6 +17,7 @@ process SCEPTRE_VALIDATE {
     output:
     val true, emit: ready
     path 'run_signature.rds', emit: signature
+    path 'resolved_settings.*', emit: settings
 
     script:
     """

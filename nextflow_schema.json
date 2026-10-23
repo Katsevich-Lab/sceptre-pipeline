@@ -82,6 +82,19 @@
       ],
       "pattern": "^[a-f0-9]{64}$",
       "description": "Required SHA256 of local SIF image bytes; verified before tasks and bound to run identity"
+    },
+    "checkpoint_stage": {
+      "type": "string",
+      "enum": [
+        "input",
+        "parameters",
+        "assignment",
+        "qc",
+        "calibration",
+        "power",
+        "discovery"
+      ],
+      "description": "Stage of an existing same-config certified bundle; currentness and RNG must validate before reuse. Use a fresh outdir; distinct from unchanged -resume."
     }
   },
   "required": [

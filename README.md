@@ -62,3 +62,5 @@ package implementation and dependency versions.
 ## License
 
 GNU General Public License v3.0. See [LICENSE](LICENSE).
+
+See [practical R parity and reproducible preparation](docs/practical-parity.md) for raw import/config authoring, resolved settings, pair construction, checkpoint reuse, resource limits and portable scientific delivery.

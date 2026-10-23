@@ -228,3 +228,5 @@ the exact locked implementation/runtime.
 
 For error interpretation, scheduler checks, failure recovery and report relocation,
 see [diagnose and recover a run](recovery.md).
+
+See [practical R parity and reproducible preparation](practical-parity.md) for raw import/config authoring, resolved settings, pair construction, checkpoint reuse, resource limits and portable scientific delivery.

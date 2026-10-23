@@ -63,9 +63,7 @@ pointer capacity of a single ordinary Matrix sparse object (2,147,483,647), so
 whole-screen conversion into that representation is unsuitable. This does not
 establish that the current backed scientific path handles the full screen.
 
-Public parameter setup and the certified distributed executor reject **backed CRT**, affecting Gasperini's established
-CRT mode. Switching to permutations merely to fit a storage path would change
-the scientific procedure and requires an explicit benchmark choice.
+The older inventory's backed-CRT rejection is historical. The current schema-7 native HDF5 path supports CRT and has bounded direct/distributed/actual Nextflow qualification (see [validation](validation.md)); this does not establish full-screen Gasperini/Replogle resource qualification. Switching to permutations merely to fit a storage path would change the scientific procedure and is never an automatic recovery action.
 
 For **two-sided, no-approximation testing at alpha .1**, the current policy sets
 B3 to `ceiling(10 × H / alpha)`, in addition to B1=499 and B2=0. At the illustrative

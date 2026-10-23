@@ -1,0 +1,11 @@
+#!/usr/bin/env Rscript
+args <- commandArgs(TRUE)
+script <- sub('^--file=', '', grep('^--file=', commandArgs(), value = TRUE)[1L])
+helper <- dirname(normalizePath(script))
+source(file.path(helper,'pipeline.R')); source(file.path(helper,'project.R'))
+if (!length(args) %in% c(4L,5L)) fail('Usage: preflight.R BUNDLE CONFIG LOCK BACKING [ANALYSES_COMMA_SEPARATED]')
+config <- readRDS(args[2]); lock <- readRDS(args[3]); validate_identity(lock)
+state <- read_bundle(args[1], config, lock, args[4])
+analyses <- if (length(args) == 5L) if (nzchar(args[5])) strsplit(args[5], ',', fixed = TRUE)[[1]] else character() else c('calibration','power','discovery')
+settings <- project_preflight(state$object, config, analyses)
+jsonlite::write_json(settings, stdout(), pretty = TRUE, auto_unbox = TRUE, force = TRUE, null = 'null')

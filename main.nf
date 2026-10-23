@@ -93,7 +93,7 @@ workflow {
             java.security.MessageDigest.getInstance('SHA-256').digest(it.bytes).encodeHex().toString()
         }
         def runOptions = groovy.json.JsonOutput.toJson([
-            session_id: workflow.sessionId.toString(), external_config_sha256: externalConfigDigests, analyses: selected, stop_after: params.stop_after,
+            session_id: workflow.sessionId.toString(), external_config_sha256: externalConfigDigests, analyses: selected, stop_after: params.stop_after, checkpoint_stage: params.checkpoint_stage,
             seed: params.seed, container_image: params.container_image, container_image_sha256: params.container_image_sha256, execution_mode: params.execution_mode, n_work_units: params.n_work_units, array_size: params.array_size
         ])
         SCEPTRE(
@@ -103,7 +103,7 @@ workflow {
             channel.value(file(params.backing_directory, checkIfExists: true)),
             channel.value(file("${projectDir}/bin", checkIfExists: true)),
             channel.value(signature.exists() ? signature : file("${projectDir}/resources/no_previous_run.rds")),
-            runOptions, channel.value(projectSources), selected, params.stop_after, params.seed, params.execution_mode, params.n_work_units
+            runOptions, channel.value(projectSources), selected, params.stop_after, params.checkpoint_stage, params.seed, params.execution_mode, params.n_work_units
         )
     }
 }

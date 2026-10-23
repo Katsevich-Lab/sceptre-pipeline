@@ -19,6 +19,7 @@ workflow SCEPTRE {
     implementation_sources
     analyses
     stop_after
+    checkpoint_stage
     seed
     execution_mode
     n_units
@@ -26,14 +27,21 @@ workflow SCEPTRE {
     main:
     SCEPTRE_VALIDATE(state, config, lock, backing, tools_dir, previous_signature, run_options, implementation_sources)
     validated = state.combine(SCEPTRE_VALIDATE.out.ready).map { meta, bundle, ready -> tuple(meta, bundle) }
-    PARAMETERS(validated, config, lock, backing, tools_dir, 'parameters', seed)
-    current = PARAMETERS.out.state
+    current = validated
+    if (checkpoint_stage == 'input') {
+        PARAMETERS(current, config, lock, backing, tools_dir, 'parameters', seed)
+        current = PARAMETERS.out.state
+    }
     if (stop_after != 'parameters') {
-        ASSIGNMENT(current, config, lock, backing, tools_dir, 'assignment', seed)
-        current = ASSIGNMENT.out.state
+        if (checkpoint_stage in ['input','parameters']) {
+            ASSIGNMENT(current, config, lock, backing, tools_dir, 'assignment', seed)
+            current = ASSIGNMENT.out.state
+        }
         if (stop_after != 'assignment') {
-            QC(current, config, lock, backing, tools_dir, 'qc', seed)
-            current = QC.out.state
+            if (checkpoint_stage in ['input','parameters','assignment']) {
+                QC(current, config, lock, backing, tools_dir, 'qc', seed)
+                current = QC.out.state
+            }
             if (stop_after == 'analysis') {
                 if ('calibration' in analyses) {
                     CALIBRATION(current, config, lock, backing, tools_dir, 'calibration', seed, execution_mode, n_units)

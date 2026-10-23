@@ -18,6 +18,9 @@ REPO = HERE.parent
 STAGING = HERE / ".build"
 OUTPUT = HERE / "_site"
 PAGES = {
+    "parity-acceptance.qmd": ("docs/parity-acceptance.md", "Practical parity acceptance"),
+    "practical-parity.qmd": ("docs/practical-parity.md", "Reproducible preparation & R parity"),
+    "scientific-delivery.qmd": ("docs/scientific-delivery.md", "Scientific diagnostics & portable delivery"),
     "recovery.qmd": ("docs/recovery.md", "Diagnose and recover a run"),
     "demo.qmd": ("docs/demo.md", "One-command scientific demo"),
     "report.qmd": ("docs/report.md", "Scientific results report"),

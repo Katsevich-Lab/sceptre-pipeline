@@ -1,6 +1,6 @@
 process SCEPTRE_EXPORT {
     tag "${meta.id}:export"
-    label 'process_single'
+    label 'process_medium'
     cache 'deep'
     publishDir "${params.outdir}", mode: 'copy', overwrite: false
 

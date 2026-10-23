@@ -67,6 +67,8 @@ website:
         contents:
           - demo.qmd
           - usage.qmd
+          - practical-parity.qmd
+          - scientific-delivery.qmd
           - parameters.qmd
           - outputs.qmd
           - report.qmd
@@ -85,6 +87,7 @@ website:
           - benchmark.qmd
           - scale-boundaries.qmd
           - validation.qmd
+          - parity-acceptance.qmd
           - nf-core.qmd
   page-footer:
     border: false
