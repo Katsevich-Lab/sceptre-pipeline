@@ -7,3 +7,8 @@ bounded-*/*.json -text
 *.json -text
 *.csv -text
 *.gz -text
+
+# Additional unchanged raw terminal diagnostics and test result serializations.
+*.tap -text -whitespace
+*.xml -text -whitespace
+*.txt -text -whitespace
