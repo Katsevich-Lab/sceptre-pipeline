@@ -273,17 +273,21 @@ jobs:
             ${{ runner.temp }}/test_delivery/*report/plot-status.json
             ${{ runner.temp }}/test_delivery/*report/warnings.json
             ${{ runner.temp }}/practical-parity/resource-observations.json
+            ${{ runner.temp }}/practical-parity/source-*.json
             ${{ runner.temp }}/practical-parity/*/pipeline_info
             ${{ runner.temp }}/practical-parity/*.log
             ${{ runner.temp }}/practical-parity/prepared/settings.json
             ${{ runner.temp }}/practical-parity/*/resolved_settings.json
             ${{ runner.temp }}/practical-parity/*/exports/scientific-report
             ${{ runner.temp }}/launcher/*.log
+            ${{ runner.temp }}/launcher/*.json
+            ${{ runner.temp }}/launcher/run/work/**/.command.run
             ${{ runner.temp }}/launcher/run/launcher.json
             ${{ runner.temp }}/launcher/run/prepared/settings.json
             ${{ runner.temp }}/launcher/run/results/exports/scientific-report
             ${{ runner.temp }}/launcher/run/results/pipeline_info
             ${{ runner.temp }}/practical-parity/*work/**/.command.log
+            ${{ runner.temp }}/practical-parity/*work/**/.command.run
             ${{ runner.temp }}/integration*/results/pipeline_info
             ${{ runner.temp }}/integration*/*.log
             ${{ runner.temp }}/integration*/resume-trace.tsv
@@ -405,6 +409,7 @@ jobs:
             ${{ runner.temp }}/sif-context/source.json
             ${{ runner.temp }}/sif-context-receipt.json
             ${{ runner.temp }}/apptainer-parity/resource-observations.json
+            ${{ runner.temp }}/apptainer-parity/source-*.json
             ${{ runner.temp }}/apptainer-parity/*/pipeline_info
             ${{ runner.temp }}/apptainer-parity/*/resolved_settings.json
             ${{ runner.temp }}/apptainer-parity/*work/**/.command.*
