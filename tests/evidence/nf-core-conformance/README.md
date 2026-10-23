@@ -32,3 +32,7 @@ exact decompressed SHA256 in `archived-reports.json`. This preserves raw bytes:
 repository text and otherwise diagnoses its own quoted passed-check messages as
 source matches; archiving report data avoids that self-reference without any
 workflow/lint exclusion. Runtime/oracle files remain fully inspected.
+
+`minimum-array-config.log` is the supported25.10.4 default-parser PASS.
+`experimental-minimum-v2-array-config.log` deliberately preserves the failed
+opt-in parser diagnostic and is not qualification evidence.
