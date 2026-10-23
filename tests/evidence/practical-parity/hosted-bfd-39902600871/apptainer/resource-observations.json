@@ -1,0 +1,206 @@
+{
+  "scope": "bounded synthetic 160-cell native HDF5 CRT complete calibration/power/discovery; three units",
+  "container_image": "/home/runner/work/_temp/sceptre.sif",
+  "container_engine": "apptainer",
+  "limits": "Observed task metrics only, not full Gasperini/Replogle or arbitrary scale assurance. macOS host-only execution does not report peak RSS.",
+  "tasks": [
+    {
+      "name": "SCEPTRE:SCEPTRE_VALIDATE (screen:validate)",
+      "status": "COMPLETED",
+      "duration": "9.7s",
+      "realtime": "9.4s",
+      "%cpu": "94.7%",
+      "peak_rss": "872.3 MB",
+      "peak_vmem": "1.1 GB",
+      "rchar": "85.3 MB",
+      "wchar": "17.7 KB"
+    },
+    {
+      "name": "SCEPTRE:PARAMETERS (screen:parameters)",
+      "status": "COMPLETED",
+      "duration": "9.3s",
+      "realtime": "9s",
+      "%cpu": "94.2%",
+      "peak_rss": "875.5 MB",
+      "peak_vmem": "1.1 GB",
+      "rchar": "70.8 MB",
+      "wchar": "20.6 KB"
+    },
+    {
+      "name": "SCEPTRE:ASSIGNMENT (screen:assignment)",
+      "status": "COMPLETED",
+      "duration": "9.4s",
+      "realtime": "9.2s",
+      "%cpu": "94.5%",
+      "peak_rss": "870.2 MB",
+      "peak_vmem": "1.1 GB",
+      "rchar": "70.8 MB",
+      "wchar": "21.2 KB"
+    },
+    {
+      "name": "SCEPTRE:QC (screen:qc)",
+      "status": "COMPLETED",
+      "duration": "9.3s",
+      "realtime": "9.1s",
+      "%cpu": "94.7%",
+      "peak_rss": "871.1 MB",
+      "peak_vmem": "1.1 GB",
+      "rchar": "70.8 MB",
+      "wchar": "22.1 KB"
+    },
+    {
+      "name": "SCEPTRE:CALIBRATION:SCEPTRE_PREPARE (screen:calibration:prepare)",
+      "status": "COMPLETED",
+      "duration": "9.3s",
+      "realtime": "9.1s",
+      "%cpu": "94.8%",
+      "peak_rss": "870.7 MB",
+      "peak_vmem": "1.1 GB",
+      "rchar": "80.4 MB",
+      "wchar": "16.1 KB"
+    },
+    {
+      "name": "SCEPTRE:CALIBRATION:SCEPTRE_WORKER (screen:calibration:unit-000002)",
+      "status": "COMPLETED",
+      "duration": "12.3s",
+      "realtime": "12s",
+      "%cpu": "89.2%",
+      "peak_rss": "870.2 MB",
+      "peak_vmem": "1.1 GB",
+      "rchar": "74.4 MB",
+      "wchar": "10.8 KB"
+    },
+    {
+      "name": "SCEPTRE:CALIBRATION:SCEPTRE_WORKER (screen:calibration:unit-000003)",
+      "status": "COMPLETED",
+      "duration": "13.6s",
+      "realtime": "13.2s",
+      "%cpu": "91.7%",
+      "peak_rss": "735.8 MB",
+      "peak_vmem": "945.8 MB",
+      "rchar": "80.4 MB",
+      "wchar": "11 KB"
+    },
+    {
+      "name": "SCEPTRE:CALIBRATION:SCEPTRE_WORKER (screen:calibration:unit-000001)",
+      "status": "COMPLETED",
+      "duration": "13.8s",
+      "realtime": "13.4s",
+      "%cpu": "91.8%",
+      "peak_rss": "736.1 MB",
+      "peak_vmem": "945.8 MB",
+      "rchar": "80.4 MB",
+      "wchar": "11.2 KB"
+    },
+    {
+      "name": "SCEPTRE:CALIBRATION:SCEPTRE_COLLECT (screen:calibration:collect)",
+      "status": "COMPLETED",
+      "duration": "9.7s",
+      "realtime": "9.4s",
+      "%cpu": "95.0%",
+      "peak_rss": "870.3 MB",
+      "peak_vmem": "1.1 GB",
+      "rchar": "80.5 MB",
+      "wchar": "24.4 KB"
+    },
+    {
+      "name": "SCEPTRE:POWER:SCEPTRE_PREPARE (screen:power:prepare)",
+      "status": "COMPLETED",
+      "duration": "9.3s",
+      "realtime": "9.1s",
+      "%cpu": "94.7%",
+      "peak_rss": "862.3 MB",
+      "peak_vmem": "1 GB",
+      "rchar": "80.4 MB",
+      "wchar": "15.9 KB"
+    },
+    {
+      "name": "SCEPTRE:POWER:SCEPTRE_WORKER (screen:power:unit-000002)",
+      "status": "COMPLETED",
+      "duration": "10.4s",
+      "realtime": "9.9s",
+      "%cpu": "92.2%",
+      "peak_rss": "790.3 MB",
+      "peak_vmem": "1000.6 MB",
+      "rchar": "74.4 MB",
+      "wchar": "11.1 KB"
+    },
+    {
+      "name": "SCEPTRE:POWER:SCEPTRE_WORKER (screen:power:unit-000001)",
+      "status": "COMPLETED",
+      "duration": "10.4s",
+      "realtime": "10s",
+      "%cpu": "94.5%",
+      "peak_rss": "789.3 MB",
+      "peak_vmem": "1000.2 MB",
+      "rchar": "80.4 MB",
+      "wchar": "11.3 KB"
+    },
+    {
+      "name": "SCEPTRE:POWER:SCEPTRE_COLLECT (screen:power:collect)",
+      "status": "COMPLETED",
+      "duration": "9.6s",
+      "realtime": "9.3s",
+      "%cpu": "95.0%",
+      "peak_rss": "863.4 MB",
+      "peak_vmem": "1 GB",
+      "rchar": "80.5 MB",
+      "wchar": "25.1 KB"
+    },
+    {
+      "name": "SCEPTRE:DISCOVERY:SCEPTRE_PREPARE (screen:discovery:prepare)",
+      "status": "COMPLETED",
+      "duration": "9.3s",
+      "realtime": "9.1s",
+      "%cpu": "94.6%",
+      "peak_rss": "859.7 MB",
+      "peak_vmem": "1 GB",
+      "rchar": "80.4 MB",
+      "wchar": "16 KB"
+    },
+    {
+      "name": "SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000002)",
+      "status": "COMPLETED",
+      "duration": "10.5s",
+      "realtime": "9.9s",
+      "%cpu": "93.9%",
+      "peak_rss": "790.1 MB",
+      "peak_vmem": "1000.9 MB",
+      "rchar": "80.4 MB",
+      "wchar": "11.5 KB"
+    },
+    {
+      "name": "SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000001)",
+      "status": "COMPLETED",
+      "duration": "10.5s",
+      "realtime": "9.9s",
+      "%cpu": "92.3%",
+      "peak_rss": "790.3 MB",
+      "peak_vmem": "1000.9 MB",
+      "rchar": "74.4 MB",
+      "wchar": "11.2 KB"
+    },
+    {
+      "name": "SCEPTRE:DISCOVERY:SCEPTRE_COLLECT (screen:discovery:collect)",
+      "status": "COMPLETED",
+      "duration": "9.7s",
+      "realtime": "9.4s",
+      "%cpu": "94.9%",
+      "peak_rss": "859.9 MB",
+      "peak_vmem": "1 GB",
+      "rchar": "80.5 MB",
+      "wchar": "25.6 KB"
+    },
+    {
+      "name": "SCEPTRE:SCEPTRE_EXPORT (screen:export)",
+      "status": "COMPLETED",
+      "duration": "14.8s",
+      "realtime": "14.5s",
+      "%cpu": "96.4%",
+      "peak_rss": "902.6 MB",
+      "peak_vmem": "1.2 GB",
+      "rchar": "71.4 MB",
+      "wchar": "532.4 KB"
+    }
+  ]
+}

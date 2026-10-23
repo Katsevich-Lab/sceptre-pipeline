@@ -1,0 +1,150 @@
+{
+  "kind": "corrected-head-native-sif-scientific-qualification",
+  "schema": 1,
+  "head": "bfdfe70736445ed07cdee9e18c8cddc8d3796cfe",
+  "run_id": 39902600871,
+  "job": "apptainer",
+  "job_result": "success",
+  "workflow_result": "pending_at_capture",
+  "production_sha256": "475e419938a86aa9aa19060730299c2276ab3500483e3bdd9e493c7a9c2f5913",
+  "qualification_sha256": "9aef27aa5d954f50bc2f069b7de9fc5867b1ce7cac6be8a1ee5758206f83f798",
+  "archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "apptainer": "1.5.5",
+  "nextflow": "25.10.4",
+  "java": "Temurin/EclipseAdoptium17.0.10+7",
+  "sif_recorded_sha256": "8eae56a71d257608c58c7e0766688dfef6b9930d15a08361b2a3feb9f38c11b1",
+  "source_docker_image_id": "sha256:e1cd645b5f1ecc52be904a3ef5cef1c1c491523ec1415cf1a81bc5f9f252b6fb",
+  "artifact_id": 12480253013,
+  "artifact_zip_sha256": "28678c775f8a1ca248d0b79003aac5ec825d3e92dcb45d03b76c49b1e534b133",
+  "cache_counts": {
+    "checkpoint": {
+      "COMPLETED": 1,
+      "CACHED": 5,
+      "FAILED": 0
+    },
+    "launcher": {
+      "COMPLETED": 1,
+      "CACHED": 8,
+      "FAILED": 0
+    }
+  },
+  "scope": "Actual isolated LinuxAMD64 native SIF fullnativeHDF5CRT/publicR/fits/design/QC/assignment/plans/RNG equality, powercheckpoint/portable reopen, resolvedsettings, cachedresume, invalidstage/family/request/source/settings guards and rawlauncher. Representative command proves no-home/containall/cleanenv.",
+  "limits": "Bounded synthetic localexecutor on hostedUbuntu; no HPC/fullscreen/scale/performance/registry claim. Runner SIFbytes and raw42source-map files were not retained by original artifact paths; SIFSHA is recorded runner output, and unchanged execution/oracle/archive maps were mandatoryasserted/logged by frozen driver. Source identity is the exact checked-out Githead; no claim to recompute absentSIFbytes locally.",
+  "independent_readback": "Root verified actual downloadedZIPdigest, rawpublicR/directcheckpoint/guard logs, cachecounts and actualcommandflags/runtime/source/image identities.",
+  "artifacts": {
+    "apptainer-buildcfg.txt": {
+      "sha256": "e8dd546da5ea4b714951c23e57ac520b94549fec23a48b6143b14f0a29833f8e",
+      "bytes": 631
+    },
+    "apptainer-launcher.log.gz": {
+      "sha256": "3a7e0788216eb9a1ee8d543214a3e1a167fd918479d03f116fdaf757f3f6fefc",
+      "bytes": 1300,
+      "decompressed_sha256": "e7297596d06a37e8054f2163cb03e1972e97f76608c96a260aeb550cc708b5da",
+      "decompressed_bytes": 4083
+    },
+    "apptainer-parity.log.gz": {
+      "sha256": "6d05f519b27dce0d1a3aa2de9687459a48190f5720330c616da41bfa6d948258",
+      "bytes": 1646,
+      "decompressed_sha256": "ec9508651e33fc520634079b544f6509cb2ed0679f34e5eceb5e0999fb118056",
+      "decompressed_bytes": 6642
+    },
+    "apptainer-version.txt": {
+      "sha256": "04c93b7e7635a43d0cb6d097f9af0a72a9973041d11847e521cc682f1668c605",
+      "bytes": 6
+    },
+    "context-receipt.json": {
+      "sha256": "09f467aa973fa8e8afa495ef041f1af37d6808fe51135f20354dfd5820fc6000",
+      "bytes": 591
+    },
+    "continued-resolved-settings.json": {
+      "sha256": "095d1d1de8be347dd3ae9c9850d350cc6046f02576b186db9fc29d9fb08c5a4b",
+      "bytes": 4125
+    },
+    "continued-trace.tsv": {
+      "sha256": "46ab2af50de6406a2dbb25f1d756440d61ba105c604e6fd244e4e25aca80de80",
+      "bytes": 1031
+    },
+    "full-resolved-settings.json": {
+      "sha256": "75004a391a37b2130345a6639051011e821aa414773ace52169f9d383527207a",
+      "bytes": 4151
+    },
+    "host-engine.java.txt": {
+      "sha256": "0100fbfb5407074b1045769752e0af1b26d6bb31252028cc14ce36506a139feb",
+      "bytes": 2015
+    },
+    "host-engine.json": {
+      "sha256": "5c4cb955fe6ee5940a32562a7e48c542059581137d93e4192d86641c52688275",
+      "bytes": 558
+    },
+    "host-engine.nextflow.txt": {
+      "sha256": "79a35e33aeb0804a168cc40eac516568f09c0ebfb4e1a43acd089b3f89b198cd",
+      "bytes": 151
+    },
+    "launcher-resume-trace.tsv": {
+      "sha256": "d554301e41b2cdb9f4e6274777cace1f2d8ce8e97bf69cf8a769845530c1ae01",
+      "bytes": 1425
+    },
+    "rejected-params-analyses.log.gz": {
+      "sha256": "6032452dd9901314f45feb9187792880c15169088badfb9131dc52cb8df9f7fe",
+      "bytes": 198,
+      "decompressed_sha256": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+      "decompressed_bytes": 250
+    },
+    "rejected-params-input_bundle.log.gz": {
+      "sha256": "6032452dd9901314f45feb9187792880c15169088badfb9131dc52cb8df9f7fe",
+      "bytes": 198,
+      "decompressed_sha256": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+      "decompressed_bytes": 250
+    },
+    "rejected-params-seed.log.gz": {
+      "sha256": "6032452dd9901314f45feb9187792880c15169088badfb9131dc52cb8df9f7fe",
+      "bytes": 198,
+      "decompressed_sha256": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+      "decompressed_bytes": 250
+    },
+    "rejected-settings.log.gz": {
+      "sha256": "9e519f7aa98d9d29123567b392f263aecfabc5ee31d9c3c5c9e71dc95a438cf5",
+      "bytes": 277,
+      "decompressed_sha256": "76ba55c94c9268ac285e7589ad481a68c1353b212a1db00d9a63c90863fce007",
+      "decompressed_bytes": 505
+    },
+    "rejected-source.log.gz": {
+      "sha256": "c01ccb2b93f861f8196f848550a6b7891c8c3b8893db70db630242d9e52c7619",
+      "bytes": 195,
+      "decompressed_sha256": "caa3ad622a5f1c32b78103b95154231a71a47889b7402ea1681a8c88f4480c46",
+      "decompressed_bytes": 246
+    },
+    "representative-command.run.gz": {
+      "sha256": "f2975bc38d809b9c691f9a118e6604fba8542488a6741dc6e681a42f89c48b5c",
+      "bytes": 3342,
+      "decompressed_sha256": "6b2938248dae19f1fd649531965d31586c84d75886d46679fbf49ec6ab6e3a98",
+      "decompressed_bytes": 10909
+    },
+    "resource-observations.json": {
+      "sha256": "a1bd8da2d2a315efc33aaa634304386654873c63a7f1604ddb336c1cd92a8988",
+      "bytes": 5764
+    },
+    "sif-build.log.gz": {
+      "sha256": "12f69161139978b0b1fd1187aab9183907e0fdfb703601d8d3d329a70c5b92af",
+      "bytes": 158,
+      "decompressed_sha256": "ec202ccdd797691c29c7a0567d399d1d5c8676575cd6fe8ed87782a3716c9f32",
+      "decompressed_bytes": 228
+    },
+    "sif-docker-inspect.json": {
+      "sha256": "618152b4a8a3ea781c29200b5bf114270f5990897f9f9af256fe0f166cc37ab3",
+      "bytes": 4952
+    },
+    "sif-inspect.json": {
+      "sha256": "99408432188bc8fc48df5040eb3ca50d84bf269ba7c124c001fda646215994eb",
+      "bytes": 1214
+    },
+    "sif-sha256.txt": {
+      "sha256": "52b9444b0fae2e57de54d0b4361aba87f3114176ab5f29dcd155d2d476f46d2e",
+      "bytes": 102
+    },
+    "source.json": {
+      "sha256": "3f459aad5ebcfbc16d2347d73d395dc6f66d6049777bc9ed4d67a8cac9fa5e87",
+      "bytes": 539
+    }
+  }
+}
