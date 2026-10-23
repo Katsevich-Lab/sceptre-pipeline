@@ -18,7 +18,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
@@ -29,7 +29,7 @@ jobs:
           docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" sceptre-publication-review:local Rscript --vanilla tests/ci/check-installed-package.R tests/runtime/sceptre_0.99.0.tar.gz "$RUNNER_TEMP/installed-package"
           docker image inspect sceptre-publication-review:local > "$RUNNER_TEMP/image-inspect.json"
           docker save sceptre-publication-review:local | gzip > "$RUNNER_TEMP/image.tar.gz"
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: reviewed-exact-source-image
           retention-days: 3
@@ -52,7 +52,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: reviewed-exact-source-image
           path: image
@@ -72,7 +72,7 @@ jobs:
           printf '%s\n' "$digest" | tee image/published-digest.txt
           docker pull "$digest" 2>&1 | tee image/pull.log
           docker logout ghcr.io
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
           name: approved-container-publication-receipt
