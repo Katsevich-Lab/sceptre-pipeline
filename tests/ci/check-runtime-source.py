@@ -49,3 +49,23 @@ with tempfile.TemporaryDirectory() as directory:
     result = subprocess.run(command + [str(target)], text=True, capture_output=True)
     assert result.returncode != 0 and "native object schema 7" in result.stderr, result
 print("PASS exact bundled source; corrupt identity, moving ref, escaped path and checksum-consistent older schema rejected")
+
+# Each dependency environment must retain exact archive bytes and bind its own
+# actual Docker settings in source.json, rather than inheriting floor provenance.
+with tempfile.TemporaryDirectory() as directory:
+    for profile, r_version, bioc in (("floor", "4.5.1", "3.22"), ("current", "4.6.1", "3.23")):
+        output = Path(directory) / profile
+        subprocess.run(["python3", str(script), "--source-manifest", str(manifest),
+                        "--runtime-profile", profile, "--output", str(output)],
+                       check=True, capture_output=True, text=True)
+        metadata = json.loads((output / "source.json").read_text())
+        dockerfile = (output / "Dockerfile").read_text()
+        assert metadata["sceptre_commit"] == original["source_commit"]
+        assert metadata["sceptre_archive_sha256"] == original["archive_sha256"]
+        assert hashlib.sha256((output / "sceptre.tar.gz").read_bytes()).hexdigest() == original["archive_sha256"]
+        assert metadata["base"].startswith("rocker/r-ver:" + r_version + "@sha256:")
+        assert metadata["bioconductor_version"] == bioc
+        assert "FROM " + metadata["base"] in dockerfile
+        assert "ARG BIOCONDUCTOR_VERSION=" + bioc in dockerfile
+        assert "ARG CRAN_SNAPSHOT=" + metadata["cran_snapshot"] in dockerfile
+print("PASS distinct floor/current dependency identities; both retain unchanged frozen archive bytes")

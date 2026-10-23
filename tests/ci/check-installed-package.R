@@ -12,6 +12,9 @@ utils::untar(archive, exdir = file.path(out, "source"))
 tests <- file.path(out, "source", "sceptre", "tests", "testthat")
 stopifnot(dir.exists(tests))
 library(sceptre)
+minimum_droplet <- Sys.getenv("SCEPTRE_REQUIRE_DROPLETUTILS", "")
+if (nzchar(minimum_droplet))
+    stopifnot(packageVersion("DropletUtils") >= package_version(minimum_droplet))
 dll <- getLoadedDLLs()[["sceptre"]][["path"]]
 jsonlite::write_json(list(archive_sha256 = archive_sha, source = runtime,
     package_path = find.package("sceptre"), native_path = dll,
@@ -31,3 +34,6 @@ s <- list(cases = nrow(d), assertions = sum(d$nb), passed = sum(d$passed),
 jsonlite::write_json(s, file.path(out, "tests.json"), pretty = TRUE,
     auto_unbox = TRUE)
 stopifnot(s$failed == 0L, s$errors == 0L, s$warnings == 0L)
+
+if (identical(Sys.getenv("SCEPTRE_REQUIRE_NO_SKIPS"), "true"))
+    stopifnot(s$skipped == 0L)

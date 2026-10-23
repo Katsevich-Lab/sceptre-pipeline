@@ -251,3 +251,50 @@ jobs:
             ${{ runner.temp }}/integration*/failure-work/**/.command.log
             ${{ runner.temp }}/integration*/failure-work/**/.command.err
             ${{ runner.temp }}/integration*/failure-work/**/.command.out
+  current-package:
+    # Additional dependency environment; never replaces the minimum-runtime gates.
+    needs: schema
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Build separately pinned R 4.6.1 / Bioconductor 3.23 runtime
+        run: |
+          python3 container/prepare-context.py --source-manifest tests/runtime/source.json \
+            --runtime-profile current --output "$RUNNER_TEMP/current-context" \
+            | tee "$RUNNER_TEMP/current-context-receipt.json"
+          docker build --progress plain --iidfile "$RUNNER_TEMP/current-image-id" \
+            "$RUNNER_TEMP/current-context" 2>&1 | tee "$RUNNER_TEMP/current-container-build.log"
+          docker image inspect "$(cat "$RUNNER_TEMP/current-image-id")" > "$RUNNER_TEMP/current-image-inspect.json"
+          docker run --rm "$(cat "$RUNNER_TEMP/current-image-id")" \
+            sh -c 'cat /opt/sceptre/source.json /opt/sceptre/session-info.txt /opt/sceptre/packages.tsv' \
+            > "$RUNNER_TEMP/current-runtime-provenance.txt"
+      - name: Same-archive package suite with DropletUtils 1.32 and zero skips
+        run: |
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            -e SCEPTRE_REQUIRE_DROPLETUTILS=1.32.0 -e SCEPTRE_REQUIRE_NO_SKIPS=true \
+            "$(cat "$RUNNER_TEMP/current-image-id")" Rscript --vanilla tests/ci/check-installed-package.R \
+            tests/runtime/sceptre_0.99.0.tar.gz "$RUNNER_TEMP/current-installed-package" \
+            2>&1 | tee "$RUNNER_TEMP/current-installed-package.log"
+      - name: Preserve additional dependency-runtime qualification
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: current-package-validation-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            tests/runtime/source.json
+            ${{ runner.temp }}/current-context/source.json
+            ${{ runner.temp }}/current-context/source.sha256
+            ${{ runner.temp }}/current-context-receipt.json
+            ${{ runner.temp }}/current-image-id
+            ${{ runner.temp }}/current-image-inspect.json
+            ${{ runner.temp }}/current-runtime-provenance.txt
+            ${{ runner.temp }}/current-*.log
+            ${{ runner.temp }}/current-installed-package/runtime.json
+            ${{ runner.temp }}/current-installed-package/session.txt
+            ${{ runner.temp }}/current-installed-package/tests.json
+            ${{ runner.temp }}/current-installed-package/tests.rds

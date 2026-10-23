@@ -40,3 +40,19 @@ Actions are enabled. The schema and scientific jobs use `ubuntu-24.04` AMD64
 runners and build the exact bundled archive locally on the runner without
 publishing a container image. Hosted execution is pending; the preserved ARM64
 receipts do not establish AMD64 or hosted-CI success.
+
+The `scientific` job retains the minimum runtime above. A separate
+`current-package` job builds R 4.6.1, Bioconductor 3.23 and CRAN snapshot
+2026-10-01 from its own pinned Rocker image. It tests the same frozen package
+archive with DropletUtils >= 1.32 and requires zero failed, errored, warned or
+skipped package cases. It does not substitute for the minimum-runtime pipeline
+checks or claim Nextflow qualification in the newer dependency environment.
+The minimum-runtime package suite records its skips explicitly; Bioconductor
+3.22 provides DropletUtils 1.30, so the 15 package cases requiring version 1.32
+remain outside that runtime's tested coverage.
+
+[Bioconductor 3.23 supports R 4.6](https://new.bioconductor.org/news/bioc_3_23_release/),
+and its [DropletUtils release](https://bioconductor.org/packages/3.23/bioc/html/DropletUtils.html)
+supplies the required maintained writer. Generate the distinct build context with
+`--runtime-profile current`; each artifact preserves its own runtime metadata,
+image identity, dependency versions, tests and skips.
