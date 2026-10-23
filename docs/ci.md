@@ -28,3 +28,15 @@ Verify identity locally without downloads:
 ```bash
 python3 container/prepare-context.py --verify-only --source-manifest tests/runtime/source.json
 ```
+
+## Hosted schema-7 qualification
+
+The public hosted-CI destination is
+[Katsevich-Lab/sceptre-pipeline](https://github.com/Katsevich-Lab/sceptre-pipeline),
+a fork of `timothy-barry/sceptre-pipeline`. Its default branch is
+`codex/native-schema7-hosted-ci` so the native workflow is available for manual
+dispatch; the upstream `main` branch has not been merged or rewritten.
+Actions are enabled. The schema and scientific jobs use `ubuntu-24.04` AMD64
+runners and build the exact bundled archive locally on the runner without
+publishing a container image. Hosted execution is pending; the preserved ARM64
+receipts do not establish AMD64 or hosted-CI success.
