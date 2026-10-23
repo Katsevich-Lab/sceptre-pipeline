@@ -1,0 +1,117 @@
+
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\ 
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 4.2.0 - https://nf-co.re
+
+
+
+WARNING  No modules from https://github.com/nf-core/modules.git installed in    
+         pipeline.                                                              
+WARNING  No subworkflows from https://github.com/nf-core/modules.git installed  
+         in pipeline.                                                           
+INFO     Testing pipeline:                                                      
+         /Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sc
+         eptre-pipeline-nfcore                                                  
+
+INFO     Using found ORCID for Eugene Katsevich. Please double-check:           
+         https://orcid.org/0000-0003-0598-2050                                  
+INFO     Saving metadata file to                                                
+         '/var/folders/1w/h831hyps5qs5lzkh5xjj0_wh0000gq/T/tmpmiepwf7v/Katsevich
+         -Lab-sceptre-pipeline'                                                 
+INFO     Generated container configs for the pipeline.                          
+INFO     Generated container configs for the pipeline.                          
+
+
+
+
+╭─ [?] 1 Pipeline Test Fixed ──────────────────────────────────────────────────╮
+│                                                                              │
+│ rocrate_readme_sync: Fixed: add the same description from README.md to the   │
+│ RO-Crate metadata.                                                           │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─ [?] 38 Pipeline Tests Ignored ──────────────────────────────────────────────╮
+│                                                                              │
+│ files_exist: File is ignored: assets/nf-core-sceptre-pipeline_logo_light.png │
+│ files_exist: File is ignored:                                                │
+│ docs/images/nf-core-sceptre-pipeline_logo_light.png                          │
+│ files_exist: File is ignored:                                                │
+│ docs/images/nf-core-sceptre-pipeline_logo_dark.png                           │
+│ files_exist: File is ignored: .github/workflows/branch.yml                   │
+│ files_exist: File is ignored: .github/actions/get-shards/action.yml          │
+│ files_exist: File is ignored: .github/actions/nf-test/action.yml             │
+│ files_exist: File is ignored: .github/workflows/pr-comment.yml               │
+│ files_exist: File is ignored: assets/email_template.html                     │
+│ files_exist: File is ignored: assets/email_template.txt                      │
+│ files_exist: File is ignored: assets/sendmail_template.txt                   │
+│ files_exist: File is ignored: assets/multiqc_config.yml                      │
+│ files_exist: File is ignored: conf/igenomes.config                           │
+│ files_exist: File is ignored: conf/igenomes_ignored.config                   │
+│ files_exist: File is ignored: .github/workflows/awstest.yml                  │
+│ files_exist: File is ignored: .github/workflows/awsfulltest.yml              │
+│ files_exist: File is ignored: .github/.dockstore.yml                         │
+│ nextflow_config: Config variable ignored: manifest.name                      │
+│ nextflow_config: Config variable ignored: manifest.homePage                  │
+│ files_unchanged: File ignored due to lint config: .gitattributes             │
+│ files_unchanged: File ignored due to lint config: CODE_OF_CONDUCT.md         │
+│ files_unchanged: File ignored due to lint config: LICENSE or LICENSE.md or   │
+│ LICENCE or LICENCE.md                                                        │
+│ files_unchanged: File ignored due to lint config: .github/.dockstore.yml     │
+│ files_unchanged: File ignored due to lint config:                            │
+│ .github/ISSUE_TEMPLATE/config.yml                                            │
+│ files_unchanged: File ignored due to lint config:                            │
+│ .github/PULL_REQUEST_TEMPLATE.md                                             │
+│ files_unchanged: File ignored due to lint config:                            │
+│ .github/workflows/branch.yml                                                 │
+│ files_unchanged: File ignored due to lint config:                            │
+│ .github/workflows/pr-comment.yml                                             │
+│ files_unchanged: File ignored due to lint config:                            │
+│ .github/workflows/linting.yml                                                │
+│ files_unchanged: File ignored due to lint config: assets/email_template.html │
+│ files_unchanged: File ignored due to lint config: assets/email_template.txt  │
+│ files_unchanged: File ignored due to lint config:                            │
+│ assets/sendmail_template.txt                                                 │
+│ files_unchanged: File ignored due to lint config:                            │
+│ assets/nf-core-sceptre-pipeline_logo_light.png                               │
+│ files_unchanged: File ignored due to lint config:                            │
+│ docs/images/nf-core-sceptre-pipeline_logo_light.png                          │
+│ files_unchanged: File ignored due to lint config:                            │
+│ docs/images/nf-core-sceptre-pipeline_logo_dark.png                           │
+│ files_unchanged: File ignored due to lint config: docs/README.md             │
+│ actions_awstest: 'awstest.yml' workflow not found:                           │
+│ /Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre │
+│ -pipeline-nfcore/.github/workflows/awstest.yml                               │
+│ template_strings: Ignoring Jinja template strings in file                    │
+│ /Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre │
+│ -pipeline-nfcore/container/build.sh                                          │
+│ template_strings: Ignoring Jinja template strings in file                    │
+│ /Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre │
+│ -pipeline-nfcore/website/build.py                                            │
+│ multiqc_config: multiqc_config                                               │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─ [!] 2 Pipeline Test Warnings ───────────────────────────────────────────────╮
+│                                                                              │
+│ pipeline_name_conventions: Naming does not adhere to nf-core conventions:    │
+│ Contains non alphanumeric characters                                         │
+│ schema_lint: Input mimetype is missing or empty                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+╭───────────────────────╮
+│ LINT RESULTS SUMMARY  │
+├───────────────────────┤
+│ [✔] 195 Tests Passed  │
+│ [?]   1 Test Fixed    │
+│ [?]  38 Tests Ignored │
+│ [!]   2 Test Warnings │
+│ [✗]   0 Tests Failed  │
+╰───────────────────────╯
+INFO     Writing lint results to /tmp/sceptre-nfcore-supported-lint.md          
+INFO     Writing lint results to /tmp/sceptre-nfcore-supported-lint.json        

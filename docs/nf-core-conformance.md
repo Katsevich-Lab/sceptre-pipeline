@@ -44,8 +44,8 @@ logo, ownership, approval, publication, DOI or membership is asserted.
 | Registry availability | A publicly pullable digest with approved visibility/architecture/source | **Pending destination-specific publication approval**; no fake registry digest |
 | Resource/failure behavior | Default and label resources, site overrides, mandatory selected-stage failure, atomic scientific publication | Applicable; changes tested against package contracts |
 | Version provenance | Native package/runtime hashes plus software-version topics and complete per-stage records | Applicable; implemented, final qualification in progress |
-| Full pipeline lint | Actual full tools 4.2.0 run with named external mappings only | Applicable; complete tools4.2.0 lint195pass/0fail/2warnings (name and directory MIME),38named external mappings |
-| Modules / subworkflows | Current metadata schema, reusable paths/contracts, actual nf-test coverage and source-owned algorithms | Applicable; full local modules238pass/0fail/35warnings; subworkflows42pass/0warn/0fail |
+| Full pipeline lint | Actual full tools 4.2.0 run with named external mappings only | Applicable; complete tools4.2.0 lint195pass/0fail/2warnings (name and directory MIME),38 ignored diagnostics visible in raw output |
+| Modules / subworkflows | Current metadata schema, reusable paths/contracts, actual nf-test coverage and source-owned algorithms | Applicable; full local modules245pass/0fail/28warnings; subworkflows42pass/0warn/0fail |
 | CI | Automatic lint, exact-package real tests on minimum/current Nextflow, floor/current package environments | Applicable; implementation/qualification in progress |
 | Documentation | Bundled usage, output, tutorial, scientific report, contribution/release instructions and limits | Applicable; reconciled with current behavior |
 | Credits/license | Cite package methods/Nextflow/nf-core inspiration and retain inherited GPL-3 | Applicable; no MIT relicensing of GPL science |
@@ -89,16 +89,32 @@ requires and Nextflow26.10 deprecates. They are retained to support the minimum
 runtime while enforcing an explicit failure for false `ext.when`; workflow
 empty-state/delivery guards separately reject missing selected work.
 
-The35 module diagnostics are seven each for Docker/Singularity images provided
-through the shared immutable runtime profile, absent Conda environment recipes,
-local-module underscore names preserving established SCEPTRE process identities,
-and mandatory selected-stage `when` conditions that deliberately raise an error
-rather than silently skip science. No metadata mismatch remains. Runtime image
-availability remains open until approved distribution; no invented registry or
-unreleased Conda package is substituted. The pipeline-name warning preserves the
-existing lab repository identity; a native certified directory input has no
-sequencing-file MIME type and is not mislabeled CSV. All these diagnostics stay
-visible in complete lint output.
+The28 module diagnostics are seven each for Docker/Singularity container
+identities supplied by the shared immutable runtime profile, an absent optional
+Conda environment, and mandatory selected-stage `when` conditions that raise an
+error instead of silently skipping requested science. All naming and metadata
+mismatches were fixed: local modules have canonical alphanumeric directories and
+process declarations, with explicit aliases preserving the existing SCEPTRE_*
+workflow task identities and scheduler/publication selectors.
+
+The container identity diagnostics remain tied to pending approved immutable
+runtime distribution. The optional Conda runtime is **unsupported and unqualified**,
+not technically impossible: a separately built exact-archive recipe could be
+implemented and tested later. The [pipeline Docker requirement](https://nf-co.re/docs/specifications/pipelines/requirements/docker)
+recommends Bioconda where possible; this implementation currently qualifies its
+central exact-source Docker image instead. The [module software specification](https://nf-co.re/docs/specifications/components/modules/software-requirements)
+requires a module-directory Dockerfile for non-Bioconda software contributed as a
+standalone nf-core component. This lab pipeline has one real central
+`container/Dockerfile` plus `prepare-context.py`, preserving the same archive and
+public-package implementation across every stage. That is the actual reproducible
+recipe, but it does **not literally meet the standalone contributed-module file
+location convention**. No formal component-specification conformance is claimed.
+Seven duplicate recipes are not introduced merely to imply that claim.
+
+The pipeline-name warning preserves the existing lab repository identity. The
+native certified directory input has no sequencing-file MIME and is not labeled
+CSV. All remaining diagnostics stay visible in complete lint output; zero
+failures alone is not described as complete nf-core admission or qualification.
 
 An initial minimum-runtime exploratory nf-test campaign completed seven exact
 scientific comparisons and was intentionally terminated by SIGTERM (exit143)
@@ -106,3 +122,42 @@ before strict-parser fixes; it is not the final suite receipt. The current stric
 launcher smoke completed nativeHDF5 CRT distributed discovery, exact public-R
 comparison, unchanged scientific cache reuse and source/settings mutation guards.
 The final source snapshot and complete suite results are recorded separately.
+
+## Frozen integration campaign
+
+The final canonical source snapshot records production identity
+`2a8b4a88ce8b2f653c7f9dee1ba246bd6a56c7bf69aa5b0433e3ad47cf90b40e`
+and independent qualification/oracle/setup identity
+`c067146080f7ebf66f50546d80dd5072a7058af561e769113e9256cfa1584b6b`.
+The lead integration checkout and conformance checkout matched both before the
+campaign. The final42-case minimum25.10.4 supported-default suite runs separately from
+lead full nativeHDF5 CRT/checkpoint/resume and raw-project launcher runs. Terminal
+receipts, rather than this in-progress note, determine which checks passed.
+
+## Supported parser defaults and experimental diagnostics
+
+The [versioned primary guidance](https://docs.seqera.io/nextflow/strict-syntax)
+states that Nextflow25.10 uses parser v1 by default, while26.04 and later use v2.
+The official tools4.2.0 generated test workflow and composite action do not force
+v2 on the minimum25.10.4 matrix. Accordingly, the supported acceptance matrix
+uses25.10.4's documented default and26.10.3's strict default; strict current source
+lint remains mandatory. This does not disable the current parser.
+
+An extra25.10.4 experiment with opt-in `NXF_SYNTAX_PARSER=v2` completed seven
+exact scientific comparisons, but external `-c` overrides lost named profiles;
+its profile/array configuration acceptance checks failed. It was deliberately
+terminated by SIGTERM(exit143) rather than used as minimum-runtime qualification.
+The same25.10.4 override under its supported default correctly rejected disabled
+selected stages before publication. Full required42-case execution was restarted
+with the experimental override unset. The scientific production identity did not
+change; CI setup identity changed to record the supported parser contract and
+explicit PR-head checkout/artifact capture.
+
+Supported-default bounded acceptance is now terminalPASS:25.10.4 3/3 and26.10.3
+3/3, zero skips, each with identical source/oracle before and after. Cases execute
+real zero-input preparation plus all reference families, the certified input alias,
+and rejection of incomplete explicit inputs. Exact source/qualification hashes
+and TAP/XML/logs are preserved at `tests/evidence/nf-core-conformance/bounded-*`.
+Supported-default minimum selected-stage override and current conflicting-input/
+selected-stage guards passed separately. Full42-case floor qualification remains
+in progress; these bounded results do not substitute for it or hosted execution.

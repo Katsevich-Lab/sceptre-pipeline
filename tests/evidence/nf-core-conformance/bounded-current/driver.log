@@ -1,0 +1,19 @@
+
+🚀[1m nf-test 0.9.5[0m
+https://www.nf-test.com
+Please cite: https://doi.org/10.1093/gigascience/giaf130
+(c) 2021 - 2026 Lukas Forer and Sebastian Schoenherr
+
+nf-test runs in CI mode.
+
+[1mExternal nf-core engineering contracts[0m
+
+  [1mTest[0m [2feee5b4] 'Zero-input test profile executes native preparation and all scientific families' [32mPASSED[0m (95.006s)
+  [1mTest[0m [bd3eb935] 'Standard input alias admits the same certified scientific bundle' [32mPASSED[0m (24.886s)
+  [1mTest[0m [4e98b72c] 'Incomplete explicit inputs never fall back to synthetic test data' [32mPASSED[0m (6.735s)
+
+
+[1m[32mSUCCESS: [0m[0mExecuted 3 tests in 126.635s
+
+Wrote TAP report to file /tmp/sceptre-nfcore-supported-bounded-current/nf-test.tap
+

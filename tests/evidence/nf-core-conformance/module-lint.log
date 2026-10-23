@@ -1,0 +1,205 @@
+
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\ 
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 4.2.0 - https://nf-co.re
+
+
+
+WARNING  No modules from https://github.com/nf-core/modules.git installed in    
+         pipeline.                                                              
+INFO     Linting pipeline: '.'                                                  
+WARNING  No container was extracted for sceptrestage from                       
+         modules/local/sceptrestage/main.nf                                     
+WARNING  No container was extracted for sceptredemoinput from                   
+         modules/local/sceptredemoinput/main.nf                                 
+WARNING  No container was extracted for sceptreworker from                      
+         modules/local/sceptreworker/main.nf                                    
+WARNING  No container was extracted for sceptreexport from                      
+         modules/local/sceptreexport/main.nf                                    
+WARNING  No container was extracted for sceptrevalidate from                    
+         modules/local/sceptrevalidate/main.nf                                  
+WARNING  No container was extracted for sceptreprepare from                     
+         modules/local/sceptreprepare/main.nf                                   
+WARNING  No container was extracted for sceptrecollect from                     
+         modules/local/sceptrecollect/main.nf                                   
+
+
+[!] 28 Module Tests Warning
+
+sceptrecollect docker_tag
+modules/local/sceptrecollect/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve docker container
+
+sceptredemoinput docker_tag
+modules/local/sceptredemoinput/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve docker container
+
+sceptreexport docker_tag
+modules/local/sceptreexport/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve docker container
+
+sceptreprepare docker_tag
+modules/local/sceptreprepare/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve docker container
+
+sceptrestage docker_tag
+modules/local/sceptrestage/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve docker container
+
+sceptrevalidate docker_tag
+modules/local/sceptrevalidate/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve docker container
+
+sceptreworker docker_tag
+modules/local/sceptreworker/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve docker container
+
+sceptrecollect environment_yml_exists
+modules/local/sceptrecollect/environment.yml
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/enviro
+nment_yml
+Module's `environment.yml` does not exist
+
+sceptredemoinput environment_yml_exists
+modules/local/sceptredemoinput/environment.yml
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/enviro
+nment_yml
+Module's `environment.yml` does not exist
+
+sceptreexport environment_yml_exists
+modules/local/sceptreexport/environment.yml
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/enviro
+nment_yml
+Module's `environment.yml` does not exist
+
+sceptreprepare environment_yml_exists
+modules/local/sceptreprepare/environment.yml
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/enviro
+nment_yml
+Module's `environment.yml` does not exist
+
+sceptrestage environment_yml_exists
+modules/local/sceptrestage/environment.yml
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/enviro
+nment_yml
+Module's `environment.yml` does not exist
+
+sceptrevalidate environment_yml_exists
+modules/local/sceptrevalidate/environment.yml
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/enviro
+nment_yml
+Module's `environment.yml` does not exist
+
+sceptreworker environment_yml_exists
+modules/local/sceptreworker/environment.yml
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/enviro
+nment_yml
+Module's `environment.yml` does not exist
+
+sceptrecollect singularity_tag
+modules/local/sceptrecollect/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve singularity container
+
+sceptredemoinput singularity_tag
+modules/local/sceptredemoinput/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve singularity container
+
+sceptreexport singularity_tag
+modules/local/sceptreexport/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve singularity container
+
+sceptreprepare singularity_tag
+modules/local/sceptreprepare/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve singularity container
+
+sceptrestage singularity_tag
+modules/local/sceptrestage/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve singularity container
+
+sceptrevalidate singularity_tag
+modules/local/sceptrevalidate/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve singularity container
+
+sceptreworker singularity_tag
+modules/local/sceptreworker/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+Unable to resolve singularity container
+
+sceptrecollect when_condition
+modules/local/sceptrecollect/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+when: condition has been altered
+
+sceptredemoinput when_condition
+modules/local/sceptredemoinput/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+when: condition has been altered
+
+sceptreexport when_condition
+modules/local/sceptreexport/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+when: condition has been altered
+
+sceptreprepare when_condition
+modules/local/sceptreprepare/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+when: condition has been altered
+
+sceptrestage when_condition
+modules/local/sceptrestage/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+when: condition has been altered
+
+sceptrevalidate when_condition
+modules/local/sceptrevalidate/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+when: condition has been altered
+
+sceptreworker when_condition
+modules/local/sceptreworker/main.nf
+https://nf-co.re/docs/nf-core-tools/api_reference/4.2.0/module_lint_tests/main_n
+f
+when: condition has been altered
+
+LINT RESULTS SUMMARY
+[✔] 245 Tests Passed
+[!]  28 Test Warnings
+[✗]   0 Tests Failed
