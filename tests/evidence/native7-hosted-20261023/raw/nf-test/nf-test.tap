@@ -1,0 +1,39 @@
+1..38
+ok 1 Scientific branch and artifact matrix: Parameters stop executes no assignment, QC or families
+ok 2 Scientific branch and artifact matrix: Assignment stop preserves exact assignments and RNG
+ok 3 Scientific branch and artifact matrix: Empty analysis selection stops after QC without family tasks
+ok 4 Scientific branch and artifact matrix: Calibration alone matches direct full-family tables and plans
+ok 5 Scientific branch and artifact matrix: Power alone matches direct full-family tables and plans
+ok 6 Scientific branch and artifact matrix: One-unit permutations preserve complete tables, fits and RNG
+ok 7 Scientific branch and artifact matrix: Excess-unit empirical CRT preserves whole-family budgets and RNG
+ok 8 Scientific branch and artifact matrix: Backed permutation workers match direct saved-state semantics
+ok 9 Scientific branch and artifact matrix: Native HDF5 CRT workers match direct saved-state semantics
+ok 10 Scientific branch and artifact matrix: Wrong runtime lock fails before parameters execute
+ok 11 Scientific branch and artifact matrix: Corrupt input object fails checksum before parameters execute
+ok 12 Scientific branch and artifact matrix: Nonpositive work-unit request fails schema before tasks
+ok 13 Scientific scheduling invariance: Two uneven units execute serially with exact public R results
+ok 14 Scientific scheduling invariance: Concurrent reordered workers retry discarded proposals with exact public R results
+ok 15 Native schema-7 complete-family SCEPTRE workflow: Runs every requested complete family
+ok 16 Native schema-7 complete-family SCEPTRE workflow: QC stop does not launch result families
+ok 17 Native schema-7 complete-family SCEPTRE workflow: Discovery runs directly after QC without calibration
+ok 18 Native schema-7 complete-family SCEPTRE workflow: Schema rejects invalid stage before scientific work
+ok 19 Native schema-7 complete-family SCEPTRE workflow: Duplicate families fail before scientific work
+ok 20 Native schema-7 complete-family SCEPTRE workflow: Schema rejects nonpositive array sizes before scientific work
+ok 21 Native schema-7 complete-family SCEPTRE workflow: Certified distributed units finalize complete families
+ok 22 Certified complete-family collection module: Collects all proposals into the exact public reference family
+ok 23 Certified complete-family collection module: Rejects incomplete proposals without publishing a completed family
+ok 24 Certified scientific result export module: Exports exact certified discovery tables and marks other families omitted
+ok 25 Certified scientific result export module: Exports QC-only report without inventing analysis result tables
+ok 26 Certified distributed preparation module: Prepares the certified target-group units within the requested limit
+ok 27 Certified distributed preparation module: Rejects input that has not completed QC before publishing a plan
+ok 28 Public parameters stage module: Writes a real object, manifest and version identity
+ok 29 Validate certified runtime module: Checks real serialized input and emits a readiness gate
+ok 30 Certified distributed worker module: Executes a real certified unit and emits its named proposal
+ok 31 Certified distributed worker module: Rejects a unit outside the certified execution plan
+ok 32 Certified screen orchestration subworkflow: Parameters boundary emits state without export or downstream tasks
+ok 33 Certified screen orchestration subworkflow: Empty selected families preserve the QC state and export
+ok 34 Certified screen orchestration subworkflow: Unordered family selection executes canonical power then discovery
+ok 35 Certified complete-family analysis subworkflow: Reference analysis preserves discovery-only semantics and RNG
+ok 36 Certified complete-family analysis subworkflow: Distributed analysis joins certified proposals into one exact family
+ok 37 Certified complete-family analysis subworkflow: Analysis rejects multiple screen states before scientific tasks
+ok 38 Certified complete-family analysis subworkflow: Analysis rejects an empty screen channel before scientific tasks

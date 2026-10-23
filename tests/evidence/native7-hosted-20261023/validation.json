@@ -65,7 +65,19 @@
       "integration-distributed.log": "b9afbecc8b33441205054fa34919fefe396502f383676345ca548aafb43ff6dd",
       "missing-family.log": "01b08a8e574b54079dff4cc48e4ee3d5c6e84cb6dd57be200e32ab56538c558d",
       "demo/demo-receipt.json": "f4f93f24949b9fea30fc792d9b2c439ab89f6d09a9087a7af05a56bb84b97f28"
-    }
+    },
+    "locally_preserved_raw_root": "raw/",
+    "locally_preserved_raw_files": [
+      "nf-test/nf-test.tap",
+      "nf-test/nf-test.xml",
+      "nf-test/java-version.txt",
+      "nf-test/nextflow-version.txt",
+      "direct/direct-comparison.rds",
+      "distributed/distributed-comparison.rds",
+      "unit-matrix/unit-partition-matrix.rds",
+      "integration/resume-trace.tsv",
+      "integration-distributed/resume-trace.tsv"
+    ]
   },
   "current_package": {
     "url": "https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39895507893",
