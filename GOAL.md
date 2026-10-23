@@ -10,16 +10,19 @@ Base 115b5eb; qualified R product 1e4d5459ab229255694f9217d7cd4ed51a4bf1b8, arch
 
 ## Acceptance ledger
 
-| Workstream | Acceptance | Status |
+| Workstream | Acceptance | Current evidence and remaining gate |
 |---|---|---|
-| Configuration | reproducible typed authoring/preflight, requested/resolved defaults, omitted/partial settings and explicit errors | implemented; focused tests pass, final frozen run pending |
-| Inputs | public matrix/SCE/10x/CellRanger/Parse entrypoints, source hashes, alignment, RAM/HDF5 | implemented; direct-R import tests pass |
-| Pairs | explicit/cis/trans/positive public construction with frozen input identity | implemented; public pair comparisons/guards pass |
-| Scientific delivery | public plots, full pair QC, warnings, report isolation | implemented and focused tests pass; richer visual acceptance in progress |
-| Persistence | portable backing manifest/reopen/current checkpoint reuse with identity/currentness guards | implemented; relocation/guard and exploratory actual checkpoint comparisons pass |
-| Resources | actionable bounded admission, no scientific fallback, measured bounded evidence | implemented limits/observed component sizes; final Docker trace evidence pending |
-| Documentation | current HDF5/recovery/site and consistent scientific contract | updated; site links pass; final rebuild pending |
-| Qualification | meaningful direct R/path/error/relocation/resume local tests; hosted CI separate source identity | pending |
+| Configuration | typed JSON/RDS authoring, requested/resolved defaults, explicit incompatibilities | Implemented. Focused floor-Docker and actual workflow resolved-state tests pass. Final post-conformance source rerun pending. |
+| Inputs | public matrix/SCE/10x/CellRanger/Parse, explicit metadata/MOI, RAM/HDF5/source alignment | Implemented. Direct-public-R import tests pass on host and floor Docker; source-directory readback/new-member rejection passes. |
+| Pairs | explicit/cis/trans/positive construction with frozen annotation/distance/exclusions | Implemented. Public table/order comparisons and invalid/ambiguous request guards pass. |
+| Scientific delivery | public figures, full pair QC, warnings, rich selected-stage summaries, isolated failure | Implemented. All delivery/report/presentation tests pass, including complete/partial/failure browser review at1440x1000 and390x844 CSS; ten preserved JPEG screenshots/receipt. Post-conformance rerun remains distinct. |
+| Persistence | portable backing/read helper and certified current checkpoint reuse | Implemented. Native relocation/anchor/corruption guards, actual power-checkpoint continuation/direct-R equality and cached resume passed at preserved frozen source. |
+| Resources | explicit caps/no scientific fallback and bounded task measurements | Implemented. Source-byte guard precedes count-reference loading; recorded18-task160-cell Docker trace, export displayed909.3MB peak RSS. No arbitrary-scale assurance. |
+| Single command | rawJSON prep+science in same pinned runtime without host R | Implemented. Actual Docker one-command nativeHDF5 CRT/public-R equality/resume/source+settings guards pass. Checksum-pinned SIF interface implemented; positive SIF execution still pending. |
+| Documentation | native HDF5/recovery, contract and current site | Core docs updated; milestone site23pages/1712 local references passed. Final conformance/site refresh pending. |
+| nf-core | current4.2.0 engineering, actual full lint/module/subworkflow checks and fixes | In separate conformance lane. Last reported184pass/2full-lint failures; subworkflows42pass/0warnings; modules210pass with remaining metadata warnings under correction. Final exact receipts/matrix pending integration. |
+| Qualification | meaningful exact-source local and hosted contracts, honest engine/scale limits | Original frozen Docker core workflow terminal PASS, five focused floor suites PASS, rich browser/manual evidence preserved. Final combined post-nfcore freeze, hosted full CI/min-current engines and positive SIF remain pending. |
+| Publication | approved lab branch/source+CI; separate concrete registry proposal | Lab feature branch/CI publication authorized but waits final engineering integration. GHCRpublication/visibility/anonymous pull requires a new destination-specific approval after unaffected work is complete. |
 
 Missing arbitrary-scale/HPC assurance is not represented as completed by bounded tests. No second statistical engine or Python edits. Public R contract blockers are escalated; don't bypass identities.
 
