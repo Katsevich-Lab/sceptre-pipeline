@@ -1,0 +1,27 @@
+nextflow_process {
+    name 'Source-bound synthetic demo preparation'
+    script "modules/local/sceptredemoinput/main.nf"
+    process 'SCEPTREDEMOINPUT'
+    tag 'module'
+    test('Generates native synthetic inputs in the selected runtime') {
+        when {
+            params {
+                container_image = System.getenv('SCEPTRE_CONTAINER_IMAGE')
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = file('$baseDir/bin')
+                input[1] = file('$baseDir/demo')
+                """
+            }
+        }
+        then {
+            assert process.success
+            def fixture = process.out.fixture[0]
+            assert path("$fixture/input/sceptre_object.rds").size() > 0
+            assert path("$fixture/config.rds").size() > 0
+            assert path("$fixture/lock.rds").size() > 0
+        }
+    }
+}

@@ -38,7 +38,7 @@ stopifnot(!write_scientific_report_safely(state$object, unavailable_manifest, co
 empty_view <- x
 empty_view$analyses$discovery <- list(status = 'completed', table = data.frame(p_value = numeric()), provenance = list())
 empty_html <- scientific_report_html(empty_view, NULL)
-stopifnot(grepl('Structured aggregation of distributed worker warnings is unavailable', empty_html, fixed = TRUE),
+stopifnot(grepl('current distributed prepare/worker/collector conditions are recorded', empty_html, fixed = TRUE),
     grepl('0 returned rows', empty_html, fixed = TRUE), grepl('No rows available.', empty_html, fixed = TRUE))
 for (stage in 'discovery') {
     output <- file.path(args[1], stage)

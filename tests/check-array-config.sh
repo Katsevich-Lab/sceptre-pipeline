@@ -17,10 +17,12 @@ assert "process.executor = 'slurm'" in slurm
 project=Path(sys.argv[2])
 array_modules=[p for p in (project/'modules').rglob('*.nf')
                if any(line.strip().startswith('array ') for line in p.read_text().splitlines())]
-assert array_modules==[project/'modules/local/sceptre_worker/main.nf'],array_modules
+assert array_modules==[project/'modules/local/sceptreworker/main.nf'],array_modules
 worker=array_modules[0].read_text()
-assert "array (workflow.profile.tokenize(',').contains('slurm') ? params.array_size : null)" in worker
+assert "array (params.worker_arrays ? params.array_size : null)" in worker
 assert not any('.array =' in line for line in local.splitlines())
 assert "process.executor = 'local'" in local
+assert "params.worker_arrays = true" in slurm
+assert "params.worker_arrays = false" in local
 print('PASS Slurm arrays apply only to workers; default local execution has no arrays.')
 PY_CONFIG

@@ -1,0 +1,33 @@
+{
+  "kind": "supported-default-practical-parity-qualification",
+  "schema": 1,
+  "production_sha256": "2a8b4a88ce8b2f653c7f9dee1ba246bd6a56c7bf69aa5b0433e3ad47cf90b40e",
+  "qualification_sha256": "c067146080f7ebf66f50546d80dd5072a7058af561e769113e9256cfa1584b6b",
+  "archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "container_image": "sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9",
+  "engine": "Docker Linux ARM64; Nextflow25.10.4 supported default v1 parser",
+  "result": "PASS",
+  "scope": "160-cell synthetic nativeHDF5 CRT complete calibration/power/discovery exact public-R science, power-checkpoint continuation/reopen, resolved settings, unchanged resume and invalid checkpoint/family/request mutations. Both owner commands terminal exit0.",
+  "limits": "Not full-screen scale, runtime benchmark, hosted AMD64, positive SIF/HPC or registry qualification. Git HEAD differs between envelopes only through documentation/evidence commits; production and 103-file oracle/setup identities remain identical.",
+  "evidence_sha256": {
+    "checkpoint-resolved-settings.json": "f90b0fefc50c1b305fbb8c1ba8ccd23ae817979a14c1edc6357ac42d6acc6c12",
+    "checkpoint-resume-trace.tsv": "adae244cd8d6125904d2868366289ddd686156d5479e78c6e54b110fa47d9ead",
+    "complete-plot-status.json": "f2e1b6e1853e8c5a7ddbec72433d632bfc7b9600e18227d9bbcffab489987987",
+    "complete-report-status.json": "a277bef2cea00ce8a055c1af277faf45a989bd499077470823555e6c2412f516",
+    "complete-resolved-settings.json": "22e06a3f162fe5be3132b67efa1033b7652ab17553d04ad0fdd09dc18bad7d65",
+    "complete-trace.tsv": "c73448e248285194f980095311165579857b68279c4e4e0ae25ab67653f0249b",
+    "completed-family.log": "2e1e7a400724ef1a167cca6a2e6b850152469246021eab1d9614bf5adea0c2f7",
+    "launcher-resume-trace.tsv": "c59a4f8a6da849beeddfb2dd7a2c8855334782687da476b2bcbb42003ee6de84",
+    "native-hdf5-workflow.log": "a22410c2daffd98c8c84a0ff3e454c45bd48f384c8a0fe4f87e1edefd1f1602a",
+    "one-command-launcher.log": "c63b4e635d379930df60fcfeb178b53181945331170842fc5ff561c8cb1f600f",
+    "rejected-params-analyses.log": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+    "rejected-params-input_bundle.log": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+    "rejected-params-seed.log": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+    "resource-observations.json": "a94dc9eb8e620958d238592acc544cdac9f8202ba4a81a44d72a9892144eac4a",
+    "source-after.json": "f567a892abb39add354cc3f790b85a75dfebd6c4e719d36fe13d1d4316605c76",
+    "source-before.json": "f567a892abb39add354cc3f790b85a75dfebd6c4e719d36fe13d1d4316605c76",
+    "source-envelope-after.json": "dd1d4dc45e6c7e8df2a7a1c24b3c6cb34c5f0797db2dd395a0bfdae21afefbf9",
+    "source-envelope-before.json": "8dd40780128ff1b20b21c5398d0e12cf5d2e4d679ca45c584f1b9043edd32e14",
+    "wrong-stage.log": "a8531ea562cb8e1d539df0d51da1d8c42a6b3962bd04089787cad8c310cf4fdb"
+  }
+}

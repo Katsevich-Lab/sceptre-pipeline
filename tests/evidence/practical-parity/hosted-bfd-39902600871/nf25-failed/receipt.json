@@ -1,0 +1,104 @@
+{
+  "kind": "corrected-head-nf25-docker-caller-ownership-failure",
+  "schema": 1,
+  "head": "bfdfe70736445ed07cdee9e18c8cddc8d3796cfe",
+  "run_id": 39902600871,
+  "job": "nf-test (25.10.4)",
+  "job_result": "failure",
+  "failed_step": "Single-command same-runtime raw JSON launch and unchanged resume",
+  "reason": "DockercreatedpreparedparamsJSONrootowned; hostnegative-mutationguardcouldnotopenit (PermissionError13). This is publiccallerownershipbug, not a scientificcomparisonfailure.",
+  "passed_before_failure": [
+    "floorinstalledpackage",
+    "publicpreparation/config/checkpoint/delivery/reportcontracts",
+    "nativeHDF5fullfamily/directR/checkpoint/resume/guards",
+    "rawlauncherpublicRnumericalandRNGcomparison",
+    "unchangedlauncherallsciencecache"
+  ],
+  "full_nf_test_matrix": "NOTEXECUTED; failureoccurredbefore42casestep",
+  "archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "artifact_id": 12480263221,
+  "artifact_zip_sha256": "6b9fa0d00ed24fcc9d4113c1f5b92c2ce1cb23defb4c93925b75fef6aaaa8f25",
+  "floor_package": {
+    "cases": 394,
+    "assertions": 7966,
+    "passed": 7951,
+    "failed": 0,
+    "errors": 0,
+    "warnings": 0,
+    "skipped": 15
+  },
+  "independent_readback": "RootverifiedactualZIPdigestandindependentlyreducedrawtests.rds; floorpackage/native/archiveidentitieschecked.",
+  "limits": "Preservedfailedcampaign; requirescallerownershipfixandfreshmandatory42casesbothversions. Separatecurrent-package/SIFsuccessisnotanallgreenworkflow.",
+  "artifacts": {
+    "floor-package-runtime.json": {
+      "sha256": "04748d66c23fa5b18492e0644640b8e0578ce190564640c647c8288da36505ea",
+      "bytes": 994
+    },
+    "floor-package-tests.json": {
+      "sha256": "f585c9ff8630b7fca8f77013dcf0e8a375e8c901b7792ded5b776a8a4d7eebb4",
+      "bytes": 2228
+    },
+    "floor-package-tests.rds": {
+      "sha256": "19a1a83750789900f32993bf8715b6bd8dc0fe0ba489063bfa2f232052d6934c",
+      "bytes": 2007935
+    },
+    "host-engine.json": {
+      "sha256": "5c4cb955fe6ee5940a32562a7e48c542059581137d93e4192d86641c52688275",
+      "bytes": 558
+    },
+    "image-id": {
+      "sha256": "db33bf61f3173cfb6f3c27a34523d6489b82c28b4ebd540c7bb4c2b260977b35",
+      "bytes": 71
+    },
+    "image-inspect.json": {
+      "sha256": "78fa20673bf39e59b34ef1803fa83c58c6bcdbcb50fff2e5c5003a85d73ef00b",
+      "bytes": 4886
+    },
+    "launcher.log.gz": {
+      "sha256": "63dc18a4700e6a7039b79dfe797169799a816bad4a2f9146e27f55ae929bfb91",
+      "bytes": 1353,
+      "decompressed_sha256": "9e23cae7710de3bf2594e506346aeade8c9a3f9b4e588c5d8f404a0e1605e0ba",
+      "decompressed_bytes": 4159
+    },
+    "practical-parity.log.gz": {
+      "sha256": "21de6f26443dd11ece3a147ff3c9cdb2b12714b20d52d95aea6ebb0d7a9a2153",
+      "bytes": 1620,
+      "decompressed_sha256": "d3f00ab3fa4ec6c182f495418648090e5ade72b56845f1cf4eb8a418471c9fdd",
+      "decompressed_bytes": 6595
+    },
+    "source-snapshot.json": {
+      "sha256": "ea4c621e2a8edb21c17201bb3b6fc22d5a7b94689e2dee51892f9f92814c96f8",
+      "bytes": 15330
+    },
+    "test_checkpoint.log.gz": {
+      "sha256": "f50adaf4fc8c0c01291cfdcd8a63fd36043182b6603b7538af2d36340bf4588a",
+      "bytes": 284,
+      "decompressed_sha256": "bf01f44ad9ca074b5fd9f20ff566c50596b1bff7cd2793e28f9c97b3eae18bc1",
+      "decompressed_bytes": 379
+    },
+    "test_delivery.log.gz": {
+      "sha256": "4f2314ffb7d36fd969d3fc7320d6bc4afdd6e3d6725405455457f1b1e2e48a2e",
+      "bytes": 330,
+      "decompressed_sha256": "21eb45b91c94e63d9babe775048e89b063ac088d7b295d7cb3517db6393455b7",
+      "decompressed_bytes": 458
+    },
+    "test_project.log.gz": {
+      "sha256": "723a904be8e3e587ff2ff628bbc04e045d0de9da35f2f79a99a5e5fc2f55c74b",
+      "bytes": 381,
+      "decompressed_sha256": "0d388d53e121ceabb7f7b8b825001695ff12a7e32f92ae0a3fd15577c147c962",
+      "decompressed_bytes": 584
+    },
+    "test_raw_preparation.log.gz": {
+      "sha256": "6bf2f97a0059090daf61fe251658120b16569f17d7b1bb3d44544c163d1d0d3f",
+      "bytes": 287,
+      "decompressed_sha256": "79c1e0feb2fd31c4c61e5ef5283a06267950bfdc8d654ee704b52d20aec5b440",
+      "decompressed_bytes": 734
+    },
+    "test_report_presentation.log.gz": {
+      "sha256": "85d709300d87c8fbadf738d2cce59ea20f687561af0bab470d0bdccebc2a4336",
+      "bytes": 349,
+      "decompressed_sha256": "60ca63dd69cb20d24c6a4d92911ba498c638a64449bcc1f33724ac02607dc1ec",
+      "decompressed_bytes": 834
+    }
+  }
+}

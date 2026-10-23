@@ -1,0 +1,34 @@
+{
+  "kind": "bounded-local-practical-parity-milestone",
+  "schema": 1,
+  "package_source": "1e4d5459ab229255694f9217d7cd4ed51a4bf1b8",
+  "archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "container_image": "sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9",
+  "platform": "local Docker Linux ARM64; R4.5.1/Bioc3.22 floor",
+  "nextflow": "25.10.4",
+  "core_workflow": "passed; recorded exact source snapshot before and after",
+  "focused_suites": "five passed in same floor Docker runtime",
+  "one_command_launcher": "passed nativeHDF5 CRT public-R comparison, unchanged resume, source/settings rejection",
+  "limits": [
+    "Milestone source precedes nf-core conformance integration; final integrated qualification pending",
+    "Core workflow wrapper subsequently gained a separate strict resolved-settings assertion, also passed against these outputs",
+    "No Apptainer positive execution, hosted expanded-branch result, cluster/fullscreen/performance qualification claimed here"
+  ],
+  "files": {
+    "checkpoint-resolved-settings.json": "f90b0fefc50c1b305fbb8c1ba8ccd23ae817979a14c1edc6357ac42d6acc6c12",
+    "checkpoint-resume-trace.tsv": "72e51506c3e501fa505f52df87794ac1c9d52a07876ec5640c7fcab6b738cf15",
+    "complete-resolved-settings.json": "22e06a3f162fe5be3132b67efa1033b7652ab17553d04ad0fdd09dc18bad7d65",
+    "complete-trace.tsv": "acb31aee70a1f98acf5b068b35e559d1d58833fdafd378ee93141cf1095468a7",
+    "native-hdf5-workflow.log": "8acf24cef012b132a9298d7949c7f7daac7de953dee5a04f43933d2b786ace56",
+    "one-command-launcher.log": "7fbad28d3a2bde165c115cb8dbd56db852430e2cc63fc21e2c09a016a417f446",
+    "resolved-settings.log": "3a768fdfdaaa4d14bd885f45b262ad35fa952000a05738d602f6789a745ed1c1",
+    "resource-observations.json": "a52253c683622099cc7152a7033953d4a0436802d31a6b2a06709807ff2af9d5",
+    "source-after.json": "657a55684e4f0f0958a0e74920363c322029ea96910d375162c79209d2541f37",
+    "source-before.json": "657a55684e4f0f0958a0e74920363c322029ea96910d375162c79209d2541f37",
+    "test_checkpoint.log": "bf01f44ad9ca074b5fd9f20ff566c50596b1bff7cd2793e28f9c97b3eae18bc1",
+    "test_delivery.log": "21eb45b91c94e63d9babe775048e89b063ac088d7b295d7cb3517db6393455b7",
+    "test_project.log": "acd7e02a8992fe7f406293051fe553c9357005ab4c9f0efee7e87613a4cbf061",
+    "test_raw_preparation.log": "828b1b4f2992cc2fd1936b3bd344e2113400191374a3ed585cccc4d6f138ff42",
+    "test_report_presentation.log": "60ca63dd69cb20d24c6a4d92911ba498c638a64449bcc1f33724ac02607dc1ec"
+  }
+}

@@ -1,7 +1,14 @@
 # Source-only publication scope
 
 > Historical evidence below retains its original artifact scope. It does not
-> qualify the native schema-7 migration; see [current qualification](validation.md).
+> qualify the native schema-7 migration or practical-parity branch; see [current qualification](validation.md) and the [practical acceptance ledger](parity-acceptance.md).
+> `publication-production.json` is the preserved inventory of that historical
+> transplant, including its old module paths and archive `606363fc…`. It is not
+> a manifest of the current checkout. Current practical-parity production and
+> qualification snapshots bind the selected archive `f41a8fb7…` separately.
+> The later approved practical-parity publication includes synthetic scientific
+> report figures and test receipts; the exclusions below describe the earlier
+> transplant only.
 
 
 This review baseline transplants production source and synthetic test tooling from original local pipeline source `8e3a7bda268c9f750913f894fa254f86896c1ef1` onto the existing public default history. It preserves that original local ref and all detailed evidence locally. It introduces no original local evidence history into the public branch.

@@ -1,0 +1,40 @@
+name: sceptredemoinput
+description: Generate a deterministic synthetic schema-7 screen inside the selected scientific runtime.
+keywords:
+- sceptre
+- synthetic
+- testing
+tools:
+- sceptre:
+    description: Package-owned native screen import and identity.
+    homepage: https://github.com/Katsevich-Lab/sceptre
+    licence:
+    - GPL-3
+input:
+- tools_dir:
+    type: directory
+    description: Source-bound pipeline R helpers.
+- demo_dir:
+    type: directory
+    description: Source-bound synthetic make-input.R implementation.
+output:
+  fixture:
+  - fixture:
+      type: directory
+      description: Native certified input bundle, config, lock and explicit synthetic README.
+  versions_sceptre: &id001
+  - - ${task.process}:
+        type: string
+        description: Fully qualified process name.
+    - sceptre:
+        type: string
+        description: Scientific package name.
+    - Rscript --vanilla bin/version-string.R fixture/lock.rds:
+        type: eval
+        description: Installed version bound to the certified runtime lock.
+authors:
+- '@ekatsevi'
+maintainers:
+- '@ekatsevi'
+topics:
+  versions: *id001

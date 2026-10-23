@@ -1,0 +1,126 @@
+{
+  "status": "BOUNDED_HOSTED_AMD64_PIPELINE_AND_SUPPORTED_PACKAGE_SUITES_PASS_IN_SEPARATE_RUNS",
+  "source_commit": "1e4d5459ab229255694f9217d7cd4ed51a4bf1b8",
+  "archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "object_schema": 7,
+  "pipeline": {
+    "url": "https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39894180240/job/120220918478",
+    "run_id": 39894180240,
+    "pipeline_commit": "3c6d2c55c83f40bc02c4e262faf261273d3a8096",
+    "scientific_job": "success",
+    "schema_job": "success",
+    "overall_run": "failure: separate current-package image bootstrap lacked libuv headers; fixed and qualified in supplemental run below",
+    "platform": "linux/amd64",
+    "image": "sha256:746f0f359f3463146ef385c8729e86da2f970d4a4afdc2138c1bb07a1f400a38",
+    "nextflow": "25.10.4 build 11173",
+    "nf_test": "0.9.5",
+    "java": "openjdk version \"17.0.20\" 2026-07-21 LTS\nOpenJDK Runtime Environment Zulu17.68+19-CRaC-CA (build 17.0.20+8-LTS)\nOpenJDK 64-Bit Server VM Zulu17.68+19-CRaC-CA (build 17.0.20+8-LTS, mixed mode, sharing)",
+    "java_scope": "Observed Zulu engine selected by setup-nextflow, not the earlier declared Temurin setup",
+    "nf_test_cases": 38,
+    "nf_test_passed": 38,
+    "nf_test_failed": 0,
+    "nf_test_errors": 0,
+    "nf_test_skipped": 0,
+    "direct_cases": 9,
+    "distributed_cases": 11,
+    "partition_configurations": 8,
+    "native_HDF5_permutations_and_CRT": "passed, mandatory, not skipped",
+    "resume": {
+      "reference": {
+        "cached": 7,
+        "completed_runtime_validation": 1
+      },
+      "distributed": {
+        "cached": 17,
+        "completed_runtime_validation": 1
+      }
+    },
+    "guards": [
+      "changed source/config/seed and publication paths rejected",
+      "failed worker prevents collection and completed-family publication",
+      "missing expected family rejected despite self-consistent checksum",
+      "cache directories ignored while real helper/workflow edits reject resume"
+    ],
+    "demo": "complete synthetic workflow and scientific report passed",
+    "artifact": {
+      "id": 12478786911,
+      "name": "scientific-validation-39894180240-1",
+      "digest": "sha256:2011fbe4e75569f654bd0a0be65fca348e7b454813d0dfbdbe55c0627018cbab",
+      "size_in_bytes": 5458646
+    },
+    "downloaded_zip_digest_verified": true,
+    "raw_file_sha256": {
+      "nf-test/nf-test.tap": "86981890ae87ba1d89ac7706b92f6c29a4de4f93b4bae634f1b3fe2e79df72a7",
+      "nf-test/nf-test.xml": "c741aa2f74b705de213691deb89877aa9400e590e8f5d8f21358a60f956eb18b",
+      "nf-test/java-version.txt": "eb8cf82bdc8f0e4b739292e81a7a2d7ec05c96de97d645eed4876612036f02ef",
+      "nf-test/nextflow-version.txt": "79a35e33aeb0804a168cc40eac516568f09c0ebfb4e1a43acd089b3f89b198cd",
+      "direct/direct-comparison.rds": "119181260f2b5adde149a18360a6c49db6bb3fa6e1d121d322682fd94e750b5f",
+      "distributed/distributed-comparison.rds": "680e0fa8ece556f5b38af981404ac137b979b7fb22f752557bd42bed681cf611",
+      "unit-matrix/unit-partition-matrix.rds": "19b7673653a2275253089cdc64d75f88316f227f4b8709410fa6346294c34eb8",
+      "image-inspect.json": "f019385b0b57181e75ceb2f11834c8fa861dd620de7f6e179e86f1d4da56a6d0",
+      "runtime-provenance.txt": "ba4ccd21e7771c3845152b5b3aff7efba00702a720975b36c7219ecfa160300e",
+      "integration/resume-trace.tsv": "66e49517336f14a28d57390f37d120f1da3f317927ca200a4e6dd81ce0408785",
+      "integration-distributed/resume-trace.tsv": "97a4ff5a7f9d283c4e90058b24750ee62a4916c53063976a1d7cf5d9566dd3e0",
+      "integration.log": "1cf208206fec5a52303b8ae727e3939aaa3a3d5ab9ce6e77f75d8558d2a5254d",
+      "integration-distributed.log": "b9afbecc8b33441205054fa34919fefe396502f383676345ca548aafb43ff6dd",
+      "missing-family.log": "01b08a8e574b54079dff4cc48e4ee3d5c6e84cb6dd57be200e32ab56538c558d",
+      "demo/demo-receipt.json": "f4f93f24949b9fea30fc792d9b2c439ab89f6d09a9087a7af05a56bb84b97f28"
+    },
+    "locally_preserved_raw_root": "raw/",
+    "locally_preserved_raw_files": [
+      "nf-test/nf-test.tap",
+      "nf-test/nf-test.xml",
+      "nf-test/java-version.txt",
+      "nf-test/nextflow-version.txt",
+      "direct/direct-comparison.rds",
+      "distributed/distributed-comparison.rds",
+      "unit-matrix/unit-partition-matrix.rds",
+      "integration/resume-trace.tsv",
+      "integration-distributed/resume-trace.tsv"
+    ]
+  },
+  "current_package": {
+    "url": "https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39895507893",
+    "run_id": 39895507893,
+    "pipeline_commit": "fb373a0c6f46ac960164a7740a2328c296f7da89",
+    "run_status": "success",
+    "job": "current-package: success",
+    "platform": "linux/amd64",
+    "image": "sha256:fda1cd67aaf2a89d4baa75f5134790aa441229b7eb3311c56b14a6aeec954a4a",
+    "R": "4.6.1",
+    "Bioconductor": "3.23",
+    "DropletUtils": "1.32.1",
+    "cases": 394,
+    "assertions": 8109,
+    "passed": 8109,
+    "failed": 0,
+    "errors": 0,
+    "warnings": 0,
+    "skipped": 0,
+    "scope": "Installed-package suite only; pipeline scientific job intentionally skipped by current_package_only input, not a pipeline qualification under this runtime",
+    "artifact": {
+      "id": 12477795056,
+      "name": "current-package-validation-39895507893-1",
+      "digest": "sha256:52ceea4c57ae4b088ce704dddb5116af7de793f0e69ba34dbf22f8e27fc2ece2",
+      "size_in_bytes": 1852893
+    },
+    "downloaded_zip_digest_verified": true,
+    "raw_file_sha256": {
+      "current-installed-package/tests.json": "301c7723ce703247d025b53e4cad250644eadc6374d910919b26c165b31f7e45",
+      "current-installed-package/runtime.json": "017003eecee1f4c1b0640e855500186749b55e302979faa58709674380c7cd9e",
+      "current-image-inspect.json": "7216fa70e6b671cc8b6e947744d0cbe7c5c8709334559805a04328c89d88d0f6",
+      "current-runtime-provenance.txt": "f97dcf1d9c4750acfd0763702dec54ee28006ad2ca8edfddd0ad4dee91cf63c2"
+    }
+  },
+  "source_delta_between_runs": [
+    "current-profile generated Dockerfile additionally installs libuv1-dev",
+    "supplemental dispatch input/concurrency separation and current-profile source guard; minimum runtime/core pipeline/science unchanged"
+  ],
+  "limits": [
+    "Bounded synthetic pipeline qualification; no hosted real-screen scaling or performance benchmark",
+    "Minimum R4.5.1/Bioc3.22 package suite has 15 explicit DropletUtils>=1.32 version-gated skips; all those package paths run without skips under supported R4.6.1/Bioc3.23",
+    "No cross-R-version numerical identity claim",
+    "No single all-green workflow at one SHA: pipeline job and supported package suite are separately identified",
+    "No Apptainer/HPC qualification, registry image publication, merge or release"
+  ]
+}

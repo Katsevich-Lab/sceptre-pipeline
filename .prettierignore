@@ -1,0 +1,22 @@
+email_template.html
+.nextflow*
+work/
+data/
+results/
+.DS_Store
+testing/
+testing*
+*.pyc
+bin/
+.nf-test/
+ro-crate-metadata.json
+modules/nf-core/
+subworkflows/nf-core/
+
+# Project-specific generated artifacts
+benchmark/evidence/
+tests/evidence/
+website/_site/
+website/_staging/
+container/.build/
+*.svg

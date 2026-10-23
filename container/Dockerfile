@@ -15,7 +15,16 @@ RUN cd /opt/sceptre && sha256sum -c source.sha256 && \
     CRAN_SNAPSHOT="$CRAN_SNAPSHOT" BIOCONDUCTOR_VERSION="$BIOCONDUCTOR_VERSION" \
     Rscript install-dependencies.R && R CMD INSTALL package/sceptre && rm -rf package && \
     Rscript -e 'library(sceptre); stopifnot(identical(methods::getClass("sceptre_object")@prototype@schema_version, 7L)); stopifnot(all(c("get_screen_experiment", "prepare_execution", "execute_work_unit", "collect_execution") %in% getNamespaceExports("sceptre"))); stopifnot(requireNamespace("HDF5Array", quietly=TRUE), requireNamespace("beachmat.hdf5", quietly=TRUE)); write.table(installed.packages()[,c("Package","Version","Built")], "/opt/sceptre/packages.tsv", sep="\t", quote=FALSE, row.names=FALSE); writeLines(capture.output(sessionInfo()), "/opt/sceptre/session-info.txt")'
-LABEL org.opencontainers.image.title="SCEPTRE schema-7 pipeline runtime" \
+# Application/project metadata overrides the Rocker base labels; dependency licenses remain their own.
+LABEL org.opencontainers.image.base.name="rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa" \
+      org.opencontainers.image.base.digest="sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa" \
+      org.opencontainers.image.licenses="GPL-3.0-only" \
+      org.opencontainers.image.vendor="Katsevich Lab" \
+      org.opencontainers.image.authors="SCEPTRE pipeline contributors (see source repository)" \
+      org.katsevich-lab.base.vendor="Rocker Project" \
+      org.katsevich-lab.base.authors="Carl Boettiger <cboettig@ropensci.org> (inherited Rocker image metadata)" \
+      org.katsevich-lab.base.source="https://github.com/rocker-org/rocker-versioned2" \
+      org.opencontainers.image.title="SCEPTRE schema-7 pipeline runtime" \
       org.opencontainers.image.description="Frozen SCEPTRE archive; identity in /opt/sceptre/source.json"
 ENV SCEPTRE_CRAN_SNAPSHOT=${CRAN_SNAPSHOT} SCEPTRE_BIOCONDUCTOR_VERSION=${BIOCONDUCTOR_VERSION}
 WORKDIR /work

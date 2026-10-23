@@ -1,0 +1,6 @@
+"response_id","grna_group","n_nonzero_trt","n_nonzero_cntrl","pass_qc","failure_reasons"
+"RNA_1","TargetA",77,143,TRUE,""
+"RNA_2","TargetB",80,154,TRUE,""
+"RNA_3","TargetA",76,152,TRUE,""
+"RNA_4","TargetA",0,0,FALSE,"treated_nonzero_below_threshold;control_nonzero_below_threshold"
+"RNA_5","TargetB",76,147,TRUE,""

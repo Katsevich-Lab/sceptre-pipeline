@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "nextflow_version": "25.10.4",
+  "repo": "/private/tmp/sceptre-pipeline-caller-owned",
+  "data_root": "/private/tmp/sceptre-caller-owned-qualification/minimum-final/raw",
+  "input_json": "/private/tmp/sceptre-caller-owned-qualification/minimum-final/raw/input.json",
+  "analysis_json": "/private/tmp/sceptre-caller-owned-qualification/minimum-final/raw/analysis.json",
+  "input_sha256": "d0bf711a917b21ad55d9ca8ccabd788059698a35920fb7a183e913b2baea02fd",
+  "analysis_sha256": "83bc53c02f10d29f617a2320acafef140c6056b50e1fd291727e164afd518cfd",
+  "image": "sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9",
+  "image_sha256": null,
+  "engine": "docker",
+  "profiles": "test,docker",
+  "nextflow_arguments": [
+    "--execution_mode",
+    "distributed",
+    "--n_work_units",
+    "3"
+  ],
+  "launcher_sha256": "b43a8ffee81dd0037fefeac696a6cd3f90dec4db09bf704f10bea4e1bca42c20",
+  "docker_user": {
+    "uid": 503,
+    "gid": 20
+  }
+}

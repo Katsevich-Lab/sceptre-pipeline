@@ -1,0 +1,62 @@
+Linting Nextflow code..
+Linting: benchmark/bounded.config
+Linting: subworkflows/local/sceptre/main.nf
+Linting: subworkflows/local/sceptre_analysis/main.nf
+Linting: tests/ci/conf/serial.config
+Linting: tests/ci/conf/retry-concurrent.config
+Linting: tests/array-smoke/nextflow.config
+Linting: tests/array-smoke/main.nf
+Linting: tests/nextflow.config
+Linting: tests/conf/worker-failure.config
+Linting: nextflow.config
+Linting: modules/local/sceptrestage/main.nf
+Linting: modules/local/sceptredemoinput/main.nf
+Linting: modules/local/sceptreworker/main.nf
+Linting: modules/local/sceptreexport/main.nf
+Linting: modules/local/sceptrevalidate/main.nf
+Linting: modules/local/sceptreprepare/main.nf
+Linting: modules/local/sceptrecollect/main.nf
+Linting: conf/slurm.config
+Linting: conf/test_full.config
+Linting: conf/base.config
+Linting: conf/test.config
+Linting: conf/modules.config
+Linting: main.nf
+Warn  modules/local/sceptrecollect/main.nf:20:5: The `when` section is deprecated -- use conditional logic in the calling workflow, or the `process.when` config option to disable a process at runtime
+│  20 |     when:
+╰     |     ^^^^
+
+
+Warn  modules/local/sceptredemoinput/main.nf:11:5: The `when` section is deprecated -- use conditional logic in the calling workflow, or the `process.when` config option to disable a process at runtime
+│  11 |     when:
+╰     |     ^^^^
+
+
+Warn  modules/local/sceptreexport/main.nf:18:5: The `when` section is deprecated -- use conditional logic in the calling workflow, or the `process.when` config option to disable a process at runtime
+│  18 |     when:
+╰     |     ^^^^
+
+
+Warn  modules/local/sceptreprepare/main.nf:21:5: The `when` section is deprecated -- use conditional logic in the calling workflow, or the `process.when` config option to disable a process at runtime
+│  21 |     when:
+╰     |     ^^^^
+
+
+Warn  modules/local/sceptrestage/main.nf:21:5: The `when` section is deprecated -- use conditional logic in the calling workflow, or the `process.when` config option to disable a process at runtime
+│  21 |     when:
+╰     |     ^^^^
+
+
+Warn  modules/local/sceptrevalidate/main.nf:24:5: The `when` section is deprecated -- use conditional logic in the calling workflow, or the `process.when` config option to disable a process at runtime
+│  24 |     when:
+╰     |     ^^^^
+
+
+Warn  modules/local/sceptreworker/main.nf:22:5: The `when` section is deprecated -- use conditional logic in the calling workflow, or the `process.when` config option to disable a process at runtime
+│  22 |     when:
+╰     |     ^^^^
+
+
+Nextflow linting complete!
+ ⚠️  7 files had 7 warnings
+ ✅ 23 files had no errors

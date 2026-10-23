@@ -1,0 +1,5 @@
+PASS pre-submission container identity: missing-sha
+PASS pre-submission container identity: wrong-sha
+PASS pre-submission container identity: relative-sif
+PASS pre-submission container identity: docker-sif
+PASS pre-submission container identity: mutable-oci

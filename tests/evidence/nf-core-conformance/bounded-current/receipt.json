@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "nextflow": "26.10.3",
+  "parser": "supported default v2",
+  "cases": 3,
+  "skips": 0,
+  "production_sha256": "2a8b4a88ce8b2f653c7f9dee1ba246bd6a56c7bf69aa5b0433e3ad47cf90b40e",
+  "qualification_sha256": "c067146080f7ebf66f50546d80dd5072a7058af561e769113e9256cfa1584b6b",
+  "source_and_oracle_unchanged": true,
+  "scope": "Bounded zero-input real full-family execution, certified input alias, incomplete explicit-input rejection. Not the full42-case suite."
+}

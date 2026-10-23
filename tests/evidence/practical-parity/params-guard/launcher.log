@@ -1,0 +1,41 @@
+PASS container selected source/archive/schema receipt
+Prepared project: /private/tmp/sceptre-parity-launcher-params/run/prepared 
+Read settings.json before execution; source hashes are in preparation.rds.
+Launching source-pinned scientific workflow; execution report and scientific HTML are separate outputs.
+Nextflow 26.10.3 is available - Please consider updating your version to it
+N E X T F L O W  ~  version 25.10.4
+Launching `/Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-parity/main.nf` [sad_meninsky] DSL2 - revision: f734343ee4
+Selected profiles: test,docker; scientific execution mode: distributed.
+The default task executor is local. Distributed mode partitions scientific work; scheduler selection comes from profiles/site configuration. Verify executor overrides before running on a cluster login node (docs/hpc.md, docs/recovery.md).
+[6a/57c7ac] Submitted process > SCEPTRE:SCEPTRE_VALIDATE (screen:validate)
+[aa/b3327e] Submitted process > SCEPTRE:PARAMETERS (screen:parameters)
+[4a/7d113e] Submitted process > SCEPTRE:ASSIGNMENT (screen:assignment)
+[13/88323e] Submitted process > SCEPTRE:QC (screen:qc)
+[59/ee14e6] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_PREPARE (screen:discovery:prepare)
+[37/65679d] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000002)
+[39/ad5e50] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000001)
+[e6/98c876] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_COLLECT (screen:discovery:collect)
+[d7/35b4c0] Submitted process > SCEPTRE:SCEPTRE_EXPORT (screen:export)
+Loading required namespace: HDF5Array
+Note: If you are on a Mac laptop or desktop, consider setting `parallel = TRUE` to improve speed. Otherwise, keep `parallel = FALSE`.
+The calibration check (`run_calibration_check()`) should be run before the discovery analysis.
+PASS real nf-test workflow semantics: parameters, assignment, qc, discovery; exact families/tables/plans/fits/design/pairQC/metrics/assignments/RNG and absent excluded stages
+PASS container selected source/archive/schema receipt
+PASS prepared project source/config/runtime/backing identity; unchanged resume admitted
+Launching source-pinned scientific workflow; execution report and scientific HTML are separate outputs.
+Nextflow 26.10.3 is available - Please consider updating your version to it
+N E X T F L O W  ~  version 25.10.4
+Launching `/Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-parity/main.nf` [shrivelled_engelbart] DSL2 - revision: f734343ee4
+Selected profiles: test,docker; scientific execution mode: distributed.
+The default task executor is local. Distributed mode partitions scientific work; scheduler selection comes from profiles/site configuration. Verify executor overrides before running on a cluster login node (docs/hpc.md, docs/recovery.md).
+[ba/aa5e87] Submitted process > SCEPTRE:SCEPTRE_VALIDATE (screen:validate)
+[aa/b3327e] Cached process > SCEPTRE:PARAMETERS (screen:parameters)
+[4a/7d113e] Cached process > SCEPTRE:ASSIGNMENT (screen:assignment)
+[13/88323e] Cached process > SCEPTRE:QC (screen:qc)
+[59/ee14e6] Cached process > SCEPTRE:DISCOVERY:SCEPTRE_PREPARE (screen:discovery:prepare)
+[39/ad5e50] Cached process > SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000001)
+[37/65679d] Cached process > SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000002)
+[e6/98c876] Cached process > SCEPTRE:DISCOVERY:SCEPTRE_COLLECT (screen:discovery:collect)
+[d7/35b4c0] Cached process > SCEPTRE:SCEPTRE_EXPORT (screen:export)
+PASS one-command rawJSON nativeHDF5 CRT launcher/directR comparison and unchanged resume; no host R dependency
+PASS one-command launcher source/settings guards reject before scientific submission

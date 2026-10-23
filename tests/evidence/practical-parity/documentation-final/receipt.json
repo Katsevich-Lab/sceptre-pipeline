@@ -1,0 +1,56 @@
+{
+  "kind": "sceptre-pipeline-documentation-render",
+  "schema": 1,
+  "git_head": "6d824e915a44d79e539210b8000c5df15914701d",
+  "result": "PASS",
+  "html_pages": 31,
+  "local_references": 2383,
+  "commands": [
+    "python3 website/build.py",
+    "python3 website/build.py --check"
+  ],
+  "source_sha256": {
+    "website/build.py": "36207a878610a5d14d5ed655eba76ff4cb2eb59fcd563989bf8f70ebeb0fcb5b",
+    "website/_quarto.yml": "6b0a9d4572449a2c47d93af4565701d17bcc956684a71d049c64bacb46733b36",
+    "nextflow_schema.json": "fd20563e2a9cb6c42bc7fcb52db9472c8018738d5bacd0fad9c4e2d7feb6030b"
+  },
+  "rendered_html_sha256": {
+    "architecture.html": "9e53af7c9557f678ab67bce0836e6ac87be84d2c5adeb4e406fcee83975b269a",
+    "array-validation.html": "9fe0c1f93c1bf82498dd6535e043dd4c502f8ec3130a5890a5b3ef8b057488f6",
+    "benchmark.html": "d6961dc513caeeaab2b8820029a24114376dd7a6130abb69dd8664456c623b39",
+    "ci.html": "67aefd709fdcbef7f44952564f0f24382481063a687d4bd3336543efadb0f4c8",
+    "container-payload.html": "bc54853538fb9b35cd9ce1bac895168154c0908b28667bbd3c573f5d2ec06d5d",
+    "container-publication.html": "1bad039976a25adae6be6a637545ef4156dea672509db0620ea4a62d676df5d0",
+    "containers.html": "84bbbd4e4677cc36428b2a0b92a02f60a099ac7ce194c923688d99f74e920ee7",
+    "coverage.html": "1ab28357244a2ab2b32a06eb4e79413091a8795bbc74eb02af21e64ade717f3f",
+    "demo.html": "c23d19f9b54b9c60e2b1163e290ad931f8f9f74c20cb3a810f04f0a7d92b46bf",
+    "distributed-interface.html": "94ad18873bd6112ac2ef9c830eb26444bcd8d4f56091c2c0efe10431feeaf43c",
+    "hpc.html": "59fa2ecbe2e4ef03822b17391435ed76163318a98e93e2cba55ba952359daab2",
+    "index.html": "b289d141640c52c4c7fb30c22a05faf12fbc80802ad452cea7ec26bf921b0f44",
+    "nf-core-conformance.html": "084090b703657033d85f37e404b58ae23bc49a71bddf14b613e48a2dd1ccf4ac",
+    "nf-core.html": "3fd27d00e8ebddc52d950aa27b2bce3ce4915c13c0fe28c3cc3ca46bd6a02ad6",
+    "outputs.html": "239a84f87afeb542682e3228e5c949b2c0e581740b07a906c2ff56755bea62c8",
+    "parameters.html": "88f2e6d2284eaa59da2c66f11451fb9529ffd3bde9c9dff562bac39eae2d10db",
+    "parity-acceptance.html": "1672265ffe81cac65221916a18238cb703206d710ea34c96d5151ba4ce49a850",
+    "practical-parity.html": "76f32b4647b4933850497d2e8c791ee1cb4c690e36bd207e55c11c1abbdbfde8",
+    "recovery.html": "5a720a8c8fd6a1f95ba8430fd6aaf59390f3851be9247a274b7349207ca9ec4c",
+    "report.html": "25d1688ada15d7ef9f6d09ec12fe5e33aad340fadb00724c53e2d73ab979a784",
+    "scale-boundaries.html": "87100c5c8e243fb2fc98adfd58f886b2fcc64b586bd8b12e3aba168a6363aebe",
+    "scientific-delivery.html": "7c1c33c90f6399807aa2d2533ff442c4b4ed5a5e8ce9dfb59ccb5e2e6f4c3978",
+    "sources/REVIEW.html": "2be2c234e6a3587354ca81e27c13fb4c7a86847681ef5da3f89b51ace43e77a0",
+    "sources/benchmark/scale/readme-source.html": "2cd192c2b23959ffa5dcd9c9c3cd3162fbffcae42bf72e1da930a9d7dd054a7a",
+    "sources/tests/array-smoke/readme-source.html": "f13daa779fbbb0cc8cc8af00c52933e5e7815e49ff5d8c6262a79266e38522b7",
+    "sources/tests/evidence/nf-core-conformance/caller-owned-docker/readme-source.html": "608f60c18f43533df6547313aadf36a673de6afec7ae03aca3127300eaee6d81",
+    "sources/tests/evidence/nf-core-conformance/config-closure/readme-source.html": "1fb7073f4e499ac032c5d2e3fce42083e72f160487e42cfe3d911ead80afcec6",
+    "sources/tests/evidence/nf-core-conformance/container-payload-audit/readme-source.html": "6b79934efac9f2dec23583d17e0c2662c044117d998d6f5779fbcf5575bc637d",
+    "sources/tests/evidence/nf-core-conformance/readme-source.html": "a920f234481801f59fa286f48c12973ca479e324e2244c136a84d6bf1f2d1eb1",
+    "usage.html": "7279e34ddcb270ac60245ea53c66dcc98f097242f7fe932e9892bbaee1786770",
+    "validation.html": "c241c3b08a5f23b970efcf5c665d9bfb2f8d75280fe4a8c65074535798adf266"
+  },
+  "evidence_sha256": {
+    "build.log": "733a6cd0fc3365ef985f7eea4829f566775dcf01417535a47fff896e8ba31e6a",
+    "check.log": "a9fba89ecaaf1e30bb01a45a71bb52eac40f6a88a7cad03d12837ba7867f6db3",
+    "build-manifest.json": "1b277d68bc257a183cdd71fb251a861993470cb82e257efc84e4702b197b373e"
+  },
+  "scope": "Final pre-publication source documentation, payload note and reconciled terminal historical qualification; archival visual preview is distinct from actual workflow download bundles. Link/source freshness checks, not a new scientific or browser visual qualification."
+}

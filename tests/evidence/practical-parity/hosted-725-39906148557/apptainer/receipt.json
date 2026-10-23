@@ -1,0 +1,367 @@
+{
+  "kind": "caller-owned-source-positive-Apptainer-qualification",
+  "schema": 1,
+  "head": "725078e3ea6c47154306b0e5d1a609a5d031783a",
+  "production_sha256": "985222799734e4a8a61473ade0753af9e06c450587f67623440ee447a723c61c",
+  "qualification_sha256": "882aebff4587e4bfbdfa20ddcfa9fcebaa838089192d37cfcf6d67185b0bbf35",
+  "archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "run_id": 39906148557,
+  "job": "apptainer",
+  "job_result": "success",
+  "workflow_result": "in_progress_at_capture",
+  "artifact_id": 12482120314,
+  "artifact_zip_sha256": "4b10a725ea16af3efb9014d54d8e89dd5a63d576e81aa61f33284d7c43c4347c",
+  "sif_recorded_sha256": "537ff456a048028f1fff250737aea44b0d52bf535bfebd3abe05a08dc5813cde",
+  "source_maps_before_after_identical": true,
+  "actual_isolated_command_count": 27,
+  "runtime": {
+    "Apptainer": "1.5.5",
+    "Nextflow": "25.10.4",
+    "JVM": "EclipseAdoptium17.0.10+7"
+  },
+  "cache_counts": {
+    "checkpoint": {
+      "CACHED": 5,
+      "COMPLETED": 1
+    },
+    "launcher": {
+      "CACHED": 8,
+      "COMPLETED": 1
+    }
+  },
+  "scope": "Actual bounded nativeHDF5/publicR all-family results/fits/design/QC/assignments/plans/RNG, powercheckpoint/reopening, resolvedsettings, stale/source/settings/family guards and same-runtime rawlauncher. NativeLinux caller-owned UID/GID1001 raw/prepared/work/results write/edit/delete passed.",
+  "limits": "HostedUbuntu local executor. No HPC/fullscreen/performance/registry claim. SIF bytes are not uploaded; hash is runner output. Selected raw diagnostics preserved below; full source artifact has additional synthetic outputs.",
+  "independent_readback": "Root independently verified actualZIPdigest,42source-file maps and currentfile digests, all27isolation wrappers, rawscience/launcher/log/trace/callerownership/runtime receipts.",
+  "artifacts": {
+    "raw/sif-build.log.gz": {
+      "sha256": "12f69161139978b0b1fd1187aab9183907e0fdfb703601d8d3d329a70c5b92af",
+      "bytes": 158,
+      "original_sha256": "ec202ccdd797691c29c7a0567d399d1d5c8676575cd6fe8ed87782a3716c9f32",
+      "original_bytes": 228
+    },
+    "raw/host-engine.json": {
+      "sha256": "5c4cb955fe6ee5940a32562a7e48c542059581137d93e4192d86641c52688275",
+      "bytes": 558,
+      "original_sha256": "5c4cb955fe6ee5940a32562a7e48c542059581137d93e4192d86641c52688275",
+      "original_bytes": 558
+    },
+    "raw/sif-sha256.txt.gz": {
+      "sha256": "b9008a49c564921055e6f26ce4abb1a81ec7681527281138bbb47e25cecb4885",
+      "bytes": 109,
+      "original_sha256": "924cb9bf4d26f71b2636b59f86ab66de47e4db0ee805344743b707e00497cdfa",
+      "original_bytes": 102
+    },
+    "raw/sif-context-receipt.json": {
+      "sha256": "09f467aa973fa8e8afa495ef041f1af37d6808fe51135f20354dfd5820fc6000",
+      "bytes": 591,
+      "original_sha256": "09f467aa973fa8e8afa495ef041f1af37d6808fe51135f20354dfd5820fc6000",
+      "original_bytes": 591
+    },
+    "raw/apptainer-parity.log.gz": {
+      "sha256": "703548cf0be3687521cb5d72b2ecc723df303e7f5ccb89912b94a6d3d7e37903",
+      "bytes": 1659,
+      "original_sha256": "8c991f3fb4b89506c41fc12703283796d195a1c527a23655efa810090966dcf5",
+      "original_bytes": 6648
+    },
+    "raw/host-engine.nextflow.txt.gz": {
+      "sha256": "fc731366f577b0b354a89a7669c48c73fb88989b9a76a62a267c2f04eee132f7",
+      "bytes": 141,
+      "original_sha256": "79a35e33aeb0804a168cc40eac516568f09c0ebfb4e1a43acd089b3f89b198cd",
+      "original_bytes": 151
+    },
+    "raw/host-engine.java.txt.gz": {
+      "sha256": "6ce3ca61edbbcf1c1b69ca63381de1244c61880e942900abf3a6d924fee60966",
+      "bytes": 756,
+      "original_sha256": "0100fbfb5407074b1045769752e0af1b26d6bb31252028cc14ce36506a139feb",
+      "original_bytes": 2015
+    },
+    "raw/apptainer-buildcfg.txt.gz": {
+      "sha256": "2d2e79aa76f122be610624ee9e00905fd1a1dc6710d0757e876b178a767e07b0",
+      "bytes": 313,
+      "original_sha256": "e8dd546da5ea4b714951c23e57ac520b94549fec23a48b6143b14f0a29833f8e",
+      "original_bytes": 631
+    },
+    "raw/apptainer-version.txt.gz": {
+      "sha256": "cacc8da9911fd49a4d6eb5f11a30d70afb8396c746ee7bd978c1d069ed6b31c6",
+      "bytes": 26,
+      "original_sha256": "04c93b7e7635a43d0cb6d097f9af0a72a9973041d11847e521cc682f1668c605",
+      "original_bytes": 6
+    },
+    "raw/sif-docker-inspect.json": {
+      "sha256": "92569184cabc132b91f36bc28a620ea1d7b337a4f8debaf4acf4f749efe1f924",
+      "bytes": 4952,
+      "original_sha256": "92569184cabc132b91f36bc28a620ea1d7b337a4f8debaf4acf4f749efe1f924",
+      "original_bytes": 4952
+    },
+    "raw/sif-inspect.json": {
+      "sha256": "77194987152bfffd5533be2b7d52a6f98ae0928e6bb93f79a2c46306c0edfd5c",
+      "bytes": 1215,
+      "original_sha256": "77194987152bfffd5533be2b7d52a6f98ae0928e6bb93f79a2c46306c0edfd5c",
+      "original_bytes": 1215
+    },
+    "raw/apptainer-launcher.log.gz": {
+      "sha256": "016c9b88f9ba8ae32bdfefe2fbffdb9c1e5b77341f445f5a8b47a8c8a1fe58a4",
+      "bytes": 1328,
+      "original_sha256": "ec89d66c19a30c95f13baaaab9fc31c96f3007b66803359dcfd0a1255fe77f1d",
+      "original_bytes": 4145
+    },
+    "raw/sif-docker-build.log.gz": {
+      "sha256": "c8ff50189e441f30a85ed5d26b091ac68618836465e1fd2a6c25eac21ee67d6c",
+      "bytes": 83024,
+      "original_sha256": "67c4cc21a1f53f44f44fd632b511c92995cacbef3da89e14db079f832278132b",
+      "original_bytes": 2134844
+    },
+    "raw/apptainer-parity/source-before.json": {
+      "sha256": "175c107fe3d387cfe1db748c8051bd5956103b90ad921ad317c7a82afb8d8910",
+      "bytes": 4085,
+      "original_sha256": "175c107fe3d387cfe1db748c8051bd5956103b90ad921ad317c7a82afb8d8910",
+      "original_bytes": 4085
+    },
+    "raw/apptainer-parity/source-after.json": {
+      "sha256": "175c107fe3d387cfe1db748c8051bd5956103b90ad921ad317c7a82afb8d8910",
+      "bytes": 4085,
+      "original_sha256": "175c107fe3d387cfe1db748c8051bd5956103b90ad921ad317c7a82afb8d8910",
+      "original_bytes": 4085
+    },
+    "raw/apptainer-parity/full/resolved_settings.json": {
+      "sha256": "ed183866c41e5675908570488671f8cd22fc1c9a08ec0e4b1624d8f86612ed53",
+      "bytes": 4151,
+      "original_sha256": "ed183866c41e5675908570488671f8cd22fc1c9a08ec0e4b1624d8f86612ed53",
+      "original_bytes": 4151
+    },
+    "raw/apptainer-parity/full/pipeline_info/trace.tsv.gz": {
+      "sha256": "0142f90b078d0f63f157577d010006ebd4930ff9827ff520dccfa94184042f92",
+      "bytes": 994,
+      "original_sha256": "fafbc60ecfc305e6bcdae8a55c0d779d7d6a13603ca31a3676d40d1b9f92e8cc",
+      "original_bytes": 2918
+    },
+    "raw/apptainer-parity/rejected-completed-family/pipeline_info/trace.tsv.gz": {
+      "sha256": "3e55627712272a037954fe66f28a4dff75667e468e468877f68a728e39250a3e",
+      "bytes": 193,
+      "original_sha256": "b63717f3e97e01f5572fa783a374c4686edc8bc108bccff981eb5743bc2ff08e",
+      "original_bytes": 215
+    },
+    "raw/apptainer-parity/rejected-wrong-stage/pipeline_info/trace.tsv.gz": {
+      "sha256": "18494961bb233805c74ffe101ca3dd01c1e32403a079680aaf5e6f632622df18",
+      "bytes": 195,
+      "original_sha256": "a778273c8963f735630fabbeeca3ac85abdc3b487a3d2d9457adf0c7aee20449",
+      "original_bytes": 215
+    },
+    "raw/apptainer-parity/continued/resolved_settings.json": {
+      "sha256": "4cc414af5100bd20558099495b5de2e59cfa383d74aafe38e6ef67eaa033d397",
+      "bytes": 4125,
+      "original_sha256": "4cc414af5100bd20558099495b5de2e59cfa383d74aafe38e6ef67eaa033d397",
+      "original_bytes": 4125
+    },
+    "raw/apptainer-parity/continued/pipeline_info/trace.tsv.gz": {
+      "sha256": "7f171d7e77d6a0e3187050dc376c046d5cc50f1f932630791273ebf8e496f0c3",
+      "bytes": 492,
+      "original_sha256": "dd402001a247c5d84f2a8a8aaf27b0179e0e33fa15dfaf65ec4531cb120f40b2",
+      "original_bytes": 1023
+    },
+    "raw/apptainer-parity/work/9b/84f57f00d17f8b1436103ca0845c4e/.command.run.gz": {
+      "sha256": "037e3b06ed33044cc22a8406bdd18974b959c885b01846224ab58af6b06ef725",
+      "bytes": 3428,
+      "original_sha256": "c23f55617ae40e1decf399e76b43ea31e9765b53b1671dc068cc5d386181456b",
+      "original_bytes": 11102
+    },
+    "raw/apptainer-parity/work/51/1c550deb5ba60930edae5d9abef3aa/.command.run.gz": {
+      "sha256": "0951b486b9d745b2610c86f65cd20970ab83ebc0b849f62ac631fbfe518d7b4f",
+      "bytes": 3421,
+      "original_sha256": "b9461c819e49fa9e9730411098c19b82dc1b39a1343f410e027eeadb8be12660",
+      "original_bytes": 11094
+    },
+    "raw/apptainer-parity/work/34/153afe724ca950dae3b68c17b6d926/.command.run.gz": {
+      "sha256": "87cde0ab42058d2da265f83d89213d976ad851bdc3ea444b81422e70ecea3fef",
+      "bytes": 3517,
+      "original_sha256": "22793d4c7cb925fd935029d902e4e672afd444e988197cf8c2e28c923c056da8",
+      "original_bytes": 11506
+    },
+    "raw/apptainer-parity/work/ac/51178f1b67fcaf2a1b50cb7a6c1e7d/.command.run.gz": {
+      "sha256": "f110faa3f26c08a12f7f25ef866ccc19e5ae0590ef91efaeeb498bb9f35c169e",
+      "bytes": 3356,
+      "original_sha256": "105656b427ed87eb4ab7e8ac2c4d989a06eb0205a60e5e05da1893ab5f53a55c",
+      "original_bytes": 10928
+    },
+    "raw/apptainer-parity/work/ae/516036f821fcc87cdfd9c6f1dab8e1/.command.run.gz": {
+      "sha256": "3b4da7b3bb5f78337cf13e61737335a1ba2679d435ade2b892ff4a57f6e7bd4a",
+      "bytes": 3343,
+      "original_sha256": "713900b81595d3344e05f18840c695a5a1f12631839b0310b134d496578aa43a",
+      "original_bytes": 10912
+    },
+    "raw/apptainer-parity/work/ca/7dab129cde297ea31593411a241358/.command.run.gz": {
+      "sha256": "99190af1ed5472e8de8a227567b1e7aeac71ca79191f9bef461df420d68ae19d",
+      "bytes": 3430,
+      "original_sha256": "824d8fd0a6fcb97484d5fcafec6b10cc432c19211927cbbaa2d74e31a43ab931",
+      "original_bytes": 11106
+    },
+    "raw/apptainer-parity/work/16/82d009be5478628696af28336cdd24/.command.run.gz": {
+      "sha256": "db7edca98d5d0d91144c6ab145662597f5356f3b6b168539078086cbafe3238e",
+      "bytes": 3344,
+      "original_sha256": "4dac9a385279e28525051cce771959df464ee00d0b316fc1d43bed8c48f19d51",
+      "original_bytes": 10909
+    },
+    "raw/apptainer-parity/work/1f/e0ea20a33716849043e31ec360f29b/.command.run.gz": {
+      "sha256": "a85fb491f5c4a4983dc9588cee11e2bd2a958c621b4b61b1efb7fd30f7104dc3",
+      "bytes": 3567,
+      "original_sha256": "35a595ba5bcaa3f670ac6d507a03700f80b405833a12048492b07314edd6f425",
+      "original_bytes": 11735
+    },
+    "raw/apptainer-parity/work/21/03285f98b1a8a61f2a75b568b675e4/.command.run.gz": {
+      "sha256": "89b5f3bfa6078233743a38ed9f13d77cc8317b2c86b3f9bdd34cba9ea83f4fd5",
+      "bytes": 3526,
+      "original_sha256": "35517c6fe335873be873c90403bf732404387674fc7b419d0b533560a187f83b",
+      "original_bytes": 11514
+    },
+    "raw/apptainer-parity/work/9f/2c8d6d8acd72c723c5d44f1a1e1751/.command.run.gz": {
+      "sha256": "3a199c514fbca5dd728bdad92dddd3fb1f048d159f93d4c4e2aeaa81195ad5b0",
+      "bytes": 3388,
+      "original_sha256": "373fc05b6b86f67e4aa9fba667a48661a7f6b1ac4ee773cbeec83bbf59b3d850",
+      "original_bytes": 10985
+    },
+    "raw/apptainer-parity/work/9a/071d96973fae441d5941a7c6ffb7c7/.command.run.gz": {
+      "sha256": "8a43231e68291d3f6a391d0b2c6f5634108cb32761bb8b99be4a9cd06c635eb3",
+      "bytes": 3381,
+      "original_sha256": "bde1498ad6b6e2ab39fe1af55b8f303ba18a0d714ca6de238e9669b65d3fdd6c",
+      "original_bytes": 10977
+    },
+    "raw/apptainer-parity/work/01/66c74858ae37801d84e1ee1b6b3b34/.command.run.gz": {
+      "sha256": "66e3f2985f1ec49a77d5edf31e2555cc490925feedd170424b43ef2ce26d4ee2",
+      "bytes": 3431,
+      "original_sha256": "ef9d332e3d2872d7db899dc998b6985353886c6cb4877555063e2fcea48f9b01",
+      "original_bytes": 11106
+    },
+    "raw/apptainer-parity/work/99/650e6321da23d1f4c0c6ac60547751/.command.run.gz": {
+      "sha256": "f9a11e26228eaf84aabed08abb7069de5dccfdbd02e6f88e1652f70cdbc1b166",
+      "bytes": 3957,
+      "original_sha256": "edae441d74354d9df449973e3ddd4f5e8dcec4e1537c2762596b34c6554b55e4",
+      "original_bytes": 17477
+    },
+    "raw/apptainer-parity/work/a0/44df283e4064202404cfa13f5e7aa6/.command.run.gz": {
+      "sha256": "57280e5cdc726366a6f53810e7689cb9b6a1e83453d46ee58f5633ce6abb036f",
+      "bytes": 3328,
+      "original_sha256": "827eb4ca93d4601b32a8e70e905827e5c2277c552b689666dfa3f0f2c9b75e0f",
+      "original_bytes": 10898
+    },
+    "raw/apptainer-parity/work/a1/01fb591941c387b9f805db58002c85/.command.run.gz": {
+      "sha256": "94ca1e1e2c25346d7111d79e965e8791c8a327a03ebc082b3a562cb794e53433",
+      "bytes": 3422,
+      "original_sha256": "b5e77d5640378868fc34402dae1b2dd93bc2360f1e3504be4008cdb2f812808b",
+      "original_bytes": 11094
+    },
+    "raw/apptainer-parity/work/c3/e21c55f6f75a743d4f5081985264fa/.command.run.gz": {
+      "sha256": "e479e481c488ca5ec33ff774e1183490ccdbe11e05070463ac11d9338ad32002",
+      "bytes": 3390,
+      "original_sha256": "720ac3c6801845d54b58b42193b7641d7ade7a3649de927183aecce742b0b757",
+      "original_bytes": 10989
+    },
+    "raw/apptainer-parity/work/f1/1375319af2d2fe8e98a0c4a4b20cd7/.command.run.gz": {
+      "sha256": "cda8e911a8b688ca886360fe03ef4e20d3d261ea5f05998c8865a77a2dee52ff",
+      "bytes": 3430,
+      "original_sha256": "bda0f15075addebc834259063d0965ec6e5953d99496fda7236b1a14c48824cc",
+      "original_bytes": 11106
+    },
+    "raw/apptainer-parity/work/2c/1c25991153dfcb8b8c21ba449a1d5e/.command.run.gz": {
+      "sha256": "348261322d5e318b3392e5997c8d1bd23c94c4d9d086569d7599a2e1c93f84a2",
+      "bytes": 3428,
+      "original_sha256": "38b1b97719f4f874b6d4513cce6f111337f3d5d2852b1587bd6f3e5a69958c1c",
+      "original_bytes": 11102
+    },
+    "raw/apptainer-parity/continued-work/9b/5b9289fe4446bd07d025a630089423/.command.run.gz": {
+      "sha256": "4f636bdacabea5e94d061f3d2dc6f75d79751e08c18469b7b03a94f443f4e97e",
+      "bytes": 3350,
+      "original_sha256": "a203b6f2439119ccbb3481fb2dc08e9013837ccd91f200be63de54c2cc30d22d",
+      "original_bytes": 10969
+    },
+    "raw/apptainer-parity/continued-work/fb/b4430978b9e7859f0cadca57b3987b/.command.run.gz": {
+      "sha256": "568672b86085528326064f6831a324ed0e9a51c1eefb033a0ea95f043013461e",
+      "bytes": 3972,
+      "original_sha256": "9b9cfe50a087c2e561464dbcb17a5782f06b28d8132bd1367e6c04123bbe332a",
+      "original_bytes": 17529
+    },
+    "raw/apptainer-parity/continued-work/1a/c2057420868a4370a7c8469afa97c0/.command.run.gz": {
+      "sha256": "6c029f4d0da97024671dd0b83fdc11675af6e8f52e3fc101eee76e69c73d0f8f",
+      "bytes": 3416,
+      "original_sha256": "5d055d14bb6ab182c3732174ea427f9be173b5f2a403a74b1525287283be79e2",
+      "original_bytes": 11134
+    },
+    "raw/apptainer-parity/continued-work/fa/4660d168533b9a80e27d0395006553/.command.run.gz": {
+      "sha256": "da335e996b19e5d2d90e29d72d71ab0ec2592aa4d927ddd5c0ec18d352ef47ea",
+      "bytes": 3963,
+      "original_sha256": "89c0af41d868133bdc904e1a6f0c125f5c23e7c7506541fab66b62965b7567e1",
+      "original_bytes": 17516
+    },
+    "raw/apptainer-parity/continued-work/f1/5b814d2d1050b34d9c9f9dee2c8cee/.command.run.gz": {
+      "sha256": "7a93096cf87de9b456cc8a17eda7f3c44e14d04ead3cc0e5fdb24e9bf80348bb",
+      "bytes": 3512,
+      "original_sha256": "5d547767aecf8abb73ed9aa9977680e86ad714d91420b7b3a168e49efa8bf41a",
+      "original_bytes": 11566
+    },
+    "raw/apptainer-parity/continued-work/71/4643a1d4086dfd6f60fad25977f02d/.command.run.gz": {
+      "sha256": "774368b3e22df0996554e012b7fa56d4053f305c9266e02e44eaba65f30a9ce7",
+      "bytes": 3416,
+      "original_sha256": "62b3c8abdb935e12b6de43d62deb4f646d9ee44de9bef8b101f9c035c0edc1a1",
+      "original_bytes": 11134
+    },
+    "raw/apptainer-parity/continued-work/49/0507816c9c76f9989e4579e07e29c4/.command.run.gz": {
+      "sha256": "c8c1aaea9bca96175836f9f2ade3273c48185f2c8013cf3551da3e65706211d8",
+      "bytes": 3374,
+      "original_sha256": "9b7f68368ab7e346b32eccb5d9813fab0a1b5010268490b75338e694d769cdac",
+      "original_bytes": 11007
+    },
+    "raw/apptainer-parity/rejected-completed-family-work/22/0d617937103d64f0d8eb9729dcc9a0/.command.run.gz": {
+      "sha256": "409e4ebbf900a674ef2b3397de6a3fac36fa63118522ab90ca2697d0923247b1",
+      "bytes": 3981,
+      "original_sha256": "0b378ad88a0843ce450f0c36f363ad6350b34b93d16221c4a5d5ca451f7f13ea",
+      "original_bytes": 17609
+    },
+    "raw/apptainer-parity/rejected-wrong-stage-work/f3/ac2dc25be7590955ff2d1c3635443d/.command.run.gz": {
+      "sha256": "5397c6a22a70475cb90cd954cf86bf437a2483e9ca7eca222c0b988bb8530dc3",
+      "bytes": 3977,
+      "original_sha256": "e460e06ec3e5b588b794e3e732e3bb7d1ecd5879fd5604bd400d8419b2b4645d",
+      "original_bytes": 17584
+    },
+    "raw/apptainer-launcher/caller-ownership.json": {
+      "sha256": "9e1e0165b7f27d33eceec4ed081ba571b9e9c0c79fa697b9d0b93abd3d91f72e",
+      "bytes": 803,
+      "original_sha256": "9e1e0165b7f27d33eceec4ed081ba571b9e9c0c79fa697b9d0b93abd3d91f72e",
+      "original_bytes": 803
+    },
+    "raw/apptainer-launcher/rejected-params-seed.log.gz": {
+      "sha256": "6032452dd9901314f45feb9187792880c15169088badfb9131dc52cb8df9f7fe",
+      "bytes": 198,
+      "original_sha256": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+      "original_bytes": 250
+    },
+    "raw/apptainer-launcher/rejected-settings.log.gz": {
+      "sha256": "9e519f7aa98d9d29123567b392f263aecfabc5ee31d9c3c5c9e71dc95a438cf5",
+      "bytes": 277,
+      "original_sha256": "76ba55c94c9268ac285e7589ad481a68c1353b212a1db00d9a63c90863fce007",
+      "original_bytes": 505
+    },
+    "raw/apptainer-launcher/rejected-source.log.gz": {
+      "sha256": "c01ccb2b93f861f8196f848550a6b7891c8c3b8893db70db630242d9e52c7619",
+      "bytes": 195,
+      "original_sha256": "caa3ad622a5f1c32b78103b95154231a71a47889b7402ea1681a8c88f4480c46",
+      "original_bytes": 246
+    },
+    "raw/apptainer-launcher/rejected-params-input_bundle.log.gz": {
+      "sha256": "6032452dd9901314f45feb9187792880c15169088badfb9131dc52cb8df9f7fe",
+      "bytes": 198,
+      "original_sha256": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+      "original_bytes": 250
+    },
+    "raw/apptainer-launcher/rejected-params-analyses.log.gz": {
+      "sha256": "6032452dd9901314f45feb9187792880c15169088badfb9131dc52cb8df9f7fe",
+      "bytes": 198,
+      "original_sha256": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+      "original_bytes": 250
+    },
+    "raw/apptainer-launcher/run/results/pipeline_info/trace.tsv.gz": {
+      "sha256": "82c12276ae4f054f1d55060b3da5d728119c2dc21c789269748798d3687f6ddd",
+      "bytes": 664,
+      "original_sha256": "84da4e2e2f9e006ee828176d23ad434e47c8600f1cee863bbcd2661f56c613dc",
+      "original_bytes": 1434
+    }
+  }
+}

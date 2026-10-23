@@ -1,0 +1,18 @@
+test_changed_source_or_wrong_package (test_review_image.LocalTests) ... ok
+test_corrupt_archive (test_review_image.LocalTests) ... ok
+test_exact_archive_and_loaded_identity (test_review_image.LocalTests) ... ok
+test_receipt_source_image_attempt_helper_and_gate_mutations (test_review_image.LocalTests) ... ok
+test_unapproved_checksum_path (test_review_image.LocalTests) ... ok
+test_wrong_loaded_id_platform_or_labels (test_review_image.LocalTests) ... ok
+test_wrong_runtime_or_scientific_source (test_review_image.LocalTests) ... ok
+test_exact_successful_origin (test_review_image.OriginTests) ... ok
+test_incomplete_failed_duplicate_or_skipped_build (test_review_image.OriginTests) ... ok
+test_input_validation_and_injection_rejection (test_review_image.OriginTests) ... ok
+test_wrong_expired_empty_attempt_digest_or_membership (test_review_image.OriginTests) ... ok
+test_wrong_registered_workflow (test_review_image.OriginTests) ... ok
+test_wrong_run_workflow_source_repository_or_status (test_review_image.OriginTests) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.037s
+
+OK

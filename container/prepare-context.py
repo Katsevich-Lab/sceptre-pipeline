@@ -99,6 +99,8 @@ if a.runtime_profile == "current":
     dockerfile = out / "Dockerfile"
     text = dockerfile.read_text()
     replacements = {
+        'org.opencontainers.image.base.name="rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa"': 'org.opencontainers.image.base.name="' + runtime["base"] + '"',
+        'org.opencontainers.image.base.digest="sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa"': 'org.opencontainers.image.base.digest="' + runtime["base"].split("@", 1)[1] + '"',
         "FROM rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa": "FROM " + runtime["base"],
         "ARG CRAN_SNAPSHOT=https://packagemanager.posit.co/cran/2025-11-15": "ARG CRAN_SNAPSHOT=" + runtime["cran_snapshot"],
         "ARG BIOCONDUCTOR_VERSION=3.22": "ARG BIOCONDUCTOR_VERSION=" + runtime["bioconductor_version"],

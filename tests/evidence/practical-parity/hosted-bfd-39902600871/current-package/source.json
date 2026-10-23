@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "source_resolution": "frozen_archive_receipt",
+  "archive_kind": "R_CMD_build",
+  "sceptre_commit": "1e4d5459ab229255694f9217d7cd4ed51a4bf1b8",
+  "sceptre_archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "object_schema": 7,
+  "storage": "SingleCellExperiment/native_HDF5",
+  "bioconductor_version": "3.23",
+  "cran_snapshot": "https://packagemanager.posit.co/cran/2026-10-01",
+  "base": "rocker/r-ver:4.6.1@sha256:bafb3b9a72791eeeb810f0bc0472e74c7f4939b20b46c96cb7ebc6838b6a25ef"
+}

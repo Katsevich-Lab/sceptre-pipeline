@@ -1,0 +1,21 @@
+
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\ 
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 4.2.0 - https://nf-co.re
+
+
+
+WARNING  No subworkflows from https://github.com/nf-core/modules.git installed  
+         in pipeline.                                                           
+INFO     Linting pipeline: '.'                                                  
+
+
+LINT RESULTS SUMMARY
+[✔]  42 Tests Passed
+[!]   0 Test Warnings
+[✗]   0 Tests Failed

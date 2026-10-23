@@ -1,0 +1,8 @@
+usage: sceptre-pipeline [-h] --data-root DATA_ROOT --input-json INPUT_JSON
+                        --analysis-json ANALYSIS_JSON --run-dir RUN_DIR
+                        --container-image CONTAINER_IMAGE
+                        [--container-image-sha256 CONTAINER_IMAGE_SHA256]
+                        [--engine {docker,apptainer}] [--profiles PROFILES]
+                        [--resume]
+                        ...
+sceptre-pipeline: error: Launcher source/settings/image differ; create a fresh run-dir

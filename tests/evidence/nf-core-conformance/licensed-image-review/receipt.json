@@ -1,0 +1,171 @@
+{
+  "kind": "sceptre-pipeline-corrected-license-image-and-saved-byte-admission",
+  "status": "PASS",
+  "image_source_sha": "f59434dccc8bfe2eed2b087d49fb72f21944607a",
+  "image_source_commits": [
+    "f0e11f54c68d8860b51c8f18a24d1a815a031c83",
+    "f59434dccc8bfe2eed2b087d49fb72f21944607a"
+  ],
+  "admission_source_sha": "0dcb2ea32d13a0c316d6bfd169d11ba01223deda",
+  "producer_run_id": 39908971415,
+  "admission_run_id": 39911817811,
+  "reviewed_image_artifact_id": 12483325753,
+  "reviewed_image_artifact_bytes": 611265493,
+  "reviewed_image_artifact_zip_sha256": "a3aba8d1238caf3c06c97e0370e335ed67b4f296644f443acaf19d9efccfa8ad",
+  "reviewed_image_artifact_expires_at": "2026-11-06T06:27:47Z",
+  "saved_image_archive_sha256": "9ebecf49d5576d52077035ad72d7e7128a62d1fd72bdb821eceba599f5e3e403",
+  "image_id": "sha256:36979a6a70b182e27e2e6918f54cfd8482821291fe5b007aed7b481855c771ae",
+  "platform": "linux/amd64",
+  "project_oci_license": "GPL-3.0-only",
+  "base_name": "rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa",
+  "base_digest": "sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa",
+  "production_sha256": "985222799734e4a8a61473ade0753af9e06c450587f67623440ee447a723c61c",
+  "recipe_qualification_sha256": "3106d65d0e688be31e0b7764fad690ae5fb128ac42ef2b5f5312bf7413a63780",
+  "review_helper_hashes": {
+    "review_image.py": "50965352c2560d1405c98c114f7af4fbb066d16d57ca1d53f9d8efbb6ee2edd4",
+    "test_review_image.py": "004d4c57991b8c858ce718917259940f379193c6b09658c88cb95133e80559ec"
+  },
+  "scientific_archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "engine": {
+    "kind": "sceptre-pipeline-host-engine",
+    "schema": 1,
+    "java_home": "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.10-7/x64",
+    "java_executable_sha256": "d350a50c34c209469b800d5d09502f38203db5a99e7382ae654d124ceafab8b7",
+    "java": {
+      "java.runtime.version": "17.0.10+7",
+      "java.vendor": "Eclipse Adoptium",
+      "java.version": "17.0.10"
+    },
+    "nextflow_version": "25.10.4",
+    "parser_override": null,
+    "policy": "Exact final Temurin patch/vendor and Nextflow release verified after composite setup; supported parser defaults retained."
+  },
+  "package_suite": {
+    "cases": 394,
+    "assertions": 7966,
+    "passed": 7951,
+    "failed": 0,
+    "errors": 0,
+    "warnings": 0,
+    "skipped": 15,
+    "skips": [
+      {
+        "file": "test-native-compat-reader.R",
+        "test": "compatibility reopening preserves shared 10x modality views"
+      },
+      {
+        "file": "test-native-compat-reader.R",
+        "test": "compatibility relocation retains repeated axes and rejects changed views"
+      },
+      {
+        "file": "test-native-compat-reader.R",
+        "test": "compatibility relocation retains multisample output and rejects swapped files"
+      },
+      {
+        "file": "test-native-compat-reader.R",
+        "test": "schema-three native wrapper migrates before reading relocated count views"
+      },
+      {
+        "file": "test-tenx-import-lifetimes.R",
+        "test": "failed 10x block writes release inputs before removing only owned output"
+      },
+      {
+        "file": "test-tenx-import-lifetimes.R",
+        "test": "maintained 10x writer failures remove only newly owned files"
+      },
+      {
+        "file": "test-tenx-import.R",
+        "test": "10x MTX and HDF5 imports preserve complete-library counts and covariates"
+      },
+      {
+        "file": "test-tenx-import.R",
+        "test": "single-sample compatibility and native imports preserve caller batch covariates"
+      },
+      {
+        "file": "test-tenx-import.R",
+        "test": "10x concatenation and vector aggregation preserve cell order and definitions"
+      },
+      {
+        "file": "test-tenx-import.R",
+        "test": "10x failures remove only owned output and reject fractional counts"
+      },
+      {
+        "file": "test-tenx-import.R",
+        "test": "10x barcode-free batches retain unnamed cell axes"
+      },
+      {
+        "file": "test-tenx-import.R",
+        "test": "MTX parsing retains stored zeros through the complete import"
+      },
+      {
+        "file": "test-tenx-import.R",
+        "test": "10x-backed discovery exactly matches imported in-memory discovery"
+      },
+      {
+        "file": "test-tenx-maintained-writer.R",
+        "test": "integer MTX import shares one backing and retains structural zeros"
+      },
+      {
+        "file": "test-tenx-maintained-writer.R",
+        "test": "maintained 10x writing rejects invalid source entries before normalization"
+      }
+    ]
+  },
+  "producer_source_maps_identical": true,
+  "scientific_driver_maps_identical": true,
+  "scientific_driver_files": 42,
+  "archive_origin_local_loaded_admission": "VERIFIED",
+  "publication_job": "SKIPPED",
+  "registry_published": false,
+  "static": {
+    "offline_test_methods": 15,
+    "actionlint": "1.7.12; ShellCheck unavailable/disabled",
+    "pipeline_json_pass": 154,
+    "pipeline_aggregate_pass": 196,
+    "pipeline_ignored": 38,
+    "pipeline_in_memory_fixed": 1,
+    "pipeline_warnings": 2,
+    "pipeline_failures": 0
+  },
+  "evidence_files": 173,
+  "evidence_manifest_sha256": "8926477994579fc5f48cbd24e1d3f2a977b968c61e7e4b01cd405dcd78c6b390",
+  "limits": [
+    "AMD64 bounded nativeHDF5/publicR/all-family/checkpoint/resume qualification; no full42 result implied by this image lane",
+    "GPL3 project/package label does not replace independent base/dependency licenses; source archive/installation instructions unchanged",
+    "Full611MBGitHubartifact retained; only small receipts/logs/maps copied locally; no Mac image payload/download/load attempted",
+    "No registry upload/publicvisibility/anonymouspull/merge/release/defaultbranch source admission"
+  ],
+  "package_runtime": {
+    "archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+    "source": {
+      "schema": 1,
+      "source_resolution": "frozen_archive_receipt",
+      "archive_kind": "R_CMD_build",
+      "sceptre_commit": "1e4d5459ab229255694f9217d7cd4ed51a4bf1b8",
+      "sceptre_archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+      "object_schema": 7,
+      "storage": "SingleCellExperiment/native_HDF5",
+      "bioconductor_version": "3.22",
+      "cran_snapshot": "https://packagemanager.posit.co/cran/2025-11-15",
+      "base": "rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa"
+    },
+    "package_path": "/usr/local/lib/R/site-library/sceptre",
+    "native_path": "/usr/local/lib/R/site-library/sceptre/libs/sceptre.so",
+    "native_sha256": "31036127f9ec2de911aa100d62853d541accfb360f2152276c27a326e15a24a5",
+    "R": "R version 4.5.1 (2025-06-13)",
+    "platform": "x86_64-pc-linux-gnu",
+    "HDF5Array_version": "1.38.0"
+  },
+  "runtime_context": {
+    "schema": 1,
+    "source_resolution": "frozen_archive_receipt",
+    "archive_kind": "R_CMD_build",
+    "sceptre_commit": "1e4d5459ab229255694f9217d7cd4ed51a4bf1b8",
+    "sceptre_archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+    "object_schema": 7,
+    "storage": "SingleCellExperiment/native_HDF5",
+    "bioconductor_version": "3.22",
+    "cran_snapshot": "https://packagemanager.posit.co/cran/2025-11-15",
+    "base": "rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa"
+  }
+}

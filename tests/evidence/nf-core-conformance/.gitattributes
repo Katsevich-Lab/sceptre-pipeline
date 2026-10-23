@@ -1,0 +1,14 @@
+# Preserve hash-bound raw tool/TAP/XML/JSON receipts; hand-written Markdown keeps checks.
+*.log -text -whitespace
+bounded-*/*.log -text -whitespace
+bounded-*/*.tap -text -whitespace
+bounded-*/*.xml -text -whitespace
+bounded-*/*.json -text
+*.json -text
+*.csv -text
+*.gz -text
+
+# Additional unchanged raw terminal diagnostics and test result serializations.
+*.tap -text -whitespace
+*.xml -text -whitespace
+*.txt -text -whitespace

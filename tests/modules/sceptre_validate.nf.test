@@ -1,7 +1,7 @@
 nextflow_process {
     name 'Validate certified runtime module'
-    script "modules/local/sceptre_validate/main.nf"
-    process 'SCEPTRE_VALIDATE'
+    script "modules/local/sceptrevalidate/main.nf"
+    process 'SCEPTREVALIDATE'
     tag 'module'
     test('Checks real serialized input and emits a readiness gate') {
         when {

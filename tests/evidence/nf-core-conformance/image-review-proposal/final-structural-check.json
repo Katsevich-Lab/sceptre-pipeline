@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "run_scripts_bash_n": 9,
+  "yaml": "1.2",
+  "push_scope": "dedicated branch +exact three paths; no PR event",
+  "promotion": "true manual only; existing approved artifact; no build dependency/rebuild",
+  "archive_gate": "real nativeHDF5 publicR/checkpoint/resume succeeds before archive/save/upload",
+  "workflow_sha256": "9c504e1825d8bee74ce5254ec11709bcf3737eb68dd331033a4fbd59e699050b",
+  "executed": false
+}

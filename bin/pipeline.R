@@ -147,7 +147,7 @@ validate_object <- function(object, mode = NULL) {
 }
 validate_config <- function(config) {
     if (!is.list(config) || (length(config) && is.null(names(config))) || anyDuplicated(names(config))) fail("Configuration must be a named list.")
-    unknown <- setdiff(names(config), c("analysis", "assignment", "qc", "calibration", "execution"))
+    unknown <- setdiff(names(config), c("analysis", "assignment", "qc", "calibration", "execution", "resources"))
     if (length(unknown)) fail("Unknown configuration section: ", paste(unknown, collapse = ", "))
     funcs <- list(analysis = sceptre::set_analysis_parameters, qc = sceptre::run_qc,
                   calibration = sceptre::run_calibration_check)
@@ -156,6 +156,7 @@ validate_config <- function(config) {
     allowed$assignment <- c("method", "threshold", "umi_fraction_threshold", "min_grna_n_umis_threshold",
                             "n_em_rep", "pi_guess_range", "g_pert_guess_range", "n_nonzero_cells_cutoff", "backup_threshold", "probability_threshold", "formula_object")
     allowed$execution <- "output_amount"
+    allowed$resources <- c("max_cells", "max_requested_pairs", "max_design_bytes", "max_backing_bytes", "max_source_bytes")
     for (section in names(config)) {
         x <- config[[section]]
         if (!is.list(x) || (length(x) && (is.null(names(x)) || anyDuplicated(names(x)) || any(!nzchar(names(x))))))
@@ -166,6 +167,11 @@ validate_config <- function(config) {
     if (length(config$execution$output_amount) &&
         !(length(config$execution$output_amount) == 1L && config$execution$output_amount %in% 1:3))
         fail("execution$output_amount must be 1, 2, or 3.")
+    for (name in names(config$resources)) {
+        value <- config$resources[[name]]
+        if (!is.numeric(value) || length(value) != 1L || is.na(value) || !is.finite(value) || value <= 0 || value != floor(value))
+            fail("resources$", name, " must be an explicit positive integer byte/count limit.")
+    }
     invisible(config)
 }
 # Explicit scientific scope is retained in the package spec; this manifest merely
@@ -290,12 +296,46 @@ write_completed_bundle <- function(object, m, input, output, stage, seed, identi
     m$scientific_scope <- scientific_scope(object)
     m$inference_scope <- pipeline_inference_scope(object)
     m$resolved <- list(low_moi = pipeline_low_moi(object), permutations = object@spec@run_permutations,
-                       complement = object@spec@control_group_complement,
-                       integration = object@spec@grna_integration_strategy)
+        complement = object@spec@control_group_complement, integration = object@spec@grna_integration_strategy,
+        moi = if (pipeline_low_moi(object)) "low" else "high",
+        control_group = if (object@spec@control_group_complement) "complement" else "nt_cells",
+        resampling_mechanism = if (object@spec@run_permutations) "permutations" else "crt",
+        resampling_approximation = object@spec@resampling_approximation,
+        side = c("left","both","right")[object@spec@side_code + 2L],
+        grna_integration_strategy = object@spec@grna_integration_strategy,
+        formula_object = paste(deparse(object@spec@formula_object), collapse = " "),
+        multiple_testing_alpha = object@spec@multiple_testing_alpha,
+        multiple_testing_method = object@spec@multiple_testing_method,
+        assignment_method = object@spec@grna_assignment_method,
+        assignment_hyperparameters = object@spec@grna_assignment_hyperparameters,
+        design_sha256 = hash_value(object@preparation@design_matrix))
     saveRDS(m, file.path(tmp, "manifest.rds"))
     capture.output(print(object), file = file.path(tmp, "analysis_summary.txt"))
     writeLines(c(paste("R:", R.version.string), paste("sceptre:", identity$version),
                  paste("installed_sha256:", identity$installed_sha256)), file.path(tmp, "versions.txt"))
     if (!file.rename(tmp, output)) fail("Could not publish completed artifact: ", output)
     invisible(object)
+}
+
+# Reuse only certified same-config bundles. Public getters enforce package-owned
+# currentness; no pipeline stage flags are invented or edited.
+validate_checkpoint <- function(state, stage, analyses, stop_after, seed) {
+    allowed <- c('input','parameters','assignment','qc','calibration','power','discovery')
+    if (length(stage) != 1L || !stage %in% allowed || !identical(stage, state$manifest$stage))
+        fail('checkpoint_stage must match the certified input bundle stage.')
+    if (stage == 'input') return(invisible(NULL))
+    m <- state$manifest
+    if (!identical(m$seed, as.integer(seed)) || is.null(m$rng_state) || is.null(m$rng_kind))
+        fail('Checkpoint RNG/seed does not match; use the recorded seed and unchanged configuration.')
+    if (match(stop_after, c('parameters','assignment','qc','analysis')) < min(match(stage, allowed) - 1L,4L))
+        fail('stop_after precedes the supplied checkpoint.')
+    if (any(analyses %in% m$completed)) fail('Selected analyses already completed in checkpoint; select only remaining families.')
+    done_analysis <- intersect(c('calibration','power','discovery'), m$completed)
+    if (length(done_analysis) && length(analyses) &&
+        min(match(analyses,c('calibration','power','discovery'))) < max(match(done_analysis,c('calibration','power','discovery'))))
+        fail('Selected analysis precedes a completed family in the canonical stage order; start a fresh workflow for a different RNG history.')
+    if (match(stage,allowed) >= match('assignment',allowed)) sceptre::get_grna_assignments(state$object) |> invisible()
+    if (match(stage,allowed) >= match('qc',allowed)) sceptre::get_grna_assignments(state$object, apply_cellwise_qc = TRUE) |> invisible()
+    for (family in done_analysis) sceptre::get_result(state$object, switch(family, calibration='run_calibration_check', power='run_power_check', discovery='run_discovery_analysis')) |> invisible()
+    invisible(NULL)
 }

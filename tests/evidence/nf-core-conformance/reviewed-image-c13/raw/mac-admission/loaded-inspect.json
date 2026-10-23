@@ -1,0 +1,77 @@
+[
+    {
+        "Id": "sha256:2253e5066bbc3a90c78d941f5f672fecef00ef81e5eb9e38df786d2e0b7c71f1",
+        "RepoTags": [
+            "sceptre-publication-review:local"
+        ],
+        "RepoDigests": [
+            "sceptre-publication-review@sha256:2253e5066bbc3a90c78d941f5f672fecef00ef81e5eb9e38df786d2e0b7c71f1"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-23T05:29:25.160326884Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "R_VERSION=4.5.1",
+                "R_HOME=/usr/local/lib/R",
+                "TZ=Etc/UTC",
+                "CRAN=https://p3m.dev/cran/__linux__/noble/2025-10-30",
+                "LANG=en_US.UTF-8",
+                "OMP_NUM_THREADS=1",
+                "OPENBLAS_NUM_THREADS=1",
+                "MAKEFLAGS=-j2",
+                "SCEPTRE_CRAN_SNAPSHOT=https://packagemanager.posit.co/cran/2025-11-15",
+                "SCEPTRE_BIOCONDUCTOR_VERSION=3.22"
+            ],
+            "Cmd": [
+                "Rscript",
+                "--version"
+            ],
+            "WorkingDir": "/work",
+            "Labels": {
+                "org.opencontainers.image.authors": "Carl Boettiger <cboettig@ropensci.org>",
+                "org.opencontainers.image.base.name": "docker.io/library/ubuntu:noble",
+                "org.opencontainers.image.description": "Frozen SCEPTRE archive; identity in /opt/sceptre/source.json",
+                "org.opencontainers.image.licenses": "GPL-2.0-or-later",
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.revision": "c13e94da0b8e9a54a2dd2460ad8514d04bd0fee0",
+                "org.opencontainers.image.source": "https://github.com/Katsevich-Lab/sceptre-pipeline",
+                "org.opencontainers.image.title": "SCEPTRE schema-7 pipeline runtime",
+                "org.opencontainers.image.vendor": "Rocker Project",
+                "org.opencontainers.image.version": "R-4.5.1"
+            },
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 1631402116,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:073ec47a8c22dcaa4d6e5758799ccefe2f9bde943685830b1bf6fd2395f5eabc",
+                "sha256:0671c314d3e106ab4d9b9ac6719b42cf21f293269820edaf93533c45de38ba2e",
+                "sha256:9d68daa98beba6c6bc51c056811abab9fabf0ad4bb6df564a38ebc93d63c8380",
+                "sha256:cdbc6bed014291cee5757f2a2e356fdfb1fce15549691343b30a7320449b87bc",
+                "sha256:4fa50a8b2c64541d35d0358382397a83290657f732c5477fa580939f635c4207",
+                "sha256:53c4f357e24768f07a3aa64bceae56c97fe1279eecbd7a4048adca25c30d196c",
+                "sha256:4adc488ed9e4d896f610e152b3c25c2fa2e3a3d3a3ae9d645668e92ffda9318f",
+                "sha256:47320ac97b673da98f42d3d1ab7fda34e70c5b376ba5f50aa48293e9e5883369",
+                "sha256:97c451a006d9d72bbaf1ff3f1a25ec4bc88e70dc8742b4f2f8ab63dc5848c2d4",
+                "sha256:af1dc786bd0f0df7cbde61cbf3054ae4b78528509ef686a0c3c176d188b8cf94",
+                "sha256:43a52b5adac80398d0525bf21b0b4caa2ce0d88a3f93bb0ffb9432fd6ea9a7a1"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-23T05:50:07.87232413Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:2253e5066bbc3a90c78d941f5f672fecef00ef81e5eb9e38df786d2e0b7c71f1",
+            "size": 1925,
+            "annotations": {
+                "io.containerd.image.name": "docker.io/library/sceptre-publication-review:local",
+                "org.opencontainers.image.ref.name": "local"
+            }
+        }
+    }
+]

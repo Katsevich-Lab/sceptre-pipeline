@@ -24,7 +24,11 @@ prepare_distributed <- function(config, input, output, stage, seed, n_units, bac
     args <- list(sceptre_object = state$object, analysis = analysis_name(stage),
         n_work_units = n_units, output_amount = if (is.null(config$execution$output_amount)) 1L else config$execution$output_amount)
     if (stage == 'calibration') args <- c(args, config$calibration)
-    execution <- do.call(sceptre::prepare_execution, args)
+    captured <- list()
+    execution <- withCallingHandlers(do.call(sceptre::prepare_execution, args), warning = function(condition) {
+        captured[[length(captured) + 1L]] <<- list(stage = stage, source = 'prepare_execution',
+            message = conditionMessage(condition), class = class(condition))
+    })
     ids <- vapply(execution$units, function(unit) unit$id, character(1))
     if (!length(ids) || anyDuplicated(ids) || any(!grepl('^unit-[0-9]{6}$', ids))) fail('Unsupported or duplicate package work-unit IDs.')
     if (dir.exists(output)) fail('Execution output already exists.')
@@ -36,7 +40,7 @@ prepare_distributed <- function(config, input, output, stage, seed, n_units, bac
         parent_sha256 = hash_file(file.path(input, 'manifest.rds')),
         execution_sha256 = hash_file(file.path(tmp, 'execution.rds')),
         rng_kind = RNGkind(), rng_state = get('.Random.seed', envir = .GlobalEnv),
-        seed = as.integer(seed), unit_ids = ids)
+        seed = as.integer(seed), unit_ids = ids, warnings = captured)
     saveRDS(wrapper, file.path(tmp, 'manifest.rds'))
     writeLines(ids, file.path(tmp, 'unit_ids.txt'))
     if (!file.rename(tmp, output)) fail('Could not publish certified execution plan.')
@@ -60,7 +64,15 @@ run_distributed_unit <- function(config, input, plan_dir, output, stage, seed, u
     state <- load_execution_input(config, input, lock, backing, stage, seed)
     prepared <- read_execution(plan_dir, input, config, stage, seed, lock)
     if (!unit_id %in% prepared$manifest$unit_ids) fail('Unknown certified work-unit ID.')
-    proposal <- sceptre::execute_work_unit(state$object, prepared$execution, unit_id)
+    captured <- list()
+    proposal <- withCallingHandlers(sceptre::execute_work_unit(state$object, prepared$execution, unit_id),
+        warning = function(condition) {
+            captured[[length(captured) + 1L]] <<- list(stage = stage, source = 'execute_work_unit',
+                unit_id = unit_id, message = conditionMessage(condition), class = class(condition))
+        })
+    # Pipeline metadata stays outside the package-certified named proposal.
+    # Remove this attribute before passing the exact proposal to the collector.
+    attr(proposal, 'pipeline_warnings') <- captured
     if (file.exists(output)) fail('Proposal output already exists.')
     tmp <- tempfile('.proposal-', tmpdir = dirname(output))
     on.exit(unlink(tmp), add = TRUE)
@@ -73,8 +85,17 @@ collect_distributed <- function(config, input, plan_dir, proposal_files, output,
     prepared <- read_execution(plan_dir, input, config, stage, seed, lock)
     # Package collector validates identities, exact row/unit coverage, raw metadata,
     # fit compatibility and canonical integration/correction/commit.
-    object <- sceptre::collect_execution(state$object, prepared$execution, lapply(proposal_files, readRDS))
+    proposals <- lapply(proposal_files, readRDS)
+    ordering <- order(vapply(proposals, function(x) x$unit_id, character(1)))
+    captured <- unlist(lapply(proposals[ordering], function(x) attr(x, 'pipeline_warnings')), recursive = FALSE)
+    proposals <- lapply(proposals, function(x) { attr(x, 'pipeline_warnings') <- NULL; x })
+    object <- withCallingHandlers(sceptre::collect_execution(state$object, prepared$execution, proposals),
+        warning = function(condition) {
+            captured[[length(captured) + 1L]] <<- list(stage = stage, source = 'collect_execution',
+                message = conditionMessage(condition), class = class(condition))
+        })
     m <- state$manifest
+    m$warnings <- c(m$warnings, prepared$manifest$warnings, captured)
     m$execution <- list(mode = 'distributed', protocol = prepared$execution$protocol,
         identity = prepared$execution$identity, units = prepared$manifest$unit_ids,
         plan_sha256 = prepared$manifest$execution_sha256)

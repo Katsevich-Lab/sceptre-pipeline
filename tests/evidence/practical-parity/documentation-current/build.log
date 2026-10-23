@@ -1,0 +1,32 @@
+Prepared 26 pages from canonical docs and schema.
+[ 1/26] architecture.qmd
+[ 2/26] array-validation.qmd
+[ 3/26] benchmark.qmd
+[ 4/26] ci.qmd
+[ 5/26] container-publication.qmd
+[ 6/26] containers.qmd
+[ 7/26] coverage.qmd
+[ 8/26] demo.qmd
+[ 9/26] distributed-interface.qmd
+[10/26] hpc.qmd
+[11/26] index.qmd
+[12/26] nf-core-conformance.qmd
+[13/26] nf-core.qmd
+[14/26] outputs.qmd
+[15/26] parameters.qmd
+[16/26] parity-acceptance.qmd
+[17/26] practical-parity.qmd
+[18/26] recovery.qmd
+[19/26] report.qmd
+[20/26] scale-boundaries.qmd
+[21/26] scientific-delivery.qmd
+[22/26] sources/benchmark/scale/readme-source.qmd
+[23/26] sources/tests/array-smoke/readme-source.qmd
+[24/26] sources/tests/evidence/nf-core-conformance/readme-source.qmd
+[25/26] usage.qmd
+[26/26] validation.qmd
+
+Output created: _site/index.html
+
+Site links OK: 26 HTML pages, 1920 local page/resource/fragment references.
+Static documentation: /Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-parity/website/_site

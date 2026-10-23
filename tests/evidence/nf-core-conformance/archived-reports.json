@@ -1,0 +1,10 @@
+{
+  "pipeline-lint.json": {
+    "sha256": "f0295de3eaeb712de00cf3b304c02dca9f0fd391c37be31666886dcf9c0cefa7",
+    "compressed_sha256": "f7961a57275841f241e6fb093be497ed04725b8129da80f9fa0cd1d2477c40f0"
+  },
+  "pipeline-lint.md": {
+    "sha256": "f67446a19ebe7b380d8cc76a85e9a3cef9ce1794a9e0eafc56cd46cf5911731c",
+    "compressed_sha256": "77fd93387ac215a95941953a391a78a314ecc872e92338cd9d242462d0ed4d60"
+  }
+}

@@ -1,0 +1,13 @@
+Note: If you are on a Mac laptop or desktop, consider setting `parallel = TRUE` to improve speed. Otherwise, keep `parallel = FALSE`.
+Constructing negative control pairs.
+ ✓
+Generating permutation resamples.
+ ✓
+Note: If you are on a Mac laptop or desktop, consider setting `parallel = TRUE` to improve speed. Otherwise, keep `parallel = FALSE`.
+Generating permutation resamples.
+ ✓
+Note: If you are on a Mac laptop or desktop, consider setting `parallel = TRUE` to improve speed. Otherwise, keep `parallel = FALSE`.
+Generating permutation resamples.
+ ✓
+Scientific report unavailable: Synthetic visual fixture: renderer deliberately failed.
+PASS rich scientific report: real complete/partial/failure fixtures, exact public rows/CSV/RDS, summary counts/p-values/correction semantics, figures, failed QC, RNG/object immutability

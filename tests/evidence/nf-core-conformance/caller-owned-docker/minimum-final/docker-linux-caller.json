@@ -1,0 +1,13 @@
+{
+  "container_uid": 1001,
+  "container_gid": 1002,
+  "home": "/tmp",
+  "r_libs_user": "/nonexistent",
+  "library_paths": [
+    "/usr/local/lib/R/site-library",
+    "/usr/local/lib/R/library"
+  ],
+  "native_linux_named_volume": true,
+  "create_edit_delete": true,
+  "qualified_runtime_verified": true
+}

@@ -56,8 +56,9 @@ are `tests/direct-comparison.R`, `tests/distributed-comparison.R`,
 output directory for each invocation; the receipt records the local dependencies.
 
 The initial host pass did not cover container execution; the subsequent Docker
-qualification is recorded below. Hosted CI, Apptainer/HPC, full-screen scalability
-and new performance benchmarks remain unrun. No push, merge or release was made.
+qualification is recorded below. At that local checkpoint, hosted CI,
+Apptainer/HPC, full-screen scalability and new performance benchmarks were unrun.
+Subsequent hosted evidence is recorded separately below; no merge or release was made.
 
 
 ## Exact-image Docker checks completed 2026-10-22
@@ -88,4 +89,58 @@ stack-imbalance message.
 
 These results qualify the bounded local ARM64 pipeline cases. They do not qualify
 AMD64, hosted CI, Apptainer/HPC, full-screen scale or performance. The image is local
-and was not pushed. Pipeline changes remain uncommitted and unpushed.
+and was not pushed. At that local checkpoint, pipeline changes were uncommitted
+and unpushed.
+
+## Bounded hosted Linux AMD64 qualification (2026-10-23)
+
+The public lab-fork pipeline scientific job passed all 38 mandatory nf-tests
+without skips, nine direct cases, eleven distributed cases including native
+HDF5 permutations/CRT, eight partition configurations, reports/demo, actual
+Nextflow cached resume and source/configuration/failure guards. The exact
+pipeline revision was `3c6d2c55c83f40bc02c4e262faf261273d3a8096`; the package
+archive/source remain the identities at the top of this page.
+
+A separate supported R 4.6.1/Bioconductor 3.23 package campaign at
+`fb373a0c6f46ac960164a7740a2328c296f7da89` passed all 394 cases/8,109 assertions
+with zero errors, warnings, failures or skips. The minimum-runtime package
+suite has 15 explicit DropletUtils-version skips, which the supplemental suite
+covers with DropletUtils 1.32.1. This does not claim pipeline qualification in
+the newer dependency environment or cross-R-version identity.
+
+See [CI evidence and actual Java/runtime identity](ci.md#completed-hosted-checks-2026-10-23)
+and the [machine-readable hosted receipt](../tests/evidence/native7-hosted-20261023/validation.json)
+for exact job links, both source revisions, artifact digests and raw output
+hashes. The original workflow's overall failure is retained: its supplemental
+image lacked system libuv headers. The corrected supplemental-only retry passed;
+no duplicate floor campaign or misleading single-head all-green claim is made.
+The branch is published to the approved lab fork; it is not merged or released.
+That original baseline did not qualify Apptainer. Later bounded positive SIF evidence is recorded below; HPC, full-screen scalability and new performance benchmarks remain unrun.
+
+
+## Expanded corrected-source practical parity
+
+The expanded source preserves the selected package archive while adding public raw
+preparation, predictable configuration, checkpoint continuation and rich scientific
+delivery. Corrected production475e4199 passed the fresh local Docker ARM64 native
+HDF5 CRT/public-R comparisons and raw launcher: exact result families, fits, design,
+QC, assignments, realized plans and RNG; checkpoint continuation and cached resume;
+invalid stage/family and request/source/settings guards. The separate
+[corrected-source receipt](../tests/evidence/practical-parity/integrated-config/receipt.json)
+records unchanged42execution/oracle files and the distinct CI-helper integration.
+Both Nextflow versions additionally passed13actual config-closure invocations each,
+with exact pipeline versus native-parser rejection boundaries in
+[their preserved receipts](../tests/evidence/nf-core-conformance/config-closure/README.md).
+
+The original hosted38-case baseline above does not qualify the expanded42-case
+PR head. At725078e, actual isolated SIF/public-R/nativeHDF5/checkpoint/resume
+and same-runtime raw launcher have passed, with55hash-bound raw artifacts in
+[the current SIF receipt](../tests/evidence/practical-parity/hosted-725-39906148557/apptainer/receipt.json).
+The current newer-R package-only suite passed394cases/8109assertions withzero
+skips; [its raw receipt](../tests/evidence/practical-parity/hosted-725-39906148557/current-package/receipt.json)
+retains that separate scope. Both minimum/current42-case matrices passed without skips, but whole jobs failed
+on the stale demo preview/full-lock checker; subsequent integration/missing-family
+steps were skipped. Focused repairs are qualified separately; final PR whole-job
+checks remain authoritative. See
+[the expanded CI record](ci.md#expanded-practical-parity-qualification). No registry,
+full-screen, scheduler or new performance qualification is inferred.

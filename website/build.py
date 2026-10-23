@@ -18,6 +18,9 @@ REPO = HERE.parent
 STAGING = HERE / ".build"
 OUTPUT = HERE / "_site"
 PAGES = {
+    "parity-acceptance.qmd": ("docs/parity-acceptance.md", "Practical parity acceptance"),
+    "practical-parity.qmd": ("docs/practical-parity.md", "Reproducible preparation & R parity"),
+    "scientific-delivery.qmd": ("docs/scientific-delivery.md", "Scientific diagnostics & portable delivery"),
     "recovery.qmd": ("docs/recovery.md", "Diagnose and recover a run"),
     "demo.qmd": ("docs/demo.md", "One-command scientific demo"),
     "report.qmd": ("docs/report.md", "Scientific results report"),
@@ -27,6 +30,9 @@ PAGES = {
     "distributed-interface.qmd": ("docs/distributed-interface.md", "Distributed interface"),
     "validation.qmd": ("docs/validation.md", "Scientific qualification"),
     "nf-core.qmd": ("docs/nf-core.md", "nf-core principles"),
+    "nf-core-conformance.qmd": ("docs/nf-core-conformance.md", "Current engineering acceptance"),
+    "container-publication.qmd": ("docs/container-publication.md", "Container distribution boundary"),
+    "container-payload.qmd": ("docs/container-payload.md", "Exact reviewed container payload"),
     "array-validation.qmd": ("docs/array-validation.md", "Slurm array validation"),
     "ci.qmd": ("docs/ci.md", "Continuous integration"),
     "coverage.qmd": ("docs/coverage.md", "Scientific test coverage"),
@@ -71,8 +77,32 @@ def cell(value) -> str:
     return str(value).replace("|", "\\|").replace("\n", " ")
 
 
+def schema_parameters(schema: dict) -> tuple[dict, set]:
+    """Resolve the CLI's flat or explicit nf-schema local parameter groups."""
+    props = dict(schema.get("properties", {}))
+    required = set(schema.get("required", []))
+    for entry in schema.get("allOf", []):
+        ref = entry.get("$ref", "")
+        if set(entry) != {"$ref"} or not ref.startswith("#/$defs/"):
+            raise ValueError("Unsupported parameter group reference: " + repr(entry))
+        name = ref.removeprefix("#/$defs/")
+        group = schema.get("$defs", {}).get(name)
+        if not isinstance(group, dict) or group.get("type") != "object" or "properties" not in group:
+            raise ValueError("Missing or unsupported parameter group: " + ref)
+        overlap = set(props) & set(group["properties"])
+        if overlap:
+            raise ValueError("Repeated parameter definitions: " + repr(overlap))
+        props.update(group["properties"])
+        required.update(group.get("required", []))
+    if not props:
+        raise ValueError("No CLI parameter definitions found")
+    if not required <= props.keys():
+        raise ValueError("Required parameter is undefined")
+    return props, required
+
+
 def parameter_page(schema: dict, defaults: dict) -> str:
-    props = schema["properties"]
+    props, required = schema_parameters(schema)
     if set(props) != set(defaults):
         raise ValueError("Schema/config parameter mismatch: " + repr(set(props) ^ set(defaults)))
     lines = [
@@ -82,11 +112,20 @@ def parameter_page(schema: dict, defaults: dict) -> str:
         "Use `nextflow run . --help` for the engine's parameter help. Formulae and "
         "typed pair tables belong in the trusted RDS analysis configuration, not CLI strings; "
         "see [Usage](usage.qmd#prepare-scientific-input).", "",
+        "Experimental inputs require the certified input bundle, analysis configuration and "
+        "environment lock together. `--input` aliases `--input_bundle`; the zero-input "
+        "synthetic test profile is the documented exception. See the usage/preflight "
+        "diagnostics for this request-level contract.", "",
         "## Command-line reference", "",
         "| Parameter | Type | Default | Required | Constraints / description |",
         "| --- | --- | --- | --- | --- |",
     ]
-    required = schema.get("required", [])
+    conditional = {}
+    for trigger, dependencies in schema.get("dependentRequired", {}).items():
+        if trigger not in props or any(name not in props for name in dependencies):
+            raise ValueError("Conditional requirement names an undefined parameter")
+        for name in dependencies:
+            conditional.setdefault(name, []).append(trigger)
     for name, prop in props.items():
         kind = prop.get("type", "—")
         if isinstance(kind, list):
@@ -107,7 +146,7 @@ def parameter_page(schema: dict, defaults: dict) -> str:
             parts.append(f"Pattern `{prop['pattern']}`.")
         lines.append("| " + " | ".join([
             f"`--{name}`", cell(kind), f"`{cell(value)}`",
-            "yes" if name in required else "—", cell(" ".join(parts)) or "—",
+            "yes" if name in required else ("with " + ", ".join(f"`--{key}`" for key in conditional[name]) if name in conditional else "—"), cell(" ".join(parts)) or "—",
         ]) + " |")
     lines += [
         "", "## Execution policy", "",

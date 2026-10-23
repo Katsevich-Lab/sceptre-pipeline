@@ -1,0 +1,37 @@
+Prepared 31 pages from canonical docs and schema.
+[ 1/31] architecture.qmd
+[ 2/31] array-validation.qmd
+[ 3/31] benchmark.qmd
+[ 4/31] ci.qmd
+[ 5/31] container-payload.qmd
+[ 6/31] container-publication.qmd
+[ 7/31] containers.qmd
+[ 8/31] coverage.qmd
+[ 9/31] demo.qmd
+[10/31] distributed-interface.qmd
+[11/31] hpc.qmd
+[12/31] index.qmd
+[13/31] nf-core-conformance.qmd
+[14/31] nf-core.qmd
+[15/31] outputs.qmd
+[16/31] parameters.qmd
+[17/31] parity-acceptance.qmd
+[18/31] practical-parity.qmd
+[19/31] recovery.qmd
+[20/31] report.qmd
+[21/31] scale-boundaries.qmd
+[22/31] scientific-delivery.qmd
+[23/31] sources/REVIEW.qmd
+[24/31] sources/benchmark/scale/readme-source.qmd
+[25/31] sources/tests/array-smoke/readme-source.qmd
+[26/31] sources/tests/evidence/nf-core-conformance/caller-owned-docker/readme-source.qmd
+[27/31] sources/tests/evidence/nf-core-conformance/config-closure/readme-source.qmd
+[28/31] sources/tests/evidence/nf-core-conformance/container-payload-audit/readme-source.qmd
+[29/31] sources/tests/evidence/nf-core-conformance/readme-source.qmd
+[30/31] usage.qmd
+[31/31] validation.qmd
+
+Output created: _site/index.html
+
+Site links OK: 31 HTML pages, 2383 local page/resource/fragment references.
+Static documentation: /Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-parity/website/_site

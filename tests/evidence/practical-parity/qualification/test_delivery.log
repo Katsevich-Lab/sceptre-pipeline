@@ -1,0 +1,6 @@
+Note: If you are on a Mac laptop or desktop, consider setting `parallel = TRUE` to improve speed. Otherwise, keep `parallel = FALSE`.
+The calibration check (`run_calibration_check()`) should be run before the discovery analysis.
+Generating permutation resamples.
+ ✓
+Scientific report unavailable: forced renderer failure
+PASS: delivery QC, public plots, warnings, exact distributed/direct results, RNG, failure isolation, relocation/missing/corrupt guards

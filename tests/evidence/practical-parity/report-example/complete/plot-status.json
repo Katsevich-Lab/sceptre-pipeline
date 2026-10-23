@@ -1,0 +1,30 @@
+{
+  "covariates": {
+    "status": "completed",
+    "artifact": "plots/covariates.png"
+  },
+  "grna_counts": {
+    "status": "completed",
+    "artifact": "plots/grna_counts.png"
+  },
+  "assignment": {
+    "status": "completed",
+    "artifact": "plots/assignment.png"
+  },
+  "qc": {
+    "status": "completed",
+    "artifact": "plots/qc.png"
+  },
+  "calibration": {
+    "status": "completed",
+    "artifact": "plots/calibration.png"
+  },
+  "power": {
+    "status": "completed",
+    "artifact": "plots/power.png"
+  },
+  "discovery": {
+    "status": "completed",
+    "artifact": "plots/discovery.png"
+  }
+}

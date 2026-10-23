@@ -1,0 +1,5 @@
+Note: If you are on a Mac laptop or desktop, consider setting `parallel = TRUE` to improve speed. Otherwise, keep `parallel = FALSE`.
+The calibration check (`run_calibration_check()`) should be run before the discovery analysis.
+Generating permutation resamples.
+ ✓
+PASS certified checkpoint currentness/seed/stage/family guards and every stage subset preflight; RNG preserved

@@ -1,0 +1,62 @@
+Warning message:
+In dir.create(root, recursive = TRUE) :
+  '/tmp/sceptre-parity-nextflow-final' already exists
+[1] TRUE
+[1] TRUE
+Nextflow 26.10.3 is available - Please consider updating your version to it
+N E X T F L O W  ~  version 25.10.4
+Launching `/Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-parity/main.nf` [sharp_lumiere] DSL2 - revision: f734343ee4
+Selected profiles: test,docker; scientific execution mode: distributed.
+The default task executor is local. Distributed mode partitions scientific work; scheduler selection comes from profiles/site configuration. Verify executor overrides before running on a cluster login node (docs/hpc.md, docs/recovery.md).
+[2d/383002] Submitted process > SCEPTRE:SCEPTRE_VALIDATE (screen:validate)
+[e3/a0fc21] Submitted process > SCEPTRE:PARAMETERS (screen:parameters)
+[64/31a363] Submitted process > SCEPTRE:ASSIGNMENT (screen:assignment)
+[5e/19b4f5] Submitted process > SCEPTRE:QC (screen:qc)
+[22/d555a9] Submitted process > SCEPTRE:CALIBRATION:SCEPTRE_PREPARE (screen:calibration:prepare)
+[6e/408253] Submitted process > SCEPTRE:CALIBRATION:SCEPTRE_WORKER (screen:calibration:unit-000002)
+[79/3e7c92] Submitted process > SCEPTRE:CALIBRATION:SCEPTRE_WORKER (screen:calibration:unit-000001)
+[05/5606fe] Submitted process > SCEPTRE:CALIBRATION:SCEPTRE_WORKER (screen:calibration:unit-000003)
+[49/cf919b] Submitted process > SCEPTRE:CALIBRATION:SCEPTRE_COLLECT (screen:calibration:collect)
+[34/edb5ba] Submitted process > SCEPTRE:POWER:SCEPTRE_PREPARE (screen:power:prepare)
+[5b/bd165d] Submitted process > SCEPTRE:POWER:SCEPTRE_WORKER (screen:power:unit-000002)
+[9f/78ace5] Submitted process > SCEPTRE:POWER:SCEPTRE_WORKER (screen:power:unit-000001)
+[68/65ce9c] Submitted process > SCEPTRE:POWER:SCEPTRE_COLLECT (screen:power:collect)
+[62/185ebc] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_PREPARE (screen:discovery:prepare)
+[9f/bf77a3] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000001)
+[b0/6ae2fa] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000002)
+[58/90a150] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_COLLECT (screen:discovery:collect)
+[ce/c68f42] Submitted process > SCEPTRE:SCEPTRE_EXPORT (screen:export)
+Loading required namespace: HDF5Array
+Note: If you are on a Mac laptop or desktop, consider setting `parallel = TRUE` to improve speed. Otherwise, keep `parallel = FALSE`.
+Constructing negative control pairs.
+ ✓
+Note: If you are on a Mac laptop or desktop, consider setting `parallel = TRUE` to improve speed. Otherwise, keep `parallel = FALSE`.
+Note: If you are on a Mac laptop or desktop, consider setting `parallel = TRUE` to improve speed. Otherwise, keep `parallel = FALSE`.
+PASS real nf-test workflow semantics: parameters, assignment, qc, calibration, power, discovery; exact families/tables/plans/fits/design/pairQC/metrics/assignments/RNG and absent excluded stages
+Nextflow 26.10.3 is available - Please consider updating your version to it
+N E X T F L O W  ~  version 25.10.4
+Launching `/Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-parity/main.nf` [furious_marconi] DSL2 - revision: f734343ee4
+Selected profiles: test,docker; scientific execution mode: distributed.
+The default task executor is local. Distributed mode partitions scientific work; scheduler selection comes from profiles/site configuration. Verify executor overrides before running on a cluster login node (docs/hpc.md, docs/recovery.md).
+[90/23bb4d] Submitted process > SCEPTRE:SCEPTRE_VALIDATE (screen:validate)
+[6d/3f9066] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_PREPARE (screen:discovery:prepare)
+[50/8daa49] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000001)
+[9e/4067d9] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000002)
+[c0/05152b] Submitted process > SCEPTRE:DISCOVERY:SCEPTRE_COLLECT (screen:discovery:collect)
+[4b/165491] Submitted process > SCEPTRE:SCEPTRE_EXPORT (screen:export)
+Loading required namespace: HDF5Array
+PASS actual Nextflow native HDF5 CRT current power-checkpoint continuation equals uninterrupted public R; fits/result/RNG unchanged; skipped stages absent and portable output reopens
+Nextflow 26.10.3 is available - Please consider updating your version to it
+N E X T F L O W  ~  version 25.10.4
+Launching `/Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-parity/main.nf` [soggy_goodall] DSL2 - revision: f734343ee4
+Selected profiles: test,docker; scientific execution mode: distributed.
+The default task executor is local. Distributed mode partitions scientific work; scheduler selection comes from profiles/site configuration. Verify executor overrides before running on a cluster login node (docs/hpc.md, docs/recovery.md).
+[fe/8d0add] Submitted process > SCEPTRE:SCEPTRE_VALIDATE (screen:validate)
+[6d/3f9066] Cached process > SCEPTRE:DISCOVERY:SCEPTRE_PREPARE (screen:discovery:prepare)
+[9e/4067d9] Cached process > SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000002)
+[50/8daa49] Cached process > SCEPTRE:DISCOVERY:SCEPTRE_WORKER (screen:discovery:unit-000001)
+[c0/05152b] Cached process > SCEPTRE:DISCOVERY:SCEPTRE_COLLECT (screen:discovery:collect)
+[4b/165491] Cached process > SCEPTRE:SCEPTRE_EXPORT (screen:export)
+PASS unchanged checkpoint workflow resume: only validation reruns
+PASS actual Nextflow checkpoint-stage/family failures publish no scientific stage
+PASS exact pipeline/harness/archive source hashes unchanged throughout actual workflow qualification

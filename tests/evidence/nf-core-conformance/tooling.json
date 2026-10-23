@@ -1,0 +1,19 @@
+{
+  "nf_core_tools": "4.2.0",
+  "nf_core_tools_tag_commit": "3b1ae4b12bbd059ab4b1bbc072518500e5bcd368",
+  "nf_core_modules_schema_commit": "78522f4889133e32443c76ba9b4703cbdf3ac331",
+  "schema_sha256": {
+    "modules/meta-schema.json": "9458d6897d70abb4aa20d207cdf7ddca5162ffd48f3b71827ec409d51f087051",
+    "subworkflows/yaml-schema.json": "d452f2490d6bf5ad8d89feb5ad6421455f16d7b02a1f8755edf3cfd3d9149d36"
+  },
+  "nf_test": "0.9.5",
+  "nextflow_minimum": "25.10.4",
+  "nextflow_current": "26.10.3",
+  "syntax_parser": {
+    "minimum25.10.4": "documented default v1",
+    "current26.10.3": "documented default v2",
+    "strict_lint": "v2"
+  },
+  "docker_image": "sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9",
+  "platform": "local Linux ARM64 Docker on macOS; positive SIF/hosted execution not established by these receipts"
+}

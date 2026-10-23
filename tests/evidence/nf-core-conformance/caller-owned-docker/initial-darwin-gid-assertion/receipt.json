@@ -1,0 +1,6 @@
+{
+  "status": "FAILED_HARNESS_ASSERTION",
+  "exit_code": 1,
+  "cause": "Docker Desktop bind projectsGID0 rather than caller20; UID and actual nativeLinuxGID behavior correct. Corrected test staysstrictnativeLinux; Darwin limitation separatelyrecorded.",
+  "production_changed_after_failure": false
+}

@@ -1,0 +1,93 @@
+name: Reviewed image admission only
+
+on:
+  push:
+    branches: [codex/image-admission-license-20261023]
+    paths:
+      - .github/workflows/review-image-admission.yml
+      - .github/scripts/review_image.py
+      - .github/scripts/test_review_image.py
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  verify-saved-image:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      REVIEW_RUN_ID: '39908971415'
+      REVIEW_ARTIFACT_ID: '12483325753'
+      REVIEW_SOURCE_SHA: f59434dccc8bfe2eed2b087d49fb72f21944607a
+      REVIEW_IMAGE_ID: sha256:36979a6a70b182e27e2e6918f54cfd8482821291fe5b007aed7b481855c771ae
+      REVIEW_ARCHIVE_SHA256: 9ebecf49d5576d52077035ad72d7e7128a62d1fd72bdb821eceba599f5e3e403
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Bind admission helper and reject offline mutations
+        run: |
+          mkdir -p admission
+          git rev-parse HEAD > admission/executing-source.txt
+          sha256sum .github/scripts/review_image.py .github/scripts/test_review_image.py > admission/executing-helper.sha256
+          docker version > admission/docker-version.txt
+          python3 -m unittest discover -s .github/scripts -p test_review_image.py > admission/offline-tests.log 2>&1
+      - name: Verify actual successful origin and exact downloaded artifact bytes
+        working-directory: admission
+        run: |
+          python3 ../.github/scripts/review_image.py origin origin.json > origin.log 2>&1
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${REVIEW_ARTIFACT_ID}" > artifact-metadata.json
+          gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${REVIEW_RUN_ID}" > originating-run.json
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${REVIEW_ARTIFACT_ID}/zip" > artifact.zip
+          python3 - <<'PY'
+          import hashlib, json, pathlib, zipfile
+          origin = json.loads(pathlib.Path('origin.json').read_text())
+          digest = hashlib.file_digest(open('artifact.zip', 'rb'), 'sha256').hexdigest()
+          assert 'sha256:' + digest == origin['artifact_digest'], 'GitHub ZIP digest mismatch'
+          pathlib.Path('artifact.sha256').write_text(digest + '  artifact.zip\n')
+          with zipfile.ZipFile('artifact.zip') as archive:
+              for name in archive.namelist():
+                  path = pathlib.PurePosixPath(name)
+                  assert not path.is_absolute() and '..' not in path.parts, 'Unsafe artifact member'
+              archive.extractall('image')
+          PY
+          python3 ../.github/scripts/review_image.py local local.json > local.log 2>&1
+      - name: Load saved bytes and require exact original image identity
+        working-directory: admission
+        run: |
+          docker load --input image/image.tar.gz > docker-load.log 2>&1
+          docker image inspect "$REVIEW_IMAGE_ID" > image/loaded-inspect.json
+          python3 ../.github/scripts/review_image.py loaded loaded.json > loaded.log 2>&1
+      - name: Preserve bounded admission receipts without image upload
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: reviewed-image-admission-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          path: |
+            admission/*.json
+            admission/*.log
+            admission/*.txt
+            admission/*.sha256
+            admission/image/review-receipt.json
+            admission/image/loaded-inspect.json
+            admission/image/image-inspect.json
+            admission/image/source-before.json
+            admission/image/source-after.json
+            admission/image/context/source.json
+            admission/image/context-receipt.json
+            admission/image/host-engine*
+            admission/image/runtime-provenance.txt
+            admission/image/installed-package/runtime.json
+            admission/image/installed-package/tests.json
+            admission/image/installed-package/session.txt
+            admission/image/scientific-parity/source-before.json
+            admission/image/scientific-parity/source-after.json
+            admission/image/scientific-parity/resource-observations.json
+          if-no-files-found: error

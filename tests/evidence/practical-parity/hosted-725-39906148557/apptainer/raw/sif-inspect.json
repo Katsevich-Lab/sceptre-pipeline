@@ -1,0 +1,25 @@
+{
+	"data": {
+		"attributes": {
+			"labels": {
+				"org.label-schema.build-arch": "amd64",
+				"org.label-schema.build-date": "Friday_23_October_2026_5:43:28_UTC",
+				"org.label-schema.schema-version": "1.0",
+				"org.label-schema.usage.apptainer.version": "1.5.5",
+				"org.label-schema.usage.singularity.deffile.bootstrap": "docker-daemon",
+				"org.label-schema.usage.singularity.deffile.from": "sceptre-sif-source:qualification",
+				"org.opencontainers.image.authors": "Carl Boettiger \u003ccboettig@ropensci.org\u003e",
+				"org.opencontainers.image.base.name": "docker.io/library/ubuntu:noble",
+				"org.opencontainers.image.description": "Frozen SCEPTRE archive; identity in /opt/sceptre/source.json",
+				"org.opencontainers.image.licenses": "GPL-2.0-or-later",
+				"org.opencontainers.image.ref.name": "ubuntu",
+				"org.opencontainers.image.revision": "1a2eeb4c21bf78f97c0004ca83d2328b6fbf0800",
+				"org.opencontainers.image.source": "https://github.com/rocker-org/rocker-versioned2",
+				"org.opencontainers.image.title": "SCEPTRE schema-7 pipeline runtime",
+				"org.opencontainers.image.vendor": "Rocker Project",
+				"org.opencontainers.image.version": "R-4.5.1"
+			}
+		}
+	},
+	"type": "container"
+}

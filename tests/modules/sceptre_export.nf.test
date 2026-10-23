@@ -13,8 +13,8 @@ def checkExportedResults = { mode, output ->
 }
 nextflow_process {
     name 'Certified scientific result export module'
-    script "modules/local/sceptre_export/main.nf"
-    process 'SCEPTRE_EXPORT'
+    script "modules/local/sceptreexport/main.nf"
+    process 'SCEPTREEXPORT'
     tag 'module'
     test('Exports exact certified discovery tables and marks other families omitted') {
         when {

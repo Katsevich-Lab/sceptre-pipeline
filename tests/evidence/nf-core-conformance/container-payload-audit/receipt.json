@@ -1,0 +1,30 @@
+{
+  "kind": "container-payload-approval-preparation",
+  "authority_status": "AUTO_REVIEW_BLOCKED_PENDING_TRUSTED_HUMAN_SCOPE",
+  "reported_reason": "Trusted human approval was not clear for the container payload, GHCR destination and public visibility.",
+  "reason_source": "Coordinator/root report relayed by lead; not a human refusal or explicit withholding.",
+  "actions_this_audit": "Read-only archive/context/config/log inventory and local docs/evidence only; no registry publication, visibility change, indirect executor retry, Docker build or large image payload download.",
+  "target_destination": "ghcr.io/katsevich-lab/sceptre-pipeline",
+  "source_sha": "f59434dccc8bfe2eed2b087d49fb72f21944607a",
+  "image_id": "sha256:36979a6a70b182e27e2e6918f54cfd8482821291fe5b007aed7b481855c771ae",
+  "image_archive_sha256": "9ebecf49d5576d52077035ad72d7e7128a62d1fd72bdb821eceba599f5e3e403",
+  "github_zip_sha256": "a3aba8d1238caf3c06c97e0370e335ed67b4f296644f443acaf19d9efccfa8ad",
+  "artifact_id": 12483325753,
+  "producer_run": 39908971415,
+  "admission_run": 39911817811,
+  "selected_package_archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "selected_package_archive_bytes": 3311229,
+  "package_regular_files": 269,
+  "package_uncompressed_regular_file_bytes": 5537149,
+  "inspection_limits": [
+    "Complete selected-package archive file inventory, targeted data/example/fixture source and notice inspection, RDA shape metadata only, deterministic context reconstruction and actual image config/log receipts.",
+    "Not a new build, whole1.6GB image filesystem/SBOM/credential-forensic audit or a new data redistribution license grant.",
+    "OS/R/Bioconductor/CRAN dependencies can also carry their own examples/data/licenses; runtime dependency inventory retained separately."
+  ],
+  "canonical_document": "docs/container-payload.md",
+  "canonical_document_sha256": "c330cec1c2c610432328bb0b51f50f8f1701cfa93e382c89cb25ec95dfd82cf0",
+  "evidence_files": 27,
+  "evidence_manifest_sha256": "7bc59ccb8240aff5c74b80fb41833294bea16b8416ef0a851c4a1280986a622d",
+  "qualified_asset_unchanged": true,
+  "new_image_or_registry_action": false
+}

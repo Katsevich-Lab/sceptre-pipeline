@@ -1,94 +1,227 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "timothy-barry/sceptre-pipeline pipeline parameters",
+  "title": "Katsevich-Lab/sceptre-pipeline pipeline parameters",
   "description": "Certified complete-family SCEPTRE scientific workflows",
   "type": "object",
-  "properties": {
-    "input_bundle": {
-      "type": "string",
-      "minLength": 1,
-      "format": "directory-path"
+  "$id": "https://raw.githubusercontent.com/Katsevich-Lab/sceptre-pipeline/main/nextflow_schema.json",
+  "$defs": {
+    "input_output_options": {
+      "title": "Input output options",
+      "description": "Certified input and publication paths.",
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "directory-path",
+          "description": "Conventional alias for the certified input_bundle directory. This workflow consumes an aligned SCEPTRE screen, not a FASTQ sample sheet.",
+          "title": "Input"
+        },
+        "input_bundle": {
+          "type": "string",
+          "minLength": 1,
+          "format": "directory-path",
+          "title": "Input bundle",
+          "description": "Certified schema-7 input or checkpoint bundle created by public-R preparation."
+        },
+        "analysis_config": {
+          "type": "string",
+          "minLength": 1,
+          "format": "file-path",
+          "title": "Analysis config",
+          "description": "Complete requested scientific configuration RDS bound by the input manifest."
+        },
+        "environment_lock": {
+          "type": "string",
+          "minLength": 1,
+          "format": "file-path",
+          "title": "Environment lock",
+          "description": "Exact installed package, dependencies and R runtime lock RDS."
+        },
+        "backing_directory": {
+          "type": "string",
+          "minLength": 1,
+          "format": "directory-path",
+          "title": "Backing directory",
+          "description": "Immutable content-addressed native HDF5 transport directory; empty for RAM screens."
+        },
+        "outdir": {
+          "type": "string",
+          "minLength": 1,
+          "title": "Outdir",
+          "description": "Directory for certified stages, scientific exports and execution provenance. Use a fresh directory for changed inputs or settings.",
+          "default": "results",
+          "format": "directory-path"
+        }
+      }
     },
-    "analysis_config": {
-      "type": "string",
-      "minLength": 1,
-      "format": "file-path"
+    "scientific_execution": {
+      "title": "Scientific execution",
+      "description": "Stage selection, seed and certified scheduling.",
+      "type": "object",
+      "properties": {
+        "analyses": {
+          "type": "string",
+          "title": "Analyses",
+          "description": "Unique comma-separated calibration,power,discovery names; empty selects no result family.",
+          "default": "calibration,power,discovery"
+        },
+        "stop_after": {
+          "type": "string",
+          "enum": [
+            "parameters",
+            "assignment",
+            "qc",
+            "analysis"
+          ],
+          "title": "Stop after",
+          "description": "Preparation or analysis boundary to complete without silently changing scientific choices.",
+          "default": "analysis"
+        },
+        "checkpoint_stage": {
+          "type": "string",
+          "enum": [
+            "input",
+            "parameters",
+            "assignment",
+            "qc",
+            "calibration",
+            "power",
+            "discovery"
+          ],
+          "description": "Stage of an existing same-config certified bundle; currentness and RNG must validate before reuse. Use a fresh outdir; distinct from unchanged -resume.",
+          "title": "Checkpoint stage",
+          "default": "input"
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647,
+          "title": "Seed",
+          "description": "Original workflow RNG seed. Later stages restore the certified serialized R RNG state.",
+          "default": 271828
+        },
+        "execution_mode": {
+          "type": "string",
+          "enum": [
+            "reference",
+            "distributed"
+          ],
+          "description": "Native schema-7 public direct workflow or package-owned distributed complete-family execution",
+          "title": "Execution mode",
+          "default": "reference"
+        },
+        "n_work_units": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000,
+          "description": "Maximum package-owned whole-key distributed work units",
+          "title": "N work units",
+          "default": 4
+        }
+      }
     },
-    "environment_lock": {
-      "type": "string",
-      "minLength": 1,
-      "format": "file-path"
+    "runtime_options": {
+      "title": "Runtime options",
+      "description": "Immutable software runtime and executor adaptation.",
+      "type": "object",
+      "properties": {
+        "container_image": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Immutable OCI digest, or an absolute local .sif path with container_image_sha256 under the apptainer profile",
+          "title": "Container image"
+        },
+        "container_image_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "Required SHA256 of local SIF image bytes; verified before tasks and bound to run identity",
+          "title": "Container image sha256"
+        },
+        "array_size": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum distributed workers per scheduler array; used only by the slurm profile",
+          "title": "Array size",
+          "default": 100
+        },
+        "worker_arrays": {
+          "type": "boolean",
+          "default": false,
+          "hidden": true,
+          "title": "Worker arrays",
+          "description": "Static scheduler-array admission, enabled by the slurm profile only; never changes package scientific unit boundaries."
+        }
+      }
     },
-    "backing_directory": {
-      "type": "string",
-      "minLength": 1,
-      "format": "directory-path"
-    },
-    "outdir": {
-      "type": "string",
-      "minLength": 1
-    },
-    "analyses": {
-      "type": "string"
-    },
-    "stop_after": {
-      "type": "string",
-      "enum": [
-        "parameters",
-        "assignment",
-        "qc",
-        "analysis"
-      ]
-    },
-    "seed": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 2147483647
-    },
-    "container_image": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "description": "Immutable OCI digest, or an absolute local .sif path with container_image_sha256 under the apptainer profile"
-    },
-    "help": {
-      "type": "boolean",
-      "description": "Print parameter help and exit"
-    },
-    "execution_mode": {
-      "type": "string",
-      "enum": [
-        "reference",
-        "distributed"
-      ],
-      "description": "Native schema-7 public direct workflow or package-owned distributed complete-family execution"
-    },
-    "n_work_units": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 1000000,
-      "description": "Maximum package-owned whole-key distributed work units"
-    },
-    "array_size": {
-      "type": "integer",
-      "minimum": 1,
-      "description": "Maximum distributed workers per scheduler array; used only by the slurm profile"
-    },
-    "container_image_sha256": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "pattern": "^[a-f0-9]{64}$",
-      "description": "Required SHA256 of local SIF image bytes; verified before tasks and bound to run identity"
+    "help_options": {
+      "title": "Help options",
+      "description": "Parameter documentation.",
+      "type": "object",
+      "properties": {
+        "help": {
+          "type": "boolean",
+          "description": "Print parameter help and exit",
+          "title": "Help",
+          "default": false
+        },
+        "test_data": {
+          "type": "boolean",
+          "default": false,
+          "hidden": true,
+          "description": "Use the bundled synthetic fixture only when all certified input paths are absent. Enabled by test/test_full profiles."
+        },
+        "modules_testdata_base_path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "hidden": true,
+          "description": "Local synthetic fixture directory used by nf-test; never a remote mutable test-data reference."
+        },
+        "pipelines_testdata_base_path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "hidden": true,
+          "description": "Local synthetic fixture directory used by nf-test; never a remote mutable test-data reference."
+        }
+      }
     }
   },
-  "required": [
-    "input_bundle",
-    "analysis_config",
-    "environment_lock"
+  "allOf": [
+    {
+      "$ref": "#/$defs/input_output_options"
+    },
+    {
+      "$ref": "#/$defs/scientific_execution"
+    },
+    {
+      "$ref": "#/$defs/runtime_options"
+    },
+    {
+      "$ref": "#/$defs/help_options"
+    }
   ],
-  "additionalProperties": false,
-  "$id": "https://raw.githubusercontent.com/timothy-barry/sceptre-pipeline/main/nextflow_schema.json"
+  "dependentRequired": {
+    "input": [
+      "analysis_config",
+      "environment_lock"
+    ],
+    "input_bundle": [
+      "analysis_config",
+      "environment_lock"
+    ],
+    "analysis_config": [
+      "environment_lock"
+    ]
+  }
 }

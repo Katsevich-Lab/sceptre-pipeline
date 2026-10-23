@@ -1,0 +1,419 @@
+name: Pipeline checks
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    paths-ignore: ["**/*.md"]
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      current_package_only:
+        description: 'Supplemental current package runtime only; default runs every acceptance job'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: pipeline-checks-${{ github.workflow }}-${{ github.ref }}-${{ inputs.current_package_only || false }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+env:
+  NXF_VER: '25.10.4'
+  NXF_ANSI_LOG: 'false'
+  NXF_OPTS: '-Xms256m -Xmx1g'
+jobs:
+  schema:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12.8'
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '17.0.10+7'
+      - uses: nf-core/setup-nextflow@893c28b667aedeba26e37f296d260ccc5bc4d914 # v3.0.1
+        with:
+          version: '25.10.4'
+          java-version: '17.0.10+7'
+          java-distribution: temurin
+      - name: Assert final installed JVM and exact Nextflow release
+        run: python3 tests/ci/check-engine-identity.py "$NXF_VER" "$RUNNER_TEMP/host-engine.json"
+      - run: pip install nf-core==4.2.0
+      - run: nf-core pipelines schema lint --dir .
+      - run: bash -n tests/run-nextflow.sh tests/check-array-config.sh tests/ci/run-nf-test.sh tests/ci/check-sif-identity.sh
+      - run: python3 -m py_compile container/prepare-context.py tests/ci/require-nf-test.py
+      - name: Verify bundled scientific source identity and rejection guards
+        run: python3 tests/ci/check-runtime-source.py
+  nf-test:
+    if: ${{ !inputs.current_package_only }}
+    strategy:
+      fail-fast: false
+      matrix:
+        NXF_VER: ["25.10.4", "26.10.3"]
+    env:
+      NXF_VER: ${{ matrix.NXF_VER }}
+    # Automatic PR/push checks need neither an unpublished package ref nor secrets.
+    needs: schema
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '17.0.10+7'
+      - uses: nf-core/setup-nextflow@893c28b667aedeba26e37f296d260ccc5bc4d914 # v3.0.1
+        with:
+          version: ${{ matrix.NXF_VER }}
+          java-version: '17.0.10+7'
+          java-distribution: temurin
+      - name: Assert final installed JVM and exact Nextflow release
+        run: python3 tests/ci/check-engine-identity.py "$NXF_VER" "$RUNNER_TEMP/host-engine.json"
+      - name: Record portable production source identity
+        run: python3 tests/ci/source-snapshot.py --output "$RUNNER_TEMP/source-snapshot.json"
+      - name: Check opt-in scheduler configuration
+        run: bash tests/check-array-config.sh
+      - name: Reject invalid SIF and mutable OCI identity before task submission
+        run: bash tests/ci/check-sif-identity.sh "$RUNNER_TEMP/sif-guard"
+      - name: Install checksum-pinned nf-test 0.9.5
+        run: |
+          mkdir -p "$RUNNER_TEMP/nf-test"
+          curl -fsSL --retry 3 https://github.com/askimed/nf-test/releases/download/v0.9.5/nf-test-0.9.5.tar.gz \
+            -o "$RUNNER_TEMP/nf-test/release.tar.gz"
+          echo 'b7679eb90cdc9642bfa89e9634db02ce6e699de53ad35ef0e2f4847634fc1641  '"$RUNNER_TEMP/nf-test/release.tar.gz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/nf-test/release.tar.gz" -C "$RUNNER_TEMP/nf-test"
+          echo '39516b1e7cc1eb4603001e2a6cbb6370b483f9a918db51dfb58a93608eca5602  '"$RUNNER_TEMP/nf-test/nf-test.jar" | sha256sum -c -
+          java -version 2>&1 | tee "$RUNNER_TEMP/nf-test/java-version.txt"
+          nextflow -version | tee "$RUNNER_TEMP/nf-test/nextflow-version.txt"
+          java -jar "$RUNNER_TEMP/nf-test/nf-test.jar" version | tee "$RUNNER_TEMP/nf-test/nf-test-version.txt"
+      - name: Measure native nf-test file coverage and verify README badges
+        run: |
+          java -jar "$RUNNER_TEMP/nf-test/nf-test.jar" coverage --csv "$RUNNER_TEMP/nf-test/coverage.csv"
+          java -jar "$RUNNER_TEMP/nf-test/nf-test.jar" coverage --html "$RUNNER_TEMP/nf-test/coverage.html"
+          python3 tests/ci/update-badges.py "$RUNNER_TEMP/nf-test/coverage.csv" --check
+      - name: Build the bundled exact-source scientific runtime
+        run: |
+          python3 container/prepare-context.py --source-manifest tests/runtime/source.json \
+            --output "$RUNNER_TEMP/context" | tee "$RUNNER_TEMP/context-receipt.json"
+          docker build --progress plain --iidfile "$RUNNER_TEMP/image-id" "$RUNNER_TEMP/context" \
+            2>&1 | tee "$RUNNER_TEMP/container-build.log"
+          echo "SCEPTRE_CONTAINER_IMAGE=$(cat "$RUNNER_TEMP/image-id")" >> "$GITHUB_ENV"
+          docker image inspect "$(cat "$RUNNER_TEMP/image-id")" > "$RUNNER_TEMP/image-inspect.json"
+          docker run --rm "$(cat "$RUNNER_TEMP/image-id")" \
+            sh -c 'cat /opt/sceptre/source.json /opt/sceptre/session-info.txt /opt/sceptre/packages.tsv' \
+            > "$RUNNER_TEMP/runtime-provenance.txt"
+      - name: Tracked and external configuration closure must bind every include
+        run: python3 tests/ci/check-config-closure.py "$RUNNER_TEMP/config-closure"
+      - name: Selected stage overrides must fail explicitly
+        run: bash tests/ci/check-selected-stage-gate.sh "$RUNNER_TEMP/selected-stage-gate"
+      - name: Same-archive installed-package platform suite
+        run: |
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla tests/ci/check-installed-package.R \
+            tests/runtime/sceptre_0.99.0.tar.gz "$RUNNER_TEMP/installed-package" \
+            2>&1 | tee "$RUNNER_TEMP/installed-package.log"
+      - name: Bounded report consumer contracts
+        run: |
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla report/check.R "$RUNNER_TEMP/report-bundle" \
+            2>&1 | tee "$RUNNER_TEMP/report-bundle.log"
+      - name: Actual validation signature file and cache guards
+        run: |
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla tests/ci/check-regular-file-signatures.R \
+            "$RUNNER_TEMP/regular-file-signatures" 2>&1 | tee "$RUNNER_TEMP/regular-file-signatures.log"
+      - name: Fresh native namespace startup
+        run: |
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla tests/runtime/check-startup.R \
+            "$RUNNER_TEMP/native-startup" 2>&1 | tee "$RUNNER_TEMP/native-startup.log"
+          python3 -c 'import pathlib,sys; assert "stack imbalance" not in pathlib.Path(sys.argv[1]).read_text().lower()' "$RUNNER_TEMP/native-startup.log"
+      - name: Native schema admission, assignments and diagnostic guards
+        run: |
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla tests/check-experimental-method.R \
+            "$RUNNER_TEMP/method-admission" 2>&1 | tee "$RUNNER_TEMP/method-admission.log"
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla tests/check-schema7-admission.R \
+            "$RUNNER_TEMP/schema7" \
+            2>&1 | tee "$RUNNER_TEMP/schema7.log"
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla tests/native-backing-relocation.R \
+            "$RUNNER_TEMP/native-backing-relocation" \
+            2>&1 | tee "$RUNNER_TEMP/native-backing-relocation.log"
+          docker run --rm -v "$PWD:$PWD" -w "$PWD" "$SCEPTRE_CONTAINER_IMAGE" \
+            Rscript --vanilla tests/check-diagnostics.R 2>&1 | tee "$RUNNER_TEMP/diagnostics.log"
+          python3 tests/check-failure-oracle.py 2>&1 | tee "$RUNNER_TEMP/failure-oracle.log"
+          python3 -m unittest discover -s tests -p 'test_*.py' \
+            2>&1 | tee "$RUNNER_TEMP/resource-admission.log"
+      - name: Practical public-R preparation, checkpoint and delivery contracts
+        run: |
+          for suite in test_project test_raw_preparation test_checkpoint test_delivery test_report_presentation; do
+            docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+              "$SCEPTRE_CONTAINER_IMAGE" Rscript --vanilla "tests/$suite.R" "$RUNNER_TEMP/$suite" \
+              2>&1 | tee "$RUNNER_TEMP/$suite.log"
+          done
+      - name: Real native-HDF5 CRT preparation, checkpoint continuation and resume
+        run: bash tests/run-parity-nextflow.sh "$RUNNER_TEMP/practical-parity" 2>&1 | tee "$RUNNER_TEMP/practical-parity.log"
+      - name: Single-command same-runtime raw JSON launch and unchanged resume
+        run: bash tests/run-launcher.sh "$RUNNER_TEMP/launcher" 2>&1 | tee "$RUNNER_TEMP/launcher.log"
+      - name: Execute all real nf-test branches, including distributed workers
+        run: bash tests/ci/run-nf-test.sh "$RUNNER_TEMP/nf-test/nf-test.jar" "$RUNNER_TEMP/nf-test"
+      - name: Complete-family comparisons with mandatory backed execution
+        run: |
+          mkdir -p "$RUNNER_TEMP/direct" "$RUNNER_TEMP/distributed"
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            -e REQUIRE_NATIVE_HDF5=true "$SCEPTRE_CONTAINER_IMAGE" \
+            Rscript tests/direct-comparison.R "$RUNNER_TEMP/direct" 2>&1 | tee "$RUNNER_TEMP/direct.log"
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            -e REQUIRE_NATIVE_HDF5=true "$SCEPTRE_CONTAINER_IMAGE" \
+            Rscript tests/distributed-comparison.R "$RUNNER_TEMP/distributed" 2>&1 | tee "$RUNNER_TEMP/distributed.log"
+          python3 -c 'import pathlib,sys; assert all("stack imbalance" not in pathlib.Path(p).read_text().lower() for p in sys.argv[1:])' "$RUNNER_TEMP/direct.log" "$RUNNER_TEMP/distributed.log"
+      - name: Exact one, multiple, uneven and excess unit-partition matrix
+        run: |
+          mkdir -p "$RUNNER_TEMP/unit-matrix"
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript tests/ci/unit-partition-matrix.R "$RUNNER_TEMP/unit-matrix" \
+            2>&1 | tee "$RUNNER_TEMP/unit-matrix.log"
+      - name: Scientific report values, omitted stages and rendering isolation
+        run: |
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript report/check.R "$RUNNER_TEMP/report-validation" \
+            2>&1 | tee "$RUNNER_TEMP/report-validation.log"
+      - name: Complete synthetic demo and report bundle
+        env:
+          SCEPTRE_DEMO_PROFILE: test,docker
+        run: |
+          SCEPTRE_DEMO_IMAGE="$SCEPTRE_CONTAINER_IMAGE" bash demo/demo.sh "$RUNNER_TEMP/demo" \
+            2>&1 | tee "$RUNNER_TEMP/demo.log"
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript demo/check-output.R "$RUNNER_TEMP/demo"
+      - name: Real Nextflow comparisons, resume and failed-worker rejection
+        run: |
+          bash tests/run-nextflow.sh "$RUNNER_TEMP/integration" 2>&1 | tee "$RUNNER_TEMP/integration.log"
+          SCEPTRE_EXECUTION_MODE=distributed bash tests/run-nextflow.sh "$RUNNER_TEMP/integration-distributed" \
+            2>&1 | tee "$RUNNER_TEMP/integration-distributed.log"
+      - name: Missing-family semantic false-positive guard
+        run: |
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            "$SCEPTRE_CONTAINER_IMAGE" Rscript tests/ci/check-missing-family.R \
+            "$RUNNER_TEMP/integration/fixture" "$RUNNER_TEMP/integration/results" "$RUNNER_TEMP/missing-family" \
+            2>&1 | tee "$RUNNER_TEMP/missing-family.log"
+      - name: Preserve diagnostics and scientific runtime identity
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: scientific-validation-${{ matrix.NXF_VER }}-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          include-hidden-files: true
+          if-no-files-found: warn
+          path: |
+            tests/runtime/source.json
+            ${{ runner.temp }}/source-snapshot.json
+            ${{ runner.temp }}/sif-guard/*.log
+            ${{ runner.temp }}/context/source.json
+            ${{ runner.temp }}/context/source.sha256
+            ${{ runner.temp }}/context-receipt.json
+            ${{ runner.temp }}/container-build.log
+            ${{ runner.temp }}/image-id
+            ${{ runner.temp }}/image-inspect.json
+            ${{ runner.temp }}/runtime-provenance.txt
+            ${{ runner.temp }}/host-engine*
+            ${{ runner.temp }}/config-closure/**/*.log
+            ${{ runner.temp }}/config-closure/**/*signature.json
+            ${{ runner.temp }}/config-closure/receipt.json
+            ${{ runner.temp }}/installed-package/runtime.json
+            ${{ runner.temp }}/installed-package/session.txt
+            ${{ runner.temp }}/installed-package/tests.json
+            ${{ runner.temp }}/installed-package/tests.rds
+            ${{ runner.temp }}/regular-file-signatures/receipt.json
+            ${{ runner.temp }}/regular-file-signatures/*.log
+            ${{ runner.temp }}/*.log
+            ${{ runner.temp }}/direct/direct-comparison.rds
+            ${{ runner.temp }}/distributed/distributed-comparison.rds
+            ${{ runner.temp }}/unit-matrix/unit-partition-matrix.rds
+            ${{ runner.temp }}/report-validation/*report/report-status.json
+            ${{ runner.temp }}/report-validation/*report/report.html
+            ${{ runner.temp }}/demo/demo-receipt.json
+            ${{ runner.temp }}/demo/results/exports/scientific-report
+            ${{ runner.temp }}/demo/results/pipeline_info
+            ${{ runner.temp }}/nf-test/*.txt
+            ${{ runner.temp }}/nf-test/*.log
+            ${{ runner.temp }}/nf-test/*.tap
+            ${{ runner.temp }}/nf-test/*.xml
+            ${{ runner.temp }}/nf-test/coverage.csv
+            ${{ runner.temp }}/nf-test/coverage.html
+            ${{ runner.temp }}/nf-test/work/tests/**/meta/nextflow.log
+            ${{ runner.temp }}/nf-test/work/tests/**/meta/trace.csv
+            ${{ runner.temp }}/nf-test/work/tests/**/work/**/.command.log
+            ${{ runner.temp }}/nf-test/work/tests/**/work/**/.command.err
+            ${{ runner.temp }}/nf-test/work/tests/**/work/**/.command.out
+            ${{ runner.temp }}/test_report_presentation/report-*/report-status.json
+            ${{ runner.temp }}/test_report_presentation/report-*/report.html
+            ${{ runner.temp }}/test_report_presentation/report-*/tables/*.csv
+            ${{ runner.temp }}/test_report_presentation/report-*/plots/*.png
+            ${{ runner.temp }}/test_report_presentation/report-*/plot-status.json
+            ${{ runner.temp }}/test_report_presentation/report-value-checks.rds
+            ${{ runner.temp }}/test_delivery/*report/report-status.json
+            ${{ runner.temp }}/test_delivery/*report/report.html
+            ${{ runner.temp }}/test_delivery/*report/tables/*.csv
+            ${{ runner.temp }}/test_delivery/*report/plots/*.png
+            ${{ runner.temp }}/test_delivery/*report/plot-status.json
+            ${{ runner.temp }}/test_delivery/*report/warnings.json
+            ${{ runner.temp }}/practical-parity/resource-observations.json
+            ${{ runner.temp }}/practical-parity/source-*.json
+            ${{ runner.temp }}/practical-parity/*/pipeline_info
+            ${{ runner.temp }}/practical-parity/*.log
+            ${{ runner.temp }}/practical-parity/prepared/settings.json
+            ${{ runner.temp }}/practical-parity/*/resolved_settings.json
+            ${{ runner.temp }}/practical-parity/*/exports/scientific-report
+            ${{ runner.temp }}/launcher/*.log
+            ${{ runner.temp }}/launcher/*.json
+            ${{ runner.temp }}/launcher/run/work/**/.command.run
+            ${{ runner.temp }}/launcher/run/launcher.json
+            ${{ runner.temp }}/launcher/run/prepared/settings.json
+            ${{ runner.temp }}/launcher/run/results/exports/scientific-report
+            ${{ runner.temp }}/launcher/run/results/pipeline_info
+            ${{ runner.temp }}/practical-parity/*work/**/.command.log
+            ${{ runner.temp }}/practical-parity/*work/**/.command.run
+            ${{ runner.temp }}/integration*/results/pipeline_info
+            ${{ runner.temp }}/integration*/*.log
+            ${{ runner.temp }}/integration*/resume-trace.tsv
+            ${{ runner.temp }}/integration*/work/**/.command.log
+            ${{ runner.temp }}/integration*/work/**/.command.err
+            ${{ runner.temp }}/integration*/work/**/.command.out
+            ${{ runner.temp }}/integration*/failure-work/**/.command.log
+            ${{ runner.temp }}/integration*/failure-work/**/.command.err
+            ${{ runner.temp }}/integration*/failure-work/**/.command.out
+  current-package:
+    # Additional dependency environment; never replaces the minimum-runtime gates.
+    needs: schema
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Build separately pinned R 4.6.1 / Bioconductor 3.23 runtime
+        run: |
+          python3 container/prepare-context.py --source-manifest tests/runtime/source.json \
+            --runtime-profile current --output "$RUNNER_TEMP/current-context" \
+            | tee "$RUNNER_TEMP/current-context-receipt.json"
+          docker build --progress plain --iidfile "$RUNNER_TEMP/current-image-id" \
+            "$RUNNER_TEMP/current-context" 2>&1 | tee "$RUNNER_TEMP/current-container-build.log"
+          docker image inspect "$(cat "$RUNNER_TEMP/current-image-id")" > "$RUNNER_TEMP/current-image-inspect.json"
+          docker run --rm "$(cat "$RUNNER_TEMP/current-image-id")" \
+            sh -c 'cat /opt/sceptre/source.json /opt/sceptre/session-info.txt /opt/sceptre/packages.tsv' \
+            > "$RUNNER_TEMP/current-runtime-provenance.txt"
+      - name: Same-archive package suite with DropletUtils 1.32 and zero skips
+        run: |
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
+            -e SCEPTRE_REQUIRE_DROPLETUTILS=1.32.0 -e SCEPTRE_REQUIRE_NO_SKIPS=true \
+            "$(cat "$RUNNER_TEMP/current-image-id")" Rscript --vanilla tests/ci/check-installed-package.R \
+            tests/runtime/sceptre_0.99.0.tar.gz "$RUNNER_TEMP/current-installed-package" \
+            2>&1 | tee "$RUNNER_TEMP/current-installed-package.log"
+      - name: Preserve additional dependency-runtime qualification
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: current-package-validation-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            tests/runtime/source.json
+            ${{ runner.temp }}/source-snapshot.json
+            ${{ runner.temp }}/current-context/source.json
+            ${{ runner.temp }}/current-context/source.sha256
+            ${{ runner.temp }}/current-context-receipt.json
+            ${{ runner.temp }}/current-image-id
+            ${{ runner.temp }}/current-image-inspect.json
+            ${{ runner.temp }}/current-runtime-provenance.txt
+            ${{ runner.temp }}/current-*.log
+            ${{ runner.temp }}/current-installed-package/runtime.json
+            ${{ runner.temp }}/current-installed-package/session.txt
+            ${{ runner.temp }}/current-installed-package/tests.json
+            ${{ runner.temp }}/current-installed-package/tests.rds
+
+  apptainer:
+    if: ${{ !inputs.current_package_only }}
+    # Positive native SIF execution is separate from scheduler/static identity tests.
+    needs: schema
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '17.0.10+7'
+      - uses: nf-core/setup-nextflow@893c28b667aedeba26e37f296d260ccc5bc4d914 # v3.0.1
+        with:
+          version: '25.10.4'
+          java-version: '17.0.10+7'
+          java-distribution: temurin
+      - name: Assert final installed JVM and exact Nextflow release
+        run: python3 tests/ci/check-engine-identity.py "$NXF_VER" "$RUNNER_TEMP/host-engine.json"
+      - name: Install checksum-pinned Apptainer 1.5.5
+        run: |
+          curl -fsSL --retry 3 https://github.com/apptainer/apptainer/releases/download/v1.5.5/apptainer_1.5.5_amd64.deb -o "$RUNNER_TEMP/apptainer.deb"
+          echo '25095d3711504b3e8657dbb2e172ef8db9db43c4503d940c9c36b105db8dce77  '"$RUNNER_TEMP/apptainer.deb" | sha256sum -c -
+          sudo apt-get update
+          sudo apt-get install -y "$RUNNER_TEMP/apptainer.deb"
+          apptainer version | tee "$RUNNER_TEMP/apptainer-version.txt"
+          apptainer buildcfg > "$RUNNER_TEMP/apptainer-buildcfg.txt"
+      - name: Build approved exact-source Docker image locally
+        run: |
+          python3 container/prepare-context.py --source-manifest tests/runtime/source.json --output "$RUNNER_TEMP/sif-context" | tee "$RUNNER_TEMP/sif-context-receipt.json"
+          docker build --progress plain --iidfile "$RUNNER_TEMP/sif-image-id" --tag sceptre-sif-source:qualification "$RUNNER_TEMP/sif-context" 2>&1 | tee "$RUNNER_TEMP/sif-docker-build.log"
+          docker image inspect "$(cat "$RUNNER_TEMP/sif-image-id")" > "$RUNNER_TEMP/sif-docker-inspect.json"
+      - name: Convert local Docker daemon image to native SIF without registry upload
+        run: |
+          apptainer build "$RUNNER_TEMP/sceptre.sif" docker-daemon://sceptre-sif-source:qualification 2>&1 | tee "$RUNNER_TEMP/sif-build.log"
+          sha256sum "$RUNNER_TEMP/sceptre.sif" | tee "$RUNNER_TEMP/sif-sha256.txt"
+          apptainer inspect --json "$RUNNER_TEMP/sceptre.sif" > "$RUNNER_TEMP/sif-inspect.json"
+          echo "SCEPTRE_CONTAINER_ENGINE=apptainer" >> "$GITHUB_ENV"
+          echo "SCEPTRE_CONTAINER_IMAGE=$RUNNER_TEMP/sceptre.sif" >> "$GITHUB_ENV"
+      - name: Execute native HDF5 CRT, direct R, checkpoint and resume in isolated SIF
+        run: bash tests/run-parity-nextflow.sh "$RUNNER_TEMP/apptainer-parity" 2>&1 | tee "$RUNNER_TEMP/apptainer-parity.log"
+      - name: Execute same-runtime single-command raw input and resume in isolated SIF
+        run: bash tests/run-launcher.sh "$RUNNER_TEMP/apptainer-launcher" 2>&1 | tee "$RUNNER_TEMP/apptainer-launcher.log"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: apptainer-scientific-validation-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          include-hidden-files: true
+          path: |
+            ${{ runner.temp }}/host-engine*
+            ${{ runner.temp }}/apptainer-*.txt
+            ${{ runner.temp }}/apptainer-*.log
+            ${{ runner.temp }}/sif-*.json
+            ${{ runner.temp }}/sif-*.txt
+            ${{ runner.temp }}/sif-*.log
+            ${{ runner.temp }}/sif-context/source.json
+            ${{ runner.temp }}/sif-context-receipt.json
+            ${{ runner.temp }}/apptainer-parity/resource-observations.json
+            ${{ runner.temp }}/apptainer-parity/source-*.json
+            ${{ runner.temp }}/apptainer-parity/*/pipeline_info
+            ${{ runner.temp }}/apptainer-parity/*/resolved_settings.json
+            ${{ runner.temp }}/apptainer-parity/*work/**/.command.*
+            ${{ runner.temp }}/apptainer-launcher/*.json
+            ${{ runner.temp }}/apptainer-launcher/*.log
+            ${{ runner.temp }}/apptainer-launcher/**/pipeline_info
+            ${{ runner.temp }}/apptainer-launcher/run/results/exports/scientific-report

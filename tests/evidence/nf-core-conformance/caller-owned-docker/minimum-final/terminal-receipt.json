@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "exit_code": 0,
+  "nextflow_version": "25.10.4",
+  "exact_public_R_and_RNG": true,
+  "unchanged_scientific_cache": true,
+  "prepared_parameter_mutation_guards": [
+    "seed",
+    "analyses",
+    "input_bundle"
+  ],
+  "nested_source_and_settings_guards": true,
+  "native_linux_named_volume_UID_GID": true,
+  "host_platform": "Darwin",
+  "native_linux_host_full_driver": "PENDING_HOSTED_VALIDATION",
+  "Docker_Desktop_bind_GID_limitation": "GID projected as0 versus caller20; strictcallerUID/write/edit/delete retained; nativeLinuxnamedvolumeGIDstrict1002.",
+  "scientific_scope": "RawJSON nativeHDF5 CRT discovery-only; requested3 workunits; exact publicR/RNG/cache/negative guards"
+}

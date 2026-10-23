@@ -54,7 +54,7 @@ website:
             text: nf-core principles
     right:
       - icon: github
-        href: https://github.com/timothy-barry/sceptre-pipeline
+        href: https://github.com/Katsevich-Lab/sceptre-pipeline/tree/codex/practical-parity-20261022
         aria-label: "Pipeline source on GitHub"
   search:
     location: navbar
@@ -67,6 +67,8 @@ website:
         contents:
           - demo.qmd
           - usage.qmd
+          - practical-parity.qmd
+          - scientific-delivery.qmd
           - parameters.qmd
           - outputs.qmd
           - report.qmd
@@ -74,6 +76,8 @@ website:
       - section: "DEPLOY"
         contents:
           - containers.qmd
+          - container-publication.qmd
+          - container-payload.qmd
           - hpc.qmd
           - array-validation.qmd
       - section: "UNDERSTAND & VERIFY"
@@ -85,7 +89,9 @@ website:
           - benchmark.qmd
           - scale-boundaries.qmd
           - validation.qmd
+          - parity-acceptance.qmd
           - nf-core.qmd
+          - nf-core-conformance.qmd
   page-footer:
     border: false
     left: "SCEPTRE pipeline · Single-cell CRISPR screen analysis"
@@ -93,7 +99,7 @@ website:
       - text: "GPL-3.0"
         href: LICENSE.txt
       - text: "Source"
-        href: https://github.com/timothy-barry/sceptre-pipeline
+        href: https://github.com/Katsevich-Lab/sceptre-pipeline/tree/codex/practical-parity-20261022
 
 format:
   html:

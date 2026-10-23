@@ -1,8 +1,8 @@
-include { SCEPTRE_EXPORT } from '../../../modules/local/sceptre_export/main'
-include { SCEPTRE_VALIDATE } from '../../../modules/local/sceptre_validate/main'
-include { SCEPTRE_STAGE as PARAMETERS } from '../../../modules/local/sceptre_stage/main'
-include { SCEPTRE_STAGE as ASSIGNMENT } from '../../../modules/local/sceptre_stage/main'
-include { SCEPTRE_STAGE as QC } from '../../../modules/local/sceptre_stage/main'
+include { SCEPTREEXPORT as SCEPTRE_EXPORT } from '../../../modules/local/sceptreexport/main'
+include { SCEPTREVALIDATE as SCEPTRE_VALIDATE } from '../../../modules/local/sceptrevalidate/main'
+include { SCEPTRESTAGE as PARAMETERS } from '../../../modules/local/sceptrestage/main'
+include { SCEPTRESTAGE as ASSIGNMENT } from '../../../modules/local/sceptrestage/main'
+include { SCEPTRESTAGE as QC } from '../../../modules/local/sceptrestage/main'
 include { SCEPTRE_ANALYSIS as CALIBRATION } from '../sceptre_analysis/main'
 include { SCEPTRE_ANALYSIS as POWER } from '../sceptre_analysis/main'
 include { SCEPTRE_ANALYSIS as DISCOVERY } from '../sceptre_analysis/main'
@@ -19,21 +19,29 @@ workflow SCEPTRE {
     implementation_sources
     analyses
     stop_after
+    checkpoint_stage
     seed
     execution_mode
     n_units
 
     main:
     SCEPTRE_VALIDATE(state, config, lock, backing, tools_dir, previous_signature, run_options, implementation_sources)
-    validated = state.combine(SCEPTRE_VALIDATE.out.ready).map { meta, bundle, ready -> tuple(meta, bundle) }
-    PARAMETERS(validated, config, lock, backing, tools_dir, 'parameters', seed)
-    current = PARAMETERS.out.state
+    validated = state.combine(SCEPTRE_VALIDATE.out.ready).map { meta, bundle, _ready -> tuple(meta, bundle) }
+    current = validated
+    if (checkpoint_stage == 'input') {
+        PARAMETERS(current, config, lock, backing, tools_dir, 'parameters', seed)
+        current = PARAMETERS.out.state
+    }
     if (stop_after != 'parameters') {
-        ASSIGNMENT(current, config, lock, backing, tools_dir, 'assignment', seed)
-        current = ASSIGNMENT.out.state
+        if (checkpoint_stage in ['input','parameters']) {
+            ASSIGNMENT(current, config, lock, backing, tools_dir, 'assignment', seed)
+            current = ASSIGNMENT.out.state
+        }
         if (stop_after != 'assignment') {
-            QC(current, config, lock, backing, tools_dir, 'qc', seed)
-            current = QC.out.state
+            if (checkpoint_stage in ['input','parameters','assignment']) {
+                QC(current, config, lock, backing, tools_dir, 'qc', seed)
+                current = QC.out.state
+            }
             if (stop_after == 'analysis') {
                 if ('calibration' in analyses) {
                     CALIBRATION(current, config, lock, backing, tools_dir, 'calibration', seed, execution_mode, n_units)
@@ -50,8 +58,10 @@ workflow SCEPTRE {
             }
         }
     }
+    current = current.ifEmpty { error 'A selected certified stage produced no state; selected work cannot be disabled by site configuration.' }
     if (stop_after != 'parameters') {
         SCEPTRE_EXPORT(current, config, lock, backing, tools_dir)
+        SCEPTRE_EXPORT.out.exports.ifEmpty { error 'Selected certified delivery produced no exports; delivery cannot be disabled by site configuration.' }
     }
     emit:
     state = current

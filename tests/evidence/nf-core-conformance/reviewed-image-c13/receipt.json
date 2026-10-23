@@ -1,0 +1,309 @@
+{
+  "kind": "historical-exact-image-and-real-promotion-admission",
+  "schema": 1,
+  "review_source": "c13e94da0b8e9a54a2dd2460ad8514d04bd0fee0",
+  "review_run_id": 39904756647,
+  "review_result": "success",
+  "artifact_id": 12480892891,
+  "artifact_zip_sha256": "ea73fb7e8065560a8351e025ee0efb41ea4a9ae66f75cf117432f2a4641ae341",
+  "image_archive_sha256": "1dcbe3a5d8b290c8ca28ffb67a065872e23e8d79877587199bffa230d346b688",
+  "image_config_id": "sha256:02809df79df55e61c05cbf5e7cfd60065c3311719102976983a3c12d7bb6edcc",
+  "actual_ubuntu_admission_run": 39908251912,
+  "admission_executing_source": "8c97af41494cfc9a759fa4968a2399d0651c7c30",
+  "admission_artifact_id": 12481403983,
+  "admission_zip_sha256": "7b26f8bb4928e6815505135e5b4e46ef1a4d950d4e26f0714d035f3fe526615e",
+  "origin_local_load_loaded_ubuntu": "VERIFIED",
+  "scope": "Actual installedpackage/nativeHDF5/publicR/allfamilies/checkpoint/resume/source guards thenexactarchive saved. Originalorigin helperhash bound to c13; correctedadmissionhelper4df9205 followsactualproducercontext key. No rebuild duringUbuntu admission; strictexactloadedconfigID passed.",
+  "known_limit": "Inherited OCIlicenses label still GPL-2.0-or-later frombase despiteSCEPTREpackageGPL-3; child preparinglabelcorrectednewimage. This image is historical, notfinalpublicationcandidate. MacDockerDesktopcontainerd reportsmanifestID2253/config02809; strictMacloadedadmissionfailed andwasnotwaived.",
+  "registry_actions": "NONE; no login/push/visibility/default-source writes",
+  "artifacts": {
+    "raw/review-artifact/image.sha256": {
+      "sha256": "d2f8fa1eec70c3db20eddf93c4d3a6e90ce4b9b4f61b020e03caf92968ce441c",
+      "bytes": 79,
+      "original_sha256": "d2f8fa1eec70c3db20eddf93c4d3a6e90ce4b9b4f61b020e03caf92968ce441c",
+      "original_bytes": 79
+    },
+    "raw/review-artifact/source-before.json": {
+      "sha256": "e4c41bd87c981eae20d3b33c4fb383017d6858798645f687253960c7d4783d64",
+      "bytes": 15330,
+      "original_sha256": "e4c41bd87c981eae20d3b33c4fb383017d6858798645f687253960c7d4783d64",
+      "original_bytes": 15330
+    },
+    "raw/review-artifact/host-engine.json": {
+      "sha256": "5c4cb955fe6ee5940a32562a7e48c542059581137d93e4192d86641c52688275",
+      "bytes": 558,
+      "original_sha256": "5c4cb955fe6ee5940a32562a7e48c542059581137d93e4192d86641c52688275",
+      "original_bytes": 558
+    },
+    "raw/review-artifact/source-after.json": {
+      "sha256": "e4c41bd87c981eae20d3b33c4fb383017d6858798645f687253960c7d4783d64",
+      "bytes": 15330,
+      "original_sha256": "e4c41bd87c981eae20d3b33c4fb383017d6858798645f687253960c7d4783d64",
+      "original_bytes": 15330
+    },
+    "raw/review-artifact/scientific-parity.log.gz": {
+      "sha256": "2469856911468f3aa8dbfecb354f5fcaf0c92f6f067d75e4088d44ebad5bd3e6",
+      "bytes": 1658,
+      "original_sha256": "64f0b48444d521c874519826a404b22f9e532a0697b10417133c6bd5c876a45a",
+      "original_bytes": 6642
+    },
+    "raw/review-artifact/review-receipt.json": {
+      "sha256": "22b27b82126c508a9409427638968c024d3b054cecaeed459075fe042ad9dbcf",
+      "bytes": 993,
+      "original_sha256": "22b27b82126c508a9409427638968c024d3b054cecaeed459075fe042ad9dbcf",
+      "original_bytes": 993
+    },
+    "raw/review-artifact/image-inspect.json": {
+      "sha256": "819b2c99ff88940c8434a59609a36e89de4bd4d37c17860a51572778cef3d5e8",
+      "bytes": 4954,
+      "original_sha256": "819b2c99ff88940c8434a59609a36e89de4bd4d37c17860a51572778cef3d5e8",
+      "original_bytes": 4954
+    },
+    "raw/review-artifact/runtime-provenance.txt.gz": {
+      "sha256": "2774e0f45c88ba0e8a44cf4df0c5943a83ef09cee14c1942a848e5cf0b18b80f",
+      "bytes": 2296,
+      "original_sha256": "ba4ccd21e7771c3845152b5b3aff7efba00702a720975b36c7219ecfa160300e",
+      "original_bytes": 5382
+    },
+    "raw/review-artifact/context-receipt.json": {
+      "sha256": "d0e1923cf315e31d0c49c56f56283f2ae2acc36781ccc5d20b69581cda50479b",
+      "bytes": 587,
+      "original_sha256": "d0e1923cf315e31d0c49c56f56283f2ae2acc36781ccc5d20b69581cda50479b",
+      "original_bytes": 587
+    },
+    "raw/review-artifact/host-engine.nextflow.txt.gz": {
+      "sha256": "fc731366f577b0b354a89a7669c48c73fb88989b9a76a62a267c2f04eee132f7",
+      "bytes": 141,
+      "original_sha256": "79a35e33aeb0804a168cc40eac516568f09c0ebfb4e1a43acd089b3f89b198cd",
+      "original_bytes": 151
+    },
+    "raw/review-artifact/image-id": {
+      "sha256": "8cf9fb227278c3c8dc9cefd3029a438c142c121f5aaafe3be7c3a9b74a7a40b9",
+      "bytes": 71,
+      "original_sha256": "8cf9fb227278c3c8dc9cefd3029a438c142c121f5aaafe3be7c3a9b74a7a40b9",
+      "original_bytes": 71
+    },
+    "raw/review-artifact/host-engine.java.txt.gz": {
+      "sha256": "3125a7a8cdf73f41d194240bd1357f9bf9ef3f079287b9d6f081ebb19014accf",
+      "bytes": 772,
+      "original_sha256": "a34178845ecc9050590b028bdeec3ae8c55bb12e92362fd4e3ed6537694217d5",
+      "original_bytes": 2066
+    },
+    "raw/review-artifact/installed-package.log.gz": {
+      "sha256": "f60e4fc973aaa116b3d0d7dc1e473687c5ce9d23216da2ed691e627ecb3abfe2",
+      "bytes": 2341,
+      "original_sha256": "b13c8824f748938704d24df4381ad4788ebe03e3e79bf6a6951f1e84da13ab12",
+      "original_bytes": 19027
+    },
+    "raw/review-artifact/context/source.json": {
+      "sha256": "3f459aad5ebcfbc16d2347d73d395dc6f66d6049777bc9ed4d67a8cac9fa5e87",
+      "bytes": 539,
+      "original_sha256": "3f459aad5ebcfbc16d2347d73d395dc6f66d6049777bc9ed4d67a8cac9fa5e87",
+      "original_bytes": 539
+    },
+    "raw/review-artifact/installed-package/session.txt.gz": {
+      "sha256": "8805138a2310fa975a0200c4645e8f2e3d223c8e447b630b68bb89650174790f",
+      "bytes": 784,
+      "original_sha256": "18f974731b54e34c9eda0644a07f70784350f3e40b4375e84a31caadc5903328",
+      "original_bytes": 1649
+    },
+    "raw/review-artifact/installed-package/runtime.json": {
+      "sha256": "04748d66c23fa5b18492e0644640b8e0578ce190564640c647c8288da36505ea",
+      "bytes": 994,
+      "original_sha256": "04748d66c23fa5b18492e0644640b8e0578ce190564640c647c8288da36505ea",
+      "original_bytes": 994
+    },
+    "raw/review-artifact/installed-package/tests.json": {
+      "sha256": "f585c9ff8630b7fca8f77013dcf0e8a375e8c901b7792ded5b776a8a4d7eebb4",
+      "bytes": 2228,
+      "original_sha256": "f585c9ff8630b7fca8f77013dcf0e8a375e8c901b7792ded5b776a8a4d7eebb4",
+      "original_bytes": 2228
+    },
+    "raw/review-artifact/scientific-parity/source-before.json": {
+      "sha256": "dfdf0fe3f7630f9d1bc083a92b34446c12dc38893dd2508b38143cccbe401ab0",
+      "bytes": 4085,
+      "original_sha256": "dfdf0fe3f7630f9d1bc083a92b34446c12dc38893dd2508b38143cccbe401ab0",
+      "original_bytes": 4085
+    },
+    "raw/review-artifact/scientific-parity/source-after.json": {
+      "sha256": "dfdf0fe3f7630f9d1bc083a92b34446c12dc38893dd2508b38143cccbe401ab0",
+      "bytes": 4085,
+      "original_sha256": "dfdf0fe3f7630f9d1bc083a92b34446c12dc38893dd2508b38143cccbe401ab0",
+      "original_bytes": 4085
+    },
+    "raw/review-artifact/scientific-parity/full/resolved_settings.json": {
+      "sha256": "fd3835615bd200470c6e67c39716563b49c5da7517a56b8ca528858cd37450b2",
+      "bytes": 4151,
+      "original_sha256": "fd3835615bd200470c6e67c39716563b49c5da7517a56b8ca528858cd37450b2",
+      "original_bytes": 4151
+    },
+    "raw/review-artifact/scientific-parity/full/pipeline_info/trace.tsv.gz": {
+      "sha256": "513d5ef2c566e1af538602d029447ac98305a2e288aa6c7483299f5538a6033c",
+      "bytes": 1017,
+      "original_sha256": "80c3e24e0c54ecbd7dcc9f82eb08fc28525acea0dd6470a5d6acd5ccaf16a115",
+      "original_bytes": 2925
+    },
+    "raw/review-artifact/scientific-parity/continued/resolved_settings.json": {
+      "sha256": "da10a3d3d924b0065b91ab523684f560b19b1eb0b6377947de1017c911f678d5",
+      "bytes": 4125,
+      "original_sha256": "da10a3d3d924b0065b91ab523684f560b19b1eb0b6377947de1017c911f678d5",
+      "original_bytes": 4125
+    },
+    "raw/review-artifact/scientific-parity/continued/pipeline_info/trace.tsv.gz": {
+      "sha256": "c95194241cd36d1981a00d5d717d5df7912c04b30efd49ce9c65797fee15e1cd",
+      "bytes": 508,
+      "original_sha256": "b80cda3f441967848140fc725dfbf6630c93dac560c525a3c91c122b73aef4ad",
+      "original_bytes": 1036
+    },
+    "raw/mac-admission/origin.json": {
+      "sha256": "0cb5f7c50b076416799f9563be08db49dcf9587cd768822f7d3b17be531af0d9",
+      "bytes": 976,
+      "original_sha256": "0cb5f7c50b076416799f9563be08db49dcf9587cd768822f7d3b17be531af0d9",
+      "original_bytes": 976
+    },
+    "raw/mac-admission/origin.log.gz": {
+      "sha256": "ea136843c1775636146d2f0b4ed6b1d0d6a6ab3c40ad318188d7b9cd3dab68f0",
+      "bytes": 71,
+      "original_sha256": "34d58b5bf57e975590c565ac7827bd8d8a6aa85e40034ac1355a2085be9c068d",
+      "original_bytes": 51
+    },
+    "raw/mac-admission/local.json": {
+      "sha256": "ff6b0fdac158b362c886ea25c3ff54d9f8d97a695579e3bb1c75366817619e79",
+      "bytes": 382,
+      "original_sha256": "ff6b0fdac158b362c886ea25c3ff54d9f8d97a695579e3bb1c75366817619e79",
+      "original_bytes": 382
+    },
+    "raw/mac-admission/local.log.gz": {
+      "sha256": "3834264f30a08ab64395eb6f39bad8168200274f6f8d96925da231af6b580c60",
+      "bytes": 70,
+      "original_sha256": "c07d5ae2f4ecfc515c6997f1bad8b89bedd41ed943358d1765162a89ecd6e922",
+      "original_bytes": 50
+    },
+    "raw/mac-admission/local-original-failed.log.gz": {
+      "sha256": "46677f1e67c4109a2ef5127af04f75502f053f9c724df557789867c9a4c50832",
+      "bytes": 354,
+      "original_sha256": "6aa707642c33db8d2099df0ed14cc77c6a7394bbd07220894e2bb212d3655c31",
+      "original_bytes": 773
+    },
+    "raw/mac-admission/loaded.log.gz": {
+      "sha256": "5e3a8f62ff7e12959765468e3604f0b72451ba4e0832181a8d92710720fbfd33",
+      "bytes": 375,
+      "original_sha256": "690a60c71f66117596ceec2dc5134f695e797c1e6263eeefd1b319936a7c36c3",
+      "original_bytes": 1005
+    },
+    "raw/mac-admission/containerd-id-boundary.json": {
+      "sha256": "65e7af450a327025ca84a36cabddd767d337cb63816ef9e241310c19a5567ab4",
+      "bytes": 1396,
+      "original_sha256": "65e7af450a327025ca84a36cabddd767d337cb63816ef9e241310c19a5567ab4",
+      "original_bytes": 1396
+    },
+    "raw/mac-admission/docker-load.log.gz": {
+      "sha256": "fb7fd1ed16bfab6befe59dc3161836dae2b1ccb9cd22704573761b1fd9f7900b",
+      "bytes": 67,
+      "original_sha256": "6e9d98a7632952f611aaa3739de29d1e1bde16fea79fedaa7cd86345ce5cacd3",
+      "original_bytes": 47
+    },
+    "raw/mac-admission/run.json": {
+      "sha256": "ff262657bb51b582318494c679343160975b4ee8e2e16d48b40a350fe403cf69",
+      "bytes": 13673,
+      "original_sha256": "ff262657bb51b582318494c679343160975b4ee8e2e16d48b40a350fe403cf69",
+      "original_bytes": 13673
+    },
+    "raw/mac-admission/artifact.json": {
+      "sha256": "2da48f2fe0149756e3898715a9e0fbb27191d9f9494d1c4d64f1f5dd41c9fba7",
+      "bytes": 767,
+      "original_sha256": "2da48f2fe0149756e3898715a9e0fbb27191d9f9494d1c4d64f1f5dd41c9fba7",
+      "original_bytes": 767
+    },
+    "raw/ubuntu-admission/origin.json": {
+      "sha256": "0cb5f7c50b076416799f9563be08db49dcf9587cd768822f7d3b17be531af0d9",
+      "bytes": 976,
+      "original_sha256": "0cb5f7c50b076416799f9563be08db49dcf9587cd768822f7d3b17be531af0d9",
+      "original_bytes": 976
+    },
+    "raw/ubuntu-admission/offline-tests.log.gz": {
+      "sha256": "8546e10312359439edb08ed449cf3cf41f96ddc62e047b8ea5c8fa6c47bdbd53",
+      "bytes": 55,
+      "original_sha256": "f9ef00017caa2702daf282381ab6c7f1ab6d560d0023b5d78f4f51e57461cbf8",
+      "original_bytes": 113
+    },
+    "raw/ubuntu-admission/loaded.json": {
+      "sha256": "35da26c5d6c06b56a7f08b833435fcc6929cecdf96f129ee5422dd0646fb7e13",
+      "bytes": 381,
+      "original_sha256": "35da26c5d6c06b56a7f08b833435fcc6929cecdf96f129ee5422dd0646fb7e13",
+      "original_bytes": 381
+    },
+    "raw/ubuntu-admission/local.log.gz": {
+      "sha256": "3834264f30a08ab64395eb6f39bad8168200274f6f8d96925da231af6b580c60",
+      "bytes": 70,
+      "original_sha256": "c07d5ae2f4ecfc515c6997f1bad8b89bedd41ed943358d1765162a89ecd6e922",
+      "original_bytes": 50
+    },
+    "raw/ubuntu-admission/executing-source.txt.gz": {
+      "sha256": "4107448de7507b67f223cab9517b90ea70e552b0245e38e17a16ad4a2223c736",
+      "bytes": 59,
+      "original_sha256": "d456c6c3f735ad4687fcedd5f5cb5672779b63c6f4563dd0d0064daa96353af6",
+      "original_bytes": 41
+    },
+    "raw/ubuntu-admission/origin.log.gz": {
+      "sha256": "ea136843c1775636146d2f0b4ed6b1d0d6a6ab3c40ad318188d7b9cd3dab68f0",
+      "bytes": 71,
+      "original_sha256": "34d58b5bf57e975590c565ac7827bd8d8a6aa85e40034ac1355a2085be9c068d",
+      "original_bytes": 51
+    },
+    "raw/ubuntu-admission/loaded.log.gz": {
+      "sha256": "597ac959481094b8b98e455ad21adc65333cbf5d459b3dece8b36b8ae701288d",
+      "bytes": 69,
+      "original_sha256": "de855c56991723d3c575778fbd8c89ee3830ebe312005a92cae3419e45bca1f9",
+      "original_bytes": 51
+    },
+    "raw/ubuntu-admission/artifact.sha256": {
+      "sha256": "b1d9a5de19af2a5022e4b32386acb1b68e49d4751f3c1424e49d0a902fb37c20",
+      "bytes": 79,
+      "original_sha256": "b1d9a5de19af2a5022e4b32386acb1b68e49d4751f3c1424e49d0a902fb37c20",
+      "original_bytes": 79
+    },
+    "raw/ubuntu-admission/executing-helper.sha256": {
+      "sha256": "d074f5e3f69ec4d9ecd0c1a8ba2e0c90e598b4141f1bb8d268843885ac9f3b21",
+      "bytes": 201,
+      "original_sha256": "d074f5e3f69ec4d9ecd0c1a8ba2e0c90e598b4141f1bb8d268843885ac9f3b21",
+      "original_bytes": 201
+    },
+    "raw/ubuntu-admission/local.json": {
+      "sha256": "ff6b0fdac158b362c886ea25c3ff54d9f8d97a695579e3bb1c75366817619e79",
+      "bytes": 382,
+      "original_sha256": "ff6b0fdac158b362c886ea25c3ff54d9f8d97a695579e3bb1c75366817619e79",
+      "original_bytes": 382
+    },
+    "raw/ubuntu-admission/docker-load.log.gz": {
+      "sha256": "fb7fd1ed16bfab6befe59dc3161836dae2b1ccb9cd22704573761b1fd9f7900b",
+      "bytes": 67,
+      "original_sha256": "6e9d98a7632952f611aaa3739de29d1e1bde16fea79fedaa7cd86345ce5cacd3",
+      "original_bytes": 47
+    },
+    "raw/ubuntu-admission/docker-version.txt.gz": {
+      "sha256": "204742ed284779f5eb69f29ee0363ea7866f52471e8d13d2ba1ba292812c51e4",
+      "bytes": 347,
+      "original_sha256": "7ba4296d98811b3f6017879e4adb5452f8fe84ab8242b9bfd4fe14e394459098",
+      "original_bytes": 769
+    },
+    "raw/ubuntu-admission/image/review-receipt.json": {
+      "sha256": "22b27b82126c508a9409427638968c024d3b054cecaeed459075fe042ad9dbcf",
+      "bytes": 993,
+      "original_sha256": "22b27b82126c508a9409427638968c024d3b054cecaeed459075fe042ad9dbcf",
+      "original_bytes": 993
+    },
+    "raw/ubuntu-admission/image/loaded-inspect.json": {
+      "sha256": "4b88e0d9543d72e2670ade90cd0e8c873d35e04787d437fa42fb553fa42ae6ff",
+      "bytes": 5178,
+      "original_sha256": "4b88e0d9543d72e2670ade90cd0e8c873d35e04787d437fa42fb553fa42ae6ff",
+      "original_bytes": 5178
+    },
+    "raw/mac-admission/loaded-inspect.json": {
+      "sha256": "d9879d77f068cbe1af86ae0f238319138a67c3c4e18386cfbacf19315b434ecc",
+      "bytes": 3812,
+      "original_sha256": "d9879d77f068cbe1af86ae0f238319138a67c3c4e18386cfbacf19315b434ecc",
+      "original_bytes": 3812
+    }
+  }
+}

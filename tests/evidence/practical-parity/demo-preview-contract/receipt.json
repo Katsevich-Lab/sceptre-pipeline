@@ -1,0 +1,191 @@
+{
+  "kind": "bounded-report-preview-full-identity-oracle-repair",
+  "schema": 1,
+  "fix_commit": "736eda3",
+  "production_sha256": "985222799734e4a8a61473ade0753af9e06c450587f67623440ee447a723c61c",
+  "selected_archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "runtime": "Qualified Docker LinuxARM64 image sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9; R4.5.1/Bioc3.22; actual min25.10.4/default1 and current26.10.3/default2",
+  "actual_demo_results": {
+    "25.10.4": {
+      "owner_exit": 0
+    },
+    "26.10.3": {
+      "owner_exit": 0
+    }
+  },
+  "negative_probes": [
+    {
+      "version": "25.10.4",
+      "case": "original-stale-preview-equals-full-lock",
+      "exit": 1,
+      "expected_rejection": true
+    },
+    {
+      "version": "25.10.4",
+      "case": "full-identity-beyond-preview",
+      "exit": 1,
+      "expected_rejection": true
+    },
+    {
+      "version": "25.10.4",
+      "case": "bounded-preview-identity",
+      "exit": 1,
+      "expected_rejection": true
+    },
+    {
+      "version": "26.10.3",
+      "case": "original-stale-preview-equals-full-lock",
+      "exit": 1,
+      "expected_rejection": true
+    },
+    {
+      "version": "26.10.3",
+      "case": "full-identity-beyond-preview",
+      "exit": 1,
+      "expected_rejection": true
+    },
+    {
+      "version": "26.10.3",
+      "case": "bounded-preview-identity",
+      "exit": 1,
+      "expected_rejection": true
+    }
+  ],
+  "contract": "Full exported manifest package identity equals full selected lock (all93 dependencies); bounded report manifest equals report_preview(full exported manifest). Allthreefamily report/native/CSV public savedresult comparisons, QC320/315/5,seed271828, source+executionreport presence retained.",
+  "scope": "Test-only oracle correction; renderer/source scientific logic/serialization/statistics/RNG unchanged. Original725hostedNF26job failed stalepreview===fulllock after42nf-tests+family+partition+report passed. Laterintegration/missingfamily were skipped, not qualified. Originalstalecheckfailslocallybothruntimes; fullidentity corruption atdependency13 beyondpreview andboundedpreview tampering eachreject. Originalsuccessfuldemo folders untouched by cloned negativecases.",
+  "limits": "Focused ARM64 demos/negativecases, not full42 or finalAMD64 CI. Installed-package fingerprint is in full lock; separate nativeDLL runtime receipts retain their own scope.",
+  "artifacts": {
+    "raw/negative/26.10.3-original-oracle.log.gz": {
+      "sha256": "e0d772e523a843f90d7ad8fcb9ef16f6c52b7bef81aa8083e4e39fb7c180c3b0",
+      "bytes": 101,
+      "original_sha256": "745d6dc70823fa8f41ea7ca7a829de7e02a7538067d1a4f4cf9aad37be5a70ca",
+      "original_bytes": 88
+    },
+    "raw/negative/original-check.R.gz": {
+      "sha256": "d0fc1d59459294312924f5f1dcd40dab3582bfc14aeddc8224306feedf61eb71",
+      "bytes": 916,
+      "original_sha256": "fcfb2ecbf138253991b4a57995383b5a6d2bb32f34ac6125e588464f595d7cac",
+      "original_bytes": 1965
+    },
+    "raw/negative/probe.log.gz": {
+      "sha256": "ccdb5d87328c22e1dea3843c4ed2f03e1d59fb330d15c03eeb961293c0b84eba",
+      "bytes": 107,
+      "original_sha256": "f56d010106a67cff0a306719d8c2519f919c68c08c02c2368a0012ebc9dc3996",
+      "original_bytes": 96
+    },
+    "raw/negative/negative-results.json": {
+      "sha256": "ee8b358958c4b82a8fd1b7a6fd6c22104382e3fe8498967e8c4900437640ea59",
+      "bytes": 767,
+      "original_sha256": "ee8b358958c4b82a8fd1b7a6fd6c22104382e3fe8498967e8c4900437640ea59",
+      "original_bytes": 767
+    },
+    "raw/negative/25.10.4-bounded-preview-identity.log.gz": {
+      "sha256": "e71313634314862280884d076154c09120c3d56cdb7642ee6a71180a8ce81ef2",
+      "bytes": 106,
+      "original_sha256": "0e8537674060d2270187877f141b94270f03d993f9967b8bd464d03eabe6a76e",
+      "original_bytes": 100
+    },
+    "raw/negative/25.10.4-original-oracle.log.gz": {
+      "sha256": "e0d772e523a843f90d7ad8fcb9ef16f6c52b7bef81aa8083e4e39fb7c180c3b0",
+      "bytes": 101,
+      "original_sha256": "745d6dc70823fa8f41ea7ca7a829de7e02a7538067d1a4f4cf9aad37be5a70ca",
+      "original_bytes": 88
+    },
+    "raw/negative/26.10.3-bounded-preview-identity.log.gz": {
+      "sha256": "e71313634314862280884d076154c09120c3d56cdb7642ee6a71180a8ce81ef2",
+      "bytes": 106,
+      "original_sha256": "0e8537674060d2270187877f141b94270f03d993f9967b8bd464d03eabe6a76e",
+      "original_bytes": 100
+    },
+    "raw/negative/25.10.4-full-identity-beyond-preview.log.gz": {
+      "sha256": "705888698cb14914cc0bc0ca2181d46f8ea033e542419ab854a8405251c63e92",
+      "bytes": 90,
+      "original_sha256": "98ec0644f82ed21ac80d457b0d475d1208f359f4cec7a7cde065e184bbbc45a2",
+      "original_bytes": 70
+    },
+    "raw/negative/probe.py.gz": {
+      "sha256": "3663a1446cfb14a2aad0ca0b2285b7dad4c0b48ae7139928ef1219fe5a4e0527",
+      "bytes": 1113,
+      "original_sha256": "e4a4549245ab8fb14ee5d5c9c32970fb80b27627c8f2d8a35e31b7c9a795d861",
+      "original_bytes": 2527
+    },
+    "raw/negative/26.10.3-full-identity-beyond-preview.log.gz": {
+      "sha256": "705888698cb14914cc0bc0ca2181d46f8ea033e542419ab854a8405251c63e92",
+      "bytes": 90,
+      "original_sha256": "98ec0644f82ed21ac80d457b0d475d1208f359f4cec7a7cde065e184bbbc45a2",
+      "original_bytes": 70
+    },
+    "raw/25.10.4/demo.log.gz": {
+      "sha256": "395f8e10d93ca642dd7c672d238d82ee317c6a8b614dd010fef4eb22243ccd07",
+      "bytes": 810,
+      "original_sha256": "d042def2e3514dbed31a79d74e255948d591b73933f0cf4005b6094ea2f51811",
+      "original_bytes": 1602
+    },
+    "raw/25.10.4/demo-receipt.json": {
+      "sha256": "b2a794d647ac8bf3788decf5ff746efa60f1acf116f1192e94a3da7b0cf03026",
+      "bytes": 1111,
+      "original_sha256": "b2a794d647ac8bf3788decf5ff746efa60f1acf116f1192e94a3da7b0cf03026",
+      "original_bytes": 1111
+    },
+    "raw/25.10.4/fixture/lock.rds": {
+      "sha256": "ef644cdf6138340ae66ae88790aa506db53d93b881aac5c154298150880c12b9",
+      "bytes": 1172,
+      "original_sha256": "ef644cdf6138340ae66ae88790aa506db53d93b881aac5c154298150880c12b9",
+      "original_bytes": 1172
+    },
+    "raw/25.10.4/results/exports/scientific-report/manifest.rds": {
+      "sha256": "a427f0711219b340e440ece2a68ee9e6c7526fdef157bb5ac509109407d97ad6",
+      "bytes": 5078,
+      "original_sha256": "a427f0711219b340e440ece2a68ee9e6c7526fdef157bb5ac509109407d97ad6",
+      "original_bytes": 5078
+    },
+    "raw/25.10.4/results/exports/scientific-report/report-data.rds": {
+      "sha256": "24de3bf3a1f82a88b68525ab89a20b203c08fbb1e5761c93e2458054763ba8cf",
+      "bytes": 5239,
+      "original_sha256": "24de3bf3a1f82a88b68525ab89a20b203c08fbb1e5761c93e2458054763ba8cf",
+      "original_bytes": 5239
+    },
+    "raw/25.10.4/results/pipeline_info/trace.tsv.gz": {
+      "sha256": "b099574c15a9019a8d09952598db1014118f6d2c077b9cc0a36eb0e2b5f68a4a",
+      "bytes": 577,
+      "original_sha256": "6cdf4f52d8024bb04689427fc918d26a445b7a5d6fbf46ad6eac691b473c7fae",
+      "original_bytes": 1232
+    },
+    "raw/26.10.3/demo.log.gz": {
+      "sha256": "a799bebd57504c10f5be2e0fc64ae74438c4133cf4aef48846e25e9cdb4536d4",
+      "bytes": 762,
+      "original_sha256": "2d909f8fb2d7121fc843d8af5db952451dc9c6b204743fef702cdbc5d6aef463",
+      "original_bytes": 1519
+    },
+    "raw/26.10.3/demo-receipt.json": {
+      "sha256": "b2a794d647ac8bf3788decf5ff746efa60f1acf116f1192e94a3da7b0cf03026",
+      "bytes": 1111,
+      "original_sha256": "b2a794d647ac8bf3788decf5ff746efa60f1acf116f1192e94a3da7b0cf03026",
+      "original_bytes": 1111
+    },
+    "raw/26.10.3/fixture/lock.rds": {
+      "sha256": "ef644cdf6138340ae66ae88790aa506db53d93b881aac5c154298150880c12b9",
+      "bytes": 1172,
+      "original_sha256": "ef644cdf6138340ae66ae88790aa506db53d93b881aac5c154298150880c12b9",
+      "original_bytes": 1172
+    },
+    "raw/26.10.3/results/exports/scientific-report/manifest.rds": {
+      "sha256": "5687ff50da294c7d734f75090b39335e565457fd298797dec0e704bcf1086742",
+      "bytes": 5074,
+      "original_sha256": "5687ff50da294c7d734f75090b39335e565457fd298797dec0e704bcf1086742",
+      "original_bytes": 5074
+    },
+    "raw/26.10.3/results/exports/scientific-report/report-data.rds": {
+      "sha256": "b2a9a170ca6a584b0d81ec93de11a3b6cbbf236d346f7526a8876215d79ac1a9",
+      "bytes": 5241,
+      "original_sha256": "b2a9a170ca6a584b0d81ec93de11a3b6cbbf236d346f7526a8876215d79ac1a9",
+      "original_bytes": 5241
+    },
+    "raw/26.10.3/results/pipeline_info/trace.tsv.gz": {
+      "sha256": "ab1086dac3a08a925afdd2c67870a8f36815cdf2df64fa446a019585c6c8f9a6",
+      "bytes": 593,
+      "original_sha256": "340e38eacc553eb94699e3f3003f0e93192e3f0cddbe4eeabbaa5517c0d7643a",
+      "original_bytes": 1240
+    }
+  }
+}

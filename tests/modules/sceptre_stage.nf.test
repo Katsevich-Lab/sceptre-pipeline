@@ -1,7 +1,7 @@
 nextflow_process {
     name 'Public parameters stage module'
-    script "modules/local/sceptre_stage/main.nf"
-    process 'SCEPTRE_STAGE'
+    script "modules/local/sceptrestage/main.nf"
+    process 'SCEPTRESTAGE'
     tag 'module'
     test('Writes a real object, manifest and version identity') {
         when {
@@ -26,7 +26,7 @@ nextflow_process {
             assert process.out.state[0][0].id == 'fixture'
             assert path("${process.out.state[0][1]}/manifest.rds").size() > 0
             assert path("${process.out.state[0][1]}/sceptre_object.rds").size() > 0
-            assert path(process.out.versions[0]).text.contains('installed_sha256:')
+            assert path(process.out.version_file[0]).text.contains('installed_sha256:')
         }
     }
 }

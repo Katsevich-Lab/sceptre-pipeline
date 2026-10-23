@@ -1,0 +1,86 @@
+{
+  "actions-checkout-README.md.gz": {
+    "decompressed_sha256": "3df94d90d0df6df603a549cc779bc6cab4b21f8deef82eb6fef1f4d88b788174",
+    "bytes": 14138
+  },
+  "actions-setup-python-action.yml.gz": {
+    "decompressed_sha256": "0829b3f54d769f8b25cefd4d856c735bc8e097d6597835b838ebb4da497c838d",
+    "bytes": 3141
+  },
+  "actions-download-artifact-README.md.gz": {
+    "decompressed_sha256": "3c2ed3a17c8d87820ba42981b9703be715a8ce99984a1926d4e144bc0afffb41",
+    "bytes": 11492
+  },
+  "actions-upload-artifact-README.md.gz": {
+    "decompressed_sha256": "82e3d7226dabea938b107b93e015aa816150d6894fff631064aa2884c26771f7",
+    "bytes": 18601
+  },
+  "pipeline-lint.json.gz": {
+    "decompressed_sha256": "a67c993c8a89048055c1775abb91d7cbf7f28a259d5eaa6524cc807011003f91",
+    "bytes": 55289
+  },
+  "pipeline-lint.md.gz": {
+    "decompressed_sha256": "79c9d2c9534612f50824a7032a948c416497a64d78887612322ca693a41a7752",
+    "bytes": 32146
+  },
+  "actions-setup-java-action.yml.gz": {
+    "decompressed_sha256": "503fe82e787d5ff15e17934e2efab346fa2facfad7261a8ea6ed9b05cb14f9e8",
+    "bytes": 9659
+  },
+  "verified-pins.json.gz": {
+    "decompressed_sha256": "10a06c0588140c8cfcf6a23a71dc3d68d011a0d20a6d1b48d14cf1112e08e5ae",
+    "bytes": 2147
+  },
+  "actions-download-artifact-action.yml.gz": {
+    "decompressed_sha256": "e98559b7a31ba31be4709f20d22102dc2737fa630f69a339eb89981151e505fe",
+    "bytes": 2635
+  },
+  "nf-core-setup-nextflow-action.yml.gz": {
+    "decompressed_sha256": "e836312d9cf7aa614c3e6a43ebb08b288ff81a1948db653045cf02d3c75900b0",
+    "bytes": 1615
+  },
+  "README.md": {
+    "decompressed_sha256": "4ff790b341faecb3cc0ad8e131fabd6cb8c31aca79cae9a485276b09014c1b2f",
+    "bytes": 3689
+  },
+  "proposed-source.json.gz": {
+    "decompressed_sha256": "7b223a8ffe8f82232118ab2b795ab2c285692b0317221c200605d2cf19fd5e90",
+    "bytes": 15113
+  },
+  "actions-upload-artifact-action.yml.gz": {
+    "decompressed_sha256": "c5979822866a72362e609844b6ebe77d4b7e759af68cc1c2c425dcf51481fab4",
+    "bytes": 3603
+  },
+  "nf-core-setup-nextflow-README.md.gz": {
+    "decompressed_sha256": "02614298ab858ecba5ec5644eb2784edc63acf2a84bce9733c162ed028e1c4b8",
+    "bytes": 4082
+  },
+  "pipeline-lint.log.gz": {
+    "decompressed_sha256": "e526ceadbe2234ee43e113a7943a5f51cb8a25db970df603bd406e26a89db56c",
+    "bytes": 8738
+  },
+  "previous-setup-nextflow-action.yml.gz": {
+    "decompressed_sha256": "b544142a90451d5d026d3956d7f2743640bcafd50e7eeebfa90bded6299f0e64",
+    "bytes": 1369
+  },
+  "actions-checkout-action.yml.gz": {
+    "decompressed_sha256": "d59219cb79590abdb877deaa14e3b65a00c05318bf5a6f3b989b9162b5d08c35",
+    "bytes": 5144
+  },
+  "pins.json.gz": {
+    "decompressed_sha256": "46f585755dc9a2558dcb52795c180c25ab1131e1af98bffe2ec38603ced1e369",
+    "bytes": 1103
+  },
+  "transitive-setup-java-action.yml.gz": {
+    "decompressed_sha256": "c0f91a3110f24715c76bb01aa28663fb35f6ea954144724783636b2ae782b38d",
+    "bytes": 4205
+  },
+  "actions-setup-java-README.md.gz": {
+    "decompressed_sha256": "9def82b9d1d083fb2b9ca97a02ee98f209a2d31ab9f16dbc5a7885a4bfca819f",
+    "bytes": 33886
+  },
+  "actions-setup-python-README.md.gz": {
+    "decompressed_sha256": "d0a51dcaf89df5b8211d4bdbf74631c2cacf25879f95834c70bebef51e9ad1f9",
+    "bytes": 7860
+  }
+}

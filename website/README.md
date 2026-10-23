@@ -37,7 +37,8 @@ same directory can be served under a GitHub Pages project subpath. It contains
   The build copies these into ignored `website/.build/` files and rewrites their
   local links to the corresponding rendered site pages; it does not edit them.
 - `nextflow_schema.json` supplies parameter names, types, constraints and
-  descriptions. Literal defaults are read from the `params` block in
+  descriptions. The generator resolves its explicit local `$defs`/`allOf` groups,
+  rejects duplicate/unknown parameter groups and displays conditional input requirements. Literal defaults are read from the `params` block in
   `nextflow.config`. Unknown default syntax or schema/config mismatches fail the
   build rather than silently publishing an inaccurate table.
 - Referenced evidence is copied from canonical source paths. Build hashes in

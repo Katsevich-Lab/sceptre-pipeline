@@ -1,0 +1,51 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      },
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "SCEPTRE pipeline source",
+      "description": "External laboratory Nextflow pipeline; exact scientific source is recorded in tests/runtime/source.json. This source crate is not a completed execution receipt.",
+      "license": {
+        "@id": "https://www.gnu.org/licenses/gpl-3.0.html"
+      },
+      "hasPart": [
+        {
+          "@id": "main.nf"
+        },
+        {
+          "@id": "nextflow.config"
+        },
+        {
+          "@id": "tests/runtime/source.json"
+        }
+      ]
+    },
+    {
+      "@id": "main.nf",
+      "@type": [
+        "File",
+        "SoftwareSourceCode"
+      ],
+      "programmingLanguage": "Nextflow"
+    },
+    {
+      "@id": "nextflow.config",
+      "@type": "File"
+    },
+    {
+      "@id": "tests/runtime/source.json",
+      "@type": "File"
+    }
+  ]
+}

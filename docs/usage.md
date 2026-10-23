@@ -114,18 +114,22 @@ lock is intentionally incompatible with Linux container package binaries and R.
 A docker/apptainer profile requires an explicit image; no moving default image
 is supplied. Docker and Apptainer are separate qualification targets.
 
-External site configuration supports standalone literal local includes, for example
-`includeConfig 'resources.config'` (relative to the including file). All such
-nested files are hashed on the host and bound to the run signature; their contents
-are never staged into tasks. Paths with interpolation, remote URLs, computed or
-conditional include expressions, and other ambiguous include forms are unsupported
-and reject before scientific tasks. Put conditional choices in separate literal
-site files selected with `-c`, or use ordinary profile settings without dynamic
-includes. This restriction applies to external site files; production configs are
-already bound by the complete source manifest. It can require simplifying existing
-institutional/HPC configurations and does not qualify any scheduler. Missing files
-and include cycles fail during Nextflow configuration parsing before this workflow
-starts (Nextflow 25.10.4 reports a cycle as `StackOverflowError`). Avoid cycles.
+Configuration identity traverses literal local `includeConfig` paths from every
+resolved root, including tracked production configs and includes inside inline
+profile blocks. Paths are relative to the including file. All encountered literal
+branches are conservatively traversed, even if a profile is inactive; keep those
+files readable. Production bytes are already bound by the source manifest; other
+included files contribute host-computed digests to the run signature without
+staging their contents into tasks. This also covers tracked → external and
+external → tracked → external chains.
+
+Interpolation, remote URLs, computed paths and expression continuations such as
+string concatenation/coercion are unsupported and reject before scientific tasks.
+Comments do not end an include expression. Select separate literal site files
+with `-c` or ordinary literal profiles instead of dynamic includes. This may
+require simplifying institutional/HPC configs and does not qualify a scheduler.
+Missing files and include cycles fail during native configuration parsing before
+workflow startup (Nextflow 25.10.4 reports a cycle as `StackOverflowError`). Avoid cycles.
 
 Resource labels are in `conf/base.config`. Institutional executor/cloud settings
 belong in an external `-c site.config`; credentials never belong in this repo.
@@ -228,3 +232,5 @@ the exact locked implementation/runtime.
 
 For error interpretation, scheduler checks, failure recovery and report relocation,
 see [diagnose and recover a run](recovery.md).
+
+See [practical R parity and reproducible preparation](practical-parity.md) for raw import/config authoring, resolved settings, pair construction, checkpoint reuse, resource limits and portable scientific delivery.

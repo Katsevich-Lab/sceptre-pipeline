@@ -1,0 +1,21 @@
+{
+  "status": "ARCHIVE_CONFIG_AND_LOADED_MANIFEST_LINK_VERIFIED",
+  "loaded_admission": "REJECTED: strict config-ID gate on Docker Desktop containerd manifest-ID store",
+  "archive_manifest_id": "sha256:2253e5066bbc3a90c78d941f5f672fecef00ef81e5eb9e38df786d2e0b7c71f1",
+  "approved_config_id": "sha256:02809df79df55e61c05cbf5e7cfd60065c3311719102976983a3c12d7bb6edcc",
+  "loaded_inspect_id": "sha256:2253e5066bbc3a90c78d941f5f672fecef00ef81e5eb9e38df786d2e0b7c71f1",
+  "platform": "linux/amd64",
+  "source_labels": {
+    "org.opencontainers.image.authors": "Carl Boettiger <cboettig@ropensci.org>",
+    "org.opencontainers.image.base.name": "docker.io/library/ubuntu:noble",
+    "org.opencontainers.image.description": "Frozen SCEPTRE archive; identity in /opt/sceptre/source.json",
+    "org.opencontainers.image.licenses": "GPL-2.0-or-later",
+    "org.opencontainers.image.ref.name": "ubuntu",
+    "org.opencontainers.image.revision": "c13e94da0b8e9a54a2dd2460ad8514d04bd0fee0",
+    "org.opencontainers.image.source": "https://github.com/Katsevich-Lab/sceptre-pipeline",
+    "org.opencontainers.image.title": "SCEPTRE schema-7 pipeline runtime",
+    "org.opencontainers.image.vendor": "Rocker Project",
+    "org.opencontainers.image.version": "R-4.5.1"
+  },
+  "limits": "Read-only additional archive/link proof. Does not convert strict loaded admission to PASS or authorize registry actions."
+}

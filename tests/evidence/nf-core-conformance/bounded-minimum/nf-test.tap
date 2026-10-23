@@ -1,0 +1,4 @@
+1..3
+ok 1 External nf-core engineering contracts: Zero-input test profile executes native preparation and all scientific families
+ok 2 External nf-core engineering contracts: Standard input alias admits the same certified scientific bundle
+ok 3 External nf-core engineering contracts: Incomplete explicit inputs never fall back to synthetic test data

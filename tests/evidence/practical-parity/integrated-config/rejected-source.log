@@ -1,0 +1,4 @@
+PASS container selected source/archive/schema receipt
+Error: Prepared project source changed or is missing; create a fresh run directory.
+Execution halted
+Preparation/workflow failed with exit code 1; retain run-dir and inspect native task logs.

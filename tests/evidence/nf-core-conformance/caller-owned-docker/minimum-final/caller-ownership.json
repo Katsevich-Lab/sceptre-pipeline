@@ -1,0 +1,41 @@
+{
+  "host_uid": 503,
+  "host_gid": 20,
+  "platform": "darwin",
+  "native_linux_gid_asserted": false,
+  "gid_mapping_limit": "Docker Desktop bind mounts may project GID differently; native Linux named-volume proof remains strict.",
+  "trees": {
+    "raw": {
+      "entries": 8,
+      "all_caller_uid": true,
+      "observed_gids": [
+        0
+      ],
+      "caller_create_edit_delete": true
+    },
+    "run/prepared": {
+      "entries": 14,
+      "all_caller_uid": true,
+      "observed_gids": [
+        0
+      ],
+      "caller_create_edit_delete": true
+    },
+    "run/work": {
+      "entries": 264,
+      "all_caller_uid": true,
+      "observed_gids": [
+        0
+      ],
+      "caller_create_edit_delete": true
+    },
+    "run/results": {
+      "entries": 72,
+      "all_caller_uid": true,
+      "observed_gids": [
+        0
+      ],
+      "caller_create_edit_delete": true
+    }
+  }
+}

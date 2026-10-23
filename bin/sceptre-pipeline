@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+"""One command: source-pinned raw JSON preparation and Nextflow in one runtime.
+
+Use --help. All data/specifications must be under an explicit --data-root.
+No host R installation or library is used. Additional Nextflow arguments follow --.
+"""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import sys
+
+
+def sha256(path):
+    digest = hashlib.sha256()
+    with Path(path).open('rb') as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b''):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def run(command, **kwargs):
+    subprocess.run([str(x) for x in command], check=True, **kwargs)
+
+
+def docker_user_arguments():
+    # Bind-mount outputs must belong to the execution caller on native Linux.
+    # Keep HOME writable without admitting host or per-user R libraries.
+    return ['--user', f'{os.getuid()}:{os.getgid()}', '-e', 'HOME=/tmp',
+            '-e', 'R_LIBS_USER=/nonexistent']
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--data-root', required=True, type=Path, help='Explicit read-only root containing JSON and every referenced raw source')
+    parser.add_argument('--input-json', required=True, type=Path)
+    parser.add_argument('--analysis-json', required=True, type=Path)
+    parser.add_argument('--run-dir', required=True, type=Path, help='New output/launch root outside data-root; retained for unchanged resume')
+    parser.add_argument('--container-image', required=True, help='Immutable Docker digest, or absolute local SIF under --engine apptainer')
+    parser.add_argument('--container-image-sha256', help='Required SHA256 for a local SIF')
+    parser.add_argument('--engine', choices=('docker','apptainer'), default='docker')
+    parser.add_argument('--profiles', help='Comma-separated profiles including the chosen engine; default is the engine')
+    parser.add_argument('--resume', action='store_true', help='Verify unchanged source/runtime/settings and resume last session in run-dir')
+    parser.add_argument('nextflow_arguments', nargs=argparse.REMAINDER, help='Additional Nextflow arguments after -- (e.g. --execution_mode distributed)')
+    args = parser.parse_args()
+    repo = Path(__file__).resolve().parents[1]
+    data = args.data_root.resolve(strict=True)
+    input_json = args.input_json.resolve(strict=True)
+    analysis_json = args.analysis_json.resolve(strict=True)
+    target = args.run_dir.resolve()
+    if not data.is_dir(): parser.error('data-root must be a directory')
+    if not input_json.is_file() or not analysis_json.is_file(): parser.error('JSON inputs must be regular files')
+    if not input_json.is_relative_to(data) or not analysis_json.is_relative_to(data): parser.error('Both JSON files must be under data-root')
+    if target.is_relative_to(data): parser.error('run-dir must be outside the read-only source data-root')
+    if any(':' in str(p) or ',' in str(p) for p in (repo,data,target)): parser.error('Mount paths cannot contain colon/comma delimiters')
+    image = args.container_image
+    if args.engine == 'docker':
+        if not re.fullmatch(r'(?:[A-Za-z0-9._:/-]+@)?sha256:[a-f0-9]{64}',image): parser.error('Docker image must be an immutable image digest')
+        if args.container_image_sha256: parser.error('container-image-sha256 applies only to a local SIF')
+    else:
+        path = Path(image)
+        if not path.is_absolute() or path.suffix != '.sif' or not path.is_file(): parser.error('Apptainer launcher requires an absolute existing .sif file')
+        if not args.container_image_sha256 or sha256(path) != args.container_image_sha256: parser.error('SIF checksum missing or mismatched')
+    profiles = args.profiles or args.engine
+    if args.engine not in profiles.split(',') or ({'docker','apptainer'} - {args.engine}).intersection(profiles.split(',')):
+        parser.error('profiles must include only the selected container engine plus optional site/test profiles')
+    extra = args.nextflow_arguments
+    if extra[:1] == ['--']: extra = extra[1:]
+    owned = {'--input','--input_bundle','--analysis_config','--environment_lock','--backing_directory','--container_image','--container_image_sha256','--checkpoint_stage','--outdir','-params-file','-profile','-resume','-work-dir'}
+    if any(value.split('=',1)[0] in owned for value in extra): parser.error('Launcher-owned source/runtime/output/profile/resume options cannot be overridden; use launcher arguments')
+    for tool in (args.engine,'nextflow'):
+        if not shutil.which(tool): parser.error(f'{tool} is required on the execution host')
+    nextflow_version = os.environ.get('NXF_VER','25.10.4')
+    if not re.fullmatch(r'[0-9]+[.][0-9]+[.][0-9]+(?:-edge)?',nextflow_version): parser.error('NXF_VER must be an exact engine version, not a moving latest selector')
+    expected = dict(schema=1,nextflow_version=nextflow_version,repo=str(repo),data_root=str(data),input_json=str(input_json),analysis_json=str(analysis_json),
+                    input_sha256=sha256(input_json),analysis_sha256=sha256(analysis_json),image=image,
+                    image_sha256=args.container_image_sha256,engine=args.engine,profiles=profiles,
+                    nextflow_arguments=extra,launcher_sha256=sha256(__file__))
+    if args.engine == 'docker':
+        expected['docker_user'] = {'uid': os.getuid(), 'gid': os.getgid()}
+    receipt = target/'launcher.json'
+    if args.resume:
+        if not receipt.is_file() or json.loads(receipt.read_text()) != expected: parser.error('Launcher source/settings/image differ; create a fresh run-dir')
+    else:
+        if target.exists(): parser.error('run-dir already exists; use unchanged --resume or a new directory')
+        target.mkdir(parents=True)
+    mounts = [(repo,'ro'),(data,'ro'),(target,'rw')]
+    if args.engine == 'docker':
+        base = ['docker','run','--rm'] + docker_user_arguments()
+        for path,mode in mounts: base += ['-v',f'{path}:{path}:{mode}']
+        base += ['-w',str(repo),image]
+    else:
+        base = ['apptainer','exec','--containall','--cleanenv']
+        for path,mode in mounts: base += ['--bind',f'{path}:{path}:{mode}']
+        base += ['--pwd',str(repo),image]
+    run(base+['Rscript','--vanilla',str(repo/'bin/verify_runtime.R'),str(repo/'tests/runtime/source.json')])
+    prepared = target/'prepared'
+    if args.resume:
+        run(base+['Rscript','--vanilla',str(repo/'bin/verify_project.R'),str(prepared)])
+    else:
+        run(base+['Rscript','--vanilla',str(repo/'bin/prepare_project.R'),str(input_json),str(analysis_json),str(prepared)])
+        receipt.write_text(json.dumps(expected,indent=2)+'\n')
+    environment = dict(os.environ,NXF_VER=nextflow_version,NXF_ANSI_LOG='false')
+    command = ['nextflow','run',str(repo/'main.nf'),'-profile',profiles,'-params-file',str(prepared/'params.json'),
+               '-work-dir',str(target/'work'),'--outdir',str(target/'results'),'--container_image',image]
+    if args.container_image_sha256: command += ['--container_image_sha256',args.container_image_sha256]
+    command += extra
+    if args.resume: command += ['-resume']
+    print('Launching source-pinned scientific workflow; execution report and scientific HTML are separate outputs.',flush=True)
+    run(command,cwd=target,env=environment)
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except subprocess.CalledProcessError as error:
+        print(f'Preparation/workflow failed with exit code {error.returncode}; retain run-dir and inspect native task logs.',file=sys.stderr)
+        sys.exit(error.returncode)
+    except (OSError,ValueError) as error:
+        print(str(error),file=sys.stderr)
+        sys.exit(2)

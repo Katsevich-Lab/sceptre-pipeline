@@ -1,0 +1,88 @@
+{
+  "kind": "exact-head-hosted-engineering-qualification",
+  "schema": 1,
+  "head": "bfdfe70736445ed07cdee9e18c8cddc8d3796cfe",
+  "run_id": 39902600959,
+  "conclusion": "success",
+  "production_sha256": "475e419938a86aa9aa19060730299c2276ab3500483e3bdd9e493c7a9c2f5913",
+  "qualification_sha256": "9aef27aa5d954f50bc2f069b7de9fc5867b1ce7cac6be8a1ee5758206f83f798",
+  "archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "pipeline_json_counts": {
+    "passed": 153,
+    "ignored": 38,
+    "in_memory_normalizations": 1,
+    "warnings": 2,
+    "failures": 0
+  },
+  "pipeline_cli_aggregate_passes": 195,
+  "module_counts": {
+    "passed": 245,
+    "warnings": 28,
+    "failed": 0
+  },
+  "subworkflow_counts": {
+    "passed": 42,
+    "warnings": 0,
+    "failed": 0
+  },
+  "strict_lint": {
+    "nextflow": "26.10.3",
+    "files_without_errors": 23,
+    "warnings": 7,
+    "errors": 0
+  },
+  "engine_identity_scope": "Actual host-engine receipt proves Temurin/EclipseAdoptium17.0.10+7 and Nextflow25.10.4 after composite setup. Strict26.10.3 executed as separatecommand, not a separate26identityJSON.",
+  "limits": "Engineering only. Full scientific campaign39902600871 is separate and pending; no package/image/SIF/scale/publication qualification implied.",
+  "artifacts": {
+    "committed-source-snapshot.json": {
+      "sha256": "f8d0f2fdaacba97730f41b739ea99e1843b8ee7efa75a6c5a26c8da59f618db9",
+      "bytes": 15481
+    },
+    "host-engine.java.txt": {
+      "sha256": "a34178845ecc9050590b028bdeec3ae8c55bb12e92362fd4e3ed6537694217d5",
+      "bytes": 2066
+    },
+    "host-engine.json": {
+      "sha256": "5c4cb955fe6ee5940a32562a7e48c542059581137d93e4192d86641c52688275",
+      "bytes": 558
+    },
+    "host-engine.nextflow.txt": {
+      "sha256": "79a35e33aeb0804a168cc40eac516568f09c0ebfb4e1a43acd089b3f89b198cd",
+      "bytes": 151
+    },
+    "hosted-run.log.gz": {
+      "sha256": "7d12277a00d42aa5cf6ece7e805990597db31eee012ec5810829108150fb1011",
+      "bytes": 28577,
+      "decompressed_sha256": "c25f91b9d2de7773795a626befda89958c33fb481bc52cc0339fc5e7fcc7cb92",
+      "decompressed_bytes": 419361
+    },
+    "lint-results.json.gz": {
+      "sha256": "d75e5ec44aa5ea227cfaec571c1b3568cb9db7aedcf3fc670eb3f5a8e01d815f",
+      "bytes": 5047,
+      "decompressed_sha256": "739274e345d8596171cd4c2ccb67f1446a1dcc3e6c66df1c780d125dd3ff76cf",
+      "decompressed_bytes": 55337
+    },
+    "lint-results.md.gz": {
+      "sha256": "e82009beb022566bb7cd9ec958bdb182060a1eff498e669a4342f3f7075fcb09",
+      "bytes": 2958,
+      "decompressed_sha256": "4f61a8d9b4722335607998f062726dd5726cd383428d4c1df9d3ecff5d672a1c",
+      "decompressed_bytes": 32170
+    },
+    "module-lint.txt.gz": {
+      "sha256": "5dce205c37d7c79b36ad71aa15aa01980f55710c687fcc7f0c4fe5b675f3a280",
+      "bytes": 1694,
+      "decompressed_sha256": "ea3aabd6dbb6a21307be78bde014e9fdf5a962c05458d902d70c6e3d2cd339bc",
+      "decompressed_bytes": 124535
+    },
+    "run.json": {
+      "sha256": "c59f04baebb18704856ad4b52aa8d7b6ed0134f12b42d917536abe645d5100a9",
+      "bytes": 4034
+    },
+    "subworkflow-lint.txt.gz": {
+      "sha256": "96297f6c479df48fca1fdbe219a08a5fc511426569aacb114b13f69b8bc05cad",
+      "bytes": 379,
+      "decompressed_sha256": "88c3a46110e01b676414a0804b2df36d81b8941f4bcfc62948c00072131a4442",
+      "decompressed_bytes": 990
+    }
+  }
+}

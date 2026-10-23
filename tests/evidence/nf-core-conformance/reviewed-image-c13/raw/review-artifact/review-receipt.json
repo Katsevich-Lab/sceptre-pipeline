@@ -1,0 +1,24 @@
+{
+  "kind": "scientifically-qualified-image-review",
+  "status": "PASS",
+  "source_sha": "c13e94da0b8e9a54a2dd2460ad8514d04bd0fee0",
+  "repository": "Katsevich-Lab/sceptre-pipeline",
+  "run_id": 39904756647,
+  "run_attempt": 1,
+  "image_id": "sha256:02809df79df55e61c05cbf5e7cfd60065c3311719102976983a3c12d7bb6edcc",
+  "archive_sha256": "1dcbe3a5d8b290c8ca28ffb67a065872e23e8d79877587199bffa230d346b688",
+  "production_sha256": "475e419938a86aa9aa19060730299c2276ab3500483e3bdd9e493c7a9c2f5913",
+  "qualification_sha256": "e9757ab92b37ada7cbe6c80c7cc6f40a525d521d1e42c180ee9e22dd801237d5",
+  "review_helpers_sha256": {
+    "review_image.py": "2d642b58066a52a0b62ecc2b078d39249f7748b1dcbe598ec9a4fce5fa463475",
+    "test_review_image.py": "e15571cdf0c62a3fb21e40a0c68f64464f6b1db9adf91a2f2f7ead1ad50bb22a"
+  },
+  "approval_input": false,
+  "gates": [
+    "installed-package",
+    "native-HDF5-public-R-all-families",
+    "power-checkpoint",
+    "unchanged-resume",
+    "source-unchanged"
+  ]
+}

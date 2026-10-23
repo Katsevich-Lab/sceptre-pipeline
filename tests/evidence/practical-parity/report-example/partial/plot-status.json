@@ -1,0 +1,30 @@
+{
+  "covariates": {
+    "status": "completed",
+    "artifact": "plots/covariates.png"
+  },
+  "grna_counts": {
+    "status": "completed",
+    "artifact": "plots/grna_counts.png"
+  },
+  "assignment": {
+    "status": "completed",
+    "artifact": "plots/assignment.png"
+  },
+  "qc": {
+    "status": "completed",
+    "artifact": "plots/qc.png"
+  },
+  "calibration": {
+    "status": "omitted",
+    "reason": "Stage was not selected."
+  },
+  "power": {
+    "status": "omitted",
+    "reason": "Stage was not selected."
+  },
+  "discovery": {
+    "status": "omitted",
+    "reason": "Stage was not selected."
+  }
+}

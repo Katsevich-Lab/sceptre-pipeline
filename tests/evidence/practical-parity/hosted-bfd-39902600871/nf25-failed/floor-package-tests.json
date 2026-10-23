@@ -1,0 +1,71 @@
+{
+  "cases": 394,
+  "assertions": 7966,
+  "passed": 7951,
+  "failed": 0,
+  "errors": 0,
+  "warnings": 0,
+  "skipped": 15,
+  "skips": [
+    {
+      "file": "test-native-compat-reader.R",
+      "test": "compatibility reopening preserves shared 10x modality views"
+    },
+    {
+      "file": "test-native-compat-reader.R",
+      "test": "compatibility relocation retains repeated axes and rejects changed views"
+    },
+    {
+      "file": "test-native-compat-reader.R",
+      "test": "compatibility relocation retains multisample output and rejects swapped files"
+    },
+    {
+      "file": "test-native-compat-reader.R",
+      "test": "schema-three native wrapper migrates before reading relocated count views"
+    },
+    {
+      "file": "test-tenx-import-lifetimes.R",
+      "test": "failed 10x block writes release inputs before removing only owned output"
+    },
+    {
+      "file": "test-tenx-import-lifetimes.R",
+      "test": "maintained 10x writer failures remove only newly owned files"
+    },
+    {
+      "file": "test-tenx-import.R",
+      "test": "10x MTX and HDF5 imports preserve complete-library counts and covariates"
+    },
+    {
+      "file": "test-tenx-import.R",
+      "test": "single-sample compatibility and native imports preserve caller batch covariates"
+    },
+    {
+      "file": "test-tenx-import.R",
+      "test": "10x concatenation and vector aggregation preserve cell order and definitions"
+    },
+    {
+      "file": "test-tenx-import.R",
+      "test": "10x failures remove only owned output and reject fractional counts"
+    },
+    {
+      "file": "test-tenx-import.R",
+      "test": "10x barcode-free batches retain unnamed cell axes"
+    },
+    {
+      "file": "test-tenx-import.R",
+      "test": "MTX parsing retains stored zeros through the complete import"
+    },
+    {
+      "file": "test-tenx-import.R",
+      "test": "10x-backed discovery exactly matches imported in-memory discovery"
+    },
+    {
+      "file": "test-tenx-maintained-writer.R",
+      "test": "integer MTX import shares one backing and retains structural zeros"
+    },
+    {
+      "file": "test-tenx-maintained-writer.R",
+      "test": "maintained 10x writing rejects invalid source entries before normalization"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "intentionally-interrupted-experimental-parser-campaign",
+  "nextflow": "25.10.4",
+  "parser": "v2 (experimental opt-in for this release)",
+  "completed_passes": 7,
+  "completed_failures": 0,
+  "reason": "Official25 minimum defaults to v1; actual v2 external config/profile guards failed, so this is not supported-floor qualification. Owner requested restart under documented runtime default.",
+  "signal": "SIGTERM",
+  "expected_exit": 143
+}

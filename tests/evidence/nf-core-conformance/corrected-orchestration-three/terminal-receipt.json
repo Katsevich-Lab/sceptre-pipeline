@@ -1,0 +1,20 @@
+{
+  "status": "PASSED",
+  "exit_code": 0,
+  "tests": 3,
+  "passed": 3,
+  "failed": 0,
+  "skipped": 0,
+  "commit": "f3e59e1",
+  "source_maps_unchanged": true,
+  "production_sha256": "2a8b4a88ce8b2f653c7f9dee1ba246bd6a56c7bf69aa5b0433e3ad47cf90b40e",
+  "qualification_sha256": "2f6e718bb308e49eaae6e68a52369dd468d433301beb5dcbe6f1f0829325ca1d",
+  "scope": "Corrected three existing SCEPTRE orchestration fixtures; unchanged direct public-R object/family/table/plan/fits/QC/assignment/design/RNG and omitted-stage assertions. Existing remaining39 original cases were not repeated; full hosted minimum/current matrix pending.",
+  "artifacts": {
+    "driver.log": "bfe8c146d98ae29227494721f827df62d09aadc3b8ef0ffecfcd0b6cdcf785fc",
+    "nf-test.tap": "8f9c2caa29948c814d0d21647b6b873dcc277b44df05139e33272f7872ccd7f9",
+    "nf-test.xml": "e09f8f1d2848a76d35bc1455232ce76f8648192bbbc81b851c802d26339b15c5",
+    "source-before.json": "4ec478f9d89dbc6e145fb35acbdb8783d61342db0d422ec1329a0cc22a18fef4",
+    "source-after.json": "cf15bba80bc489b42ea612943684e08c8a5b2d089012a3a03bad78aa1415a3f7"
+  }
+}
