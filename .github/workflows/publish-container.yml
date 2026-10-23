@@ -6,6 +6,7 @@ on:
       - '.github/workflows/publish-container.yml'
       - '.github/scripts/review_image.py'
       - '.github/scripts/test_review_image.py'
+      - 'container/Dockerfile'
   workflow_dispatch:
     inputs:
       approve_publication:
@@ -90,6 +91,8 @@ jobs:
           assert image['Architecture'] == 'amd64' and image['Os'] == 'linux'
           assert image['Config']['Labels']['org.opencontainers.image.revision'] == os.environ['REVIEW_SOURCE_SHA']
           assert image['Config']['Labels']['org.opencontainers.image.source'] == 'https://github.com/Katsevich-Lab/sceptre-pipeline'
+          assert image['Config']['Labels']['org.opencontainers.image.licenses'] == 'GPL-3.0-only'
+          assert image['Config']['Labels']['org.opencontainers.image.vendor'] == 'Katsevich Lab'
           PY_IMAGE
           echo "SCEPTRE_CONTAINER_IMAGE=$image_id" >> "$GITHUB_ENV"
           docker run --rm "$image_id" sh -c 'cat /opt/sceptre/source.json /opt/sceptre/session-info.txt /opt/sceptre/packages.tsv' > "$RUNNER_TEMP/runtime-provenance.txt"
