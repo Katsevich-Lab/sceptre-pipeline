@@ -115,7 +115,7 @@ hashes. The original workflow's overall failure is retained: its supplemental
 image lacked system libuv headers. The corrected supplemental-only retry passed;
 no duplicate floor campaign or misleading single-head all-green claim is made.
 The branch is published to the approved lab fork; it is not merged or released.
-Apptainer/HPC, full-screen scalability and new performance benchmarks remain unrun.
+That original baseline did not qualify Apptainer. Later bounded positive SIF evidence is recorded below; HPC, full-screen scalability and new performance benchmarks remain unrun.
 
 
 ## Expanded corrected-source practical parity
@@ -133,6 +133,12 @@ with exact pipeline versus native-parser rejection boundaries in
 [their preserved receipts](../tests/evidence/nf-core-conformance/config-closure/README.md).
 
 The original hosted38-case baseline above does not qualify the expanded42-case
-PR head. Its current full hosted/positiveSIF campaign remains pending; see
+PR head. At725078e, actual isolated SIF/public-R/nativeHDF5/checkpoint/resume
+and same-runtime raw launcher have passed, with55hash-bound raw artifacts in
+[the current SIF receipt](../tests/evidence/practical-parity/hosted-725-39906148557/apptainer/receipt.json).
+The current newer-R package-only suite passed394cases/8109assertions withzero
+skips; [its raw receipt](../tests/evidence/practical-parity/hosted-725-39906148557/current-package/receipt.json)
+retains that separate scope. Full minimum/current42-case scientific jobs remain
+active; see
 [the expanded CI record](ci.md#expanded-practical-parity-qualification). No registry,
 full-screen, scheduler or new performance qualification is inferred.

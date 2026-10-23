@@ -36,17 +36,17 @@ logo, ownership, approval, publication, DOI or membership is asserted.
 
 | Area | Practical acceptance and evidence target | Applicability / status |
 | --- | --- | --- |
-| Nextflow DSL2 / modular scope | Real pipeline, module and subworkflow tests; no stub scientific tasks | Applicable; qualification in progress |
-| Input and parameter contracts | Grouped titled schema, readable help, conventional `--input` alias, rejection of inconsistent inputs | Applicable; implemented, tests pending |
-| Minimal/single-command usage | Zero-input synthetic `-profile test` and same-runtime project launcher | Applicable; implementation/qualification in progress |
-| Containers | Immutable exact-source Docker build; real Docker comparisons; explicit engine/SIF identity | Applicable; existing Docker evidence retained, new-engine tests pending |
-| Apptainer | Positive pinned Linux SIF execution and direct-R comparison, not config checks alone | Applicable; CI prepared separately, local macOS execution unavailable |
+| Nextflow DSL2 / modular scope | Real pipeline, module and subworkflow tests; no stub scientific tasks | Applicable; bounded modules/default smokes passed; full final-head CI remains the acceptance gate |
+| Input and parameter contracts | Grouped titled schema, readable help, conventional `--input` alias, rejection of inconsistent inputs | Applicable; actual schema/preflight/public-R input suites passed; final integrated CI repetition remains |
+| Minimal/single-command usage | Zero-input synthetic `-profile test` and same-runtime project launcher | Applicable; actual launcher and bounded workflow receipts passed; final integrated CI repetition remains |
+| Containers | Immutable exact-source Docker build; real Docker comparisons; explicit engine/SIF identity | Applicable; real Docker and current-source positive SIF passed; registry/public pull remains pending approval |
+| Apptainer | Positive pinned Linux SIF execution and direct-R comparison, not config checks alone | Applicable; actual hosted725 SIF/direct-R/checkpoint/launcher passed; macOS SIF execution and HPC remain unqualified |
 | Registry availability | A publicly pullable digest with approved visibility/architecture/source | **Pending destination-specific publication approval**; no fake registry digest |
 | Resource/failure behavior | Default and label resources, site overrides, mandatory selected-stage failure, atomic scientific publication | Applicable; changes tested against package contracts |
 | Version provenance | Native package/runtime hashes plus software-version topics and complete per-stage records | Applicable; implemented, final qualification in progress |
 | Full pipeline lint | Actual full tools 4.2.0 run with named external mappings only | Applicable; complete tools4.2.0 lint195pass/0fail/2warnings (name and directory MIME),38 ignored diagnostics visible in raw output |
 | Modules / subworkflows | Current metadata schema, reusable paths/contracts, actual nf-test coverage and source-owned algorithms | Applicable; full local modules245pass/0fail/28warnings; subworkflows42pass/0warn/0fail |
-| CI | Automatic lint, exact-package real tests on minimum/current Nextflow, floor/current package environments | Applicable; implementation/qualification in progress |
+| CI | Automatic lint, exact-package real tests on minimum/current Nextflow, floor/current package environments | Applicable; actual launcher and bounded workflow receipts passed; final integrated CI repetition remains |
 | Documentation | Bundled usage, output, tutorial, scientific report, contribution/release instructions and limits | Applicable; reconciled with current behavior |
 | Credits/license | Cite package methods/Nextflow/nf-core inspiration and retain inherited GPL-3 | Applicable; no MIT relicensing of GPL science |
 | Semantic releases | Development SemVer and reviewable release checklist; future stable tags/DOI only after authorized release | Applicable; no release requested |
@@ -232,6 +232,7 @@ The corrected closure is qualified locally on25.10.4 and26.10.3:13actual
 Nextflow invocations each, with exact positive digest/cache/publication checks
 and seven explicit negative expression cases. Raw receipts and final source
 identities are retained at `tests/evidence/nf-core-conformance/config-closure`.
-Production identity is now475e4199, superseding2a8b4a88 for subsequent science
-qualification. The mandatory CI helper runs both matrix versions and preserves
+This historical closure milestone has production475e4199, superseding2a8b4a88.
+The later caller-owned Docker correction is production98522279; its exact current
+source/CI receipts are recorded in [the acceptance ledger](parity-acceptance.md). The mandatory CI helper runs both matrix versions and preserves
 its receipts; the lead reruns full nativeHDF5 science separately.
