@@ -95,12 +95,6 @@
       "original_sha256": "b13c8824f748938704d24df4381ad4788ebe03e3e79bf6a6951f1e84da13ab12",
       "original_bytes": 19027
     },
-    "raw/review-artifact/loaded-inspect.json": {
-      "sha256": "d9879d77f068cbe1af86ae0f238319138a67c3c4e18386cfbacf19315b434ecc",
-      "bytes": 3812,
-      "original_sha256": "d9879d77f068cbe1af86ae0f238319138a67c3c4e18386cfbacf19315b434ecc",
-      "original_bytes": 3812
-    },
     "raw/review-artifact/context/source.json": {
       "sha256": "3f459aad5ebcfbc16d2347d73d395dc6f66d6049777bc9ed4d67a8cac9fa5e87",
       "bytes": 539,
@@ -304,6 +298,12 @@
       "bytes": 5178,
       "original_sha256": "4b88e0d9543d72e2670ade90cd0e8c873d35e04787d437fa42fb553fa42ae6ff",
       "original_bytes": 5178
+    },
+    "raw/mac-admission/loaded-inspect.json": {
+      "sha256": "d9879d77f068cbe1af86ae0f238319138a67c3c4e18386cfbacf19315b434ecc",
+      "bytes": 3812,
+      "original_sha256": "d9879d77f068cbe1af86ae0f238319138a67c3c4e18386cfbacf19315b434ecc",
+      "original_bytes": 3812
     }
   }
 }
