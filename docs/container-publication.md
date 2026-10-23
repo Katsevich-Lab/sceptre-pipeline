@@ -48,12 +48,19 @@ not qualify the rebuilt image. See
 `tests/evidence/nf-core-conformance/image-review-proposal` for exact bytes and
 boundaries. Production475e4199 and selected archivef41a8fb7 are unchanged.
 
-The repository default is now `main`; its workflow-directory read returned404.
-Manual dispatch requires a workflow on the default branch, so a later narrowly
-authorized source admission or authorized local promotion route remains necessary.
-A dedicated push event does not require that manual registration. No source was
-merged into the default branch and no registry operation was performed by these
-proposal checks. See the [official manual-dispatch prerequisite](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow).
+The repository default is `main` at unchanged `5cc91e51`; its workflow-directory
+read returned404. The [GitHub manual-run documentation](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)
+describes default-branch registration. Our observed registered-workflow API route
+is narrower evidence: `gh workflow run linting.yml --ref
+codex/static-review-parity-20261023` successfully dispatched and completed
+[39906655219](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39906655219)
+at exact `9aa9dfd`, without any default-branch source write. The intended later
+publisher route is likewise an API dispatch of the registered publisher workflow
+on an exact reviewed ref. Publisher dispatch remains untested: publication is
+not authorized, and a false dispatch would rebuild an already running image.
+No default-branch admission is currently proposed. If an authorized promotion
+is rejected by the API, preserve the precise error before proposing any source
+registration change. No registry or visibility operation has occurred.
 
 **Publication and public pull validation are pending approval and execution.**
 GHCR package visibility is a separate owner-controlled action; this workflow does
