@@ -1,7 +1,7 @@
 nextflow_process {
     name 'Certified distributed worker module'
-    script "modules/local/sceptre_worker/main.nf"
-    process 'SCEPTRE_WORKER'
+    script "modules/local/sceptreworker/main.nf"
+    process 'SCEPTREWORKER'
     tag 'module'
 
     test('Executes a real certified unit and emits its named proposal') {

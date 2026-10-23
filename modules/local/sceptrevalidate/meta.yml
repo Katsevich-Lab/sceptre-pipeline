@@ -1,4 +1,4 @@
-name: sceptre_validate
+name: sceptrevalidate
 description: Validate the actual runtime and versioned schema-7 input artifact on every launch, including resume.
 keywords:
 - sceptre

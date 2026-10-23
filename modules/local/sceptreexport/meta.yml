@@ -1,4 +1,4 @@
-name: sceptre_export
+name: sceptreexport
 description: Export current package plots and tables after a successful public stage, separately from scientific artifact completion.
 keywords:
 - sceptre

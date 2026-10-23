@@ -5,10 +5,10 @@ keywords:
 - certified-execution
 - complete-family
 components:
-- sceptre/stage
-- sceptre/prepare
-- sceptre/worker
-- sceptre/collect
+- sceptrestage
+- sceptreprepare
+- sceptreworker
+- sceptrecollect
 input:
 - state:
     description: Value channel of tuple(meta, certified predecessor state directory).

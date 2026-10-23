@@ -1,7 +1,7 @@
 nextflow.enable.dsl = 2
 include { validateParameters; paramsHelp } from 'plugin/nf-schema'
 include { SCEPTRE } from './subworkflows/local/sceptre/main'
-include { SCEPTRE_DEMO_INPUT } from './modules/local/sceptre_demo_input/main'
+include { SCEPTREDEMOINPUT as SCEPTRE_DEMO_INPUT } from './modules/local/sceptredemoinput/main'
 
 // Nextflow configFiles omits nested includeConfig files. Resolve a conservative,
 // local literal include closure ourselves; reject dynamic includes rather than

@@ -13,8 +13,8 @@ def checkCollectedState = { output ->
 }
 nextflow_process {
     name 'Certified complete-family collection module'
-    script "modules/local/sceptre_collect/main.nf"
-    process 'SCEPTRE_COLLECT'
+    script "modules/local/sceptrecollect/main.nf"
+    process 'SCEPTRECOLLECT'
     tag 'module'
     test('Collects all proposals into the exact public reference family') {
         when {

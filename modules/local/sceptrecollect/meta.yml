@@ -1,5 +1,5 @@
-name: sceptre_worker
-description: Execute one certified whole-key unit using freshly prepared process-local resources and emit a raw unfinalized proposal.
+name: sceptrecollect
+description: Validate exact proposal coverage and identities, then commit the whole family with integration and multiplicity applied once.
 keywords:
 - sceptre
 - certified-execution
@@ -34,21 +34,24 @@ input:
 - execution:
     type: directory
     description: Frozen certified package execution plan and ordered unit scope; excludes process-local contexts, pointers and cached draws.
+- proposals:
+    type: file
+    description: All raw worker proposal RDS files; order is immaterial and exact certified coverage is mandatory.
+    pattern: '*.rds'
 - stage:
     type: string
     description: calibration, power or discovery family.
 - seed:
     type: integer
     description: Original workflow seed checked against the serialized RNG handoff; native seed ownership remains in the package.
-- unit_id:
-    type: string
-    description: Exact certified unit identifier; arbitrary pair partitions and ad hoc task seeds are unsupported.
 output:
-  proposal:
-  - proposal_${unit_id}.rds:
-      type: file
-      description: Raw certified worker proposal, never a completed ResultRecord family; collector validation is required before publication.
-      pattern: proposal_unit-*.rds
+  state:
+  - - meta:
+        type: map
+        description: Input screen metadata retained unchanged.
+    - state:
+        type: directory
+        description: Atomically published certified state containing the completed family only after successful collection.
   version_file:
   - versions.yml:
       type: file
@@ -64,10 +67,6 @@ output:
     - Rscript --vanilla pipeline_bin/version-string.R environment_lock.rds:
         type: eval
         description: Installed version bound to the certified runtime lock.
-  meta:
-  - meta:
-      type: map
-      description: Unchanged screen metadata retained alongside certified singleton outputs.
 authors:
 - '@ekatsevi'
 maintainers:

@@ -5,10 +5,10 @@ keywords:
 - complete-family
 - native-sce
 components:
-- sceptre/validate
-- sceptre/stage
+- sceptrevalidate
+- sceptrestage
 - sceptre_analysis
-- sceptre/export
+- sceptreexport
 input:
 - state:
     description: Value channel containing tuple(meta map, imported state directory).

@@ -1,4 +1,4 @@
-name: sceptre_demo_input
+name: sceptredemoinput
 description: Generate a deterministic synthetic schema-7 screen inside the selected scientific runtime.
 keywords:
 - sceptre

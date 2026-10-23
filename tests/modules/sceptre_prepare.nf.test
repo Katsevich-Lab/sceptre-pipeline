@@ -1,7 +1,7 @@
 nextflow_process {
     name 'Certified distributed preparation module'
-    script "modules/local/sceptre_prepare/main.nf"
-    process 'SCEPTRE_PREPARE'
+    script "modules/local/sceptreprepare/main.nf"
+    process 'SCEPTREPREPARE'
     tag 'module'
 
     test('Prepares the certified target-group units within the requested limit') {

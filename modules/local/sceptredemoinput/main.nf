@@ -1,4 +1,4 @@
-process SCEPTRE_DEMO_INPUT {
+process SCEPTREDEMOINPUT {
     tag 'synthetic-source-pinned-screen'
     label 'process_single'
     cache 'deep'

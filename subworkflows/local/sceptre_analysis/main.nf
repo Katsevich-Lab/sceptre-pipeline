@@ -1,7 +1,7 @@
-include { SCEPTRE_STAGE } from '../../../modules/local/sceptre_stage/main'
-include { SCEPTRE_PREPARE } from '../../../modules/local/sceptre_prepare/main'
-include { SCEPTRE_WORKER } from '../../../modules/local/sceptre_worker/main'
-include { SCEPTRE_COLLECT } from '../../../modules/local/sceptre_collect/main'
+include { SCEPTRESTAGE as SCEPTRE_STAGE } from '../../../modules/local/sceptrestage/main'
+include { SCEPTREPREPARE as SCEPTRE_PREPARE } from '../../../modules/local/sceptreprepare/main'
+include { SCEPTREWORKER as SCEPTRE_WORKER } from '../../../modules/local/sceptreworker/main'
+include { SCEPTRECOLLECT as SCEPTRE_COLLECT } from '../../../modules/local/sceptrecollect/main'
 
 workflow SCEPTRE_ANALYSIS {
     take:

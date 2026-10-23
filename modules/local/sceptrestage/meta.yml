@@ -1,4 +1,4 @@
-name: sceptre_stage
+name: sceptrestage
 description: Execute one public SCEPTRE stage and publish an atomic certified artifact; statistical families are finalized in one package call.
 keywords:
 - sceptre

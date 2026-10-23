@@ -79,6 +79,6 @@ jobs:
             image/published-digest.txt
             image/push.log
             image/pull.log
-            image/source.json
+            image/context/source.json
             image/image-inspect.json
             image/context-receipt.json
