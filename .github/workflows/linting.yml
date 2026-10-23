@@ -30,6 +30,8 @@ jobs:
           version: '25.10.4'
           java-version: '17.0.10+7'
           java-distribution: temurin
+      - name: Assert final installed JVM and exact Nextflow release
+        run: NXF_VER=25.10.4 python3 tests/ci/check-engine-identity.py 25.10.4 host-engine.json
       - run: python -m pip install nf-core==4.2.0
       - name: Strict Nextflow parser
         run: NXF_VER=26.10.3 nextflow lint .
@@ -42,6 +44,7 @@ jobs:
         with:
           name: engineering-lint-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
+            host-engine*
             lint-results.*
             module-lint.txt
             subworkflow-lint.txt

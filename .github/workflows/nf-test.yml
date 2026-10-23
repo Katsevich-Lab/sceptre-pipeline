@@ -45,6 +45,8 @@ jobs:
           version: '25.10.4'
           java-version: '17.0.10+7'
           java-distribution: temurin
+      - name: Assert final installed JVM and exact Nextflow release
+        run: python3 tests/ci/check-engine-identity.py "$NXF_VER" "$RUNNER_TEMP/host-engine.json"
       - run: pip install nf-core==4.2.0
       - run: nf-core pipelines schema lint --dir .
       - run: bash -n tests/run-nextflow.sh tests/check-array-config.sh tests/ci/run-nf-test.sh tests/ci/check-sif-identity.sh
@@ -77,6 +79,8 @@ jobs:
           version: ${{ matrix.NXF_VER }}
           java-version: '17.0.10+7'
           java-distribution: temurin
+      - name: Assert final installed JVM and exact Nextflow release
+        run: python3 tests/ci/check-engine-identity.py "$NXF_VER" "$RUNNER_TEMP/host-engine.json"
       - name: Record portable production source identity
         run: python3 tests/ci/source-snapshot.py --output "$RUNNER_TEMP/source-snapshot.json"
       - name: Check opt-in scheduler configuration
@@ -224,6 +228,7 @@ jobs:
             ${{ runner.temp }}/image-id
             ${{ runner.temp }}/image-inspect.json
             ${{ runner.temp }}/runtime-provenance.txt
+            ${{ runner.temp }}/host-engine*
             ${{ runner.temp }}/installed-package/runtime.json
             ${{ runner.temp }}/installed-package/session.txt
             ${{ runner.temp }}/installed-package/tests.json
@@ -353,6 +358,8 @@ jobs:
           version: '25.10.4'
           java-version: '17.0.10+7'
           java-distribution: temurin
+      - name: Assert final installed JVM and exact Nextflow release
+        run: python3 tests/ci/check-engine-identity.py "$NXF_VER" "$RUNNER_TEMP/host-engine.json"
       - name: Install checksum-pinned Apptainer 1.5.5
         run: |
           curl -fsSL --retry 3 https://github.com/apptainer/apptainer/releases/download/v1.5.5/apptainer_1.5.5_amd64.deb -o "$RUNNER_TEMP/apptainer.deb"
@@ -384,6 +391,7 @@ jobs:
           retention-days: 14
           include-hidden-files: true
           path: |
+            ${{ runner.temp }}/host-engine*
             ${{ runner.temp }}/apptainer-*.txt
             ${{ runner.temp }}/apptainer-*.log
             ${{ runner.temp }}/sif-*.json
