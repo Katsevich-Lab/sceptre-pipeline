@@ -1,5 +1,7 @@
 """CLI admission must reject ambiguous source/runtime overrides before preparation."""
 import pathlib
+import runpy
+from unittest.mock import patch
 import subprocess
 import sys
 import tempfile
@@ -28,6 +30,11 @@ class LauncherAdmission(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn(message, result.stderr)
         self.assertFalse(self.output.exists())
+
+    def test_docker_execution_uses_numeric_caller_and_isolated_home(self):
+        module = runpy.run_path(str(LAUNCHER))
+        with patch('os.getuid', return_value=1001), patch('os.getgid', return_value=1002):
+            self.assertEqual(module['docker_user_arguments'](), ['--user','1001:1002','-e','HOME=/tmp','-e','R_LIBS_USER=/nonexistent'])
 
     def test_mutable_image_cannot_prepare_raw_data(self):
         self.rejects_before_output(['--container-image', 'sceptre:latest'], 'immutable image digest')

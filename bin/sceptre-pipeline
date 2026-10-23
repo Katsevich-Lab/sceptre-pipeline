@@ -27,6 +27,13 @@ def run(command, **kwargs):
     subprocess.run([str(x) for x in command], check=True, **kwargs)
 
 
+def docker_user_arguments():
+    # Bind-mount outputs must belong to the execution caller on native Linux.
+    # Keep HOME writable without admitting host or per-user R libraries.
+    return ['--user', f'{os.getuid()}:{os.getgid()}', '-e', 'HOME=/tmp',
+            '-e', 'R_LIBS_USER=/nonexistent']
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data-root', required=True, type=Path, help='Explicit read-only root containing JSON and every referenced raw source')
@@ -73,6 +80,8 @@ def main():
                     input_sha256=sha256(input_json),analysis_sha256=sha256(analysis_json),image=image,
                     image_sha256=args.container_image_sha256,engine=args.engine,profiles=profiles,
                     nextflow_arguments=extra,launcher_sha256=sha256(__file__))
+    if args.engine == 'docker':
+        expected['docker_user'] = {'uid': os.getuid(), 'gid': os.getgid()}
     receipt = target/'launcher.json'
     if args.resume:
         if not receipt.is_file() or json.loads(receipt.read_text()) != expected: parser.error('Launcher source/settings/image differ; create a fresh run-dir')
@@ -81,7 +90,7 @@ def main():
         target.mkdir(parents=True)
     mounts = [(repo,'ro'),(data,'ro'),(target,'rw')]
     if args.engine == 'docker':
-        base = ['docker','run','--rm']
+        base = ['docker','run','--rm'] + docker_user_arguments()
         for path,mode in mounts: base += ['-v',f'{path}:{path}:{mode}']
         base += ['-w',str(repo),image]
     else:
