@@ -1,7 +1,7 @@
 // Standard test profiles generate source-bound synthetic data inside the same runtime.
 nextflow_pipeline {
     name 'External nf-core engineering contracts'
-    script 'main.nf'
+    script "main.nf"
     tag 'pipeline'
 
     test('Zero-input test profile executes native preparation and all scientific families') {

@@ -7,10 +7,15 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      current_package_only:
+        description: 'Supplemental current package runtime only; default runs every acceptance job'
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
-  group: pipeline-checks-${{ github.workflow }}-${{ github.ref }}
+  group: pipeline-checks-${{ github.workflow }}-${{ github.ref }}-${{ inputs.current_package_only || false }}
   cancel-in-progress: true
 defaults:
   run:
@@ -44,6 +49,7 @@ jobs:
       - name: Verify bundled scientific source identity and rejection guards
         run: python3 tests/ci/check-runtime-source.py
   nf-test:
+    if: ${{ !inputs.current_package_only }}
     strategy:
       fail-fast: false
       matrix:
@@ -96,6 +102,8 @@ jobs:
           docker run --rm "$(cat "$RUNNER_TEMP/image-id")" \
             sh -c 'cat /opt/sceptre/source.json /opt/sceptre/session-info.txt /opt/sceptre/packages.tsv' \
             > "$RUNNER_TEMP/runtime-provenance.txt"
+      - name: Selected stage overrides must fail explicitly
+        run: bash tests/ci/check-selected-stage-gate.sh "$RUNNER_TEMP/selected-stage-gate"
       - name: Same-archive installed-package platform suite
         run: |
           docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" \
@@ -311,6 +319,7 @@ jobs:
             ${{ runner.temp }}/current-installed-package/tests.rds
 
   apptainer:
+    if: ${{ !inputs.current_package_only }}
     # Positive native SIF execution is separate from scheduler/static identity tests.
     needs: schema
     runs-on: ubuntu-24.04

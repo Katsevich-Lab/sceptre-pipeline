@@ -7,6 +7,10 @@ import sys
 # Explicit case identities keep an omitted branch from being replaced by an
 # unrelated passing test. Additions can execute without weakening this contract.
 required = (
+    'Zero-input test profile executes native preparation and all scientific families',
+    'Standard input alias admits the same certified scientific bundle',
+    'Incomplete explicit inputs never fall back to synthetic test data',
+    'Generates native synthetic inputs in the selected runtime',
     'Runs every requested complete family',
     'QC stop does not launch result families',
     'Discovery runs directly after QC without calibration',

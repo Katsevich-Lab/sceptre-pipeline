@@ -5,10 +5,10 @@ keywords:
 - complete-family
 - native-sce
 components:
-- sceptre_validate
-- sceptre_stage
+- sceptre/validate
+- sceptre/stage
 - sceptre_analysis
-- sceptre_export
+- sceptre/export
 input:
 - state:
     description: Value channel containing tuple(meta map, imported state directory).
@@ -26,8 +26,7 @@ input:
     description: Initial workflow seed; certified RNG state is carried across subsequent stages.
 output:
 - state:
-    description: Latest successful tuple(meta map, certified state directory); failures terminate without a partial
-      finalized family.
+    description: Latest successful tuple(meta map, certified state directory); failures terminate without a partial finalized family.
 authors:
 - '@ekatsevi'
 maintainers:

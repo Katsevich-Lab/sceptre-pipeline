@@ -9,6 +9,9 @@ on:
         required: true
 permissions:
   contents: read
+defaults:
+  run:
+    shell: bash
 jobs:
   build-review:
     runs-on: ubuntu-24.04
@@ -57,13 +60,14 @@ jobs:
           GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gunzip -c image/image.tar.gz | docker load
-          test "$(docker image inspect sceptre-publication-review:local --format '{{.Id}}')" = "$(cat image/image-id)"
-          test "$(docker image inspect sceptre-publication-review:local --format '{{.Architecture}}')" = amd64
+          docker image inspect sceptre-publication-review:local > image/loaded-inspect.json
+          python3 -c 'import json,pathlib; i=json.load(open("image/loaded-inspect.json"))[0]; assert i["Id"]==pathlib.Path("image/image-id").read_text().strip(); assert i["Architecture"]=="amd64"'
           printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
           ref="ghcr.io/katsevich-lab/sceptre-pipeline:source-${GITHUB_SHA}-amd64-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           docker tag sceptre-publication-review:local "$ref"
           docker push "$ref" 2>&1 | tee image/push.log
-          digest=$(docker image inspect "$ref" --format '{{index .RepoDigests 0}}')
+          docker image inspect "$ref" > image/pushed-inspect.json
+          digest=$(python3 -c 'import json; print(next(x for x in json.load(open("image/pushed-inspect.json"))[0]["RepoDigests"] if x.startswith("ghcr.io/katsevich-lab/sceptre-pipeline@sha256:")))')
           printf '%s\n' "$digest" | tee image/published-digest.txt
           docker pull "$digest" 2>&1 | tee image/pull.log
           docker logout ghcr.io

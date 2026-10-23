@@ -65,6 +65,10 @@ output:
   - meta:
       type: map
       description: Unchanged screen metadata retained alongside certified singleton outputs.
+  settings:
+  - resolved_settings.*:
+      type: file
+      description: Human-readable resolved scientific configuration and source identity.
 authors:
 - '@ekatsevi'
 maintainers:

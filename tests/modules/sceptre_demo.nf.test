@@ -1,6 +1,6 @@
 nextflow_process {
     name 'Source-bound synthetic demo preparation'
-    script 'modules/local/sceptre_demo_input/main.nf'
+    script "modules/local/sceptre_demo_input/main.nf"
     process 'SCEPTRE_DEMO_INPUT'
     tag 'module'
     test('Generates native synthetic inputs in the selected runtime') {

@@ -16,3 +16,6 @@ examples/.nextflow*
 .dev_examples/.nextflow*
 container/build/
 .nf-test-*.nf
+
+container/.build/
+__pycache__/
