@@ -32,6 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
@@ -64,6 +65,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
         with:
@@ -262,8 +264,12 @@ jobs:
             ${{ runner.temp }}/practical-parity/*.log
             ${{ runner.temp }}/practical-parity/prepared/settings.json
             ${{ runner.temp }}/practical-parity/*/resolved_settings.json
-            ${{ runner.temp }}/practical-parity/*/exports/scientific-report/report-status.json
-            ${{ runner.temp }}/practical-parity/*/exports/scientific-report/plot-status.json
+            ${{ runner.temp }}/practical-parity/*/exports/scientific-report
+            ${{ runner.temp }}/launcher/*.log
+            ${{ runner.temp }}/launcher/run/launcher.json
+            ${{ runner.temp }}/launcher/run/prepared/settings.json
+            ${{ runner.temp }}/launcher/run/results/exports/scientific-report
+            ${{ runner.temp }}/launcher/run/results/pipeline_info
             ${{ runner.temp }}/practical-parity/*work/**/.command.log
             ${{ runner.temp }}/integration*/results/pipeline_info
             ${{ runner.temp }}/integration*/*.log
@@ -282,6 +288,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - name: Build separately pinned R 4.6.1 / Bioconductor 3.23 runtime
         run: |
@@ -332,6 +339,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
         with:
@@ -385,3 +393,4 @@ jobs:
             ${{ runner.temp }}/apptainer-launcher/*.json
             ${{ runner.temp }}/apptainer-launcher/*.log
             ${{ runner.temp }}/apptainer-launcher/**/pipeline_info
+            ${{ runner.temp }}/apptainer-launcher/run/results/exports/scientific-report
