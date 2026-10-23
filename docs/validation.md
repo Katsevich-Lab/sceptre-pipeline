@@ -138,7 +138,9 @@ and same-runtime raw launcher have passed, with55hash-bound raw artifacts in
 [the current SIF receipt](../tests/evidence/practical-parity/hosted-725-39906148557/apptainer/receipt.json).
 The current newer-R package-only suite passed394cases/8109assertions withzero
 skips; [its raw receipt](../tests/evidence/practical-parity/hosted-725-39906148557/current-package/receipt.json)
-retains that separate scope. Full minimum/current42-case scientific jobs remain
-active; see
+retains that separate scope. Both minimum/current42-case matrices passed without skips, but whole jobs failed
+on the stale demo preview/full-lock checker; subsequent integration/missing-family
+steps were skipped. Focused repairs are qualified separately; final PR whole-job
+checks remain authoritative. See
 [the expanded CI record](ci.md#expanded-practical-parity-qualification). No registry,
 full-screen, scheduler or new performance qualification is inferred.

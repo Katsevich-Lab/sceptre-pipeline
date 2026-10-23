@@ -32,6 +32,7 @@ PAGES = {
     "nf-core.qmd": ("docs/nf-core.md", "nf-core principles"),
     "nf-core-conformance.qmd": ("docs/nf-core-conformance.md", "Current engineering acceptance"),
     "container-publication.qmd": ("docs/container-publication.md", "Container distribution boundary"),
+    "container-payload.qmd": ("docs/container-payload.md", "Exact reviewed container payload"),
     "array-validation.qmd": ("docs/array-validation.md", "Slurm array validation"),
     "ci.qmd": ("docs/ci.md", "Continuous integration"),
     "coverage.qmd": ("docs/coverage.md", "Scientific test coverage"),

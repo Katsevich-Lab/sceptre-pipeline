@@ -3,7 +3,9 @@
 Status: integrated in [draft PR1](https://github.com/Katsevich-Lab/sceptre-pipeline/pull/1),
 scientific candidate725078e/production98522279. Complete engineering at9aa9dfd
 passed; metadata-corrected imagef594 and actual saved-byte Ubuntu admission0dcb
-passed separately. Final integrated PR qualification remains the completion gate.
+passed separately. Final integrated PR qualification remains the completion gate; earlier725 jobs
+passed both42-case matrices but failed the stale demo checker after science/export.
+Focused demo/ownership/sourcefixture repairs retain strict provenance and guards.
 The dedicated original conformance worktree is historical.
 This work does not change the
 selected schema-7 scientific package archive `f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4`,
@@ -71,9 +73,10 @@ runtime boundaries and two genuine Go/Quarto template-syntax false positives.
 Each mapping remains visible in lint output and must be reviewed with this matrix.
 Warnings about unqualified runtime distribution remain explicit open boundaries.
 
-## Restart and publication boundary
+## Publication boundary
 
-Continue from this branch/worktree; leave the parent parity checkout intact.
+Conformance changes are integrated in the practical-parity PR; the original
+separate conformance checkout is historical.
 Do not rerun the old schema-3 compatibility refresh. Commits are local and
 reviewable; the owning thread integrates and publishes the approved lab branch.
 Registry publication is a separate, still-pending approval for

@@ -39,13 +39,24 @@ public raw-preparation/configuration/report suites, actual configuration-closure
 guards, nativeHDF5/checkpoint/launcher comparisons and positive Apptainer execution.
 The package-only newer-R job remains separate from pipeline runtime qualification.
 
-The [fresh full exact-head campaign](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39906148557)
-is running at `725078e3ea6c47154306b0e5d1a609a5d031783a`, production98522279.
-The earlier bfd campaign passed package/SIF checks but failed both Docker launcher
-jobs on caller ownership before reaching42cases. Those scoped results remain
-preserved. [Corrected engineering39906655219](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39906655219)
-passed at9aa9dfd with identical scientific production bytes. [The acceptance ledger](parity-acceptance.md)
-separates those boundaries from earlier local and original baseline checks.
+The [725 campaign](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39906148557)
+ended **FAILURE**: both minimum/current matrices passed42named cases without skips,
+all direct/distributed/partition/report gates and actual HDF5/launcher contracts.
+Demo science/export completed, then a stale bounded-preview versus complete-lock
+checker failed. Later generic integration and missing-family steps were skipped.
+The full manifest retained all93dependency identities; the checker repair now
+compares full identity and exact bounded preview separately. Public-demo helper
+ownership and complete-source testfixture repairs have their own focused receipts.
+Current-R package and positive SIF jobs passed independently in that same run.
+
+[Engineering39906655219](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39906655219)
+passed at9aa9dfd; later metadata/demo/test source must pass the final PR's complete
+checks. Production98522279 remains unchanged; final integrated qualification/setup
+3979304d has a separate identity. [The acceptance ledger](parity-acceptance.md)
+links exact raw histories and the [licensed image admission](container-publication.md).
+One final PR source/docs/evidence bundle triggers the ordinary full CI. Its actual
+head and terminal checks are authoritative; final-run raw readbacks do not require
+another receipt-only push into that frozen head.
 
 ## Hosted schema-7 qualification
 

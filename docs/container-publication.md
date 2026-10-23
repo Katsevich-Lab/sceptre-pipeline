@@ -39,15 +39,20 @@ Only this explicit manual job requests `packages: write`; build permissions are
 `contents: read`. The `container-publication` reviewer environment is a proposed
 project safeguard; destination-specific authorization is still pending.
 
-The metadata-corrected dedicated review branch is
-`codex/container-review-license-20261023` at
-`f59434dccc8bfe2eed2b087d49fb72f21944607a`. Its actual read-only push build
-[39908971415](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39908971415)
-is **in progress**, with publication skipped. Production98522279 and selected
-archivef41a8fb7 are unchanged; recipe/setup3106d65d has its own identity. Fifteen
-offline admission methods, full local tools4.2 pipeline lint and focused static/source
-checks passed. A final complete engineering-only hosted run remains queued for
-the final integrated metadata/admission/docs source. These checks do not substitute for the rebuilt-image execution and saved-byte admission.
+The metadata-corrected review source is `f59434dccc8bfe2eed2b087d49fb72f21944607a`.
+[Producer39908971415](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39908971415)
+and [strict Ubuntu admission39911817811](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39911817811)
+are **terminal SUCCESS**; publication was skipped. They bind the saved image
+`sha256:36979a6a70b182e27e2e6918f54cfd8482821291fe5b007aed7b481855c771ae`
+and archive SHA256 `9ebecf49d5576d52077035ad72d7e7128a62d1fd72bdb821eceba599f5e3e403`.
+Actual artifact12483325753 ZIP SHA256 is
+`a3aba8d1238caf3c06c97e0370e335ed67b4f296644f443acaf19d9efccfa8ad`.
+The admission downloaded and verified these bytes, then loaded and checked the
+exact original image ID/platform/labels; it did not rebuild. Production98522279
+and selected archivef41a8fb7 remain unchanged. Recipe/setup3106d65d and admission0dcb
+have separate source identities. Fifteen offline methods passed. [Raw evidence](../tests/evidence/nf-core-conformance/licensed-image-review/receipt.json)
+and the [complete concrete payload](container-payload.md) preserve the details.
+The final integrated PR's complete checks separately qualify later demo/test fixes.
 
 The recipe explicitly records the SCEPTRE project's `GPL-3.0-only` label, matching
 the selected package's `License: GPL-3`, and names the project vendor/contributor
@@ -69,7 +74,7 @@ store, the same archive loads by OCI manifest identity while the Linux classic
 Docker image ID is its config digest; the strict Mac loaded-ID check rejected.
 The recorded manifest-to-config link is additional evidence, not a waiver or a
 cross-engine loaded PASS. Actual hosted Ubuntu strict loading passed for that
-historical archive; the corrected archive needs its own admission receipt.
+historical archive; the corrected archive has its own successful strict Ubuntu admission above.
 
 The repository default is `main` at unchanged `5cc91e51`; its workflow-directory
 read returned404. The [GitHub manual-run documentation](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)
