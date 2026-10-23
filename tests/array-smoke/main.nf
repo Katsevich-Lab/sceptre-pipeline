@@ -5,7 +5,7 @@ nextflow.enable.dsl = 2
 process SCEPTRE_WORKER {
     tag "${item}"
     label 'process_medium'
-    array (workflow.profile.tokenize(',').contains('slurm') ? params.array_size : null)
+    array (params.worker_arrays ? params.array_size : null)
     input:
     val item
     output:

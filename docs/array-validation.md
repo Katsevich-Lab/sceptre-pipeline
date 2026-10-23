@@ -8,7 +8,7 @@
 
 Qualified on 2026-10-19 using the existing Kerberos-authenticated Betty session.
 The worker declaration resolves array size after the final configuration merge,
-with null disabling arrays outside the Slurm profile. Nextflow rejects dynamic
+with a static params-only expression and null disabling arrays outside the Slurm profile. Nextflow rejects dynamic
 closures for this directive; early config assignment can freeze a default before
 a later site override. The final implementation avoids both.
 
@@ -118,3 +118,15 @@ exact revisions remain separately recorded in [package/pipeline validation](vali
 Automatic hosted nf-test CI is documented separately in [CI](ci.md); configured
 workflows are not evidence of a successful hosted run. No branch, image or site
 was pushed, deployed or published by this local qualification.
+
+## Current strict-parser integration
+
+Nextflow26.10.3 strict parsing converts a directive containing `workflow.profile`
+into a dynamic closure, which `array` does not support. Current workers instead
+use the static expression `params.worker_arrays ? params.array_size : null`.
+The Slurm profile enables the hidden boolean; main admission rejects it under a
+non-Slurm profile. Both array settings are bound into the run signature. This
+retains explicit CLI size resolution and keeps local workers outside arrays.
+Current minimum/current configuration checks and local scientific execution are
+separate from the historical Slurm receipt above; the new source has not been
+executed on Slurm. A new scheduler campaign is required before claiming that.

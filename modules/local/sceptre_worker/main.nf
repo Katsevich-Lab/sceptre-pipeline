@@ -1,7 +1,7 @@
 process SCEPTRE_WORKER {
     tag "${meta.id}:${stage}:${unit_id}"
     label 'process_medium'
-    array (workflow.profile.tokenize(',').contains('slurm') ? params.array_size : null)
+    array (params.worker_arrays ? params.array_size : null)
     cache 'deep'
     input:
     tuple val(meta), path(state, name: 'input_state')

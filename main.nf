@@ -6,42 +6,37 @@ include { SCEPTRE_DEMO_INPUT } from './modules/local/sceptre_demo_input/main'
 // Nextflow configFiles omits nested includeConfig files. Resolve a conservative,
 // local literal include closure ourselves; reject dynamic includes rather than
 // allowing an execution-config change to evade the publication identity.
+def configVisit(path, seen, productionSources) {
+    path = path.toAbsolutePath().normalize()
+    if (!seen.add(path)) return
+    if (path in productionSources) return
+    if (!java.nio.file.Files.isRegularFile(path))
+        error 'Configuration identity requires readable local configuration files.'
+    def source = path.text
+    def mentions = (source =~ /\bincludeConfig\b/).count
+    def includes = (source =~ /(?m)^\s*includeConfig\s*(?:\(\s*)?(['"])([^'"\r\n$]+)\1\s*\)?\s*(?:;\s*)?(?:\/\/[^\r\n]*)?$/)
+    def matched = 0
+    includes.each { match ->
+        matched += 1
+        def child = java.nio.file.Paths.get(match[2])
+        if (!child.isAbsolute()) child = path.parent.resolve(child)
+        configVisit(child, seen, productionSources)
+    }
+    if (mentions != matched)
+        error 'Configuration identity supports only standalone literal local includeConfig paths (without interpolation). Rewrite dynamic/conditional includes as literal configuration files before running.'
+}
+
 def configClosure(List roots, List productionSources) {
     def seen = new LinkedHashSet()
-    def visit
-    visit = { path ->
-        path = path.toAbsolutePath().normalize()
-        if (!seen.add(path)) return
-        if (path in productionSources) return
-        if (!java.nio.file.Files.isRegularFile(path))
-            error 'Configuration identity requires readable local configuration files.'
-        def source = path.text
-        def mentions = (source =~ /\bincludeConfig\b/).count
-        def includes = (source =~ /(?m)^\s*includeConfig\s*(?:\(\s*)?(['"])([^'"\r\n$]+)\1\s*\)?\s*(?:;\s*)?(?:\/\/[^\r\n]*)?$/)
-        def matched = 0
-        includes.each { match ->
-            matched++
-            def child = java.nio.file.Paths.get(match[2])
-            if (!child.isAbsolute()) child = path.parent.resolve(child)
-            visit(child)
-        }
-        if (mentions != matched)
-            error 'Configuration identity supports only standalone literal local includeConfig paths (without interpolation). Rewrite dynamic/conditional includes as literal configuration files before running.'
-    }
-    roots.each { visit(it) }
-    seen.toList().sort { it.toString() }
+    roots.each { root -> configVisit(root, seen, productionSources) }
+    seen.toList().sort { entry -> entry.toString() }
 }
 
 // Hash local SIF images in bounded memory before any task is admitted.
 def imageSha256(java.nio.file.Path path) {
     def digest = java.security.MessageDigest.getInstance('SHA-256')
-    def stream = java.nio.file.Files.newInputStream(path)
-    try {
-        def buffer = new byte[1024 * 1024]
-        int count
-        while ((count = stream.read(buffer)) != -1) digest.update(buffer, 0, count)
-    } finally {
-        stream.close()
+    new java.security.DigestInputStream(java.nio.file.Files.newInputStream(path), digest).withCloseable { stream ->
+        stream.transferTo(java.io.OutputStream.nullOutputStream())
     }
     digest.digest().encodeHex().toString()
 }
@@ -53,16 +48,18 @@ workflow {
     } else {
         if (params.input && params.input_bundle && file(params.input).toAbsolutePath().normalize() != file(params.input_bundle).toAbsolutePath().normalize())
             error '--input and --input_bundle name different certified bundles; supply one input.'
-        if (params.input && !params.input_bundle) params.input_bundle = params.input
-        def demoInput = params.test_data && !params.input_bundle && !params.analysis_config && !params.environment_lock
-        if (!demoInput && (!params.input_bundle || !params.analysis_config || !params.environment_lock))
+        def selectedInput = params.input_bundle ?: params.input
+        def demoInput = params.test_data && !selectedInput && !params.analysis_config && !params.environment_lock
+        if (!demoInput && (!selectedInput || !params.analysis_config || !params.environment_lock))
             error 'Provide a certified --input/--input_bundle, --analysis_config and --environment_lock together; a zero-input -profile test run uses synthetic data.'
         validateParameters()
         def profiles = workflow.profile.tokenize(',')
         log.info "Selected profiles: ${workflow.profile}; scientific execution mode: ${params.execution_mode}."
         log.info 'The default task executor is local. Distributed mode partitions scientific work; scheduler selection comes from profiles/site configuration. Verify executor overrides before running on a cluster login node (docs/hpc.md, docs/recovery.md).'
-        if (profiles.any { it in ['docker','apptainer'] } && !params.container_image)
+        if (profiles.any { profile -> profile in ['docker','apptainer'] } && !params.container_image)
             error 'The docker/apptainer profiles require --container_image.'
+        if (params.worker_arrays && !profiles.contains('slurm'))
+            error 'worker_arrays requires the slurm profile; local execution must not enable scheduler arrays.'
         def immutableOci = params.container_image && (params.container_image ==~ /[A-Za-z0-9._:\/-]+@sha256:[a-f0-9]{64}/ || params.container_image ==~ /sha256:[a-f0-9]{64}/)
         if (params.container_image && !immutableOci) {
             if (!params.container_image.endsWith('.sif'))
@@ -78,11 +75,11 @@ workflow {
             error 'container_image_sha256 applies only to local SIF images.'
         }
         def selected = params.analyses ? params.analyses.split(',').toList() : []
-        if (selected.toSet().size() != selected.size() || selected.any { !(it in ['calibration','power','discovery']) })
+        if (selected.toSet().size() != selected.size() || selected.any { family -> !(family in ['calibration','power','discovery']) })
             error 'analyses must contain unique comma-separated calibration,power,discovery names, or an empty string.'
         def signature = file("${params.outdir}/run_signature.rds")
-        def occupied = ['parameters','assignment','qc','calibration','power','discovery','exports'].any {
-            file("${params.outdir}/${it}").exists()
+        def occupied = ['parameters','assignment','qc','calibration','power','discovery','exports'].any { stage ->
+            file("${params.outdir}/${stage}").exists()
         }
         if (occupied && !signature.exists())
             error 'Output directory already contains scientific outputs without a compatible run signature. Use a fresh --outdir.'
@@ -90,20 +87,20 @@ workflow {
         // external configuration files. Keep order stable across checkout relocation.
         def projectSources = ([file("${projectDir}/main.nf"), file("${projectDir}/nextflow.config"),
             file("${projectDir}/nextflow_schema.json"), file("${projectDir}/demo/make-input.R")] +
-            file("${projectDir}/bin/*.R") + file("${projectDir}/conf/*.config") +
-            file("${projectDir}/modules/**/*.nf") + file("${projectDir}/subworkflows/**/*.nf"))
-            .flatten().unique().sort { it.toString() }
-        def externalConfigs = configClosure(workflow.configFiles.findAll { !(it in projectSources) }, projectSources).findAll { !(it in projectSources) }
+            files("${projectDir}/bin/*.R") + files("${projectDir}/conf/*.config") +
+            files("${projectDir}/modules/**/*.nf") + files("${projectDir}/subworkflows/**/*.nf"))
+            .flatten().unique().sort { source -> source.toString() }
+        def externalConfigs = configClosure(workflow.configFiles.findAll { source -> !(source in projectSources) }, projectSources).findAll { source -> !(source in projectSources) }
         // External site configuration may contain credentials: bind its bytes
         // without mounting or copying it into an R worker/container.
-        def externalConfigDigests = externalConfigs.collect {
-            java.security.MessageDigest.getInstance('SHA-256').digest(it.bytes).encodeHex().toString()
+        def externalConfigDigests = externalConfigs.collect { source ->
+            java.security.MessageDigest.getInstance('SHA-256').digest(source.bytes).encodeHex().toString()
         }
         def runOptions = groovy.json.JsonOutput.toJson([
             session_id: workflow.sessionId.toString(), external_config_sha256: externalConfigDigests, analyses: selected, stop_after: params.stop_after, checkpoint_stage: params.checkpoint_stage,
-            seed: params.seed, container_image: params.container_image, container_image_sha256: params.container_image_sha256, execution_mode: params.execution_mode, n_work_units: params.n_work_units, array_size: params.array_size
+            seed: params.seed, container_image: params.container_image, container_image_sha256: params.container_image_sha256, execution_mode: params.execution_mode, n_work_units: params.n_work_units, array_size: params.array_size, worker_arrays: params.worker_arrays
         ])
-        Channel.topic('versions')
+        channel.topic('versions')
             .map { process, tool, version -> "${groovy.json.JsonOutput.toJson(process)}:\n  ${tool}: ${groovy.json.JsonOutput.toJson(version.toString().trim())}" }
             .unique()
             .collectFile(name: 'software_versions.yml', storeDir: "${params.outdir}/pipeline_info", sort: true, newLine: true)
@@ -114,7 +111,7 @@ workflow {
             inputConfig = SCEPTRE_DEMO_INPUT.out.fixture.map { fixture -> fixture.resolve('config.rds') }
             inputLock = SCEPTRE_DEMO_INPUT.out.fixture.map { fixture -> fixture.resolve('lock.rds') }
         } else {
-            inputState = channel.value(tuple([id: 'screen'], file(params.input_bundle, checkIfExists: true)))
+            inputState = channel.value(tuple([id: 'screen'], file(selectedInput, checkIfExists: true)))
             inputConfig = channel.value(file(params.analysis_config, checkIfExists: true))
             inputLock = channel.value(file(params.environment_lock, checkIfExists: true))
         }

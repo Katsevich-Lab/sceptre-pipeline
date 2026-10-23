@@ -25,6 +25,8 @@ jobs:
         with:
           version: '25.10.4'
       - run: python -m pip install nf-core==4.2.0
+      - name: Strict Nextflow parser
+        run: NXF_VER=26.10.3 nextflow lint .
       - run: nf-core pipelines lint --dir . --json lint-results.json --markdown lint-results.md
       - run: nf-core modules lint --dir . --all --local --plain-text | tee module-lint.txt
       - run: nf-core subworkflows lint --dir . --all --local --plain-text | tee subworkflow-lint.txt

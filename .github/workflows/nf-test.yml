@@ -23,6 +23,7 @@ defaults:
 env:
   NXF_VER: '25.10.4'
   NXF_ANSI_LOG: 'false'
+  NXF_SYNTAX_PARSER: 'v2'
   NXF_OPTS: '-Xms256m -Xmx1g'
 jobs:
   schema:
@@ -71,6 +72,8 @@ jobs:
       - uses: nf-core/setup-nextflow@6c2e22b4d901f0c42ca66c5069f8026df026d165 # v2
         with:
           version: ${{ matrix.NXF_VER }}
+      - name: Record portable production source identity
+        run: python3 tests/ci/source-snapshot.py --output "$RUNNER_TEMP/source-snapshot.json"
       - name: Check opt-in scheduler configuration
         run: bash tests/check-array-config.sh
       - name: Reject invalid SIF and mutable OCI identity before task submission
@@ -207,6 +210,7 @@ jobs:
           if-no-files-found: warn
           path: |
             tests/runtime/source.json
+            ${{ runner.temp }}/source-snapshot.json
             ${{ runner.temp }}/sif-guard/*.log
             ${{ runner.temp }}/context/source.json
             ${{ runner.temp }}/context/source.sha256
@@ -306,6 +310,7 @@ jobs:
           if-no-files-found: warn
           path: |
             tests/runtime/source.json
+            ${{ runner.temp }}/source-snapshot.json
             ${{ runner.temp }}/current-context/source.json
             ${{ runner.temp }}/current-context/source.sha256
             ${{ runner.temp }}/current-context-receipt.json

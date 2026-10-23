@@ -43,15 +43,15 @@ logo, ownership, approval, publication, DOI or membership is asserted.
 | Apptainer | Positive pinned Linux SIF execution and direct-R comparison, not config checks alone | Applicable; CI prepared separately, local macOS execution unavailable |
 | Registry availability | A publicly pullable digest with approved visibility/architecture/source | **Pending destination-specific publication approval**; no fake registry digest |
 | Resource/failure behavior | Default and label resources, site overrides, mandatory selected-stage failure, atomic scientific publication | Applicable; changes tested against package contracts |
-| Version provenance | Native package/runtime hashes plus software-version topics and complete per-stage records | Applicable; in progress |
-| Full pipeline lint | Actual full tools 4.2.0 run with named external mappings only | Applicable; initial run154pass/41fail/10warn after schema normalization; fixing |
-| Modules / subworkflows | Current metadata schema, reusable paths/contracts, actual nf-test coverage and source-owned algorithms | Applicable; baseline0fail/57warnings; reducing actionable warnings |
+| Version provenance | Native package/runtime hashes plus software-version topics and complete per-stage records | Applicable; implemented, final qualification in progress |
+| Full pipeline lint | Actual full tools 4.2.0 run with named external mappings only | Applicable; complete tools4.2.0 lint195pass/0fail/2warnings (name and directory MIME),38named external mappings |
+| Modules / subworkflows | Current metadata schema, reusable paths/contracts, actual nf-test coverage and source-owned algorithms | Applicable; full local modules238pass/0fail/35warnings; subworkflows42pass/0warn/0fail |
 | CI | Automatic lint, exact-package real tests on minimum/current Nextflow, floor/current package environments | Applicable; implementation/qualification in progress |
 | Documentation | Bundled usage, output, tutorial, scientific report, contribution/release instructions and limits | Applicable; reconciled with current behavior |
 | Credits/license | Cite package methods/Nextflow/nf-core inspiration and retain inherited GPL-3 | Applicable; no MIT relicensing of GPL science |
 | Semantic releases | Development SemVer and reviewable release checklist; future stable tags/DOI only after authorized release | Applicable; no release requested |
 | Modern file formats | Native SCE/RDS, sparse matrices, native HDF5, full CSV/native tables; no forced sequencing-specific formats | Applicable to screen inputs |
-| RO-Crate / software metadata | Accurate source/runtime/workflow metadata without fake DOI/registry publication | Applicable; in progress |
+| RO-Crate / software metadata | Accurate source/runtime/workflow metadata without fake DOI/registry publication | Applicable; implemented, final qualification in progress |
 | nf-core org/community/template branches | Actual nf-core governance, ownership and template-sync admission | Formal-admission scope, not claimed for this lab fork |
 | Branding | Retain lab/SCEPTRE identity; no fake nf-core logo | Formal-admission scope; exact logo-file mappings only |
 | Floating institutional profiles | Automatic `nf-core/configs/master` loader conflicts with immutable source/config admission | Narrow documented mapping; use explicit source-bound local site configs |
@@ -76,3 +76,33 @@ reviewable; the owning thread integrates and publishes the approved lab branch.
 Registry publication is a separate, still-pending approval for
 `ghcr.io/katsevich-lab/sceptre-pipeline`. A manual publication workflow may be
 prepared, but no image upload, visibility change or transfer is authorized here.
+
+## Current parser and component diagnostics
+
+[Official strict-syntax migration](https://docs.seqera.io/nextflow/strict-syntax)
+and [nf-core migration guidance](https://nf-co.re/docs/developing/migration-guides/strict-syntax)
+were checked against actual Nextflow26.10.3. Recursive closure capture, increment,
+array allocation/stream loops and the profile-dependent array directive required
+real source migration. The source now passes strict lint with no errors; seven
+warnings concern `when` sections that the tools4.2.0 module template still
+requires and Nextflow26.10 deprecates. They are retained to support the minimum
+runtime while enforcing an explicit failure for false `ext.when`; workflow
+empty-state/delivery guards separately reject missing selected work.
+
+The35 module diagnostics are seven each for Docker/Singularity images provided
+through the shared immutable runtime profile, absent Conda environment recipes,
+local-module underscore names preserving established SCEPTRE process identities,
+and mandatory selected-stage `when` conditions that deliberately raise an error
+rather than silently skip science. No metadata mismatch remains. Runtime image
+availability remains open until approved distribution; no invented registry or
+unreleased Conda package is substituted. The pipeline-name warning preserves the
+existing lab repository identity; a native certified directory input has no
+sequencing-file MIME type and is not mislabeled CSV. All these diagnostics stay
+visible in complete lint output.
+
+An initial minimum-runtime exploratory nf-test campaign completed seven exact
+scientific comparisons and was intentionally terminated by SIGTERM (exit143)
+before strict-parser fixes; it is not the final suite receipt. The current strict
+launcher smoke completed nativeHDF5 CRT distributed discovery, exact public-R
+comparison, unchanged scientific cache reuse and source/settings mutation guards.
+The final source snapshot and complete suite results are recorded separately.

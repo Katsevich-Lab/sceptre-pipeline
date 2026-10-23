@@ -26,7 +26,7 @@ workflow SCEPTRE {
 
     main:
     SCEPTRE_VALIDATE(state, config, lock, backing, tools_dir, previous_signature, run_options, implementation_sources)
-    validated = state.combine(SCEPTRE_VALIDATE.out.ready).map { meta, bundle, ready -> tuple(meta, bundle) }
+    validated = state.combine(SCEPTRE_VALIDATE.out.ready).map { meta, bundle, _ready -> tuple(meta, bundle) }
     current = validated
     if (checkpoint_stage == 'input') {
         PARAMETERS(current, config, lock, backing, tools_dir, 'parameters', seed)
@@ -58,8 +58,10 @@ workflow SCEPTRE {
             }
         }
     }
+    current = current.ifEmpty { error 'A selected certified stage produced no state; selected work cannot be disabled by site configuration.' }
     if (stop_after != 'parameters') {
         SCEPTRE_EXPORT(current, config, lock, backing, tools_dir)
+        SCEPTRE_EXPORT.out.exports.ifEmpty { error 'Selected certified delivery produced no exports; delivery cannot be disabled by site configuration.' }
     }
     emit:
     state = current

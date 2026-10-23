@@ -18,7 +18,7 @@ python3 - "$root" <<'PY'
 from pathlib import Path
 import sys
 root=Path(sys.argv[1]); log=(root/'nextflow.log').read_text()
-assert 'Selected certified stages cannot be disabled with ext.when' in log,log
+assert any(message in log for message in ('Selected certified stages cannot be disabled with ext.when', 'A selected certified stage produced no state')),log
 assert not (root/'results'/'exports').exists()
 assert not (root/'results'/'parameters').exists()
 print('PASS false ext.when is an explicit failure before certified outputs')

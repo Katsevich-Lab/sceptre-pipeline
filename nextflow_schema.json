@@ -151,6 +151,13 @@
           "description": "Maximum distributed workers per scheduler array; used only by the slurm profile",
           "title": "Array size",
           "default": 100
+        },
+        "worker_arrays": {
+          "type": "boolean",
+          "default": false,
+          "hidden": true,
+          "title": "Worker arrays",
+          "description": "Static scheduler-array admission, enabled by the slurm profile only; never changes package scientific unit boundaries."
         }
       }
     },
