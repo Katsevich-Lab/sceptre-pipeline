@@ -17,8 +17,18 @@ p.add_argument("--source-manifest", type=pathlib.Path, help="Bundled frozen arch
 p.add_argument("--verify-only", action="store_true", help="Validate source identity without downloads or a Docker context")
 p.add_argument("--package-archive", type=pathlib.Path, help="Use exact R CMD build archive bytes instead of git archive")
 p.add_argument("--package-sha256", help="Required SHA256 for --package-archive")
+p.add_argument("--runtime-profile", choices=("floor", "current"), default="floor",
+               help="Separate supported dependency runtime; source archive stays unchanged")
 p.add_argument("--output", type=pathlib.Path, default=HERE / ".build")
 a = p.parse_args()
+runtime = {
+    "floor": {"bioconductor_version": "3.22",
+              "cran_snapshot": "https://packagemanager.posit.co/cran/2025-11-15",
+              "base": "rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa"},
+    "current": {"bioconductor_version": "3.23",
+                "cran_snapshot": "https://packagemanager.posit.co/cran/2026-10-01",
+                "base": "rocker/r-ver:4.6.1@sha256:bafb3b9a72791eeeb810f0bc0472e74c7f4939b20b46c96cb7ebc6838b6a25ef"},
+}[a.runtime_profile]
 if a.source_manifest:
     if a.repository or a.revision or a.package_archive or a.package_sha256:
         p.error("--source-manifest cannot be combined with repository/revision or archive arguments")
@@ -85,6 +95,19 @@ out.mkdir(parents=True)
 (out / ".dockerignore").write_text("*\n!Dockerfile\n!install-dependencies.R\n!sceptre.tar.gz\n!source.json\n!source.sha256\n")
 for filename in ("Dockerfile", "install-dependencies.R"):
     shutil.copy2(HERE / filename, out / filename)
+if a.runtime_profile == "current":
+    dockerfile = out / "Dockerfile"
+    text = dockerfile.read_text()
+    replacements = {
+        "FROM rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa": "FROM " + runtime["base"],
+        "ARG CRAN_SNAPSHOT=https://packagemanager.posit.co/cran/2025-11-15": "ARG CRAN_SNAPSHOT=" + runtime["cran_snapshot"],
+        "ARG BIOCONDUCTOR_VERSION=3.22": "ARG BIOCONDUCTOR_VERSION=" + runtime["bioconductor_version"],
+    }
+    for before, after in replacements.items():
+        if text.count(before) != 1:
+            raise SystemExit("Runtime profile cannot bind its exact Dockerfile setting: " + before)
+        text = text.replace(before, after)
+    dockerfile.write_text(text)
 if a.package_archive:
     shutil.copyfile(a.package_archive, out / "sceptre.tar.gz")
 else:
@@ -97,8 +120,6 @@ metadata = {"schema": 1, "source_resolution": resolution,
             "archive_kind": "R_CMD_build" if a.package_archive else "git_archive",
             "sceptre_commit": commit, "sceptre_archive_sha256": source_sha,
             "object_schema": 7, "storage": "SingleCellExperiment/native_HDF5",
-            "bioconductor_version": "3.22",
-            "cran_snapshot": "https://packagemanager.posit.co/cran/2025-11-15",
-            "base": "rocker/r-ver:4.5.1@sha256:03b023fbf7b1b24ac1bb8b2ac5fd7e15a767e67b40ff50c155e328110981c2aa"}
+            **runtime}
 (out / "source.json").write_text(json.dumps(metadata, indent=2) + "\n")
 print(json.dumps({"context": str(out), **metadata}, indent=2))

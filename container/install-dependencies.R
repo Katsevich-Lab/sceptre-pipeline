@@ -1,6 +1,7 @@
 repo <- Sys.getenv("CRAN_SNAPSHOT")
 bioc <- Sys.getenv("BIOCONDUCTOR_VERSION")
-stopifnot(nzchar(repo), identical(bioc, "3.22"), getRversion() >= "4.5")
+stopifnot(nzchar(repo), bioc %in% c("3.22", "3.23"),
+    getRversion() >= if (bioc == "3.23") "4.6" else "4.5")
 options(repos = c(CRAN = repo), Ncpus = 2L, timeout = 1200L)
 install.packages("BiocManager")
 BiocManager::install(version = bioc, ask = FALSE, update = FALSE)
