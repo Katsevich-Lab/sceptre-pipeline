@@ -23,7 +23,6 @@ defaults:
 env:
   NXF_VER: '25.10.4'
   NXF_ANSI_LOG: 'false'
-  NXF_SYNTAX_PARSER: 'v2'
   NXF_OPTS: '-Xms256m -Xmx1g'
 jobs:
   schema:
