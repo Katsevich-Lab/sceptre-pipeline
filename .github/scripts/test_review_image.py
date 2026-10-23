@@ -66,7 +66,9 @@ class LocalTests(unittest.TestCase):
         self.image=dict(Id=self.expected['image_id'],Architecture='amd64',Os='linux',Config=dict(Labels={
             'org.opencontainers.image.source':'https://github.com/'+module.REPOSITORY,'org.opencontainers.image.revision':'a'*40}))
         self.write('review-receipt.json',self.receipt);self.write('source-before.json',self.source);self.write('source-after.json',self.source)
-        self.write('context/source.json',dict(archive_sha256=module.ARCHIVE))
+        self.write('context/source.json',dict(schema=1, source_resolution='frozen_archive_receipt',
+                   archive_kind='R_CMD_build', sceptre_commit='1e4d5459ab229255694f9217d7cd4ed51a4bf1b8',
+                   sceptre_archive_sha256=module.ARCHIVE, object_schema=7))
         self.write('scientific-parity/source-before.json',dict(source='same'));self.write('scientific-parity/source-after.json',dict(source='same'))
         self.write('host-engine.json',dict(nextflow_version='25.10.4',parser_override=None,java={'java.vendor':'Eclipse Adoptium','java.runtime.version':'17.0.10+7'}))
         self.write('image-inspect.json',[self.image]);self.write('loaded-inspect.json',[self.image])
@@ -97,6 +99,14 @@ class LocalTests(unittest.TestCase):
                 altered=dict(self.source);altered[field]=bad
                 self.write('source-before.json',altered);self.write('source-after.json',altered)
                 with self.assertRaises(ValueError):module.verify_local(self.root,self.origin)
+    def test_producer_context_package_identity_is_required(self):
+        # prepare-context.py emits sceptre_archive_sha256, not the image archive key.
+        for context in [dict(archive_sha256=module.ARCHIVE), {},
+                        dict(sceptre_archive_sha256='e'*64, archive_sha256=module.ARCHIVE)]:
+            with self.subTest(context=context):
+                self.write('context/source.json',context)
+                with self.assertRaisesRegex(ValueError,'Wrong selected scientific archive'):
+                    module.verify_local(self.root,self.origin)
     def test_wrong_loaded_id_platform_or_labels(self):
         for field,bad in [('Id','sha256:'+'e'*64),('Architecture','arm64'),('Os','other'),('Config',{'Labels':{}})]:
             with self.subTest(field=field):

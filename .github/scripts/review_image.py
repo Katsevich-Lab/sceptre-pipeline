@@ -69,7 +69,7 @@ def verify_local(directory, origin, loaded=False):
     before = load('source-before.json'); after = load('source-after.json')
     require(before == after and before['git_head'] == expected['source_sha'], 'Source changed or wrong checkout')
     require(before['production_sha256'] == receipt['production_sha256'] and before['qualification_sha256'] == receipt['qualification_sha256'], 'Source identity receipt mismatch')
-    require(before['scientific_archive_sha256'] == ARCHIVE and load('context/source.json')['archive_sha256'] == ARCHIVE, 'Wrong selected scientific archive')
+    require(before['scientific_archive_sha256'] == ARCHIVE and load('context/source.json').get('sceptre_archive_sha256') == ARCHIVE, 'Wrong selected scientific archive')
     require(load('scientific-parity/source-before.json') == load('scientific-parity/source-after.json'), 'Scientific source changed')
     engine = load('host-engine.json')
     require(engine['nextflow_version'] == '25.10.4' and engine['parser_override'] is None, 'Wrong Nextflow runtime')
