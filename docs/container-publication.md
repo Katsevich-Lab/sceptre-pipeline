@@ -45,8 +45,9 @@ The metadata-corrected dedicated review branch is
 [39908971415](https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39908971415)
 is **in progress**, with publication skipped. Production98522279 and selected
 archivef41a8fb7 are unchanged; recipe/setup3106d65d has its own identity. Fifteen
-offline admission methods and complete current engineering/static checks passed;
-these do not substitute for the rebuilt-image execution and saved-byte admission.
+offline admission methods, full local tools4.2 pipeline lint and focused static/source
+checks passed. A final complete engineering-only hosted run remains queued for
+the final integrated metadata/admission/docs source. These checks do not substitute for the rebuilt-image execution and saved-byte admission.
 
 The recipe explicitly records the SCEPTRE project's `GPL-3.0-only` label, matching
 the selected package's `License: GPL-3`, and names the project vendor/contributor
