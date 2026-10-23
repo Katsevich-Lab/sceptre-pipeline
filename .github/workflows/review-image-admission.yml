@@ -2,7 +2,7 @@ name: Reviewed image admission only
 
 on:
   push:
-    branches: [codex/image-admission-20261023]
+    branches: [codex/image-admission-license-20261023]
     paths:
       - .github/workflows/review-image-admission.yml
       - .github/scripts/review_image.py
@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
-      REVIEW_RUN_ID: '39904756647'
-      REVIEW_ARTIFACT_ID: '12480892891'
-      REVIEW_SOURCE_SHA: c13e94da0b8e9a54a2dd2460ad8514d04bd0fee0
-      REVIEW_IMAGE_ID: sha256:02809df79df55e61c05cbf5e7cfd60065c3311719102976983a3c12d7bb6edcc
-      REVIEW_ARCHIVE_SHA256: 1dcbe3a5d8b290c8ca28ffb67a065872e23e8d79877587199bffa230d346b688
+      REVIEW_RUN_ID: '39908971415'
+      REVIEW_ARTIFACT_ID: '12483325753'
+      REVIEW_SOURCE_SHA: f59434dccc8bfe2eed2b087d49fb72f21944607a
+      REVIEW_IMAGE_ID: sha256:36979a6a70b182e27e2e6918f54cfd8482821291fe5b007aed7b481855c771ae
+      REVIEW_ARCHIVE_SHA256: 9ebecf49d5576d52077035ad72d7e7128a62d1fd72bdb821eceba599f5e3e403
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -42,6 +42,8 @@ jobs:
         working-directory: admission
         run: |
           python3 ../.github/scripts/review_image.py origin origin.json > origin.log 2>&1
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${REVIEW_ARTIFACT_ID}" > artifact-metadata.json
+          gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${REVIEW_RUN_ID}" > originating-run.json
           gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${REVIEW_ARTIFACT_ID}/zip" > artifact.zip
           python3 - <<'PY'
           import hashlib, json, pathlib, zipfile
@@ -75,4 +77,17 @@ jobs:
             admission/*.sha256
             admission/image/review-receipt.json
             admission/image/loaded-inspect.json
+            admission/image/image-inspect.json
+            admission/image/source-before.json
+            admission/image/source-after.json
+            admission/image/context/source.json
+            admission/image/context-receipt.json
+            admission/image/host-engine*
+            admission/image/runtime-provenance.txt
+            admission/image/installed-package/runtime.json
+            admission/image/installed-package/tests.json
+            admission/image/installed-package/session.txt
+            admission/image/scientific-parity/source-before.json
+            admission/image/scientific-parity/source-after.json
+            admission/image/scientific-parity/resource-observations.json
           if-no-files-found: error
