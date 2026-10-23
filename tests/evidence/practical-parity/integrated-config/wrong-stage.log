@@ -1,0 +1,43 @@
+Nextflow 26.10.3 is available - Please consider updating your version to it
+N E X T F L O W  ~  version 25.10.4
+Launching `/Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-parity/main.nf` [romantic_plateau] DSL2 - revision: e71cb04aea
+Selected profiles: test,docker; scientific execution mode: distributed.
+The default task executor is local. Distributed mode partitions scientific work; scheduler selection comes from profiles/site configuration. Verify executor overrides before running on a cluster login node (docs/hpc.md, docs/recovery.md).
+WARN: There's no process matching config selector: .*:PARAMETERS -- Did you mean: PARAMETERS?
+WARN: There's no process matching config selector: .*:ASSIGNMENT -- Did you mean: ASSIGNMENT?
+WARN: There's no process matching config selector: .*:QC
+WARN: There's no process matching config selector: .*:CALIBRATION:(SCEPTRE_STAGE|SCEPTRE_COLLECT)
+WARN: There's no process matching config selector: .*:POWER:(SCEPTRE_STAGE|SCEPTRE_COLLECT)
+[38/d32c51] Submitted process > SCEPTRE:SCEPTRE_VALIDATE (screen:validate)
+ERROR ~ Error executing process > 'SCEPTRE:SCEPTRE_VALIDATE (screen:validate)'
+
+Caused by:
+  Process `SCEPTRE:SCEPTRE_VALIDATE (screen:validate)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  Rscript --vanilla pipeline_bin/validate_state.R analysis_config.rds input_state environment_lock.rds backing '{"session_id":"7891df85-56b3-4c39-8f1e-a60f71204f98","external_config_sha256":[],"analyses":["discovery"],"stop_after":"analysis","checkpoint_stage":"qc","seed":271828,"container_image":"sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9","container_image_sha256":null,"execution_mode":"distributed","n_work_units":3,"array_size":100,"worker_arrays":false}' previous_signature.rds pipeline_source
+  Rscript --vanilla pipeline_bin/versions.R environment_lock.rds
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  Error: checkpoint_stage must match the certified input bundle stage.
+  Execution halted
+
+Work dir:
+  /tmp/sceptre-parity-config-final/rejected-wrong-stage-work/38/d32c5118903821a84e062b772b6f7b
+
+Container:
+  sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+
+ -- Check '.nextflow.log' file for details
+An analysis invocation requires exactly one certified screen state.
+A selected certified stage produced no state; selected work cannot be disabled by site configuration.

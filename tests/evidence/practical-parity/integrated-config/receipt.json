@@ -1,0 +1,46 @@
+{
+  "kind": "config-closure-corrected-practical-parity-qualification",
+  "schema": 1,
+  "result": "PASS",
+  "owner_exit_codes": {
+    "native_hdf5_workflow": 0,
+    "one_command_launcher": 0
+  },
+  "production_sha256": "475e419938a86aa9aa19060730299c2276ab3500483e3bdd9e493c7a9c2f5913",
+  "archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "scientific_harness_files": 42,
+  "scientific_harness_before_after_equal": true,
+  "setup_before_sha256": "d1b19b2f209d2d5966eff49eb29e8597b3e1d80df0372ffc2139451ac8dba49f",
+  "setup_after_sha256": "9aef27aa5d954f50bc2f069b7de9fc5867b1ce7cac6be8a1ee5758206f83f798",
+  "setup_changed_paths_during_runs": [
+    ".github/workflows/nf-test.yml",
+    "tests/ci/check-config-closure.py"
+  ],
+  "container_image": "sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9",
+  "engine": "Docker Linux ARM64; Nextflow25.10.4 supported default v1 parser",
+  "scope": "160-cell synthetic nativeHDF5 CRT complete calibration/power/discovery exact public-R tables/fits/design/QC/assignments/plans/RNG; power-checkpoint continuation, requested/resolved settings, portable reopen, unchanged cache and stage/family/request/source/settings guards. Main production and all42 execution/oracle/archive files remained unchanged.",
+  "limits": "New mandatory standalone config-closure regression and CI wiring were integrated during these runs; they are outside the42 executed scientific harness files and are not qualified by these local drivers. Their separate accepted min/current receipts and exact-head hosted campaign bind that setup. No full-scale/performance/HPC/positiveSIF/registry or hostedscience claim.",
+  "evidence_sha256": {
+    "checkpoint-resolved-settings.json": "f90b0fefc50c1b305fbb8c1ba8ccd23ae817979a14c1edc6357ac42d6acc6c12",
+    "checkpoint-resume-trace.tsv": "6ee6afa87f7a0c738dfb05a694e52d6e2657a1cfa8f958d6cc8b1140448a1378",
+    "complete-plot-status.json": "f2e1b6e1853e8c5a7ddbec72433d632bfc7b9600e18227d9bbcffab489987987",
+    "complete-report-status.json": "a277bef2cea00ce8a055c1af277faf45a989bd499077470823555e6c2412f516",
+    "complete-resolved-settings.json": "22e06a3f162fe5be3132b67efa1033b7652ab17553d04ad0fdd09dc18bad7d65",
+    "complete-trace.tsv": "9fc58944a3d9f6de10aac814d1ec2182d937b79f5f4085f43dc339604e4cd565",
+    "completed-family.log": "3eb2fbf77a00b0ab21fe0e02966a74cb29ef619f828ebd464f482d504f09b863",
+    "launcher-resume-trace.tsv": "ec79454d2a300e0e5f39954ba4d2f04fb26fddae89c9fb63d336cb2ff4ec1b86",
+    "native-hdf5-workflow.log": "e4b5dddf6483ec7716dee668ebbc1e09329856f64d101f189612c37c451a20df",
+    "one-command-launcher.log": "e5eb5c462a839fe236505b2a65c50962924546ce89079151e02b551fc3588533",
+    "rejected-params-analyses.log": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+    "rejected-params-input_bundle.log": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+    "rejected-params-seed.log": "c3de3dc505386178ab08c5ffaff72c5d5800a87354560853c111310d17917b6d",
+    "rejected-settings.log": "76ba55c94c9268ac285e7589ad481a68c1353b212a1db00d9a63c90863fce007",
+    "rejected-source.log": "caa3ad622a5f1c32b78103b95154231a71a47889b7402ea1681a8c88f4480c46",
+    "resource-observations.json": "9114fdb0a8c3e933e1cec9d8205ac75baa3c2b875ed1b6ff01d9f2f4c7307b53",
+    "source-after.json": "dfdf0fe3f7630f9d1bc083a92b34446c12dc38893dd2508b38143cccbe401ab0",
+    "source-before.json": "dfdf0fe3f7630f9d1bc083a92b34446c12dc38893dd2508b38143cccbe401ab0",
+    "source-envelope-after.json": "ea4c621e2a8edb21c17201bb3b6fc22d5a7b94689e2dee51892f9f92814c96f8",
+    "source-envelope-before.json": "d0ee50be05427100bebae0a087f9926aea355e499f160518da5bc01516c6b88c",
+    "wrong-stage.log": "c3c55a061abce6cc0d25cfa84c2c2b7fe0c298ae193d7db10db48e7da2665c3c"
+  }
+}

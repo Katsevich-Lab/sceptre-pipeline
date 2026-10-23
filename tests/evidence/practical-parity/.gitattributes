@@ -6,3 +6,5 @@ report-example/*/report.html -text whitespace=-blank-at-eol
 params-guard/*.log -text -whitespace
 documentation/*.log -text -whitespace
 integrated/*.log -text -whitespace
+
+integrated-config/*.log -text -whitespace
