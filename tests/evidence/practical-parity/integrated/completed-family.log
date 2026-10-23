@@ -1,0 +1,43 @@
+Nextflow 26.10.3 is available - Please consider updating your version to it
+N E X T F L O W  ~  version 25.10.4
+Launching `/Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-parity/main.nf` [soggy_coulomb] DSL2 - revision: 52f38d423b
+Selected profiles: test,docker; scientific execution mode: distributed.
+The default task executor is local. Distributed mode partitions scientific work; scheduler selection comes from profiles/site configuration. Verify executor overrides before running on a cluster login node (docs/hpc.md, docs/recovery.md).
+WARN: There's no process matching config selector: .*:PARAMETERS -- Did you mean: PARAMETERS?
+WARN: There's no process matching config selector: .*:ASSIGNMENT -- Did you mean: ASSIGNMENT?
+WARN: There's no process matching config selector: .*:QC
+WARN: There's no process matching config selector: .*:CALIBRATION:(SCEPTRE_STAGE|SCEPTRE_COLLECT)
+WARN: There's no process matching config selector: .*:DISCOVERY:(SCEPTRE_STAGE|SCEPTRE_COLLECT)
+[ac/0d3ebf] Submitted process > SCEPTRE:SCEPTRE_VALIDATE (screen:validate)
+ERROR ~ Error executing process > 'SCEPTRE:SCEPTRE_VALIDATE (screen:validate)'
+
+Caused by:
+  Process `SCEPTRE:SCEPTRE_VALIDATE (screen:validate)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  Rscript --vanilla pipeline_bin/validate_state.R analysis_config.rds input_state environment_lock.rds backing '{"session_id":"00278ab6-182d-4cb6-8018-b7dd09282db2","external_config_sha256":[],"analyses":["power"],"stop_after":"analysis","checkpoint_stage":"power","seed":271828,"container_image":"sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9","container_image_sha256":null,"execution_mode":"distributed","n_work_units":3,"array_size":100,"worker_arrays":false}' previous_signature.rds pipeline_source
+  Rscript --vanilla pipeline_bin/versions.R environment_lock.rds
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  Error: Selected analyses already completed in checkpoint; select only remaining families.
+  Execution halted
+
+Work dir:
+  /tmp/sceptre-parity-supported-final/rejected-completed-family-work/ac/0d3ebfcd3bef7202bd4a4e55af019c
+
+Container:
+  sha256:b51c1cdaef908f6386b3313bd787f5d46dcc7b3f08c5fe28b271d2e5c85cd6c9
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+
+ -- Check '.nextflow.log' file for details
+An analysis invocation requires exactly one certified screen state.
+Selected certified delivery produced no exports; delivery cannot be disabled by site configuration.

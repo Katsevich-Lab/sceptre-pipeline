@@ -29,3 +29,14 @@ Safe-targeting annotations and fast Wilcoxon live in separate unadopted R branch
 ## Qualification limits
 
 Every test named above must have a terminal receipt before its exact final source is called qualified. Bounded synthetic tests and hosted AMD64 jobs do not qualify full Gasperini/Replogle, arbitrary scale, HPC/Apptainer/site schedulers or performance. Installed-package version-gated skips remain skips even when separate small raw-file tests exercise specific imports. No merge, release or cluster campaign is included.
+
+## Named qualification records
+
+- [Supported-default integrated local receipt](../tests/evidence/practical-parity/integrated/receipt.json): minimum25.10.4/defaultv1, qualified Docker ARM64, complete nativeHDF5 CRT/public-R equality, checkpoint/reopening, resolved settings, unchanged cache and stage/family/request mutation failures. Production `2a8b4a88…`;103-file oracle/setup `c0671460…`. Both actual commands ended exit0.
+- [Focused public-R preparation/delivery milestone](../tests/evidence/practical-parity/qualification/receipt.json): matrix/SCE/raw10x/CellRanger/Parse, public pair construction, configuration/default/invalid cases, native HDF5 relocation, complete QC/report/failure behavior and resource guards. These logs retain their earlier exact source boundary; expanded exact-head CI repeats all five focused suites rather than treating historical checks as final-head execution.
+- [Prepared request identity guard](../tests/evidence/practical-parity/params-guard/receipt.json): real public-R/launcher checks and seed/analyses/path mutation rejection before Nextflow.
+- [Scientific report visual receipt](../tests/evidence/practical-parity/visual/visual-review.json): complete/partial/presentation-failure desktop/mobile browser verification of the unchanged renderer. This is scientific HTML, separate from the Nextflow execution report and runtime benchmark report.
+- [Current engineering matrix](nf-core-conformance.md) and [bounded supported runtimes](../tests/evidence/nf-core-conformance/README.md): full current tools4.2 lint, visible warning groups, three actual cases each on default25.10.4/current26.10.3, explicit stage/input/SIF identity guards, and official parser-default source references. Optional25v2 interruptions are labeled experimental.
+- [Documentation render receipt](../tests/evidence/practical-parity/documentation/receipt.json): generator/schema/canonical source hashes, actual Quarto build and25-page/1848-reference check. Later prose changes require a new render receipt.
+
+The full42-case supported-default local campaign and expanded exact-PR-head hosted jobs are pending at this snapshot. Hosted source, image, package-suite skips and engine results will be recorded separately from the original schema7 baseline campaign. Registry upload/public pull remains a destination-specific pending approval; no merge, release or HPC qualification is implied.

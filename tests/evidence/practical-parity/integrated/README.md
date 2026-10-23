@@ -1,0 +1,5 @@
+# Supported-default integrated local milestone
+
+Both real drivers ended exit0 using minimum Nextflow25.10.4 with its supported default v1 parser and the exact qualified floor image. Complete native HDF5 CRT calibration/power/discovery and power-checkpoint discovery continuation equal uninterrupted public R (results, fits, design, assignments, QC, ordered plans and RNG). Actual requested/resolved settings match final scientific state. Unchanged runs cache all scientific work/export; invalid stage, repeated family and edited prepared seed/analyses/input path reject before scientific publication.
+
+Source and oracle/setup envelopes before/after are identical despite evidence/prose-only commits. The separate full42-case local suite and expanded hosted exact-head CI are still pending at this milestone. Current26.10.3 bounded strict cases and nf-core lint have their own receipts. Existing complete/partial/failure report visual receipts bind the unchanged renderer, not these synthetic data values.
