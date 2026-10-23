@@ -1,0 +1,4 @@
+1..3
+ok 1 Certified screen orchestration subworkflow: Parameters boundary emits state without export or downstream tasks
+ok 2 Certified screen orchestration subworkflow: Empty selected families preserve the QC state and export
+ok 3 Certified screen orchestration subworkflow: Unordered family selection executes canonical power then discovery

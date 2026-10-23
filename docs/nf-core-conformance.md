@@ -159,5 +159,34 @@ real zero-input preparation plus all reference families, the certified input ali
 and rejection of incomplete explicit inputs. Exact source/qualification hashes
 and TAP/XML/logs are preserved at `tests/evidence/nf-core-conformance/bounded-*`.
 Supported-default minimum selected-stage override and current conflicting-input/
-selected-stage guards passed separately. Full42-case floor qualification remains
-in progress; these bounded results do not substitute for it or hosted execution.
+selected-stage guards passed separately. The original full42-case floor campaign is terminal exit1:39 passed and3 failed.
+All three failures were stale SCEPTRE orchestration fixtures supplying13 channels
+to the current14-channel interface; all four analysis-subworkflow cases passed,
+including invalid-channel guards. Original failed TAP/XML/logs and identical
+before/after source maps are retained under
+`tests/evidence/nf-core-conformance/supported-minimum-42-original`.
+The corrected orchestration fixtures passed3/3 focused real Nextflow/public-R
+cases with zero skips (commitf3e59e1). Their full science/RNG and omitted-stage
+assertions are unchanged. This does not retroactively make the original42-case
+campaign pass. The final
+hosted minimum/current matrix remains the full integrated acceptance authority.
+
+## Hosted lint and CI action provenance
+
+The exact earlier review head50b2a5d completed hosted engineering run39899165626.
+Its full pipeline JSON records153 passed,38 ignored,2 warnings,0 failures and1
+in-memory fixed item; the CLI aggregate reports195 passed after including42
+subworkflow checks. The fixed item is tools4.2.0's `rocrate_readme_sync`: it adds
+README description text to an in-memory root RO-Crate descriptor and records a
+fix before its equality check; it does not persist a source edit in this case.
+The checkout remained clean. This receipt therefore does not claim zero fixes.
+
+The later CI-only action audit is retained under
+`tests/evidence/nf-core-conformance/action-runtime-audit`, including official
+release SHAs and downloaded action metadata with hashes. Direct JavaScript
+actions moved to current Node24 releases; setup-nextflow3 also removed its old
+nested mutable checkout. Its explicit Temurin17.0.10+7 input corrects the old
+composite's effective Zulu17 override. That is a real CI runtime correction,
+requiring the subsequent hosted campaign; the earlier hosted success cannot
+qualify the new JVM setup. Publication-workflow OCI labels are prospective
+repository/revision metadata only: no registry image was published by this audit.

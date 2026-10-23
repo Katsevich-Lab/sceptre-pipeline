@@ -1,0 +1,85 @@
+1..42
+ok 1 Scientific branch and artifact matrix: Parameters stop executes no assignment, QC or families
+ok 2 Scientific branch and artifact matrix: Assignment stop preserves exact assignments and RNG
+ok 3 Scientific branch and artifact matrix: Empty analysis selection stops after QC without family tasks
+ok 4 Scientific branch and artifact matrix: Calibration alone matches direct full-family tables and plans
+ok 5 Scientific branch and artifact matrix: Power alone matches direct full-family tables and plans
+ok 6 Scientific branch and artifact matrix: One-unit permutations preserve complete tables, fits and RNG
+ok 7 Scientific branch and artifact matrix: Excess-unit empirical CRT preserves whole-family budgets and RNG
+ok 8 Scientific branch and artifact matrix: Backed permutation workers match direct saved-state semantics
+ok 9 Scientific branch and artifact matrix: Native HDF5 CRT workers match direct saved-state semantics
+ok 10 Scientific branch and artifact matrix: Wrong runtime lock fails before parameters execute
+ok 11 Scientific branch and artifact matrix: Corrupt input object fails checksum before parameters execute
+ok 12 Scientific branch and artifact matrix: Nonpositive work-unit request fails schema before tasks
+ok 13 Scientific scheduling invariance: Two uneven units execute serially with exact public R results
+ok 14 Scientific scheduling invariance: Concurrent reordered workers retry discarded proposals with exact public R results
+ok 15 External nf-core engineering contracts: Zero-input test profile executes native preparation and all scientific families
+ok 16 External nf-core engineering contracts: Standard input alias admits the same certified scientific bundle
+ok 17 External nf-core engineering contracts: Incomplete explicit inputs never fall back to synthetic test data
+ok 18 Native schema-7 complete-family SCEPTRE workflow: Runs every requested complete family
+ok 19 Native schema-7 complete-family SCEPTRE workflow: QC stop does not launch result families
+ok 20 Native schema-7 complete-family SCEPTRE workflow: Discovery runs directly after QC without calibration
+ok 21 Native schema-7 complete-family SCEPTRE workflow: Schema rejects invalid stage before scientific work
+ok 22 Native schema-7 complete-family SCEPTRE workflow: Duplicate families fail before scientific work
+ok 23 Native schema-7 complete-family SCEPTRE workflow: Schema rejects nonpositive array sizes before scientific work
+ok 24 Native schema-7 complete-family SCEPTRE workflow: Certified distributed units finalize complete families
+ok 25 Certified complete-family collection module: Collects all proposals into the exact public reference family
+ok 26 Certified complete-family collection module: Rejects incomplete proposals without publishing a completed family
+ok 27 Source-bound synthetic demo preparation: Generates native synthetic inputs in the selected runtime
+ok 28 Certified scientific result export module: Exports exact certified discovery tables and marks other families omitted
+ok 29 Certified scientific result export module: Exports QC-only report without inventing analysis result tables
+ok 30 Certified distributed preparation module: Prepares the certified target-group units within the requested limit
+ok 31 Certified distributed preparation module: Rejects input that has not completed QC before publishing a plan
+ok 32 Public parameters stage module: Writes a real object, manifest and version identity
+ok 33 Validate certified runtime module: Checks real serialized input and emits a readiness gate
+ok 34 Certified distributed worker module: Executes a real certified unit and emits its named proposal
+ok 35 Certified distributed worker module: Rejects a unit outside the certified execution plan
+not ok 36 Certified screen orchestration subworkflow: Parameters boundary emits state without export or downstream tasks
+  ---
+  output: |
+    Nextflow stdout:
+  
+    ERROR ~ Workflow `SCEPTRE` declares 14 input channels but 13 were given
+  
+     -- Check script '/Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-nfcore/.nf-test-98098b9e042a70162219d356b783da02.nf' at line: 41 or see '/tmp/sceptre-nfcore-supported-minimum/work/tests/98098b9e042a70162219d356b783da02/meta/nextflow.log' file for more details
+    Nextflow stderr:
+  
+    Nextflow 26.10.3 is available - Please consider updating your version to it
+  failure: "Assertion failed: \n\nassert workflow.success\n       |        |\n     \
+    \  workflow false\n"
+  ...
+
+not ok 37 Certified screen orchestration subworkflow: Empty selected families preserve the QC state and export
+  ---
+  output: |
+    Nextflow stdout:
+  
+    ERROR ~ Workflow `SCEPTRE` declares 14 input channels but 13 were given
+  
+     -- Check script '/Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-nfcore/.nf-test-7988d9f5360a53562e674abbafc65019.nf' at line: 41 or see '/tmp/sceptre-nfcore-supported-minimum/work/tests/7988d9f5360a53562e674abbafc65019/meta/nextflow.log' file for more details
+    Nextflow stderr:
+  
+    Nextflow 26.10.3 is available - Please consider updating your version to it
+  failure: "Assertion failed: \n\nassert workflow.success\n       |        |\n     \
+    \  workflow false\n"
+  ...
+
+not ok 38 Certified screen orchestration subworkflow: Unordered family selection executes canonical power then discovery
+  ---
+  output: |
+    Nextflow stdout:
+  
+    ERROR ~ Workflow `SCEPTRE` declares 14 input channels but 13 were given
+  
+     -- Check script '/Users/ekatsevi/Documents/Codex/2026-10-22/new-realtime-voice-chat-6/sceptre-pipeline-nfcore/.nf-test-ca3631e67fcaabd7204c1c496fef89e5.nf' at line: 41 or see '/tmp/sceptre-nfcore-supported-minimum/work/tests/ca3631e67fcaabd7204c1c496fef89e5/meta/nextflow.log' file for more details
+    Nextflow stderr:
+  
+    Nextflow 26.10.3 is available - Please consider updating your version to it
+  failure: "Assertion failed: \n\nassert workflow.success\n       |        |\n     \
+    \  workflow false\n"
+  ...
+
+ok 39 Certified complete-family analysis subworkflow: Reference analysis preserves discovery-only semantics and RNG
+ok 40 Certified complete-family analysis subworkflow: Distributed analysis joins certified proposals into one exact family
+ok 41 Certified complete-family analysis subworkflow: Analysis rejects multiple screen states before scientific tasks
+ok 42 Certified complete-family analysis subworkflow: Analysis rejects an empty screen channel before scientific tasks

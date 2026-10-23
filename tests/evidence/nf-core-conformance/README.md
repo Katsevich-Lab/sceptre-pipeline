@@ -15,8 +15,12 @@ these are not formal nf-core organisation or standalone component admission.
 Both supported-default bounded suites are terminalPASS: minimum25.10.4 3/3,
 current26.10.3 3/3, zero skips and unchanged production/oracle identities.
 Their TAP/XML/logs and before/after snapshots are in bounded-minimum/ and
-bounded-current/. The full42-case minimum suite remains in progress; its terminal
-receipt will be added separately. Earlier
+bounded-current/. The original full42-case minimum suite is terminal39PASS/3FAIL
+(exit1), with all three stale13-input orchestration-fixture failures retained in
+supported-minimum-42-original/. Corrected fixtures passed their three focused
+real Nextflow/public-R cases (exit0,0skips) in corrected-orchestration-three/.
+Those focused results do not retroactively qualify a full42-case campaign; the
+final hosted minimum/current matrix is still required. Earlier
 exploratory campaigns were deliberately interrupted for source/parser/naming
 fixes, not qualified. The profile-only harness failure during that work was fixed
 by importing the real runtime profiles into the test wrapper configuration.
@@ -36,3 +40,10 @@ workflow/lint exclusion. Runtime/oracle files remain fully inspected.
 `minimum-array-config.log` is the supported25.10.4 default-parser PASS.
 `experimental-minimum-v2-array-config.log` deliberately preserves the failed
 opt-in parser diagnostic and is not qualification evidence.
+
+The action-runtime-audit/ records later CI-only upstream action/JVM corrections,
+with compressed original metadata, exact official SHAs and decompressed hashes.
+Hosted engineering run39899165626 on earlierhead50b2a5d passed; its JSON153passed,
+38ignored,2warnings,0failures and1in-memory RO-Crate fix differ from the195passed
+CLI aggregate because the latter includes42subworkflow checks. No persisted
+RO-Crate mutation or subsequent hosted runtime success is implied.

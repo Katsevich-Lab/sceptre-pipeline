@@ -1,0 +1,17 @@
+{
+  "status": "FAILED",
+  "exit_code": 1,
+  "tests": 42,
+  "passed": 39,
+  "failed": 3,
+  "cause": "Three SCEPTRE orchestration fixtures supplied 13 channels to current 14-channel interface. Remaining 39 passed, including four SCEPTRE_ANALYSIS public-R/invalid-channel cases.",
+  "source_before": "/tmp/sceptre-nfcore-supported-source.json",
+  "source_after": "/tmp/sceptre-nfcore-supported-minimum/source-after.json",
+  "source_unchanged": true,
+  "artifacts": {
+    "nf-test.tap": "b22d62ad5de2fbde22d4efbbd9e80ee2034c4df269b1dbadb45aa8e1e5f2b280",
+    "nf-test.xml": "b8984cee13b1ddb8546a20d656b03584c9f61a8d779bcf3c9a9cee8036f49801",
+    "nf-test-console.log": "71a2108fadf849153361f61d67ed94fd417975aa9463f82c28a530edd3b09f9b",
+    "nf-test.log": "ad904463d2d03c8521688b6fbe905e17b9a9e946af123b402ea2dea100c0dbd5"
+  }
+}
