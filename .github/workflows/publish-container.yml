@@ -25,7 +25,7 @@ jobs:
       - run: |
           python3 tests/ci/check-runtime-source.py
           python3 container/prepare-context.py --source-manifest tests/runtime/source.json --output "$RUNNER_TEMP/context" > "$RUNNER_TEMP/context-receipt.json"
-          docker build --progress plain --iidfile "$RUNNER_TEMP/image-id" --tag sceptre-publication-review:local "$RUNNER_TEMP/context" 2>&1 | tee "$RUNNER_TEMP/build.log"
+          docker build --progress plain --label org.opencontainers.image.source=https://github.com/Katsevich-Lab/sceptre-pipeline --label "org.opencontainers.image.revision=$GITHUB_SHA" --iidfile "$RUNNER_TEMP/image-id" --tag sceptre-publication-review:local "$RUNNER_TEMP/context" 2>&1 | tee "$RUNNER_TEMP/build.log"
           docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" sceptre-publication-review:local Rscript --vanilla tests/ci/check-installed-package.R tests/runtime/sceptre_0.99.0.tar.gz "$RUNNER_TEMP/installed-package"
           docker image inspect sceptre-publication-review:local > "$RUNNER_TEMP/image-inspect.json"
           docker save sceptre-publication-review:local | gzip > "$RUNNER_TEMP/image.tar.gz"
