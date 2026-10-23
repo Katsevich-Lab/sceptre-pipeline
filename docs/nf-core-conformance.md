@@ -190,3 +190,17 @@ composite's effective Zulu17 override. That is a real CI runtime correction,
 requiring the subsequent hosted campaign; the earlier hosted success cannot
 qualify the new JVM setup. Publication-workflow OCI labels are prospective
 repository/revision metadata only: no registry image was published by this audit.
+
+The next hosted engineering run39900277687 also completed successfully on exact
+head84590ae4b4966d224a66b203b7c20e29c60632a0. Its post-composite engine assertion
+verified Temurin17.0.10+7 and Nextflow25.10.4 with no parser override. Raw pipeline
+counts remain153passed/38ignored/1in-memory fixed/2warnings/0failures; module
+counts245passed/28warnings/0failures and subworkflow counts42passed/0warnings/
+0failures. The explicit26.10.3 strict-lint step passed with23files without errors
+and7when-deprecation warnings; it has no separate26.10.3 identity JSON. Exact
+source maps, artifact hashes, terminal status, original compressed logs and
+runtime receipts are retained under
+`tests/evidence/nf-core-conformance/hosted-engineering-39900277687`. The paired
+scientific run39900277427 was canceled, not passed. This engineering success does
+not qualify the later corrected full scientific matrix or imply container/HPC/
+registry execution.

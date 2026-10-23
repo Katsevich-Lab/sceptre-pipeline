@@ -1,0 +1,128 @@
+{
+  "kind": "sceptre-hosted-engineering-qualification",
+  "schema": 1,
+  "run_id": 39900277687,
+  "run_url": "https://github.com/Katsevich-Lab/sceptre-pipeline/actions/runs/39900277687",
+  "tested_head": "84590ae4b4966d224a66b203b7c20e29c60632a0",
+  "conclusion": "success",
+  "completed_at": "2026-10-23T04:27:57Z",
+  "source_identity_method": "Local saved snapshot maps independently verified against every committed git blob at tested head; exact checkout confirmed in hosted log. Not a hosted before/after source snapshot.",
+  "production_sha256": "2a8b4a88ce8b2f653c7f9dee1ba246bd6a56c7bf69aa5b0433e3ad47cf90b40e",
+  "qualification_sha256": "b2a4142de18ef56890ed2995ad4036d03989654f48b51172f7a800ee1c268f20",
+  "scientific_archive_sha256": "f41a8fb7e1bc10366e8efcc7a31644d4c8356bc4eca8adda9ca949c951de4fb4",
+  "host_engine": {
+    "kind": "sceptre-pipeline-host-engine",
+    "schema": 1,
+    "java_home": "/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.10-7/x64",
+    "java_executable_sha256": "d350a50c34c209469b800d5d09502f38203db5a99e7382ae654d124ceafab8b7",
+    "java": {
+      "java.runtime.version": "17.0.10+7",
+      "java.vendor": "Eclipse Adoptium",
+      "java.version": "17.0.10"
+    },
+    "nextflow_version": "25.10.4",
+    "parser_override": null,
+    "policy": "Exact final Temurin patch/vendor and Nextflow release verified after composite setup; supported parser defaults retained."
+  },
+  "nf_core_tools": "4.2.0",
+  "pipeline_lint": {
+    "num_tests_pass": 153,
+    "num_tests_ignored": 38,
+    "num_tests_fixed": 1,
+    "num_tests_warned": 2,
+    "num_tests_failed": 0
+  },
+  "pipeline_cli_aggregate_pass": 195,
+  "module_lint": {
+    "passed": 245,
+    "warnings": 28,
+    "failed": 0
+  },
+  "subworkflow_lint": {
+    "passed": 42,
+    "warnings": 0,
+    "failed": 0
+  },
+  "strict_nextflow_lint": {
+    "requested_release": "26.10.3",
+    "command": "NXF_VER=26.10.3 nextflow lint .",
+    "files_without_errors": 23,
+    "warnings": 7,
+    "errors": 0,
+    "step_conclusion": "success",
+    "limits": "Final host-engine JSON verifies25.10.4; strict26.10.3 is established by version-selected command and successful lint-step log, not a second engine identity JSON."
+  },
+  "paired_scientific_run": {
+    "run_id": 39900277427,
+    "conclusion": "cancelled",
+    "qualified_science": false
+  },
+  "limits": [
+    "Engineering lint and host-engine setup only; no scientific workflow/numerical/nativeHDF5 CRT/Apptainer/Slurm/scale qualification by this run.",
+    "No public container registry publication or digest pull.",
+    "Earlier in-memory RO-Crate fixed item retained; zero failures is not zero warnings or formal nf-core admission.",
+    "This tested head predates f3e59e1 orchestration-fixture correction and the subsequent complete hosted scientific campaign."
+  ],
+  "artifact_hashes": {
+    "module-lint.txt.gz": {
+      "sha256": "88f260842fb0fe2edec2d1633b4c07e590c847a159f417a460c3e1e5e36ca091",
+      "decompressed_sha256": "124415e3faf115a901cf7d5a774d514d1e8d52b579f6397a36655b5d5b874c06",
+      "decompressed_bytes": 119374
+    },
+    "lint-results.json.gz": {
+      "sha256": "d9f3a0a26683165b8dfe834858b87b01cbfe89ab3c9871e0f71153bcb62545cb",
+      "decompressed_sha256": "562dfe07d845d2f69d697c3741b153c6d6b2ee6d8b7ea05541ea611c09fd2298",
+      "decompressed_bytes": 55337
+    },
+    "host-engine.json": {
+      "sha256": "5c4cb955fe6ee5940a32562a7e48c542059581137d93e4192d86641c52688275",
+      "decompressed_sha256": "5c4cb955fe6ee5940a32562a7e48c542059581137d93e4192d86641c52688275",
+      "decompressed_bytes": 558
+    },
+    "subworkflow-lint.txt.gz": {
+      "sha256": "96297f6c479df48fca1fdbe219a08a5fc511426569aacb114b13f69b8bc05cad",
+      "decompressed_sha256": "88c3a46110e01b676414a0804b2df36d81b8941f4bcfc62948c00072131a4442",
+      "decompressed_bytes": 990
+    },
+    "host-engine.nextflow.txt": {
+      "sha256": "79a35e33aeb0804a168cc40eac516568f09c0ebfb4e1a43acd089b3f89b198cd",
+      "decompressed_sha256": "79a35e33aeb0804a168cc40eac516568f09c0ebfb4e1a43acd089b3f89b198cd",
+      "decompressed_bytes": 151
+    },
+    "host-engine.java.txt": {
+      "sha256": "a34178845ecc9050590b028bdeec3ae8c55bb12e92362fd4e3ed6537694217d5",
+      "decompressed_sha256": "a34178845ecc9050590b028bdeec3ae8c55bb12e92362fd4e3ed6537694217d5",
+      "decompressed_bytes": 2066
+    },
+    "lint-results.md.gz": {
+      "sha256": "d8128d221022e51a29fa36f534506943b5a165c8e9048e897d212410872d0616",
+      "decompressed_sha256": "39cb7c81bc766ee012b115d1aaaf104bc8cfecb9baa38e7efaca007d5bbbc872",
+      "decompressed_bytes": 32170
+    },
+    "hosted-run.log.gz": {
+      "sha256": "3df66b8899b364a08da2d79a618d12073fbd1f067b0d6b8530ce4a1424ec91d1",
+      "decompressed_sha256": "6aa8bee9f699cba2b90758a7b2cea1ba650430312a3dd043b7d9837610b6501f",
+      "decompressed_bytes": 404830
+    },
+    "run.json": {
+      "sha256": "f426a20c3f4d52b91d56146ad64c6a354f17cd21c3b36eac5200f103205e3684",
+      "decompressed_sha256": "f426a20c3f4d52b91d56146ad64c6a354f17cd21c3b36eac5200f103205e3684",
+      "decompressed_bytes": 4144
+    },
+    "cancelled-scientific-run.json": {
+      "sha256": "fd97e99e1a9608f25b9735b3ff4199948cbe20fd47a86d5bc3978b22efedc32a",
+      "decompressed_sha256": "fd97e99e1a9608f25b9735b3ff4199948cbe20fd47a86d5bc3978b22efedc32a",
+      "decompressed_bytes": 310
+    },
+    "committed-source-snapshot.json": {
+      "sha256": "29254e8164630591288a972afbd081c39ad94c50e05bba2101cd3ad65978a354",
+      "decompressed_sha256": "29254e8164630591288a972afbd081c39ad94c50e05bba2101cd3ad65978a354",
+      "decompressed_bytes": 15222
+    },
+    "strict-lint.log.gz": {
+      "sha256": "6a897f2f68c7a756df14eaab82eb64658cf1820c1155a260755401626c38057a",
+      "decompressed_sha256": "bc44317e369c00136ebc9dbe1f2ea5f8a0e71d273bdfd10db82e13d775e3013b",
+      "decompressed_bytes": 8159
+    }
+  }
+}
