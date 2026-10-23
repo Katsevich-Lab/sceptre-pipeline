@@ -1,0 +1,62 @@
+repository_type: pipeline
+nf_core_version: '4.2.0'
+template:
+  org: Katsevich-Lab
+  name: sceptre-pipeline
+  description: Certified complete-family SCEPTRE scientific workflows
+  author: Eugene Katsevich
+  version: 2.0.0dev
+  is_nfcore: false
+lint:
+  files_exist:
+    # Formal nf-core branding/governance, not engineering claims for this lab fork.
+    - assets/nf-core-sceptre-pipeline_logo_light.png
+    - docs/images/nf-core-sceptre-pipeline_logo_light.png
+    - docs/images/nf-core-sceptre-pipeline_logo_dark.png
+    - .github/workflows/branch.yml
+    # Equivalent inline full CI; no unsupported bot/sharding/notification interfaces.
+    - .github/actions/get-shards/action.yml
+    - .github/actions/nf-test/action.yml
+    - .github/workflows/pr-comment.yml
+    - assets/email_template.html
+    - assets/email_template.txt
+    - assets/sendmail_template.txt
+    - assets/multiqc_config.yml
+    - conf/igenomes.config
+    - conf/igenomes_ignored.config
+    - .github/workflows/awstest.yml
+    - .github/workflows/awsfulltest.yml
+    # Dockstore publication is a separate registry action, not implied by this branch.
+    - .github/.dockstore.yml
+  files_unchanged:
+    # Inherited GPL-3 code cannot be silently relicensed as the template's MIT.
+    - LICENSE
+    - .gitattributes
+    - .github/.dockstore.yml
+    - CODE_OF_CONDUCT.md
+    - .github/ISSUE_TEMPLATE/config.yml
+    - .github/PULL_REQUEST_TEMPLATE.md
+    - .github/workflows/branch.yml
+    - .github/workflows/pr-comment.yml
+    - .github/workflows/linting.yml
+    - assets/email_template.html
+    - assets/email_template.txt
+    - assets/sendmail_template.txt
+    - assets/nf-core-sceptre-pipeline_logo_light.png
+    - docs/images/nf-core-sceptre-pipeline_logo_light.png
+    - docs/images/nf-core-sceptre-pipeline_logo_dark.png
+    - docs/README.md
+  nextflow_config:
+    - manifest.name
+    - manifest.homePage
+    # A floating remote configs/master loader would violate immutable config admission.
+    - custom_config
+  readme:
+    # No claim that this legacy scientific workflow is an nf-core template/member pipeline.
+    - nfcore_template_badge
+  # The selected package's public scientific report is the actual report interface.
+  multiqc_config: false
+  template_strings:
+    # Genuine Docker Go-template and Quarto attribute syntax, not leftover Jinja placeholders.
+    - container/build.sh
+    - website/build.py

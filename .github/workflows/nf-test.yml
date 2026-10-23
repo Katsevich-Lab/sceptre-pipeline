@@ -3,16 +3,14 @@ on:
   push:
     branches: [main, dev]
   pull_request:
+    paths-ignore: ["**/*.md"]
+  release:
+    types: [published]
   workflow_dispatch:
-    inputs:
-      current_package_only:
-        description: 'Run only the supplemental dependency package suite; no pipeline qualification'
-        type: boolean
-        default: false
 permissions:
   contents: read
 concurrency:
-  group: pipeline-checks-${{ github.workflow }}-${{ github.ref }}-${{ inputs.current_package_only || false }}
+  group: pipeline-checks-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 defaults:
   run:
@@ -39,14 +37,19 @@ jobs:
       - uses: nf-core/setup-nextflow@6c2e22b4d901f0c42ca66c5069f8026df026d165 # v2
         with:
           version: '25.10.4'
-      - run: pip install nf-core==4.1.0
+      - run: pip install nf-core==4.2.0
       - run: nf-core pipelines schema lint --dir .
       - run: bash -n tests/run-nextflow.sh tests/check-array-config.sh tests/ci/run-nf-test.sh tests/ci/check-sif-identity.sh
       - run: python3 -m py_compile container/prepare-context.py tests/ci/require-nf-test.py
       - name: Verify bundled scientific source identity and rejection guards
         run: python3 tests/ci/check-runtime-source.py
-  scientific:
-    if: ${{ inputs.current_package_only != true }}
+  nf-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        NXF_VER: ["25.10.4", "26.10.3"]
+    env:
+      NXF_VER: ${{ matrix.NXF_VER }}
     # Automatic PR/push checks need neither an unpublished package ref nor secrets.
     needs: schema
     runs-on: ubuntu-24.04
@@ -61,7 +64,7 @@ jobs:
           java-version: '17.0.10+7'
       - uses: nf-core/setup-nextflow@6c2e22b4d901f0c42ca66c5069f8026df026d165 # v2
         with:
-          version: '25.10.4'
+          version: ${{ matrix.NXF_VER }}
       - name: Check opt-in scheduler configuration
         run: bash tests/check-array-config.sh
       - name: Reject invalid SIF and mutable OCI identity before task submission
@@ -131,7 +134,7 @@ jobs:
           docker run --rm -v "$PWD:$PWD" -w "$PWD" "$SCEPTRE_CONTAINER_IMAGE" \
             Rscript --vanilla tests/check-diagnostics.R 2>&1 | tee "$RUNNER_TEMP/diagnostics.log"
           python3 tests/check-failure-oracle.py 2>&1 | tee "$RUNNER_TEMP/failure-oracle.log"
-          python3 -m unittest discover -s tests -p test_resource_admission.py \
+          python3 -m unittest discover -s tests -p 'test_*.py' \
             2>&1 | tee "$RUNNER_TEMP/resource-admission.log"
       - name: Practical public-R preparation, checkpoint and delivery contracts
         run: |
@@ -142,6 +145,8 @@ jobs:
           done
       - name: Real native-HDF5 CRT preparation, checkpoint continuation and resume
         run: bash tests/run-parity-nextflow.sh "$RUNNER_TEMP/practical-parity" 2>&1 | tee "$RUNNER_TEMP/practical-parity.log"
+      - name: Single-command same-runtime raw JSON launch and unchanged resume
+        run: bash tests/run-launcher.sh "$RUNNER_TEMP/launcher" 2>&1 | tee "$RUNNER_TEMP/launcher.log"
       - name: Execute all real nf-test branches, including distributed workers
         run: bash tests/ci/run-nf-test.sh "$RUNNER_TEMP/nf-test/nf-test.jar" "$RUNNER_TEMP/nf-test"
       - name: Complete-family comparisons with mandatory backed execution
@@ -188,7 +193,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: scientific-validation-${{ github.run_id }}-${{ github.run_attempt }}
+          name: scientific-validation-${{ matrix.NXF_VER }}-${{ github.run_id }}-${{ github.run_attempt }}
           retention-days: 14
           include-hidden-files: true
           if-no-files-found: warn
@@ -304,3 +309,65 @@ jobs:
             ${{ runner.temp }}/current-installed-package/session.txt
             ${{ runner.temp }}/current-installed-package/tests.json
             ${{ runner.temp }}/current-installed-package/tests.rds
+
+  apptainer:
+    # Positive native SIF execution is separate from scheduler/static identity tests.
+    needs: schema
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '17.0.10+7'
+      - uses: nf-core/setup-nextflow@6c2e22b4d901f0c42ca66c5069f8026df026d165
+        with:
+          version: '25.10.4'
+      - name: Install checksum-pinned Apptainer 1.5.5
+        run: |
+          curl -fsSL --retry 3 https://github.com/apptainer/apptainer/releases/download/v1.5.5/apptainer_1.5.5_amd64.deb -o "$RUNNER_TEMP/apptainer.deb"
+          echo '25095d3711504b3e8657dbb2e172ef8db9db43c4503d940c9c36b105db8dce77  '"$RUNNER_TEMP/apptainer.deb" | sha256sum -c -
+          sudo apt-get update
+          sudo apt-get install -y "$RUNNER_TEMP/apptainer.deb"
+          apptainer version | tee "$RUNNER_TEMP/apptainer-version.txt"
+          apptainer buildcfg > "$RUNNER_TEMP/apptainer-buildcfg.txt"
+      - name: Build approved exact-source Docker image locally
+        run: |
+          python3 container/prepare-context.py --source-manifest tests/runtime/source.json --output "$RUNNER_TEMP/sif-context" | tee "$RUNNER_TEMP/sif-context-receipt.json"
+          docker build --progress plain --iidfile "$RUNNER_TEMP/sif-image-id" --tag sceptre-sif-source:qualification "$RUNNER_TEMP/sif-context" 2>&1 | tee "$RUNNER_TEMP/sif-docker-build.log"
+          docker image inspect "$(cat "$RUNNER_TEMP/sif-image-id")" > "$RUNNER_TEMP/sif-docker-inspect.json"
+      - name: Convert local Docker daemon image to native SIF without registry upload
+        run: |
+          apptainer build "$RUNNER_TEMP/sceptre.sif" docker-daemon://sceptre-sif-source:qualification 2>&1 | tee "$RUNNER_TEMP/sif-build.log"
+          sha256sum "$RUNNER_TEMP/sceptre.sif" | tee "$RUNNER_TEMP/sif-sha256.txt"
+          apptainer inspect --json "$RUNNER_TEMP/sceptre.sif" > "$RUNNER_TEMP/sif-inspect.json"
+          echo "SCEPTRE_CONTAINER_ENGINE=apptainer" >> "$GITHUB_ENV"
+          echo "SCEPTRE_CONTAINER_IMAGE=$RUNNER_TEMP/sceptre.sif" >> "$GITHUB_ENV"
+      - name: Execute native HDF5 CRT, direct R, checkpoint and resume in isolated SIF
+        run: bash tests/run-parity-nextflow.sh "$RUNNER_TEMP/apptainer-parity" 2>&1 | tee "$RUNNER_TEMP/apptainer-parity.log"
+      - name: Execute same-runtime single-command raw input and resume in isolated SIF
+        run: bash tests/run-launcher.sh "$RUNNER_TEMP/apptainer-launcher" 2>&1 | tee "$RUNNER_TEMP/apptainer-launcher.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: apptainer-scientific-validation-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          include-hidden-files: true
+          path: |
+            ${{ runner.temp }}/apptainer-*.txt
+            ${{ runner.temp }}/apptainer-*.log
+            ${{ runner.temp }}/sif-*.json
+            ${{ runner.temp }}/sif-*.txt
+            ${{ runner.temp }}/sif-*.log
+            ${{ runner.temp }}/sif-context/source.json
+            ${{ runner.temp }}/sif-context-receipt.json
+            ${{ runner.temp }}/apptainer-parity/resource-observations.json
+            ${{ runner.temp }}/apptainer-parity/*/pipeline_info
+            ${{ runner.temp }}/apptainer-parity/*/resolved_settings.json
+            ${{ runner.temp }}/apptainer-parity/*work/**/.command.*
+            ${{ runner.temp }}/apptainer-launcher/*.json
+            ${{ runner.temp }}/apptainer-launcher/*.log
+            ${{ runner.temp }}/apptainer-launcher/**/pipeline_info

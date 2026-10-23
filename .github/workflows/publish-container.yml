@@ -1,0 +1,80 @@
+name: Manual exact-source container publication (approval required)
+on:
+  workflow_dispatch:
+    inputs:
+      approve_publication:
+        description: 'Explicitly approve upload to ghcr.io/katsevich-lab/sceptre-pipeline (does not change visibility)'
+        type: boolean
+        default: false
+        required: true
+permissions:
+  contents: read
+jobs:
+  build-review:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - run: |
+          python3 tests/ci/check-runtime-source.py
+          python3 container/prepare-context.py --source-manifest tests/runtime/source.json --output "$RUNNER_TEMP/context" > "$RUNNER_TEMP/context-receipt.json"
+          docker build --progress plain --iidfile "$RUNNER_TEMP/image-id" --tag sceptre-publication-review:local "$RUNNER_TEMP/context" 2>&1 | tee "$RUNNER_TEMP/build.log"
+          docker run --rm -v "$PWD:$PWD" -v "$RUNNER_TEMP:$RUNNER_TEMP" -w "$PWD" sceptre-publication-review:local Rscript --vanilla tests/ci/check-installed-package.R tests/runtime/sceptre_0.99.0.tar.gz "$RUNNER_TEMP/installed-package"
+          docker image inspect sceptre-publication-review:local > "$RUNNER_TEMP/image-inspect.json"
+          docker save sceptre-publication-review:local | gzip > "$RUNNER_TEMP/image.tar.gz"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: reviewed-exact-source-image
+          retention-days: 3
+          path: |
+            ${{ runner.temp }}/image.tar.gz
+            ${{ runner.temp }}/image-id
+            ${{ runner.temp }}/image-inspect.json
+            ${{ runner.temp }}/context/source.json
+            ${{ runner.temp }}/context-receipt.json
+            ${{ runner.temp }}/installed-package/runtime.json
+            ${{ runner.temp }}/installed-package/tests.json
+            ${{ runner.temp }}/build.log
+  publish-approved-amd64:
+    if: ${{ inputs.approve_publication }}
+    needs: build-review
+    runs-on: ubuntu-24.04
+    # Configure this environment with a human reviewer before enabling publication.
+    environment: container-publication
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: reviewed-exact-source-image
+          path: image
+      - name: Publish precisely the reviewed AMD64 bytes
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gunzip -c image/image.tar.gz | docker load
+          test "$(docker image inspect sceptre-publication-review:local --format '{{.Id}}')" = "$(cat image/image-id)"
+          test "$(docker image inspect sceptre-publication-review:local --format '{{.Architecture}}')" = amd64
+          printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          ref="ghcr.io/katsevich-lab/sceptre-pipeline:source-${GITHUB_SHA}-amd64-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          docker tag sceptre-publication-review:local "$ref"
+          docker push "$ref" 2>&1 | tee image/push.log
+          digest=$(docker image inspect "$ref" --format '{{index .RepoDigests 0}}')
+          printf '%s\n' "$digest" | tee image/published-digest.txt
+          docker pull "$digest" 2>&1 | tee image/pull.log
+          docker logout ghcr.io
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: approved-container-publication-receipt
+          path: |
+            image/published-digest.txt
+            image/push.log
+            image/pull.log
+            image/source.json
+            image/image-inspect.json
+            image/context-receipt.json

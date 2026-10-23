@@ -1,0 +1,58 @@
+// Standard test profiles generate source-bound synthetic data inside the same runtime.
+nextflow_pipeline {
+    name 'External nf-core engineering contracts'
+    script 'main.nf'
+    tag 'pipeline'
+
+    test('Zero-input test profile executes native preparation and all scientific families') {
+        when {
+            params {
+                outdir = "$outputDir"
+                container_image = System.getenv('SCEPTRE_CONTAINER_IMAGE')
+            }
+        }
+        then {
+            assert workflow.success
+            assert workflow.trace.succeeded().size() == 9
+            ['calibration','power','discovery'].each { family ->
+                assert path("$outputDir/$family/state/sceptre_object.rds").exists()
+            }
+            assert path("$outputDir/exports/scientific-report/report.html").text.contains('SCEPTRE')
+            assert path("$outputDir/pipeline_info/software_versions.yml").text.contains('sceptre:')
+        }
+    }
+
+    test('Standard input alias admits the same certified scientific bundle') {
+        when {
+            params {
+                input = "${System.getenv('SCEPTRE_TEST_FIXTURE')}/input"
+                analysis_config = "${System.getenv('SCEPTRE_TEST_FIXTURE')}/config.rds"
+                environment_lock = "${System.getenv('SCEPTRE_TEST_FIXTURE')}/lock.rds"
+                stop_after = 'parameters'
+                outdir = "$outputDir"
+                container_image = System.getenv('SCEPTRE_CONTAINER_IMAGE')
+            }
+        }
+        then {
+            assert workflow.success
+            assert workflow.trace.succeeded().size() == 3
+            assert path("$outputDir/parameters/state/manifest.rds").exists()
+            assert !path("$outputDir/qc").exists()
+        }
+    }
+
+    test('Incomplete explicit inputs never fall back to synthetic test data') {
+        when {
+            params {
+                input_bundle = "${System.getenv('SCEPTRE_TEST_FIXTURE')}/input"
+                outdir = "$outputDir"
+                container_image = System.getenv('SCEPTRE_CONTAINER_IMAGE')
+            }
+        }
+        then {
+            assert workflow.failed
+            assert workflow.trace.succeeded().size() == 0
+            assert !path("$outputDir/exports").exists()
+        }
+    }
+}

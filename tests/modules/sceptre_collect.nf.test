@@ -40,7 +40,7 @@ nextflow_process {
             assert process.success
             assert process.out.state[0][0].id == 'fixture'
             assert checkCollectedState(process.out.state[0][1])
-            assert path(process.out.versions[0]).text.contains('installed_sha256:')
+            assert path(process.out.version_file[0]).text.contains('installed_sha256:')
         }
     }
     test('Rejects incomplete proposals without publishing a completed family') {

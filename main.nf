@@ -1,6 +1,7 @@
 nextflow.enable.dsl = 2
 include { validateParameters; paramsHelp } from 'plugin/nf-schema'
 include { SCEPTRE } from './subworkflows/local/sceptre/main'
+include { SCEPTRE_DEMO_INPUT } from './modules/local/sceptre_demo_input/main'
 
 // Nextflow configFiles omits nested includeConfig files. Resolve a conservative,
 // local literal include closure ourselves; reject dynamic includes rather than
@@ -50,6 +51,12 @@ workflow {
         log.info 'nextflow run . --input_bundle BUNDLE --analysis_config CONFIG --environment_lock LOCK --outdir RESULTS'
         log.info paramsHelp()
     } else {
+        if (params.input && params.input_bundle && file(params.input).toAbsolutePath().normalize() != file(params.input_bundle).toAbsolutePath().normalize())
+            error '--input and --input_bundle name different certified bundles; supply one input.'
+        if (params.input && !params.input_bundle) params.input_bundle = params.input
+        def demoInput = params.test_data && !params.input_bundle && !params.analysis_config && !params.environment_lock
+        if (!demoInput && (!params.input_bundle || !params.analysis_config || !params.environment_lock))
+            error 'Provide a certified --input/--input_bundle, --analysis_config and --environment_lock together; a zero-input -profile test run uses synthetic data.'
         validateParameters()
         def profiles = workflow.profile.tokenize(',')
         log.info "Selected profiles: ${workflow.profile}; scientific execution mode: ${params.execution_mode}."
@@ -82,7 +89,7 @@ workflow {
         // Bind production workflow/module/config/helper bytes, including resolved
         // external configuration files. Keep order stable across checkout relocation.
         def projectSources = ([file("${projectDir}/main.nf"), file("${projectDir}/nextflow.config"),
-            file("${projectDir}/nextflow_schema.json")] +
+            file("${projectDir}/nextflow_schema.json"), file("${projectDir}/demo/make-input.R")] +
             file("${projectDir}/bin/*.R") + file("${projectDir}/conf/*.config") +
             file("${projectDir}/modules/**/*.nf") + file("${projectDir}/subworkflows/**/*.nf"))
             .flatten().unique().sort { it.toString() }
@@ -96,10 +103,25 @@ workflow {
             session_id: workflow.sessionId.toString(), external_config_sha256: externalConfigDigests, analyses: selected, stop_after: params.stop_after, checkpoint_stage: params.checkpoint_stage,
             seed: params.seed, container_image: params.container_image, container_image_sha256: params.container_image_sha256, execution_mode: params.execution_mode, n_work_units: params.n_work_units, array_size: params.array_size
         ])
+        Channel.topic('versions')
+            .map { process, tool, version -> "${groovy.json.JsonOutput.toJson(process)}:\n  ${tool}: ${groovy.json.JsonOutput.toJson(version.toString().trim())}" }
+            .unique()
+            .collectFile(name: 'software_versions.yml', storeDir: "${params.outdir}/pipeline_info", sort: true, newLine: true)
+        if (demoInput) {
+            log.info 'Synthetic demonstration: no experimental input supplied. Generating source-pinned counts in the selected runtime.'
+            SCEPTRE_DEMO_INPUT(channel.value(file("${projectDir}/bin", checkIfExists: true)), channel.value(file("${projectDir}/demo", checkIfExists: true)))
+            inputState = SCEPTRE_DEMO_INPUT.out.fixture.map { fixture -> tuple([id: 'synthetic-screen'], fixture.resolve('input')) }
+            inputConfig = SCEPTRE_DEMO_INPUT.out.fixture.map { fixture -> fixture.resolve('config.rds') }
+            inputLock = SCEPTRE_DEMO_INPUT.out.fixture.map { fixture -> fixture.resolve('lock.rds') }
+        } else {
+            inputState = channel.value(tuple([id: 'screen'], file(params.input_bundle, checkIfExists: true)))
+            inputConfig = channel.value(file(params.analysis_config, checkIfExists: true))
+            inputLock = channel.value(file(params.environment_lock, checkIfExists: true))
+        }
         SCEPTRE(
-            channel.value(tuple([id: 'screen'], file(params.input_bundle, checkIfExists: true))),
-            channel.value(file(params.analysis_config, checkIfExists: true)),
-            channel.value(file(params.environment_lock, checkIfExists: true)),
+            inputState,
+            inputConfig,
+            inputLock,
             channel.value(file(params.backing_directory, checkIfExists: true)),
             channel.value(file("${projectDir}/bin", checkIfExists: true)),
             channel.value(signature.exists() ? signature : file("${projectDir}/resources/no_previous_run.rds")),

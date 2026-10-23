@@ -2,7 +2,6 @@ process SCEPTRE_STAGE {
     tag "${meta.id}:${stage}"
     label 'process_medium'
     cache 'deep'
-    publishDir "${params.outdir}/${stage}", mode: 'copy', overwrite: false
 
     input:
     tuple val(meta), path(state, name: 'input_state')
@@ -15,7 +14,12 @@ process SCEPTRE_STAGE {
 
     output:
     tuple val(meta), path('state'), emit: state
-    path 'versions.yml', emit: versions
+    path 'versions.yml', emit: version_file
+
+    tuple val("${task.process}"), val("sceptre"), eval("Rscript --vanilla pipeline_bin/version-string.R environment_lock.rds"), topic: versions, emit: versions_sceptre
+
+    when:
+    task.ext.when == null || task.ext.when || error("Selected certified stages cannot be disabled with ext.when; use --analyses or --stop_after.")
 
     script:
     """

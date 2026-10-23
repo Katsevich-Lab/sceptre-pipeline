@@ -1,10 +1,18 @@
-examples/.nextflow*
-.dev_examples/.nextflow*
-.DS_Store
 .nextflow*
 work/
+data/
 results/
+.DS_Store
+testing/
+testing*
+*.pyc
+null/
+.lineage/
 .nf-test/
-container/build/
 .nf-test.log
+
+# Project-specific generated artifacts
+examples/.nextflow*
+.dev_examples/.nextflow*
+container/build/
 .nf-test-*.nf

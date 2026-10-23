@@ -15,3 +15,14 @@ Acceptance readback refreshed: the old core source freeze is TERMINAL PASS and v
 Review identified that generated `params.json` was not in preparation identity. Preparation now binds its exact bytes; unchanged reuse rejects a changed seed, family request or input path before Nextflow submission. Real mutation rejection is covered by `test_project.R` and the Docker/SIF launcher driver. This guard will be included in final post-nf-core qualification.
 
 Focused guard qualification terminal PASS: `tests/evidence/practical-parity/params-guard/receipt.json` binds actual floor-Docker project and one-command launch/resume logs, all three request mutation diagnostics and the unchanged-resume trace at `62abebe`. Combined nf-core/current-parser qualification remains pending.
+
+## nf-core engineering continuation
+
+Active separate branch/worktree `codex/nfcore-conformance-20261022` /
+`sceptre-pipeline-nfcore`, base e72ae2f. Parent goal remains active. Official
+nf-core/tools4.2.0 and nf-test0.9.5 checked live. Full pipeline lint revealed
+schema-group/tooling/scaffold gaps; actual local-module/subworkflow lint revealed
+obsolete metadata conventions. See docs/nf-core-conformance.md for applicability,
+work in progress, exact selected scientific source and publication boundaries.
+Do not describe this engineering work as formal nf-core admission. Public image
+registry publication remains pending separate destination-specific approval.

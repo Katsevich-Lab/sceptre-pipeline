@@ -1,6 +1,8 @@
 # SCEPTRE pipeline
 
-[![Integration branch checks](https://github.com/timothy-barry/sceptre-pipeline/actions/workflows/ci.yml/badge.svg?branch=codex%2Fovernight-publication-pipeline)](https://github.com/timothy-barry/sceptre-pipeline/actions/workflows/ci.yml?query=branch%3Acodex%2Fovernight-publication-pipeline)
+[![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.10.4-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
+
+[![Integration branch checks](https://github.com/timothy-barry/sceptre-pipeline/actions/workflows/nf-test.yml/badge.svg?branch=codex%2Fovernight-publication-pipeline)](https://github.com/timothy-barry/sceptre-pipeline/actions/workflows/nf-test.yml?query=branch%3Acodex%2Fovernight-publication-pipeline)
 [![Pipeline version](docs/badges/version.svg)](nextflow.config)
 
 The checks badge tracks the historical integration branch; it does not certify

@@ -29,7 +29,7 @@ nextflow_process {
             assert process.out.proposal.size() == 1
             assert path(process.out.proposal[0]).fileName.toString() == 'proposal_unit-000001.rds'
             assert path(process.out.proposal[0]).size() > 0
-            assert path(process.out.versions[0]).text.contains('installed_sha256:')
+            assert path(process.out.version_file[0]).text.contains('installed_sha256:')
         }
     }
 

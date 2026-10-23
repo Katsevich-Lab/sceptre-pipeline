@@ -38,7 +38,7 @@ not schema7. Its prior green run does not test this migration:
 https://github.com/timothy-barry/sceptre-pipeline/actions/runs/39370466627
 
 After destination-specific publication approval, push only the new feature branch,
-then dispatch `.github/workflows/ci.yml` on that exact branch/revision and record
+then dispatch `.github/workflows/nf-test.yml` on that exact branch/revision and record
 the returned run URL and head SHA. Dispatch is supported by the workflow already
 registered on the default branch. Feature-branch pushes alone do not trigger this
 workflow (automatic push triggers are main/dev; PR triggers are also configured).

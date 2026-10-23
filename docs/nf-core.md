@@ -18,7 +18,7 @@ Nextflow owns scheduling, serialized artifacts and execution provenance.
 | Resume correctness | Runtime validation always reruns; a published run signature binds session, input, config, runtime, production workflow/helper source bytes, literal-local external configuration include closure and execution options; successful validation gates the original input path | `tests/run-nextflow.sh` asserts six cached scientific stages, cached export and one fresh validation on resume |
 | Provenance | Versioned artifact manifests, exact installed dependency identity, per-stage versions, Nextflow trace/report/timeline/DAG | Direct comparison asserts frozen plans and complete-family results |
 | Useful tests | Real fixtures exercise public R stages, actual branches and native algorithms; no touch-only stubs | `tests/direct-comparison.R`, `tests/run-nextflow.sh`, `tests/main.nf.test` |
-| Maintainable CI | Automatic schema/shell/Python checks; explicit exact-package dispatch builds a container and runs scientific checks | `.github/workflows/ci.yml`; configuration alone does not establish hosted success |
+| Maintainable CI | Automatic schema/shell/Python checks; explicit exact-package dispatch builds a container and runs scientific checks | `.github/workflows/nf-test.yml`; configuration alone does not establish hosted success |
 
 Scientific scope is held in package components, not pipeline metadata. The default reference executes each result
 family in one package call. The opt-in distributed mode freezes a certified

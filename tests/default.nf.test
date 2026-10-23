@@ -38,6 +38,7 @@ nextflow_pipeline {
             assert workflow.trace.failed().size() == 0
             assert compareSavedWorkflow(System.getenv('SCEPTRE_TEST_FIXTURE'), outputDir, 'analysis', 'calibration,power,discovery')
             assert path("$outputDir/exports").exists()
+            assert path("$outputDir/pipeline_info/software_versions.yml").text.contains('sceptre:')
             ['parameters', 'assignment', 'qc', 'calibration', 'power', 'discovery'].each { stage ->
                 assert path("$outputDir/$stage/state/sceptre_object.rds").size() > 0
                 assert path("$outputDir/$stage/state/manifest.rds").size() > 0
@@ -174,6 +175,7 @@ nextflow_pipeline {
                     assert path("$outputDir/$stage/state/sceptre_object.rds").size() > 0
                 }
                 assert path("$outputDir/exports").exists()
+            assert path("$outputDir/pipeline_info/software_versions.yml").text.contains('sceptre:')
             }
         }
     }

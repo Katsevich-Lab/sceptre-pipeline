@@ -1,6 +1,6 @@
 # Continuous integration
 
-The workflow in `.github/workflows/ci.yml` checks the native schema-7 pipeline.
+The workflow in `.github/workflows/nf-test.yml` checks the native schema-7 pipeline.
 It verifies the selected archive before constructing a Docker context;
 there is no fallback to a moving package branch or old schema runtime.
 
